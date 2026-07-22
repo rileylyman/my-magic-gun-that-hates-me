@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://e3iti4xximc7"]
+
+[node name="Node2D" type="Node2D" unique_id=1402302039]
+
+[node name="Label" type="Label" parent="." unique_id=645353181]
+offset_right = 593.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 79
+text = "Hello everyone!"
