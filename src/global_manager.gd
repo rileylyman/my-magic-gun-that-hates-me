@@ -8,7 +8,7 @@ var enemy: EnemyResource = preload("res://resources/enemies/enemy1.tres")
 
 var spellslots: int:
 	get:
-		return 2 + GlobalManager.artifacts.filter(func(a): return a is ExtraSlot).size()
+		return 3 + GlobalManager.artifacts.filter(func(a): return a is ExtraSlot).size()
 
 var handsize := 5
 

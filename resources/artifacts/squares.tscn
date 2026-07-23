@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d2o8yhdx6buv1"]
+
+[ext_resource type="Script" uid="uid://4n76nxmu2dp8" path="res://resources/artifacts/squares.gd" id="1_3sytn"]
+
+[node name="Squares" type="Node2D" unique_id=580296597]
+script = ExtResource("1_3sytn")
+title = "Squares"
+description = "If a number and its square hit together, double its damage"

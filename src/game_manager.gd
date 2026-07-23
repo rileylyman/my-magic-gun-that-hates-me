@@ -60,6 +60,7 @@ func _process(delta: float) -> void:
 func end_round() -> void:
 	for c in deck_container.get_children():
 		deck_container.remove_child(c)
+		c.curr = c.max_value
 	get_tree().change_scene_to_file("res://src/choose-artifact.tscn")
 
 func countdown_cards(delta: float) -> void:
@@ -119,6 +120,7 @@ func arrange_row(center: Vector2, cards: Array) -> void:
 
 func discard_chosen() -> void:
 	for c in chosen:
+		c.curr = c.max_value
 		discard.append(c)
 	chosen.clear()
 	deal_hand()
