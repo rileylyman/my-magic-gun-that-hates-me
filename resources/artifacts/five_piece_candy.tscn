@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bxpou3ytet1l2"]
+
+[ext_resource type="Script" uid="uid://bnc4brx5706kp" path="res://resources/artifacts/five_piece_candy.gd" id="1_3hxgm"]
+
+[node name="FivePieceCandy" type="Node2D" unique_id=1218712770]
+script = ExtResource("1_3hxgm")
+title = "5 Piece Candy"
+description = "x5 damage for every 5 showing."

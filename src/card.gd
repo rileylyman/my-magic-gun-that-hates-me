@@ -4,7 +4,13 @@ extends Control
 @export var max_value: int = 5
 @onready var curr := max_value
 
-@onready var game_mgr: GameManager = get_tree().current_scene.find_child("GameManager")
+var game_mgr: GameManager
+
+func _ready() -> void:
+	do_setup()
+
+func do_setup() -> void:
+	game_mgr = get_tree().current_scene.find_child("GameManager")
 
 func _process(_delta: float) -> void:
 	%TitleLabel.text = str(max_value)

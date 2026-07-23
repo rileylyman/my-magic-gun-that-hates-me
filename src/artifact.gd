@@ -4,5 +4,8 @@ extends Node2D
 @export var title: String
 @export_multiline var description: String
 
-func tick_callback(_state: TickState) -> void:
+func pre_tick_callback(_state: TickState) -> void:
+    pass
+
+func post_tick_callback(_state: TickState) -> void:
     pass

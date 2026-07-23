@@ -30,8 +30,8 @@ var _accum := 0.0
 
 func _ready() -> void:
 	for c in GlobalManager.deck:
-		c = c.duplicate()
 		deck_container.add_child(c)
+		c.do_setup()
 		drawpile.append(c)
 
 	for v in GlobalManager.enemy.counter_values:
@@ -55,7 +55,12 @@ func _process(delta: float) -> void:
 	start_round_button.disabled = active_counter != null or chosen.size() < GlobalManager.spellslots
 
 	if score_bar.curr_score >= score_bar.max_score:
-		get_tree().change_scene_to_file("res://src/choose-artifact.tscn")
+		end_round()
+
+func end_round() -> void:
+	for c in deck_container.get_children():
+		deck_container.remove_child(c)
+	get_tree().change_scene_to_file("res://src/choose-artifact.tscn")
 
 func countdown_cards(delta: float) -> void:
 	_accum += delta * 2.0
@@ -67,18 +72,28 @@ func countdown_cards(delta: float) -> void:
 		var tick_state := TickState.new()
 		for c in chosen:
 			tick_state.cards.append(c)
-			c.curr -= 1
-			if c.curr == 0:
-				c.curr = c.max_value
-				tick_state.firing_cards.append(c)
-		var to_add = 1 if tick_state.firing_cards.size() > 0 else 0
-		for f in tick_state.firing_cards:
-			to_add *= f.max_value
-		tick_state.score = to_add
 
 		for a in GlobalManager.artifacts:
-			a.tick_callback(tick_state)
-		score_bar.curr_score += to_add
+			a.pre_tick_callback(tick_state)
+
+		for c in chosen:
+			c.curr -= 1
+
+		for c in tick_state.cards:
+			if c.curr <= 0:
+				tick_state.score_mult *= c.max_value
+				tick_state.should_fire = true
+
+		for a in GlobalManager.artifacts:
+			a.post_tick_callback(tick_state)
+
+		if tick_state.should_fire:
+			tick_state.score_add += 1
+		score_bar.curr_score += tick_state.score_add * tick_state.score_mult
+
+		for c in chosen:
+			if c.curr <= 0:
+				c.curr = c.max_value
 
 		active_counter.value -= 1
 		if active_counter.value == 0:

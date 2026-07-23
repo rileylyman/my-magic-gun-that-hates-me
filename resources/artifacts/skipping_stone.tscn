@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://brcumov16mxrk"]
+
+[ext_resource type="Script" uid="uid://dkgiw1xiquq1e" path="res://resources/artifacts/skipping_stone.gd" id="1_fa4sm"]
+
+[node name="SkippingStone" type="Node2D" unique_id=717250870]
+script = ExtResource("1_fa4sm")
+title = "Skipping Stone"
+description = "Odd numbered spells decrease by 2."

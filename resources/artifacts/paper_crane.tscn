@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://2xpvh2sodeci"]
+
+[ext_resource type="Script" uid="uid://dewa7vuugxvsr" path="res://resources/artifacts/paper_crane.gd" id="1_u66e4"]
+
+[node name="PaperCrane" type="Node2D" unique_id=753313122]
+script = ExtResource("1_u66e4")
+title = "Paper Crane"
+description = "If a spell hits alone, permanently increase its value by +1."
