@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://rk6dk6vw8owg"]
+
+[ext_resource type="Script" uid="uid://cqffq4qcerhts" path="res://src/counter.gd" id="1_53san"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Counter" type="Control" unique_id=1153307364]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+script = ExtResource("1_53san")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=248175340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01wwf")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1151595536]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "20"
+horizontal_alignment = 1
