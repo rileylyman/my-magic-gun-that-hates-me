@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://eds3x0ekkbfw"]
+
+[ext_resource type="Script" uid="uid://byeepeesjhh4d" path="res://src/choose_artifact.gd" id="1_6ilnx"]
+[ext_resource type="PackedScene" uid="uid://wucq84pt6ueb" path="res://src/artifact_selector.tscn" id="2_4mqxf"]
+
+[node name="ChooseArtifact" type="Control" unique_id=661720228 node_paths=PackedStringArray("done_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ilnx")
+done_button = NodePath("Button")
+
+[node name="Label" type="Label" parent="." unique_id=1216155231]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 15.0
+offset_right = 146.0
+offset_bottom = 103.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Enemy Defeated"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=973714817]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -115.0
+offset_right = 110.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 48
+text = "Continue"
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1366166573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ArtifactContainer" type="HBoxContainer" parent="CenterContainer" unique_id=378871311]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="ArtifactSelector" parent="CenterContainer/ArtifactContainer" unique_id=1778769872 instance=ExtResource("2_4mqxf")]
+layout_mode = 2
+
+[node name="ArtifactSelector2" parent="CenterContainer/ArtifactContainer" unique_id=315394457 instance=ExtResource("2_4mqxf")]
+layout_mode = 2
+
+[node name="ArtifactSelector3" parent="CenterContainer/ArtifactContainer" unique_id=1546768994 instance=ExtResource("2_4mqxf")]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="on_done"]

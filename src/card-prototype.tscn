@@ -11,6 +11,7 @@
 script = ExtResource("1_efhwg")
 card_scene = ExtResource("1_23muu")
 counter_scene = ExtResource("3_efhwg")
+chosen_size = 2
 deck_container = NodePath("../Deck")
 score_bar = NodePath("../ScoreBar")
 start_round_button = NodePath("../StartRoundButton")

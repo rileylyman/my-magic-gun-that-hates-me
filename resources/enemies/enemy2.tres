@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://c24qv1ij2cf6h"]
+
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="1_hkf22"]
+
+[resource]
+script = ExtResource("1_hkf22")
+name = "Fox"
+health = 100
+counter_values = Array[int]([20, 25, 15])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

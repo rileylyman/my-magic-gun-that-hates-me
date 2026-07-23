@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://djeit7nerenk8"]
+
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="1_4fgll"]
+
+[resource]
+script = ExtResource("1_4fgll")
+name = "Jackal"
+health = 250
+counter_values = Array[int]([15, 20, 25, 40])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"
