@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b2ku66qsq02b4"]
+
+[ext_resource type="Script" uid="uid://dctklxotdvsn5" path="res://src/artifact_icon.gd" id="1_lydgm"]
+[ext_resource type="PackedScene" uid="uid://wucq84pt6ueb" path="res://src/artifact_selector.tscn" id="2_qor8w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="ArtifactIcon" type="Control" unique_id=448662212]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lydgm")
+
+[node name="Panel" type="Panel" parent="." unique_id=1662591686]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
+
+[node name="ArtifactSelector" parent="." unique_id=1778769872 instance=ExtResource("2_qor8w")]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 51.0
+offset_right = 197.0
+offset_bottom = 301.0
+scale = Vector2(0.75, 0.75)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

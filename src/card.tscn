@@ -50,7 +50,7 @@ mouse_filter = 2
 [node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=570302713]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Fireball"
+text = "5"
 horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=1625223556]
@@ -62,3 +62,43 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "5"
+
+[node name="Tooltip" type="Control" parent="." unique_id=527350933]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_top = -45.0
+offset_right = 118.0
+offset_bottom = -5.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Tooltip" unique_id=1547333207]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip/PanelContainer" unique_id=113247373]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tooltip/PanelContainer/MarginContainer" unique_id=1763720654]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Tooltip/PanelContainer/MarginContainer/VBoxContainer" unique_id=2088726825]
+layout_mode = 2
+text = "Basic Spell"
+
+[node name="Label2" type="Label" parent="Tooltip/PanelContainer/MarginContainer/VBoxContainer" unique_id=507483178]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Not a special number"
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

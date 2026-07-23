@@ -3,6 +3,7 @@ extends Node2D
 
 @export var card_scene: PackedScene
 @export var counter_scene: PackedScene
+const artifact_icon_scene: PackedScene = preload("res://src/artifact_icon.tscn")
 
 @export var deck_container: Node2D
 @export var score_bar: ScoreBar
@@ -11,12 +12,16 @@ extends Node2D
 @export var hand_pos_node: Node2D
 @export var chosen_pos_node: Node2D
 @export var counter_pos_node: Node2D
+@export var icons_pos_node: Node2D
 @onready var hand_pos := hand_pos_node.position
 @onready var chosen_pos := chosen_pos_node.position
 @onready var counter_pos := counter_pos_node.position
+@onready var icons_pos := icons_pos_node.position
 
 var counters: Array[Counter] = []
 var active_counter: Counter
+
+var icons: Array[ArtifactIcon] = []
 
 var drawpile: Array[Card] = []
 var discard: Array[Card] = []
@@ -41,11 +46,20 @@ func _ready() -> void:
 		counters.append(c)
 		add_child(c)
 
+	for a in GlobalManager.artifacts:
+		var icon = artifact_icon_scene.instantiate()
+		icon.artifact = a
+		add_child(icon)
+		icons.append(icon)
+
 	drawpile.shuffle()
 	card_size = drawpile[0].size
 	score_bar.max_score = GlobalManager.enemy.health
 	score_bar.curr_score = 0
 	deal_hand()
+
+	arrange_row(icons_pos, icons)
+
 
 func _process(delta: float) -> void:
 	arrange_items()

@@ -7,17 +7,17 @@
 
 [node name="CardPrototype" type="Node2D" unique_id=1494826481]
 
-[node name="GameManager" type="Node2D" parent="." unique_id=357082942 node_paths=PackedStringArray("deck_container", "score_bar", "start_round_button", "hand_pos_node", "chosen_pos_node", "counter_pos_node")]
+[node name="GameManager" type="Node2D" parent="." unique_id=357082942 node_paths=PackedStringArray("deck_container", "score_bar", "start_round_button", "hand_pos_node", "chosen_pos_node", "counter_pos_node", "icons_pos_node")]
 script = ExtResource("1_efhwg")
 card_scene = ExtResource("1_23muu")
 counter_scene = ExtResource("3_efhwg")
-chosen_size = 2
 deck_container = NodePath("../Deck")
 score_bar = NodePath("../ScoreBar")
 start_round_button = NodePath("../StartRoundButton")
 hand_pos_node = NodePath("../HandPos")
 chosen_pos_node = NodePath("../ChosenPos")
 counter_pos_node = NodePath("../CounterPos")
+icons_pos_node = NodePath("../ArtifactsPos")
 
 [node name="Deck" type="Node2D" parent="." unique_id=729747437]
 
@@ -25,7 +25,10 @@ counter_pos_node = NodePath("../CounterPos")
 position = Vector2(558, 286)
 
 [node name="CounterPos" type="Node2D" parent="." unique_id=1709540498]
-position = Vector2(558, 118)
+position = Vector2(882, 118)
+
+[node name="ArtifactsPos" type="Node2D" parent="." unique_id=1728991180]
+position = Vector2(285, 63)
 
 [node name="HandPos" type="Node2D" parent="." unique_id=115461096]
 position = Vector2(558, 471)
@@ -43,9 +46,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -250.0
+offset_left = 78.0
 offset_top = 33.0
-offset_right = 250.0
+offset_right = 578.0
 offset_bottom = 60.0
 grow_horizontal = 2
 show_percentage = false
@@ -64,10 +67,10 @@ horizontal_alignment = 1
 
 [node name="StartRoundButton" type="Button" parent="." unique_id=210958629]
 custom_minimum_size = Vector2(100, 20)
-offset_left = 175.0
-offset_top = 31.0
-offset_right = 276.0
-offset_bottom = 62.0
-text = "Start Round"
+offset_left = 509.0
+offset_top = 209.0
+offset_right = 610.0
+offset_bottom = 240.0
+text = "Play Hand"
 
 [connection signal="pressed" from="StartRoundButton" to="GameManager" method="on_start_round_pressed"]

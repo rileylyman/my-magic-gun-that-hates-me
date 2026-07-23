@@ -27,3 +27,11 @@ func _gui_input(event: InputEvent) -> void:
 			game_mgr.on_card_clicked(self)
 		else:
 			print("Game manager not found")
+
+
+func _on_mouse_entered() -> void:
+	$Tooltip.visible = true
+
+
+func _on_mouse_exited() -> void:
+	$Tooltip.visible = false
