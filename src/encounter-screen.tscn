@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ibgukessbx2h" path="res://src/sprint_indicator.tscn" id="1_2cweb"]
 [ext_resource type="Script" uid="uid://cwkew3fc38mbq" path="res://src/encounter_screen.gd" id="1_gha8e"]
+[ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_una4h"]
 [ext_resource type="Script" uid="uid://uehr738u0uon" path="res://src/score_bar.gd" id="1_vh02q"]
 [ext_resource type="Texture2D" uid="uid://dmdtltf6uu4ek" path="res://art/submit-button-mockup.png" id="2_1m3sw"]
 [ext_resource type="Texture2D" uid="uid://qusmy0duqyf5" path="res://art/submit-button-mockup-press.png" id="3_12btj"]
@@ -47,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_una4h")
 script = ExtResource("1_gha8e")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1375615034]
