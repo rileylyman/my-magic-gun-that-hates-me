@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c8qe4l1ewhn3l"]
+
+[ext_resource type="Script" uid="uid://5twytgjj1er8" path="res://resources/artifacts/fireworks.gd" id="1_2kxjm"]
+
+[node name="Fireworks" type="Node2D" unique_id=1436353350]
+script = ExtResource("1_2kxjm")
+title = "Fireworks"
+description = "Quadrouple Damage on the last Day each Sprint."

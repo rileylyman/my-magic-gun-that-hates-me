@@ -21,7 +21,6 @@ var padding: Vector2 = Vector2(24, 24)
 var _accum := 0.0
 var battle_ended := false
 
-
 func _ready() -> void:
 	if GlobalManager.enemy == null:
 		push_error("No current enemy is loaded.")
@@ -114,6 +113,7 @@ func countdown_cards(delta: float) -> void:
 		_accum -= 1.0
 		var tick_state := TickState.new()
 		tick_state.hand = hand
+		tick_state.days = active_counter.value
 		for c in chosen:
 			tick_state.cards.append(c)
 			c.show_damage = false
