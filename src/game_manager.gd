@@ -68,11 +68,6 @@ func _ready() -> void:
 	%ScoreBar.max_score = GlobalManager.enemy.health
 	%ScoreBar.curr_score = 0
 	deal_hand()
-<< << << < HEAD
-	
-	arrange_row(icons_pos, icons)
-== == == =
->> >> >> > d64fa51(newmainscreen)
 
 
 func _process(delta: float) -> void:
