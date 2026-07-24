@@ -111,6 +111,8 @@ func load_current_enemy() -> bool:
 		1,
 		roundi(enemy.health * health_multiplier)
 	)
+	
+	enemy.roll_debuffs()
 
 	return true
 
