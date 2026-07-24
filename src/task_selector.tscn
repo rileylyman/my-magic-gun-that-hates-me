@@ -94,9 +94,9 @@ clip_contents = true
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kq2o2")
 script = ExtResource("1_vctk2")
-add_task_weight = 60.0
-remove_task_weight = 25.0
-stamp_task_weight = 15.0
+add_task_weight = 70.0
+remove_task_weight = 20.0
+stamp_task_weight = 10.0
 possible_values = Array[ExtResource("2_vbuc6")]([SubResource("Resource_vctk2"), SubResource("Resource_8v8u7"), SubResource("Resource_kc07b"), SubResource("Resource_qa3yo"), SubResource("Resource_2ilvo"), SubResource("Resource_ia4kg"), SubResource("Resource_tlg2c"), SubResource("Resource_h3134"), SubResource("Resource_qtfs4"), SubResource("Resource_h75i6")])
 possible_stamps = Array[ExtResource("3_syy5u")]([SubResource("Resource_uhfec"), SubResource("Resource_0cqvu")])
 

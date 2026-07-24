@@ -153,7 +153,7 @@ func get_add_task_description() -> String:
 	var result := "Add a Task with value %d." % generated_value
 
 	if generated_stamp_scene != null:
-		result += " This Task comes with a Stamp."
+		result += " This Task comes with a Stamp %s." % generated_stamp_scene
 	else:
 		result += " This Task has no Stamp."
 
