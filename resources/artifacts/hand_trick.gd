@@ -5,4 +5,4 @@ func post_tick_callback(state: TickState) -> void:
 	for c in state.hand:
 		if c.max_value < min:
 			min = c.max_value
-	state.score_mult *= min
+	state.score *= min
