@@ -26,7 +26,7 @@ var deck: Array[Card] = []
 var artifacts: Array[Artifact] = []
 
 var defeated_enemy_count: int = 0
-var enemy: EnemyResource = null
+var enemy: EnemyResource = preload("res://resources/enemies/enemy1.tres")
 
 var spellslots: int:
 	get:

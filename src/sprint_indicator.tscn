@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://ibgukessbx2h"]
+
+[ext_resource type="Script" uid="uid://cqffq4qcerhts" path="res://src/counter.gd" id="1_5n5u8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10eru"]
+bg_color = Color(0.37254903, 0.4627451, 0.74509805, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SprintIndicator" type="Control" unique_id=1067702874]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5n5u8")
+
+[node name="SprintLabel" type="Label" parent="." unique_id=1693984956]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -19.0
+offset_right = 32.0
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "Sprint 1"
+horizontal_alignment = 1
+
+[node name="Bg" type="PanelContainer" parent="." unique_id=1961015246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_10eru")
+
+[node name="Label" type="Label" parent="." unique_id=412044803]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 3.0
+offset_right = 32.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "15"
+horizontal_alignment = 1
+
+[node name="DaysWord" type="Label" parent="." unique_id=2011496075]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -17.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Days"
+horizontal_alignment = 1

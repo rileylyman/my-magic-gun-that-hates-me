@@ -9,17 +9,20 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(1, 1, 1, 0.33333334)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+border_color = Color(0.6117647, 0.2901961, 0.17254902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Card" unique_id=1368151009 instance=ExtResource("1_rgvkt")]
 mouse_default_cursor_shape = 0
 script = ExtResource("2_nfnp0")
 
-[node name="PanelContainer" parent="." index="0" unique_id=399642640]
+[node name="ShootLabel" parent="." index="0" unique_id=1096390588]
+visible = false
+
+[node name="PanelContainer" parent="." index="1" unique_id=399642640]
 theme_override_styles/panel = SubResource("StyleBoxFlat_rgvkt")
 
 [node name="VBoxContainer" parent="PanelContainer" index="0" unique_id=1680621655]

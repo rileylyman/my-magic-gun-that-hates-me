@@ -14,5 +14,5 @@ func _ready() -> void:
 		b.text = res.name + ": " + str(res.health) + " hp (" + file + ")"
 		b.pressed.connect(func():
 			GlobalManager.enemy = res
-			get_tree().change_scene_to_file("res://src/card-prototype.tscn")
+			get_tree().change_scene_to_file("res://src/encounter-screen.tscn")
 		)
