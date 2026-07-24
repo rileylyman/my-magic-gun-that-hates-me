@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	if active_counter != null:
 		countdown_cards(delta)
 	score_bar.max_score = GlobalManager.enemy.health
-	start_round_button.disabled = active_counter != null or chosen.size() < GlobalManager.spellslots
+	start_round_button.disabled = active_counter != null or chosen.size() < 1
 
 	if score_bar.curr_score >= score_bar.max_score:
 		end_round()
@@ -75,12 +75,11 @@ func end_round() -> void:
 	for c in deck_container.get_children():
 		deck_container.remove_child(c)
 		c.curr = c.max_value
+		c.show_damage = false
 	get_tree().change_scene_to_file("res://src/choose-artifact.tscn")
 
 func countdown_cards(delta: float) -> void:
 	_accum += delta * 2.0
-	for c in hand:
-		c.curr = c.max_value
 
 	if _accum > 1.0:
 		_accum -= 1.0
@@ -88,6 +87,7 @@ func countdown_cards(delta: float) -> void:
 		tick_state.hand = hand
 		for c in chosen:
 			tick_state.cards.append(c)
+			c.show_damage = false
 
 		for a in GlobalManager.artifacts:
 			a.pre_tick_callback(tick_state)
@@ -110,6 +110,7 @@ func countdown_cards(delta: float) -> void:
 		for c in chosen:
 			if c.curr <= 0:
 				c.curr = c.max_value
+				c.show_damage = true
 
 		active_counter.value -= 1
 		if active_counter.value == 0:
@@ -136,6 +137,7 @@ func arrange_row(center: Vector2, cards: Array) -> void:
 func discard_chosen() -> void:
 	for c in chosen:
 		c.curr = c.max_value
+		c.show_damage = false
 		discard.append(c)
 	chosen.clear()
 	deal_hand()
@@ -147,7 +149,7 @@ func deal_hand() -> void:
 			hand.append(card)
 	
 func on_card_clicked(card: Card) -> void:
-	if card in hand and chosen.size() < GlobalManager.spellslots:
+	if card in hand and chosen.size() < GlobalManager.spellslots and active_counter == null:
 		hand.erase(card)
 		chosen.append(card)
 	elif card in chosen and active_counter == null:
