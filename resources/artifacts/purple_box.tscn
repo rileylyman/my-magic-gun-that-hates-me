@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://curyuwlg7citu"]
+
+[ext_resource type="Script" uid="uid://b55k1ydfpkgwe" path="res://resources/artifacts/purple_box.gd" id="1_1edqm"]
+
+[node name="PurpleBox" type="Node2D" unique_id=1283920870]
+script = ExtResource("1_1edqm")
+title = "Purple Box"
+description = "Square-value spells square their damage."

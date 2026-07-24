@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dw2036mhyaxta"]
+
+[ext_resource type="Script" uid="uid://bvmv43j4uk45x" path="res://resources/artifacts/extra_hand.gd" id="1_1vbrr"]
+
+[node name="ExtraHand" type="Node2D" unique_id=1315511996]
+script = ExtResource("1_1vbrr")
+title = "Claw"
+description = "Gain 2 hand slots."

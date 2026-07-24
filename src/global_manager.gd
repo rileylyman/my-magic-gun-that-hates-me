@@ -10,7 +10,10 @@ var spellslots: int:
 	get:
 		return 3 + GlobalManager.artifacts.filter(func(a): return a is ExtraSlot).size()
 
-var handsize := 5
+var handsize : int:
+	get:
+		return 2 * GlobalManager.artifacts.filter(func(a): return a is ExtraHand).size() + 5
+
 
 func _ready() -> void:
 	for i in range(3, 8 + 1):
