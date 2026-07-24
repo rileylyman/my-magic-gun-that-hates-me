@@ -119,15 +119,19 @@ func countdown_cards(delta: float) -> void:
 
 		for c in tick_state.cards:
 			if c.curr <= 0:
-				tick_state.score_mult *= c.max_value
 				tick_state.should_fire = true
+				tick_state.score = 1
+				break
+
+		if tick_state.should_fire:
+			for c in tick_state.cards:
+				if c.curr <= 0:
+					tick_state.score *= c.max_value
 
 		for a in GlobalManager.artifacts:
 			a.post_tick_callback(tick_state)
 
-		if tick_state.should_fire:
-			tick_state.score_add += 1
-		score_bar.curr_score += tick_state.score_add * tick_state.score_mult
+		score_bar.curr_score += tick_state.score
 
 		for c in chosen:
 			if c.curr <= 0:
