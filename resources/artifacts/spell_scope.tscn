@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bdu026fves47q"]
+
+[ext_resource type="Script" uid="uid://cb8n20hg3pps4" path="res://resources/artifacts/spell_scope.gd" id="1_fiuku"]
+
+[node name="SpellScope" type="Node2D" unique_id=1486033492]
+script = ExtResource("1_fiuku")
+title = "Spell Scope"
+description = "If a spell hits alone, double it's damage."

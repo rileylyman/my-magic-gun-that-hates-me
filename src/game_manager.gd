@@ -85,6 +85,7 @@ func countdown_cards(delta: float) -> void:
 	if _accum > 1.0:
 		_accum -= 1.0
 		var tick_state := TickState.new()
+		tick_state.hand = hand
 		for c in chosen:
 			tick_state.cards.append(c)
 

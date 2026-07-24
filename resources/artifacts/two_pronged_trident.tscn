@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c3ep1s4vmo2xq"]
+
+[ext_resource type="Script" uid="uid://bd7opahbun7i4" path="res://resources/artifacts/two_pronged_trident.gd" id="1_3tn70"]
+
+[node name="TwoProngedTrident" type="Node2D" unique_id=251644683]
+script = ExtResource("1_3tn70")
+title = "Two Pronged Fork"
+description = "When a 2 value spell hits, it doubles its damage."
