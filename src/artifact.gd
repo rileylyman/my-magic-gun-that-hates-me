@@ -9,3 +9,6 @@ func pre_tick_callback(_state: TickState) -> void:
 
 func post_tick_callback(_state: TickState) -> void:
 	pass
+	
+func hand_submit_callback(_state: TickState) -> void:
+	pass

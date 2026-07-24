@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c6o361mja4cc2"]
+
+[ext_resource type="Script" uid="uid://qr56q71tdjqd" path="res://resources/artifacts/stack_of_document.gd" id="1_5gg8x"]
+
+[node name="StackOfDocument" type="Node2D" unique_id=1067744872]
+script = ExtResource("1_5gg8x")
+title = "Stack of Documents"
+description = "At the start of each Deadline, deal 100 damage."

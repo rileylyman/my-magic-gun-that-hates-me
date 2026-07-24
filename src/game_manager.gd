@@ -20,7 +20,7 @@ const artifact_icon_scene: PackedScene = preload("res://src/artifact_icon.tscn")
 
 var counters: Array[Counter] = []
 var active_counter: Counter
-
+var first_tick
 var icons: Array[ArtifactIcon] = []
 
 var drawpile: Array[Card] = []
@@ -68,7 +68,7 @@ func _ready() -> void:
 	score_bar.max_score = GlobalManager.enemy.health
 	score_bar.curr_score = 0
 	deal_hand()
-
+	
 	arrange_row(icons_pos, icons)
 
 
@@ -102,7 +102,7 @@ func end_round() -> void:
 
 func countdown_cards(delta: float) -> void:
 	_accum += delta * 2.0
-
+	
 	if _accum > 1.0:
 		_accum -= 1.0
 		var tick_state := TickState.new()
@@ -110,7 +110,11 @@ func countdown_cards(delta: float) -> void:
 		for c in chosen:
 			tick_state.cards.append(c)
 			c.show_damage = false
-
+		
+		if first_tick:
+			for a in GlobalManager.artifacts:
+				a.hand_submit_callback(tick_state)
+			first_tick = false
 		for a in GlobalManager.artifacts:
 			a.pre_tick_callback(tick_state)
 
@@ -132,7 +136,7 @@ func countdown_cards(delta: float) -> void:
 			a.post_tick_callback(tick_state)
 
 		score_bar.curr_score += tick_state.score
-
+		score_bar.curr_score += tick_state.bonus_score
 		for c in chosen:
 			if c.curr <= 0:
 				c.curr = c.max_value
@@ -194,7 +198,8 @@ func on_card_clicked(card: Card) -> void:
 func on_start_round_pressed() -> void:
 	if active_counter != null:
 		return
-
+	first_tick = true
+	
 	for c in counters:
 		if c.value > 0:
 			active_counter = c

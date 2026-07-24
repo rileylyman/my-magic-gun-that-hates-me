@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ckfdss6dkb1ix"]
+
+[ext_resource type="Script" uid="uid://ckdgpnkhu5fre" path="res://resources/artifacts/fidget_spinner.gd" id="1_nuqys"]
+
+[node name="FidgetSpinner" type="Node2D" unique_id=1946611606]
+script = ExtResource("1_nuqys")
+title = "Fidget Spinner"
+description = "When three spells with the same value hit together, multiply their Damage by three times that number."

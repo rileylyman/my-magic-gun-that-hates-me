@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ccx2hspuyti82"]
+
+[ext_resource type="Script" uid="uid://cbincoe6lytdd" path="res://resources/artifacts/fidget_cube.gd" id="1_mto2l"]
+
+[node name="FidgetCube" type="Node2D" unique_id=540856853]
+script = ExtResource("1_mto2l")
+title = "Fidget Cube"
+description = "When two Tasks with the same value fire together, multiply their Damage by that number."
