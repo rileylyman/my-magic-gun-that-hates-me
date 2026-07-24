@@ -10,7 +10,7 @@
 
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
-enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("4_4worf"), ExtResource("3_ioumm")])
+enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("4_4worf"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm"), ExtResource("3_ioumm")])
 battle_scene = ExtResource("5_ioumm")
 choose_artifact_scene = ExtResource("6_ioumm")
 win_scene = ExtResource("6_4njm7")
