@@ -6,3 +6,4 @@
 script = ExtResource("1_mto2l")
 title = "Fidget Cube"
 description = "When two Tasks with the same value fire together, multiply their Damage by that number."
+rarity = 2

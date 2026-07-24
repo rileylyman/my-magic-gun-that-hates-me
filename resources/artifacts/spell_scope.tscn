@@ -5,4 +5,4 @@
 [node name="SpellScope" type="Node2D" unique_id=1486033492]
 script = ExtResource("1_fiuku")
 title = "Spell Scope"
-description = "If a spell hits alone, double it's damage."
+description = "If a Task fires alone, double its Damage."

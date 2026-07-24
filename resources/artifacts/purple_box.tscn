@@ -5,4 +5,5 @@
 [node name="PurpleBox" type="Node2D" unique_id=1283920870]
 script = ExtResource("1_1edqm")
 title = "Purple Box"
-description = "Square-value spells square their damage."
+description = "Square-value Tasks square their Damage."
+rarity = 2

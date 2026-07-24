@@ -4,5 +4,6 @@
 
 [node name="HandTrick" type="Node2D" unique_id=48861732]
 script = ExtResource("1_jg1p8")
-title = "Hand Trick"
-description = "Multiply damage by the lowest value spell in your hand."
+title = "Bronze Hand"
+description = "Multiply all Damage by the lowest value Task in your Task Folder."
+rarity = 3

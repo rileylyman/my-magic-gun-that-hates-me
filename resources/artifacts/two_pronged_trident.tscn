@@ -5,4 +5,4 @@
 [node name="TwoProngedTrident" type="Node2D" unique_id=251644683]
 script = ExtResource("1_3tn70")
 title = "Two Pronged Fork"
-description = "When a 2 value spell hits, it doubles its damage."
+description = "2-value Tasks deal double Damage."

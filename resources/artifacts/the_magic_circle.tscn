@@ -4,5 +4,5 @@
 
 [node name="TheMagicCircle" type="Node2D" unique_id=838347528]
 script = ExtResource("1_qaai1")
-title = "Magic Circle"
-description = "If all spells hit on the same tick, triple the damage dealt."
+title = "Magic Bagel"
+description = "If a Task deals or multiplies Damage while not firing, double all Damage that Day."

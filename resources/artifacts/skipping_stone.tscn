@@ -5,4 +5,5 @@
 [node name="SkippingStone" type="Node2D" unique_id=717250870]
 script = ExtResource("1_fa4sm")
 title = "Skipping Stone"
-description = "Odd numbered spells decrease by 2."
+description = "Odd-value Tasks progress an additional 1 time each Day."
+rarity = 2

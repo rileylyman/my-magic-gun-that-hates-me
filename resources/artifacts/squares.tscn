@@ -4,5 +4,6 @@
 
 [node name="Squares" type="Node2D" unique_id=580296597]
 script = ExtResource("1_3sytn")
-title = "Squares"
-description = "If a number and its square hit together, double its damage"
+title = "Toy Blocks"
+description = "When a value and its square valued Task hit together, double their Damage."
+rarity = 1

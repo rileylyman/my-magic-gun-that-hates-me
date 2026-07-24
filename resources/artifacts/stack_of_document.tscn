@@ -5,4 +5,4 @@
 [node name="StackOfDocument" type="Node2D" unique_id=1067744872]
 script = ExtResource("1_5gg8x")
 title = "Stack of Documents"
-description = "At the start of each Deadline, deal 100 damage."
+description = "On the first Day of a Sprint, deal 100 damage."

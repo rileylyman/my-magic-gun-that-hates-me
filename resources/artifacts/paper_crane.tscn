@@ -5,4 +5,5 @@
 [node name="PaperCrane" type="Node2D" unique_id=753313122]
 script = ExtResource("1_u66e4")
 title = "Paper Crane"
-description = "If a spell hits alone, permanently increase its value by +1."
+description = "When a Task fires alone, permenantly increase its value by 1."
+rarity = 2

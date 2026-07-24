@@ -5,4 +5,5 @@
 [node name="ExtraHand" type="Node2D" unique_id=1315511996]
 script = ExtResource("1_1vbrr")
 title = "Claw"
-description = "Gain 2 hand slots."
+description = "Gain 2 slots in your Task Folder."
+rarity = 1

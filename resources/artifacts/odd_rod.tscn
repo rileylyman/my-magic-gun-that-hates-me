@@ -5,4 +5,5 @@
 [node name="OddRod" type="Node2D" unique_id=1811263748]
 script = ExtResource("1_aeecw")
 title = "Odd Rod"
-description = "Odd-value spells deal double damage."
+description = "Odd-value Tasks deal double Damage."
+rarity = 1

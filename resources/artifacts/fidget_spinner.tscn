@@ -6,3 +6,4 @@
 script = ExtResource("1_nuqys")
 title = "Fidget Spinner"
 description = "When three spells with the same value hit together, multiply their Damage by three times that number."
+rarity = 2
