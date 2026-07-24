@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cakgroumbux3v"]
+
+[ext_resource type="Script" uid="uid://d0yfqwd3joe0b" path="res://resources/artifacts/odd_rod.gd" id="1_aeecw"]
+
+[node name="OddRod" type="Node2D" unique_id=1811263748]
+script = ExtResource("1_aeecw")
+title = "Odd Rod"
+description = "Odd-value spells deal double damage."
