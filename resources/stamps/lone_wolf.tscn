@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b4tdt5afkxhbk"]
+
+[ext_resource type="Script" uid="uid://uvsgfjrpyo8r" path="res://resources/stamps/lone_wolf.gd" id="1_77rv6"]
+
+[node name="LoneWolf" type="Node2D" unique_id=251644683]
+script = ExtResource("1_77rv6")
+title = "Lone Wolf"
+description = "When fires alone, deal triple Damage."

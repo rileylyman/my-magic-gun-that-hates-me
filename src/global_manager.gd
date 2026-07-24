@@ -9,9 +9,18 @@ const card_scene: PackedScene = preload("res://src/card.tscn")
 @export_range(0.01, 10.0, 0.01, "or_greater")
 var enemy_health_multiplier: float = 1.2
 
+enum TaskSelectionMode {
+	NONE,
+	REMOVE_TASK,
+	STAMP_TASK
+}
+
 @export var battle_scene: PackedScene
 @export var choose_artifact_scene: PackedScene
 @export var win_scene: PackedScene
+@export var all_tasks_scene: PackedScene
+
+var task_selection_mode: TaskSelectionMode = TaskSelectionMode.NONE
 
 var deck: Array[Card] = []
 var artifacts: Array[Artifact] = []
@@ -36,10 +45,45 @@ func _ready() -> void:
 func create_starting_deck() -> void:
 	for i in range(3, 8 + 1):
 		for _j in range(2):
-			var c = card_scene.instantiate()
-			c.max_value = i
-			deck.append(c)
+			add_task(i)
 
+func add_task(
+	task_value: int,
+	stamp_scene: PackedScene = null
+) -> Card:
+	var task := card_scene.instantiate() as Card
+
+	if task == null:
+		push_error("Task scene root does not use the Task class.")
+		return null
+
+	task.max_value = task_value
+
+	if stamp_scene != null:
+		var generated_stamp := stamp_scene.instantiate() as Stamp
+
+		if generated_stamp == null:
+			push_error("Stamp scene root does not use the Stamp class.")
+		else:
+			task.set_stamp(generated_stamp)
+
+	deck.append(task)
+
+	return task
+
+
+func open_task_selection(mode: TaskSelectionMode) -> void:
+	task_selection_mode = mode
+
+	if all_tasks_scene == null:
+		push_error("All-tasks scene is not assigned.")
+		return
+
+	get_tree().change_scene_to_packed(all_tasks_scene)
+
+
+func finish_task_selection() -> void:
+	task_selection_mode = TaskSelectionMode.NONE
 
 func load_current_enemy() -> bool:
 	if defeated_enemy_count >= enemy_order.size():
