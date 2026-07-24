@@ -7,6 +7,9 @@ extends Control
 var show_damage := false
 var game_mgr: GameManager
 
+var stamp: Stamp
+var has_stamp: bool
+
 func _ready() -> void:
 	do_setup()
 
@@ -28,6 +31,17 @@ func _gui_input(event: InputEvent) -> void:
 			game_mgr.on_card_clicked(self)
 		else:
 			print("Game manager not found")
+
+
+func set_stamp(new_stamp: Stamp) -> void:
+	if new_stamp == null:
+		return
+
+	if stamp != null:
+		stamp.queue_free()
+
+	stamp = new_stamp
+	has_stamp = true
 
 
 func _on_mouse_entered() -> void:

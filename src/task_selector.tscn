@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://cx351ihx0uusp"]
+
+[ext_resource type="Script" uid="uid://egshxq6s8xfh" path="res://src/task_selector.gd" id="1_vctk2"]
+[ext_resource type="Script" uid="uid://bh0y1kvhaf82s" path="res://src/task_value_option.gd" id="2_vbuc6"]
+[ext_resource type="Script" uid="uid://bkp7n2grbej2n" path="res://src/stamp_option.gd" id="3_syy5u"]
+[ext_resource type="PackedScene" uid="uid://b4tdt5afkxhbk" path="res://resources/stamps/lone_wolf.tscn" id="4_g3iuu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq2o2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Resource" id="Resource_vctk2"]
+script = ExtResource("2_vbuc6")
+value = 1
+weight = 2.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_8v8u7"]
+script = ExtResource("2_vbuc6")
+value = 2
+weight = 5.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_kc07b"]
+script = ExtResource("2_vbuc6")
+value = 3
+weight = 7.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_qa3yo"]
+script = ExtResource("2_vbuc6")
+value = 4
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_2ilvo"]
+script = ExtResource("2_vbuc6")
+value = 5
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_ia4kg"]
+script = ExtResource("2_vbuc6")
+value = 6
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_tlg2c"]
+script = ExtResource("2_vbuc6")
+value = 7
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_h3134"]
+script = ExtResource("2_vbuc6")
+value = 8
+weight = 15.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_qtfs4"]
+script = ExtResource("2_vbuc6")
+value = 9
+weight = 15.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_h75i6"]
+script = ExtResource("2_vbuc6")
+value = 10
+weight = 20.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_uhfec"]
+script = ExtResource("3_syy5u")
+stamp_scene = ExtResource("4_g3iuu")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_0cqvu"]
+script = ExtResource("3_syy5u")
+weight = 70.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[node name="TaskSelector" type="PanelContainer" unique_id=1778769872]
+custom_minimum_size = Vector2(200, 250)
+custom_maximum_size = Vector2(200, 250)
+clip_contents = true
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kq2o2")
+script = ExtResource("1_vctk2")
+add_task_weight = 60.0
+remove_task_weight = 25.0
+stamp_task_weight = 15.0
+possible_values = Array[ExtResource("2_vbuc6")]([SubResource("Resource_vctk2"), SubResource("Resource_8v8u7"), SubResource("Resource_kc07b"), SubResource("Resource_qa3yo"), SubResource("Resource_2ilvo"), SubResource("Resource_ia4kg"), SubResource("Resource_tlg2c"), SubResource("Resource_h3134"), SubResource("Resource_qtfs4"), SubResource("Resource_h75i6")])
+possible_stamps = Array[ExtResource("3_syy5u")]([SubResource("Resource_uhfec"), SubResource("Resource_0cqvu")])
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=227767431]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=802708651]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=904013901]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Task name"
+
+[node name="Desc" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1857807250]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Description of task and what it does blah blah blah"
+autowrap_mode = 2
