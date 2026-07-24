@@ -4,6 +4,7 @@ extends Control
 @export var max_value: int = 5
 @onready var curr := max_value
 
+var show_damage := false
 var game_mgr: GameManager
 
 func _ready() -> void:
@@ -17,7 +18,7 @@ func _process(_delta: float) -> void:
 	%ShootLabel.text = str(max_value)
 	%CountdownLabel.text = str(curr)
 
-	%ShootLabel.visible = curr == max_value and game_mgr != null and self in game_mgr.chosen and game_mgr.active_counter != null
+	%ShootLabel.visible = show_damage
 	if %ShootLabel.visible:
 		%CountdownLabel.text = str(0)
 

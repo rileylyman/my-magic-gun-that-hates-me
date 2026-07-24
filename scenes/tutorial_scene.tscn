@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://sd8dem1ck56t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptyin"]
+font_size = 56
+
+[node name="TutorialScene" type="Node2D" unique_id=2118272134]
+
+[node name="GameTitle" type="Label" parent="." unique_id=2022888417]
+offset_left = 175.0
+offset_top = 84.0
+offset_right = 973.0
+offset_bottom = 161.0
+text = "Nothing here yet, move along"
+label_settings = SubResource("LabelSettings_ptyin")
+
+[node name="StartGame" type="Button" parent="." unique_id=647078415]
+offset_left = 473.0
+offset_top = 337.0
+offset_right = 674.29034
+offset_bottom = 402.0
+text = "move along"

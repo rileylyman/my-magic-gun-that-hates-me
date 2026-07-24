@@ -35,9 +35,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -109.0
-offset_top = -115.0
+offset_top = -92.0
 offset_right = 110.0
-offset_bottom = -40.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
@@ -53,20 +53,60 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ArtifactContainer" type="HBoxContainer" parent="CenterContainer" unique_id=378871311]
+[node name="AllRewards" type="PanelContainer" parent="CenterContainer" unique_id=2125934438]
+visible = false
+custom_minimum_size = Vector2(350, 400)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/AllRewards" unique_id=763260804]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/AllRewards/MarginContainer" unique_id=1374667685]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/AllRewards/MarginContainer/VBoxContainer" unique_id=20187510]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Rewards"
+
+[node name="Button" type="Button" parent="CenterContainer/AllRewards/MarginContainer/VBoxContainer" unique_id=1298690951]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Choose new card"
+
+[node name="Button2" type="Button" parent="CenterContainer/AllRewards/MarginContainer/VBoxContainer" unique_id=129152720]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Choose new artifact"
+
+[node name="ChooseArtifact" type="PanelContainer" parent="CenterContainer" unique_id=842772602]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ChooseArtifact" unique_id=1894858614]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ArtifactContainer" type="HBoxContainer" parent="CenterContainer/ChooseArtifact/MarginContainer" unique_id=378871311]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="ArtifactSelector" parent="CenterContainer/ArtifactContainer" unique_id=1778769872 instance=ExtResource("2_4mqxf")]
+[node name="ArtifactSelector" parent="CenterContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1778769872 instance=ExtResource("2_4mqxf")]
 layout_mode = 2
 
-[node name="ArtifactSelector2" parent="CenterContainer/ArtifactContainer" unique_id=315394457 instance=ExtResource("2_4mqxf")]
+[node name="ArtifactSelector2" parent="CenterContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=315394457 instance=ExtResource("2_4mqxf")]
 layout_mode = 2
 
-[node name="ArtifactSelector3" parent="CenterContainer/ArtifactContainer" unique_id=1546768994 instance=ExtResource("2_4mqxf")]
+[node name="ArtifactSelector3" parent="CenterContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1546768994 instance=ExtResource("2_4mqxf")]
 layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="on_done"]

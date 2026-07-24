@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://qmxgs3yld73w"]
 
 [ext_resource type="Script" uid="uid://c1fxal7iq1o66" path="res://src/global_manager.gd" id="1_nyfjn"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_kq6pe"]
+[ext_resource type="Resource" uid="uid://djeit7nerenk8" path="res://resources/enemies/enemy1.tres" id="3_ioumm"]
+[ext_resource type="Resource" uid="uid://c24qv1ij2cf6h" path="res://resources/enemies/enemy2.tres" id="4_4worf"]
+[ext_resource type="PackedScene" uid="uid://kwkfpnrbtwjk" path="res://src/card-prototype.tscn" id="5_oguan"]
+[ext_resource type="PackedScene" uid="uid://cuqahqq52hgo0" path="res://scenes/win_or_lose_scene.tscn" id="6_4njm7"]
+[ext_resource type="PackedScene" uid="uid://eds3x0ekkbfw" path="res://src/choose-artifact.tscn" id="6_ioumm"]
 
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
+enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("4_4worf"), ExtResource("3_ioumm")])
+battle_scene = ExtResource("5_oguan")
+choose_artifact_scene = ExtResource("6_ioumm")
+win_scene = ExtResource("6_4njm7")
