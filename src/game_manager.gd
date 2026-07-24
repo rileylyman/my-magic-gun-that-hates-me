@@ -143,8 +143,9 @@ func countdown_cards(delta: float) -> void:
 		_accum -= 1.0
 
 		var tick_state := TickState.new()
+		tick_state.gm = self
 		var active_debuffs := get_current_enemy_debuffs()
-
+		
 		tick_state.hand = hand
 		tick_state.days = active_counter.value
 		for c in chosen:

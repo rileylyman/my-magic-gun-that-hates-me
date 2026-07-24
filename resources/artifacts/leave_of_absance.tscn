@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b7x2ho1p11rug"]
+
+[ext_resource type="Script" uid="uid://bwjrpyub0cfvf" path="res://resources/artifacts/leave_of_absance.gd" id="1_atrsq"]
+
+[node name="LeaveOfAbsance" type="Node2D" unique_id=430656356]
+script = ExtResource("1_atrsq")
+title = "Leave of Absense"
+description = "Add 5 Days to each Sprint."
