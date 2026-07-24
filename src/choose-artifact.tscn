@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wucq84pt6ueb" path="res://src/artifact_selector.tscn" id="2_4mqxf"]
 [ext_resource type="PackedScene" uid="uid://cx351ihx0uusp" path="res://src/task_selector.tscn" id="3_8v8u7"]
 
-[node name="ChooseArtifact" type="Control" unique_id=661720228 node_paths=PackedStringArray("done_button", "all_rewards", "artifact_rewards", "task_rewards")]
+[node name="ChooseArtifact" type="Control" unique_id=661720228 node_paths=PackedStringArray("done_button", "pass_artifact_button", "pass_task_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,9 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ilnx")
 done_button = NodePath("Button")
-all_rewards = NodePath("CenterContainer/AllRewards")
-artifact_rewards = NodePath("CenterContainer/ChooseArtifact")
-task_rewards = NodePath("CenterContainer/ChooseTask")
+pass_artifact_button = NodePath("CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer/PassArtifact")
+pass_task_button = NodePath("CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer/PassTask")
 
 [node name="Label" type="Label" parent="." unique_id=1216155231]
 layout_mode = 1
@@ -58,6 +57,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="AllRewards" type="PanelContainer" parent="CenterContainer" unique_id=2125934438]
+visible = false
 custom_minimum_size = Vector2(350, 400)
 layout_mode = 2
 
@@ -88,58 +88,67 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Choose new artifact"
 
-[node name="ChooseArtifact" type="PanelContainer" parent="CenterContainer" unique_id=842772602]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2136316144]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ChooseArtifact" unique_id=1894858614]
+[node name="ChooseTask" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=1060690765]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/ChooseTask" unique_id=2143242547]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ArtifactContainer" type="HBoxContainer" parent="CenterContainer/ChooseArtifact/MarginContainer" unique_id=378871311]
+[node name="TaskContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer" unique_id=1529714914]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="ArtifactSelector" parent="CenterContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1778769872 instance=ExtResource("2_4mqxf")]
+[node name="TaskSelector" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1692323313 instance=ExtResource("3_8v8u7")]
 layout_mode = 2
 
-[node name="ArtifactSelector2" parent="CenterContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=315394457 instance=ExtResource("2_4mqxf")]
+[node name="TaskSelector2" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1227490680 instance=ExtResource("3_8v8u7")]
 layout_mode = 2
 
-[node name="ArtifactSelector3" parent="CenterContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1546768994 instance=ExtResource("2_4mqxf")]
+[node name="TaskSelector3" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=17461257 instance=ExtResource("3_8v8u7")]
 layout_mode = 2
 
-[node name="ChooseTask" type="PanelContainer" parent="CenterContainer" unique_id=1060690765]
-visible = false
+[node name="PassTask" type="Button" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1666246544]
+layout_mode = 2
+text = "PASS"
+
+[node name="ChooseArtifact" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=842772602]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ChooseTask" unique_id=2143242547]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/ChooseArtifact" unique_id=1894858614]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TaskContainer" type="HBoxContainer" parent="CenterContainer/ChooseTask/MarginContainer" unique_id=1529714914]
+[node name="ArtifactContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer" unique_id=378871311]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="TaskSelector" parent="CenterContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1692323313 instance=ExtResource("3_8v8u7")]
+[node name="ArtifactSelector" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1778769872 instance=ExtResource("2_4mqxf")]
 layout_mode = 2
 
-[node name="TaskSelector2" parent="CenterContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1227490680 instance=ExtResource("3_8v8u7")]
+[node name="ArtifactSelector2" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=315394457 instance=ExtResource("2_4mqxf")]
 layout_mode = 2
 
-[node name="TaskSelector3" parent="CenterContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=17461257 instance=ExtResource("3_8v8u7")]
+[node name="ArtifactSelector3" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1546768994 instance=ExtResource("2_4mqxf")]
 layout_mode = 2
+
+[node name="PassArtifact" type="Button" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=955777101]
+layout_mode = 2
+text = "PASS"
 
 [connection signal="pressed" from="Button" to="." method="on_done"]
