@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cuqahqq52hgo0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lh3pb"]
+font_size = 56
+
+[node name="WinnerScene" type="Node2D" unique_id=947484651]
+
+[node name="Credits2" type="Label" parent="." unique_id=133619641]
+offset_left = 214.0
+offset_top = 61.0
+offset_right = 1012.0
+offset_bottom = 138.0
+text = "Congratulations! You won!"
+label_settings = SubResource("LabelSettings_lh3pb")
+
+[node name="Credits3" type="Label" parent="." unique_id=1829337685]
+offset_left = 4.0
+offset_top = 174.0
+offset_right = 1180.0
+offset_bottom = 331.0
+text = "Placeholder for displaying deck and
+artifacts. Maybe also some interesting stats"
+label_settings = SubResource("LabelSettings_lh3pb")
+
+[node name="Credits4" type="Button" parent="." unique_id=1554497728]
+offset_left = 473.0
+offset_top = 368.0
+offset_right = 674.29034
+offset_bottom = 433.0
+text = "Back to Main Menu"
+
+[node name="Credits" type="Button" parent="." unique_id=1976900827]
+offset_left = 473.0
+offset_top = 462.0
+offset_right = 674.29034
+offset_bottom = 527.0
+text = "Credits"

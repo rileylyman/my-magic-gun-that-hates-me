@@ -32,8 +32,14 @@ var card_size: Vector2
 var padding: Vector2 = Vector2(10, 10)
 
 var _accum := 0.0
+var battle_ended := false
+
 
 func _ready() -> void:
+	if GlobalManager.enemy == null:
+		push_error("No current enemy is loaded.")
+		return
+
 	for c in GlobalManager.deck:
 		deck_container.add_child(c)
 		c.do_setup()
@@ -53,6 +59,11 @@ func _ready() -> void:
 		icons.append(icon)
 
 	drawpile.shuffle()
+
+	if drawpile.is_empty():
+		push_error("The deck is empty.")
+		return
+
 	card_size = drawpile[0].size
 	score_bar.max_score = GlobalManager.enemy.health
 	score_bar.curr_score = 0
@@ -62,21 +73,32 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if battle_ended:
+		return
+
 	arrange_items()
+
 	if active_counter != null:
 		countdown_cards(delta)
+
 	score_bar.max_score = GlobalManager.enemy.health
 	start_round_button.disabled = active_counter != null or chosen.size() < 1
 
 	if score_bar.curr_score >= score_bar.max_score:
 		end_round()
 
+
 func end_round() -> void:
+	if battle_ended:
+		return
+
+	battle_ended = true
+
 	for c in deck_container.get_children():
 		deck_container.remove_child(c)
 		c.curr = c.max_value
 		c.show_damage = false
-	get_tree().change_scene_to_file("res://src/choose-artifact.tscn")
+	GlobalManager.finish_current_battle()
 
 func countdown_cards(delta: float) -> void:
 	_accum += delta * 2.0
@@ -113,41 +135,49 @@ func countdown_cards(delta: float) -> void:
 				c.show_damage = true
 
 		active_counter.value -= 1
+
 		if active_counter.value == 0:
 			active_counter.active = false
 			active_counter = null
 			discard_chosen()
-	
+
 
 func arrange_items() -> void:
 	for c in drawpile:
 		c.position = - card_size
 	for c in discard:
 		c.position = - card_size
+
 	arrange_row(hand_pos, hand)
 	arrange_row(chosen_pos, chosen)
 	arrange_row(counter_pos, counters)
 
+
 func arrange_row(center: Vector2, cards: Array) -> void:
 	var width = (card_size.x + padding.x) * cards.size()
 	var start = center - Vector2(width / 2, 0)
+
 	for i in range(cards.size()):
 		cards[i].position = start + Vector2(i * (card_size.x + padding.x), 0)
+
 
 func discard_chosen() -> void:
 	for c in chosen:
 		c.curr = c.max_value
 		c.show_damage = false
 		discard.append(c)
+
 	chosen.clear()
 	deal_hand()
+
 
 func deal_hand() -> void:
 	for i in range(GlobalManager.handsize - hand.size()):
 		if drawpile.size() > 0:
 			var card = drawpile.pop_front()
 			hand.append(card)
-	
+
+
 func on_card_clicked(card: Card) -> void:
 	if card in hand and chosen.size() < GlobalManager.spellslots and active_counter == null:
 		hand.erase(card)
@@ -156,9 +186,11 @@ func on_card_clicked(card: Card) -> void:
 		chosen.erase(card)
 		hand.append(card)
 
+
 func on_start_round_pressed() -> void:
 	if active_counter != null:
 		return
+
 	for c in counters:
 		if c.value > 0:
 			active_counter = c

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bcg3y8w20bks5"]
+
+[ext_resource type="Script" uid="uid://i4hdh85ll2lc" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
+font_size = 56
+
+[node name="MainMenu" type="Node2D" unique_id=1709243526]
+script = ExtResource("1_l6cm7")
+
+[node name="GameTitle" type="Label" parent="." unique_id=379783219]
+offset_left = 361.0
+offset_top = 84.0
+offset_right = 796.0
+offset_bottom = 161.0
+text = "Awesome Game"
+label_settings = SubResource("LabelSettings_bhunq")
+
+[node name="StartGame" type="Button" parent="." unique_id=751509466]
+unique_name_in_owner = true
+offset_left = 473.0
+offset_top = 259.0
+offset_right = 674.29034
+offset_bottom = 324.0
+text = "Start Game"
+
+[node name="Options" type="Button" parent="." unique_id=1852489794]
+offset_left = 473.0
+offset_top = 360.0
+offset_right = 674.29034
+offset_bottom = 425.0
+text = "Options"
+
+[node name="Credits" type="Button" parent="." unique_id=2096711884]
+offset_left = 473.0
+offset_top = 462.0
+offset_right = 674.29034
+offset_bottom = 527.0
+text = "Credits"

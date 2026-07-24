@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="My Magic Gun That Hates Me"
-run/main_scene="uid://j8sr644001y2"
+run/main_scene="uid://bcg3y8w20bks5"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
