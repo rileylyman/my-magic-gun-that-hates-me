@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dcxp7aq724w5j"]
 
 [ext_resource type="Script" uid="uid://ct2jh7iji6lal" path="res://resources/artifacts/puzzle_piece.gd" id="1_6uon1"]
+[ext_resource type="Texture2D" uid="uid://cy2v1oatuxgl2" path="res://art/artifact_icons/35Puzzle Piece.png" id="2_17c6s"]
 
 [node name="PuzzlePiece" type="Node2D" unique_id=905881152]
 script = ExtResource("1_6uon1")
 title = "Puzzle Piece"
-description = "At the start of a Sprint, if two played Tasks sum to a third played Task, all three become that max value."
+description = "At the start of a Sprint, if two played Tasks sum to a third played Task, permenantly change the value of all three into the max valued Task. The starting value of the Tasks does not change for this Sprint."
+rarity = 2
+icon = ExtResource("2_17c6s")

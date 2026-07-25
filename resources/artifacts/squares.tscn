@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://d2o8yhdx6buv1"]
 
 [ext_resource type="Script" uid="uid://4n76nxmu2dp8" path="res://resources/artifacts/squares.gd" id="1_3sytn"]
+[ext_resource type="Texture2D" uid="uid://dl7ylpcdjbdnb" path="res://art/artifact_icons/17Toy Blocks.png" id="2_rgb0u"]
 
 [node name="Squares" type="Node2D" unique_id=580296597]
 script = ExtResource("1_3sytn")
 title = "Toy Blocks"
 description = "When a value and its square valued Task hit together, double their Damage."
 rarity = 1
+icon = ExtResource("2_rgb0u")

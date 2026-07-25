@@ -1,6 +1,8 @@
 extends Artifact
 
-var days := 1
+var days := 0
+func hand_submit_callback(_state: TickState) -> void:
+	days=0
 
 func post_tick_callback(state: TickState) -> void:
 	if state.should_fire:
@@ -11,3 +13,4 @@ func post_tick_callback(state: TickState) -> void:
 			days = 1
 	else:
 		days += 1
+		shake()

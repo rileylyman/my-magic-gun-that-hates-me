@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bdu026fves47q"]
 
 [ext_resource type="Script" uid="uid://cb8n20hg3pps4" path="res://resources/artifacts/spell_scope.gd" id="1_fiuku"]
+[ext_resource type="Texture2D" uid="uid://7ud7tbxfkd5s" path="res://art/artifact_icons/3Spell Scope.png" id="2_0yot0"]
 
 [node name="SpellScope" type="Node2D" unique_id=1486033492]
 script = ExtResource("1_fiuku")
 title = "Spell Scope"
 description = "If a Task fires alone, double its Damage."
+icon = ExtResource("2_0yot0")

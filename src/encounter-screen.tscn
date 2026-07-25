@@ -34,7 +34,15 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_051xp"]
 bg_color = Color(0.51, 0.153, 0, 1)
@@ -457,6 +465,10 @@ stamp_trigger_sfx = ExtResource("30_43nnu")
 artifact_trigger_sfx = ExtResource("26_id4ro")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.1
+<<<<<<< Updated upstream
+=======
+task_fire_max_pitch = 3.0
+>>>>>>> Stashed changes
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
 unique_name_in_owner = true

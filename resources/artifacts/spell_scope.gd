@@ -7,3 +7,4 @@ func post_tick_callback(state: TickState) -> void:
 			i = i +1
 	if i == 1:
 		state.score *= 2
+		await shake("x2")
