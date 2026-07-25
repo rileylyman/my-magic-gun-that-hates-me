@@ -3,7 +3,7 @@ extends Artifact
 var multiplier := 1.0
 
 func update_description() -> void:
-	description = "Multiply all Damage by " + str(snappedf(multiplier, 0.1)) + ". Each Day where a Task fires alone, improve this multiplier by 0.2 permanently."
+	description = "Multiply all Damage by " + str(snappedf(multiplier, 0.1)) + ". Each Day where a spell does not hit, improve this multiplier by 0.1 permenantly."
 
 func _ready() -> void:
 	update_description()
@@ -17,6 +17,6 @@ func post_tick_callback(state: TickState) -> void:
 		if c.curr <= 0:
 			fired += 1
 
-	if fired == 1:
-		multiplier += 0.2
+	if fired == 0:
+		multiplier += 0.1
 		update_description()

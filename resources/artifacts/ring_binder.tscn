@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cso1uw42gmy7h"]
+
+[ext_resource type="Script" uid="uid://dnkgeg5qtwxue" path="res://resources/artifacts/ring_binder.gd" id="1_56rwl"]
+
+[node name="RingBinder" type="Node2D" unique_id=753313122]
+script = ExtResource("1_56rwl")
+title = "Ring Binder"
+description = "Multiply all damage by 1.0. Each Day where a spell does not hit, improve this multiplier by 0.1 permenantly."
