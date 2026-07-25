@@ -409,7 +409,7 @@ func arrange_items() -> void:
 		c.apply_scene_size()
 		c.scale = Vector2.ONE
 
-	arrange_row(hand, 0.75)
+	arrange_row(hand, 0.75, Vector2(-8, 0))
 	arrange_row(chosen)
 
 
@@ -468,13 +468,14 @@ func arrange_fan_row(
 
 func arrange_row(
 	cards: Array,
-	new_scale: float = 1.0
+	new_scale: float = 1.0,
+	custom_padding: Vector2 = padding
 ) -> void:
 	var width := (
-		(card_size.x + padding.x)
+		(card_size.x + custom_padding.x)
 		* cards.size()
 		* new_scale
-		- padding.x
+		- custom_padding.x
 		* new_scale
 	)
 
@@ -489,7 +490,7 @@ func arrange_row(
 		cards[i].position = Vector2(
 			start_x
 			+ i
-			* (card_size.x + padding.x)
+			* (card_size.x + custom_padding.x)
 			* new_scale,
 			0
 		)
