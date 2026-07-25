@@ -65,6 +65,8 @@ var card_size: Vector2
 var padding: Vector2 = Vector2(24, 24)
 
 var _accum: float = 0.0
+var _tick_trigger_sfx_index: int = 0
+var _tick_trigger_sfx_active: bool = false
 
 
 func _ready() -> void:
@@ -201,12 +203,44 @@ func get_task_fire_pitch(
 	)
 
 
+func begin_tick_trigger_sfx_sequence() -> void:
+	_tick_trigger_sfx_index = 0
+	_tick_trigger_sfx_active = true
+
+
+func end_tick_trigger_sfx_sequence() -> void:
+	_tick_trigger_sfx_active = false
+	_tick_trigger_sfx_index = 0
+
+
+func play_next_tick_trigger_sound(
+	stream: AudioStream
+) -> void:
+	if not _tick_trigger_sfx_active:
+		play_sfx(stream, true)
+		return
+
+	var pitch_scale: float = get_task_fire_pitch(
+		_tick_trigger_sfx_index
+	)
+
+	_tick_trigger_sfx_index += 1
+
+	play_sfx(
+		stream,
+		false,
+		pitch_scale
+	)
+
+
 func play_stamp_trigger_sound() -> void:
 	play_sfx(stamp_trigger_sfx, true)
 
 
 func play_artifact_trigger_sound() -> void:
-	play_sfx(artifact_trigger_sfx, true)
+	play_next_tick_trigger_sound(
+		artifact_trigger_sfx
+	)
 
 
 func load_artifacts() -> void:
@@ -305,6 +339,7 @@ func countdown_cards(delta: float) -> void:
 	is_ticking = true
 	_accum -= 1.0
 
+	begin_tick_trigger_sfx_sequence()
 	play_sfx(day_tick_sfx, true)
 
 	var tick_state := TickState.new()
@@ -360,20 +395,13 @@ func countdown_cards(delta: float) -> void:
 	var score_label: SprintScore = null
 
 	if tick_state.should_fire:
-		var task_fire_index: int = 0
-
 		for c in tick_state.today_fired_cards:
 			tick_state.score *= c.max_value
 
-			play_sfx(
-				task_fire_sfx,
-				false,
-				get_task_fire_pitch(
-					task_fire_index
-				)
+			play_next_tick_trigger_sound(
+				task_fire_sfx
 			)
 
-			task_fire_index += 1
 			await c.bump()
 
 			if score_label == null:
@@ -454,6 +482,7 @@ func countdown_cards(delta: float) -> void:
 		play_sfx(sprint_end_sfx)
 		discard_chosen()
 
+	end_tick_trigger_sfx_sequence()
 	is_ticking = false
 
 
