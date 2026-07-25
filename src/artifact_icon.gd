@@ -10,6 +10,10 @@ func _ready() -> void:
 	$TextureRect.texture = artifact.icon
 	%ShakeTextContainer.top_level = true
 
+func _process(_delta: float) -> void:
+	%Title.text = artifact.title
+	%Desc.text = artifact.description
+
 func _on_mouse_entered() -> void:
 	$Tooltip.visible = true
 
