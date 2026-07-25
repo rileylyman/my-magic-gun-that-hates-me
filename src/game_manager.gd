@@ -86,18 +86,7 @@ func _ready() -> void:
 			self
 		)
 
-	for a in %ArtifactHBox.get_children():
-		a.queue_free()
-
-	for a in GlobalManager.artifacts:
-		var icon := (
-			artifact_icon_scene.instantiate()
-			as ArtifactIcon
-		)
-
-		icon.artifact = a
-		%ArtifactHBox.add_child(icon)
-		icons.append(icon)
+	load_artifacts()
 
 	drawpile.shuffle()
 
@@ -112,6 +101,20 @@ func _ready() -> void:
 
 	deal_hand()
 
+
+func load_artifacts() -> void:
+	for a in %ArtifactHBox.get_children():
+		a.queue_free()
+
+	for a in GlobalManager.artifacts:
+		var icon := (
+			artifact_icon_scene.instantiate()
+			as ArtifactIcon
+		)
+
+		icon.artifact = a
+		%ArtifactHBox.add_child(icon)
+		icons.append(icon)
 
 func _process(delta: float) -> void:
 	if battle_ended:

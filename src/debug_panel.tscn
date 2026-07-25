@@ -6,11 +6,10 @@
 z_index = 5
 z_as_relative = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_xwarh")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=146418727]
@@ -26,5 +25,21 @@ layout_mode = 2
 [node name="KillCurrentEnemy" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1238724946]
 layout_mode = 2
 text = "Kill Current Enemy"
+
+[node name="FoldableContainer" type="FoldableContainer" parent="PanelContainer/VBoxContainer" unique_id=246617825]
+layout_mode = 2
+title = "Select Artifacts"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/FoldableContainer" unique_id=1767787124]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/FoldableContainer/ScrollContainer" unique_id=895315953]
+layout_mode = 2
+
+[node name="AddArtifactTemplateButton" type="Button" parent="PanelContainer/VBoxContainer/FoldableContainer/ScrollContainer/VBoxContainer" unique_id=1800684702]
+unique_name_in_owner = true
+layout_mode = 2
+text = "H"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/KillCurrentEnemy" to="." method="_on_kill_current_enemy_pressed"]
