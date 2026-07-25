@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dd2y76uia5ftv"]
+
+[ext_resource type="Script" uid="uid://ex8sbymigh8a" path="res://resources/artifacts/toupee.gd" id="1_j1jxv"]
+
+[node name="Toupee" type="Node2D" unique_id=2135326899]
+script = ExtResource("1_j1jxv")
+title = "Toupee"
+description = "Multiply all damage by the number of owned Cursed Relics."
+rarity = 2
