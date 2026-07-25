@@ -460,6 +460,23 @@ func countdown_cards(delta: float) -> void:
 
 		send_sprint_score_off(score_label)
 
+	elif score_label != null:
+		var tween := score_label.create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.set_ease(Tween.EASE_OUT)
+
+		tween.tween_property(
+			score_label,
+			"modulate:a",
+			0.0,
+			0.4
+		)
+
+		tween.tween_callback(
+			score_label.queue_free
+		)
+		score_label = null
+
 	previous_day_fired_cards.clear()
 
 	previous_day_fired_cards.assign(
