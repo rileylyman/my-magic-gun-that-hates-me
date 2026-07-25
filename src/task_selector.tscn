@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://egshxq6s8xfh" path="res://src/task_selector.gd" id="1_vctk2"]
 [ext_resource type="Script" uid="uid://bh0y1kvhaf82s" path="res://src/task_value_option.gd" id="2_vbuc6"]
 [ext_resource type="Script" uid="uid://bkp7n2grbej2n" path="res://src/stamp_option.gd" id="3_syy5u"]
-[ext_resource type="PackedScene" uid="uid://b4tdt5afkxhbk" path="res://resources/stamps/lone_wolf.tscn" id="4_g3iuu"]
+[ext_resource type="PackedScene" uid="uid://b4tdt5afkxhbk" path="res://resources/stamps/lone_lupine.tscn" id="4_g3iuu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq2o2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
