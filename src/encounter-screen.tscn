@@ -28,11 +28,9 @@
 [ext_resource type="AudioStream" uid="uid://bou6infbsxsqi" path="res://resources/audio/SFX/impactGlass_medium_002.ogg" id="26_id4ro"]
 [ext_resource type="AudioStream" uid="uid://ck58nhsrqu15h" path="res://resources/audio/SFX/hand_ trick08.wav" id="27_4f78d"]
 [ext_resource type="AudioStream" uid="uid://bi8xflf4i3tdt" path="res://resources/audio/SFX/knife_hard_hit11.wav" id="28_8niob"]
-[ext_resource type="AudioStream" uid="uid://crukwa7du6sib" path="res://resources/audio/SFX/door_open_close06.wav" id="29_l0nas"]
 [ext_resource type="AudioStream" uid="uid://cfdheyqomusns" path="res://resources/audio/SFX/Arcane Beacon.wav" id="30_43nnu"]
 [ext_resource type="AudioStream" uid="uid://c5e1tkdullaqj" path="res://resources/audio/SFX/plastic_rub15.wav" id="30_l0nas"]
 [ext_resource type="AudioStream" uid="uid://cfds3ubdlubxx" path="res://resources/audio/SFX/iron_hit07.wav" id="31_ctv0l"]
-[ext_resource type="AudioStream" uid="uid://cyx7s28ngmwl4" path="res://resources/audio/SFX/DSGNStngr_Power Up Bright Positive Successful Light Saturation Crash Shimmer 05_ESM_AG.wav" id="33_rrs27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
@@ -453,11 +451,10 @@ day_tick_sfx = ExtResource("25_br1p1")
 task_fire_sfx = ExtResource("26_id4ro")
 score_launch_sfx = ExtResource("27_4f78d")
 score_impact_sfx = ExtResource("28_8niob")
-sprint_end_sfx = ExtResource("29_l0nas")
 card_discard_sfx = ExtResource("30_l0nas")
 enemy_defeated_sfx = ExtResource("31_ctv0l")
 stamp_trigger_sfx = ExtResource("30_43nnu")
-artifact_trigger_sfx = ExtResource("33_rrs27")
+artifact_trigger_sfx = ExtResource("26_id4ro")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.3
 task_fire_max_pitch = 3.0
