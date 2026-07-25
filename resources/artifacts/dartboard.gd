@@ -1,7 +1,7 @@
 extends Artifact
-var target = randi_range(lowtar, hightar)
 var hightar = 15
 var lowtar = 5
+var target = randi_range(lowtar, hightar)
 var hits = 0
 var hashit = false
 func post_tick_callback(state: TickState) -> void:
