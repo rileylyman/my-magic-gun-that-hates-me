@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://viqtlyh54ekq"]
+
+[ext_resource type="Script" uid="uid://cwtvs3nqornth" path="res://resources/artifacts/blueprints.gd" id="1_1e00x"]
+
+[node name="Blueprints" type="Node2D" unique_id=1497977434]
+script = ExtResource("1_1e00x")
+title = "Blueprints"
+description = "If all played Tasks differ in value by at least 2, double all Damage this Sprint."

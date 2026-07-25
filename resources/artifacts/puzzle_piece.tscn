@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dcxp7aq724w5j"]
+
+[ext_resource type="Script" uid="uid://ct2jh7iji6lal" path="res://resources/artifacts/puzzle_piece.gd" id="1_6uon1"]
+
+[node name="PuzzlePiece" type="Node2D" unique_id=905881152]
+script = ExtResource("1_6uon1")
+title = "Puzzle Piece"
+description = "At the start of a Sprint, if two played Tasks sum to a third played Task, all three become that max value."
