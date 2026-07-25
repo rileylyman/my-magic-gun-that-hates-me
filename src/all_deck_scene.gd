@@ -210,8 +210,9 @@ func on_back_pressed() -> void:
 
 
 func detach_cards() -> void:
-	if not is_instance_valid(%TaskGridContainer):
-		return
+	if %TaskGridContainer != null:
+		if not is_instance_valid(%TaskGridContainer):
+			return
 
 	for child in %TaskGridContainer.get_children():
 		if child is Card:

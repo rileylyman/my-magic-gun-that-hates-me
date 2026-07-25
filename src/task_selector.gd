@@ -34,9 +34,10 @@ var stamp_task_weight: float = 1.0
 	"Choose a Task to remove from your deck."
 
 @export_multiline var stamp_task_description: String = \
-	"Choose a Task to receive a Stamp."
+	"Choose a Task to receive this Stamp."
 
-var reward_type: TaskRewardType
+var reward_type: TaskRewardType = TaskRewardType.ADD_TASK
+
 var generated_value: int
 var generated_stamp_scene: PackedScene
 
@@ -48,37 +49,75 @@ signal pressed(selected: TaskSelector)
 
 
 func _ready() -> void:
-	_stylebox = get_theme_stylebox("panel").duplicate()
-	add_theme_stylebox_override("panel", _stylebox)
+	_stylebox = (
+		get_theme_stylebox("panel").duplicate()
+		as StyleBoxFlat
+	)
+
+	add_theme_stylebox_override(
+		"panel",
+		_stylebox
+	)
 
 
-func generate_reward() -> void:
+func generate_reward(
+	excluded_values: Array[int] = []
+) -> void:
 	selected = false
 	reward_type = generate_reward_type()
+
 	generated_value = default_value
 	generated_stamp_scene = null
 
+	if reward_type == TaskRewardType.ADD_TASK:
+		var rolled_value: Variant = generate_value(
+			excluded_values
+		)
+
+		if rolled_value == null:
+			reward_type = generate_non_add_reward_type()
+		else:
+			generated_value = int(rolled_value)
+
+	if reward_type == TaskRewardType.STAMP_TASK:
+		generated_stamp_scene = generate_stamp_scene(
+			false
+		)
+
+		if generated_stamp_scene == null:
+			reward_type = TaskRewardType.REMOVE_TASK
+
 	match reward_type:
 		TaskRewardType.ADD_TASK:
-			generated_value = generate_value()
-			generated_stamp_scene = generate_stamp_scene()
+			generated_stamp_scene = generate_stamp_scene(
+				true
+			)
+
 			%Title.text = add_task_title
 			%Desc.text = get_add_task_description()
 
 		TaskRewardType.REMOVE_TASK:
+			generated_stamp_scene = null
 			%Title.text = remove_task_title
 			%Desc.text = remove_task_description
 
 		TaskRewardType.STAMP_TASK:
-			generated_stamp_scene = generate_stamp_scene()
 			%Title.text = stamp_task_title
-			%Desc.text = stamp_task_description
+			%Desc.text = get_stamp_task_description()
 
 
 func generate_reward_type() -> TaskRewardType:
 	var add_weight := maxf(add_task_weight, 0.0)
-	var remove_weight := maxf(remove_task_weight, 0.0)
-	var stamp_weight := maxf(stamp_task_weight, 0.0)
+
+	var remove_weight := maxf(
+		remove_task_weight,
+		0.0
+	)
+
+	var stamp_weight := maxf(
+		stamp_task_weight,
+		0.0
+	)
 
 	var total_weight := (
 		add_weight
@@ -89,7 +128,7 @@ func generate_reward_type() -> TaskRewardType:
 	if total_weight <= 0.0:
 		return TaskRewardType.ADD_TASK
 
-	var roll := randf() * total_weight
+	var roll := randf_range(0.0, total_weight)
 
 	if roll < add_weight:
 		return TaskRewardType.ADD_TASK
@@ -102,20 +141,62 @@ func generate_reward_type() -> TaskRewardType:
 	return TaskRewardType.STAMP_TASK
 
 
-func generate_value() -> int:
+func generate_non_add_reward_type() -> TaskRewardType:
+	var remove_weight := maxf(
+		remove_task_weight,
+		0.0
+	)
+
+	var stamp_weight := maxf(
+		stamp_task_weight,
+		0.0
+	)
+
+	var total_weight := (
+		remove_weight
+		+ stamp_weight
+	)
+
+	if total_weight <= 0.0:
+		return TaskRewardType.REMOVE_TASK
+
+	var roll := randf_range(0.0, total_weight)
+
+	if roll < remove_weight:
+		return TaskRewardType.REMOVE_TASK
+
+	return TaskRewardType.STAMP_TASK
+
+
+func generate_value(
+	excluded_values: Array[int] = []
+) -> Variant:
 	var total_weight := 0.0
 
 	for option in possible_values:
-		if option != null:
-			total_weight += maxf(option.weight, 0.0)
+		if (
+			option == null
+			or option.weight <= 0.0
+			or option.value in excluded_values
+		):
+			continue
+
+		total_weight += option.weight
 
 	if total_weight <= 0.0:
-		return default_value
+		if default_value not in excluded_values:
+			return default_value
 
-	var roll := randf() * total_weight
+		return null
+
+	var roll := randf_range(0.0, total_weight)
 
 	for option in possible_values:
-		if option == null or option.weight <= 0.0:
+		if (
+			option == null
+			or option.weight <= 0.0
+			or option.value in excluded_values
+		):
 			continue
 
 		roll -= option.weight
@@ -123,23 +204,39 @@ func generate_value() -> int:
 		if roll <= 0.0:
 			return option.value
 
-	return default_value
+	return null
 
 
-func generate_stamp_scene() -> PackedScene:
+func generate_stamp_scene(
+	allow_no_stamp: bool
+) -> PackedScene:
 	var total_weight := 0.0
 
 	for option in possible_stamps:
-		if option != null:
-			total_weight += maxf(option.weight, 0.0)
+		if option == null or option.weight <= 0.0:
+			continue
+
+		if (
+			not allow_no_stamp
+			and option.stamp_scene == null
+		):
+			continue
+
+		total_weight += option.weight
 
 	if total_weight <= 0.0:
 		return null
 
-	var roll := randf() * total_weight
+	var roll := randf_range(0.0, total_weight)
 
 	for option in possible_stamps:
 		if option == null or option.weight <= 0.0:
+			continue
+
+		if (
+			not allow_no_stamp
+			and option.stamp_scene == null
+		):
 			continue
 
 		roll -= option.weight
@@ -151,12 +248,51 @@ func generate_stamp_scene() -> PackedScene:
 
 
 func get_add_task_description() -> String:
-	var result := "Add a Task with value %d." % generated_value
+	var result := (
+		"Add a Task with value %d."
+		% generated_value
+	)
+
+	if generated_stamp_scene == null:
+		result += "\nNo Stamp."
+		return result
+
+	result += "\n" + get_stamp_text(
+		generated_stamp_scene
+	)
+
+	return result
+
+
+func get_stamp_task_description() -> String:
+	var result := stamp_task_description
 
 	if generated_stamp_scene != null:
-		result += " This Task comes with a Stamp %s." % generated_stamp_scene
-	else:
-		result += " This Task has no Stamp."
+		result += "\n" + get_stamp_text(
+			generated_stamp_scene
+		)
+
+	return result
+
+
+func get_stamp_text(stamp_scene: PackedScene) -> String:
+	if stamp_scene == null:
+		return "No Stamp"
+
+	var preview_stamp := (
+		stamp_scene.instantiate()
+		as Stamp
+	)
+
+	if preview_stamp == null:
+		return "Invalid Stamp"
+
+	var result := "Stamp: " + preview_stamp.title
+
+	if not preview_stamp.description.is_empty():
+		result += "\n" + preview_stamp.description
+
+	preview_stamp.free()
 
 	return result
 
@@ -168,6 +304,7 @@ func apply_reward() -> void:
 				generated_value,
 				generated_stamp_scene
 			)
+
 			GlobalManager.enter_current_battle()
 
 		TaskRewardType.REMOVE_TASK:
@@ -176,7 +313,15 @@ func apply_reward() -> void:
 			)
 
 		TaskRewardType.STAMP_TASK:
-			GlobalManager.pending_stamp_scene = generated_stamp_scene
+			if generated_stamp_scene == null:
+				push_error(
+					"Stamp Task reward has no Stamp."
+				)
+				return
+
+			GlobalManager.pending_stamp_scene = (
+				generated_stamp_scene
+			)
 
 			GlobalManager.open_task_selection(
 				GlobalManager.TaskSelectionMode.STAMP_TASK
@@ -184,6 +329,9 @@ func apply_reward() -> void:
 
 
 func _process(_delta: float) -> void:
+	if _stylebox == null:
+		return
+
 	_stylebox.border_color = (
 		Color(1, 1, 1, 1)
 		if selected

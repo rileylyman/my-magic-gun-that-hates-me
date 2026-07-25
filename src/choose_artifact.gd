@@ -8,6 +8,8 @@ var selected_task: TaskSelector
 var artifact_passed := false
 var task_passed := false
 
+var deck_overlay: AllTasksScreen
+
 @export var done_button: Button
 @export var pass_artifact_button: Button
 @export var pass_task_button: Button
@@ -29,7 +31,6 @@ var rare_weight: float = 10.0
 @export_range(0.0, 100.0, 0.01)
 var legendary_weight: float = 5.0
 
-var deck_overlay: AllTasksScreen
 
 func _ready() -> void:
 	done_button.disabled = true
@@ -50,7 +51,7 @@ func _ready() -> void:
 		pass_task_button.pressed.connect(
 			on_pass_task_pressed
 		)
-		
+
 	if not %ViewDeckButton.pressed.is_connected(
 		on_view_deck_pressed
 	):
@@ -72,16 +73,21 @@ func load_artifacts() -> void:
 		if file.ends_with(".uid"):
 			continue
 
-		var res = load(search_dir + file)
+		var scene := (
+			load(search_dir + file)
+			as PackedScene
+		)
 
-		if res == null or not res.has_method("instantiate"):
+		if scene == null:
 			continue
 
-		var artifact = res.instantiate()
+		var artifact_instance: Node = scene.instantiate()
 
-		if artifact is not Artifact:
-			artifact.free()
+		if artifact_instance is not Artifact:
+			artifact_instance.free()
 			continue
+
+		var artifact := artifact_instance as Artifact
 
 		if player_has_artifact(artifact):
 			artifact.free()
@@ -115,7 +121,9 @@ func setup_artifact_selectors() -> void:
 
 		selector.selected = false
 
-		var artifact := take_weighted_artifact(candidates)
+		var artifact: Artifact = (
+			take_weighted_artifact(candidates)
+		)
 
 		if artifact == null:
 			selector.visible = false
@@ -167,7 +175,7 @@ func get_artifact_weight(artifact: Artifact) -> float:
 
 		Artifact.ArtifactRarity.UNCOMMON:
 			return maxf(uncommon_weight, 0.0)
-			
+
 		Artifact.ArtifactRarity.CURSED:
 			return maxf(cursed_weight, 0.0)
 
@@ -196,9 +204,23 @@ func setup_task_selectors() -> void:
 
 
 func generate_task_rewards() -> void:
+	var used_add_task_values: Array[int] = []
+
 	for selector in %TaskContainer.get_children():
-		if selector is TaskSelector:
-			selector.generate_reward()
+		if selector is not TaskSelector:
+			continue
+
+		selector.generate_reward(
+			used_add_task_values
+		)
+
+		if (
+			selector.reward_type
+			== TaskSelector.TaskRewardType.ADD_TASK
+		):
+			used_add_task_values.append(
+				selector.generated_value
+			)
 
 
 func on_artifact_selected(
@@ -251,8 +273,8 @@ func on_pass_task_pressed() -> void:
 			selector.selected = false
 
 	update_continue_button()
-	
-	
+
+
 func on_view_deck_pressed() -> void:
 	if (
 		deck_overlay != null
