@@ -8,6 +8,7 @@ extends Control
 var show_damage := false
 var is_shaking := false
 var game_mgr: GameManager
+var reward_mgr: RewardScreen
 
 var stamp: Stamp
 var has_stamp: bool
@@ -18,6 +19,8 @@ var _scene_size: Vector2
 var _scene_size_cached := false
 
 signal pressed(card: Card)
+signal mouse_enter()
+signal mouse_exit()
 signal shake_done
 
 
@@ -82,6 +85,7 @@ func prepare_for_battle() -> void:
 
 func do_setup() -> void:
 	game_mgr = null
+	reward_mgr = null
 
 	var current_scene := get_tree().current_scene
 
@@ -96,6 +100,9 @@ func do_setup() -> void:
 
 	if manager is GameManager:
 		game_mgr = manager
+
+	if current_scene is RewardScreen:
+		reward_mgr = current_scene
 
 
 func _process(_delta: float) -> void:
