@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cg6lgpulfhoba" path="res://art/ui/TaskFolder.png" id="10_w77pv"]
 [ext_resource type="Texture2D" uid="uid://dfawxbgscysfe" path="res://art/ui/TopBar_Yellow.png" id="11_mdmcc"]
 [ext_resource type="Texture2D" uid="uid://c00qmf8lyt3w1" path="res://art/ui/Frame_Middle.png" id="12_jt4fi"]
+[ext_resource type="Script" uid="uid://dav24etkysumc" path="res://src/sprint_score.gd" id="13_k8us1"]
 [ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="13_mdmcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
@@ -362,6 +363,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
+script = ExtResource("13_k8us1")
 
 [node name="TopFrame" type="TextureRect" parent="." unique_id=343435194]
 layout_mode = 1

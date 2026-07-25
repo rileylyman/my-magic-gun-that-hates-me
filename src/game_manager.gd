@@ -249,7 +249,7 @@ func countdown_cards(delta: float) -> void:
 	if tick_state.should_fire:
 		tick_state.score = 1
 
-	var score_label: Label = null
+	var score_label: SprintScore = null
 
 	if tick_state.should_fire:
 		for c in tick_state.today_fired_cards:
@@ -339,10 +339,10 @@ func countdown_cards(delta: float) -> void:
 
 func show_sprint_score(
 	tick_state: TickState
-) -> Label:
-	var score_label: Label = (
+) -> SprintScore:
+	var score_label := (
 		%SprintScore.duplicate()
-		as Label
+		as SprintScore
 	)
 
 	score_label.text = str(
@@ -357,17 +357,19 @@ func show_sprint_score(
 		%SprintScore.global_position
 	)
 
+	score_label.shake()
 	return score_label
 
 
 func update_sprint_score(
 	tick_state: TickState,
-	score_label: Label
+	score_label: SprintScore
 ) -> void:
 	score_label.text = str(
 		tick_state.score
 		+ tick_state.bonus_score
 	)
+	score_label.shake()
 
 
 func send_sprint_score_off(
@@ -400,10 +402,10 @@ func send_sprint_score_off(
 
 func arrange_items() -> void:
 	for c in drawpile:
-		c.position = -card_size
+		c.position = - card_size
 
 	for c in discard:
-		c.position = -card_size
+		c.position = - card_size
 
 	for c in GlobalManager.deck:
 		c.apply_scene_size()
@@ -430,7 +432,7 @@ func arrange_fan_row(
 	)
 
 	var width: float = spacing * (card_count - 1)
-	var start_x: float = -width / 2.0
+	var start_x: float = - width / 2.0
 	var middle: float = (card_count - 1) / 2.0
 
 	for i in range(card_count):
@@ -479,7 +481,7 @@ func arrange_row(
 		* new_scale
 	)
 
-	var start_x: float = -width / 2.0
+	var start_x: float = - width / 2.0
 
 	for i in range(cards.size()):
 		if cards[i].is_shaking:
@@ -489,7 +491,7 @@ func arrange_row(
 
 		cards[i].position = Vector2(
 			start_x
-			+ i
+			+i
 			* (card_size.x + custom_padding.x)
 			* new_scale,
 			0
