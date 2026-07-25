@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://4tyo1mnfd2nx"]
+
+[ext_resource type="Script" uid="uid://2wlp14xnagkx" path="res://resources/artifacts/mirror.gd" id="1_5fucd"]
+
+[node name="Mirror" type="Node2D" unique_id=198665369]
+script = ExtResource("1_5fucd")
+title = "Mirror"
+description = "At the start of a Sprint, if you only play one Task, play a copy of it alongside it."

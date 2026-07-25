@@ -676,6 +676,8 @@ func add_to_hand(card) -> void:
 	%DeckContainer.remove_child(card)
 	%HandPos.add_child(card)
 
+
+	
 func deal_hand() -> void:
 	var drew_card: bool = false
 
