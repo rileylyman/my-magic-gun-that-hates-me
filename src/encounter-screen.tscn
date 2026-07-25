@@ -465,10 +465,6 @@ stamp_trigger_sfx = ExtResource("30_43nnu")
 artifact_trigger_sfx = ExtResource("26_id4ro")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.1
-<<<<<<< Updated upstream
-=======
-task_fire_max_pitch = 3.0
->>>>>>> Stashed changes
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
 unique_name_in_owner = true
