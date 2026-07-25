@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://bdft81wvjq8a8"]
 
 [ext_resource type="Script" uid="uid://b0jsums365sm4" path="res://resources/artifacts/frozen_lunch.gd" id="1_0ffup"]
+[ext_resource type="Texture2D" uid="uid://0m1kk2v0hfa1" path="res://art/artifact_icons/38Frozen Lunch.png" id="2_ueoeo"]
 
 [node name="FrozenLunch" type="Node2D" unique_id=13072798]
 script = ExtResource("1_0ffup")
 title = "Frozen Lunch"
 description = "The Task played in the rightmost slot on the Field never progresses."
+rarity = 2
+icon = ExtResource("2_ueoeo")

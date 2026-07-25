@@ -5,4 +5,6 @@ func post_tick_callback(state: TickState) -> void:
 	for c in state.hand:
 		if c.max_value < min:
 			min = c.max_value
-	state.score *= min
+	if(state.score>0):		
+		state.score *= min
+		await shake("x"+str(min))

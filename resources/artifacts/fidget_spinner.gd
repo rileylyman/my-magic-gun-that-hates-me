@@ -8,3 +8,4 @@ func post_tick_callback(state: TickState) -> void:
 				dupes += 1
 				if dupes == 3:
 					state.score *= c.max_value * 3
+					await shake("x"+str(c.max_value*3))

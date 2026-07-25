@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://ccutdm8rjy7i4"]
 
 [ext_resource type="Script" uid="uid://dwowohefvarka" path="res://resources/artifacts/hand_trick.gd" id="1_jg1p8"]
+[ext_resource type="Texture2D" uid="uid://blfhjg4lsuepr" path="res://art/artifact_icons/27Bronze Hand.png" id="2_ph3yj"]
 
 [node name="HandTrick" type="Node2D" unique_id=48861732]
 script = ExtResource("1_jg1p8")
 title = "Bronze Hand"
 description = "Multiply all Damage by the lowest value Task in your Task Folder."
-rarity = 3
+rarity = 4
+icon = ExtResource("2_ph3yj")

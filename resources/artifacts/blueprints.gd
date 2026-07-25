@@ -10,4 +10,6 @@ func post_tick_callback(state: TickState) -> void:
 		if abs(sorted_array[i+1] - sorted_array[i]) < 2:
 			return
 			
-	state.score *= 2
+	if(state.score > 0):
+		state.score *= 2
+		await shake("x2")

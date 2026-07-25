@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://2aav8s8wt476"]
 
 [ext_resource type="Script" uid="uid://c5h4wvsgirfch" path="res://resources/artifacts/broken_clock.gd" id="1_82exx"]
+[ext_resource type="Texture2D" uid="uid://q0kvfa7f82fp" path="res://art/artifact_icons/47Broken Clock.png" id="2_4o4hs"]
 
 [node name="BrokenClock" type="Node2D" unique_id=1904705558]
 script = ExtResource("1_82exx")
 title = "Broken Clock"
 description = "Even-valued Tasks progress twice each Even Day, but don't progress on Odd Days. Odd-valued Tasks progress twice each Odd Day, but don't progress on Even Days."
+rarity = 2
+icon = ExtResource("2_4o4hs")

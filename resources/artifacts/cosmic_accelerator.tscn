@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cg2rtaqtfwp3l"]
 
 [ext_resource type="Script" uid="uid://b6pbhu76yay5g" path="res://resources/artifacts/cosmic_accelerator.gd" id="1_1c6r0"]
+[ext_resource type="Texture2D" uid="uid://bx8iul1tuibtv" path="res://art/artifact_icons/9Cosmic Acccelerator.png" id="2_vaapf"]
 
 [node name="CosmicAccelerator" type="Node2D" unique_id=272006685]
 script = ExtResource("1_1c6r0")
 title = "Cosmic Accelerator"
 description = "When two different Prime-Value Tasks hit together, multiply it by the the sum of the numbers"
+rarity = 4
+icon = ExtResource("2_vaapf")

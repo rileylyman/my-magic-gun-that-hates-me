@@ -7,4 +7,5 @@ func post_tick_callback(state: TickState) -> void:
 		total += c.curr
 
 	if total >= 10:
+		await shake("x"+str(total))
 		state.score *= total

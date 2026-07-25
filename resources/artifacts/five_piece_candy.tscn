@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bxpou3ytet1l2"]
 
 [ext_resource type="Script" uid="uid://bnc4brx5706kp" path="res://resources/artifacts/five_piece_candy.gd" id="1_3hxgm"]
+[ext_resource type="Texture2D" uid="uid://c2rp4lj4r34ye" path="res://art/artifact_icons/12 5piece candy.png" id="2_5gwir"]
 
 [node name="FivePieceCandy" type="Node2D" unique_id=1218712770]
 script = ExtResource("1_3hxgm")
 title = "5 Piece Candy"
 description = "Whenever a 5 is on the Field, multiply that Day's Damage by 5."
+icon = ExtResource("2_5gwir")

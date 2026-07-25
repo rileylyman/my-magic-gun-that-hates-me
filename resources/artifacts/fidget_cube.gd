@@ -7,4 +7,6 @@ func post_tick_callback(state: TickState) -> void:
 			if c.max_value == i.max_value and c.curr == 0:
 				dupes += 1
 				if dupes == 2:
+					
 					state.score *= c.max_value
+					await shake("x"+str(c.max_value))

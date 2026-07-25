@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cheifw32vll5t"]
 
 [ext_resource type="Script" uid="uid://cy1ilrvu3my0e" path="res://resources/artifacts/paperclip.gd" id="1_8yxyk"]
+[ext_resource type="Texture2D" uid="uid://bk6w7w37c31w3" path="res://art/artifact_icons/51Paper Clip.png" id="2_5xmkq"]
 
 [node name="paperclip" type="Node2D" unique_id=753313122]
 script = ExtResource("1_8yxyk")
 title = "Paperclip"
 description = "Multiply all damage by 1.0. Each Day where two Tasks fire together, improve this multiplier by 0.2 permenantly."
+icon = ExtResource("2_5xmkq")

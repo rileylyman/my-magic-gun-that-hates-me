@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://2xpvh2sodeci"]
 
 [ext_resource type="Script" uid="uid://dewa7vuugxvsr" path="res://resources/artifacts/paper_crane.gd" id="1_u66e4"]
+[ext_resource type="Texture2D" uid="uid://dcbxmkkyv1jff" path="res://art/artifact_icons/11paper crane.png" id="2_icy0j"]
 
 [node name="PaperCrane" type="Node2D" unique_id=753313122]
 script = ExtResource("1_u66e4")
 title = "Paper Crane"
 description = "When a Task fires alone, permenantly increase its value by 1."
 rarity = 2
+icon = ExtResource("2_icy0j")

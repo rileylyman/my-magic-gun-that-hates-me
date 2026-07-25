@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://b0cwgc5mln2lx"]
 
 [ext_resource type="Script" uid="uid://b1w2rc1tqoff3" path="res://resources/artifacts/golden_calendar.gd" id="1_38hex"]
+[ext_resource type="Texture2D" uid="uid://c1b2l3lmkiaye" path="res://art/artifact_icons/48Golden Calendar.png" id="2_y7eto"]
 
 [node name="GoldenCalendar" type="Node2D" unique_id=1390886910]
 script = ExtResource("1_38hex")
 title = "Golden Calendar"
 description = "Gain 1 Day every other Day exactly one Task fires."
+rarity = 4
+icon = ExtResource("2_y7eto")
