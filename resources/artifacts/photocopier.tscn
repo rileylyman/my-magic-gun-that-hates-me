@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ds84x2w64vyh"]
+
+[ext_resource type="Script" path="res://resources/artifacts/photocopier.gd" id="1_x1ant"]
+
+[node name="Photocopier" type="Node2D" unique_id=1281120377]
+script = ExtResource("1_x1ant")
+title = "Photocopier"
+description = "At the start of a Sprint, if you only play one Task, add a permenant copy of it to your Task Folder."
