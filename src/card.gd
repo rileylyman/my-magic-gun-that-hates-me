@@ -26,8 +26,8 @@ func _process(_delta: float) -> void:
 	%ShootLabel.text = str(max_value)
 	%CountdownLabel.text = str(curr)
 
-	%ShootLabel.visible = show_damage
-	if %ShootLabel.visible:
+	%ShootLabel.visible = false # show_damage
+	if show_damage:
 		%CountdownLabel.text = str(0) if show_zero_on_damage else str(max_value)
 
 func _gui_input(event: InputEvent) -> void:

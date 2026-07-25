@@ -184,11 +184,16 @@ func countdown_cards(delta: float) -> void:
 				tick_state.should_fire = true
 				tick_state.score = 1
 
+		var sc: Label = null
 		if tick_state.should_fire:
 			for c in tick_state.cards:
 				if c.curr <= 0:
 					tick_state.score *= c.max_value
-					c.bump()
+					await c.bump()
+					if sc == null:
+						sc = show_sprint_score(tick_state)
+					else:
+						update_sprint_score(tick_state, sc)
 
 		for c in tick_state.cards:
 			if c.is_shaking:
@@ -209,7 +214,10 @@ func countdown_cards(delta: float) -> void:
 				)
 
 		if tick_state.score > 0 or tick_state.bonus_score > 0:
-			show_sprint_score(tick_state)
+			if sc == null: 
+				sc = show_sprint_score(tick_state)
+			update_sprint_score(tick_state, sc)
+			send_sprint_score_off(sc)
 
 		for c in chosen:
 			if c.curr <= 0:
@@ -226,7 +234,7 @@ func countdown_cards(delta: float) -> void:
 		is_ticking = false
 
 
-func show_sprint_score(tick_state: TickState) -> void:
+func show_sprint_score(tick_state: TickState) -> Label:
 	var score_label = %SprintScore.duplicate()
 
 	score_label.text = str(
@@ -241,6 +249,15 @@ func show_sprint_score(tick_state: TickState) -> void:
 		%SprintScore.global_position
 	)
 
+	return score_label
+
+func update_sprint_score(tick_state: TickState, score_label: Label) -> void:
+	score_label.text = str(
+		tick_state.score
+		+ tick_state.bonus_score
+	)
+
+func send_sprint_score_off(score_label: Label) -> void:
 	var tween := score_label.create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_IN)
@@ -260,10 +277,7 @@ func show_sprint_score(tick_state: TickState) -> void:
 	tween.tween_callback(
 		func():
 			score_label.queue_free()
-			%ScoreBar.curr_score += (
-				tick_state.score
-				+ tick_state.bonus_score
-			)
+			%ScoreBar.curr_score += int(score_label.text)
 	)
 
 
