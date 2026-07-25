@@ -8,7 +8,7 @@ func post_tick_callback(state: TickState) -> void:
 	for c in state.cards:
 		
 		for i in state.cards:
-			if c.max_value == i.max_value and c.curr == 0 and x != y:
+			if c.max_value == i.max_value and c.curr == 0 and x != y and i.curr <= 0:
 				if !hits.has(c.max_value):
 					hits.append(c.max_value)
 
