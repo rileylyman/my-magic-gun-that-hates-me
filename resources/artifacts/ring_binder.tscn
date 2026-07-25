@@ -5,4 +5,4 @@
 [node name="RingBinder" type="Node2D" unique_id=753313122]
 script = ExtResource("1_56rwl")
 title = "Ring Binder"
-description = "Multiply all damage by 1.0. Each Day where a spell does not hit, improve this multiplier by 0.1 permenantly."
+description = "Multiply all damage by 1.0. Each Day where a spell does not hit, improve this multiplier by 0.02 permenantly."
