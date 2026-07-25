@@ -3,16 +3,34 @@ extends Control
 
 var artifact: Artifact
 
+var _stylebox: StyleBoxFlat
+
 func _ready() -> void:
 	%Title.text = artifact.title
 	%Desc.text = artifact.description
+	%Rarity.text = Artifact.ArtifactRarity.keys()[artifact.rarity]
 	$Tooltip.visible = false
 	$TextureRect.texture = artifact.icon
 	%ShakeTextContainer.top_level = true
 
+	_stylebox = %RarityBg.get_theme_stylebox("panel").duplicate()
+	%RarityBg.add_theme_stylebox_override("panel", _stylebox)
+
 func _process(_delta: float) -> void:
 	%Title.text = artifact.title
 	%Desc.text = artifact.description
+	%Rarity.text = Artifact.ArtifactRarity.keys()[artifact.rarity]
+	match artifact.rarity:
+		Artifact.ArtifactRarity.COMMON:
+			_stylebox.bg_color = Color(0xc68338ff)
+		Artifact.ArtifactRarity.UNCOMMON:
+			_stylebox.bg_color = Color(0x819e73ff)
+		Artifact.ArtifactRarity.CURSED:
+			_stylebox.bg_color = Color(0x4034a8ff)
+		Artifact.ArtifactRarity.RARE:
+			_stylebox.bg_color = Color(0x5f77bfff)
+		Artifact.ArtifactRarity.LEGENDARY:
+			_stylebox.bg_color = Color(0xa14b22ff)
 
 func _on_mouse_entered() -> void:
 	$Tooltip.visible = true

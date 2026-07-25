@@ -12,6 +12,15 @@ corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01wwf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
+bg_color = Color(0.37254903, 0.46666667, 0.7490196, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlt6q"]
+
 [node name="ArtifactIcon" type="Control" unique_id=448662212]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
@@ -42,7 +51,6 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=1778769872]
-visible = false
 clip_contents = true
 layout_mode = 0
 offset_left = -3.0
@@ -68,7 +76,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tooltip/MarginContainer" unique_id=802708651]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 0
 
 [node name="Title" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=904013901]
 unique_name_in_owner = true
@@ -76,6 +84,30 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
 theme_override_font_sizes/font_size = 18
 text = "Artifact name"
+
+[node name="RarityBg" type="PanelContainer" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=935747611]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24.89)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_01wwf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip/MarginContainer/VBoxContainer/RarityBg" unique_id=298945562]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="Rarity" type="Label" parent="Tooltip/MarginContainer/VBoxContainer/RarityBg/MarginContainer" unique_id=535715601]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Rare"
+
+[node name="HSeparator" type="HSeparator" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1469039190]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rlt6q")
 
 [node name="Desc" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1857807250]
 unique_name_in_owner = true
