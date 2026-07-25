@@ -115,6 +115,7 @@ func load_artifacts() -> void:
 		icon.artifact = a
 		%ArtifactHBox.add_child(icon)
 		icons.append(icon)
+		a.game_repr = icon
 
 func _process(delta: float) -> void:
 	if battle_ended:
@@ -201,7 +202,7 @@ func countdown_cards(delta: float) -> void:
 
 	if first_tick:
 		for a in GlobalManager.artifacts:
-			a.hand_submit_callback(tick_state)
+			await a.hand_submit_callback(tick_state)
 
 		first_tick = false
 
@@ -211,7 +212,7 @@ func countdown_cards(delta: float) -> void:
 		)
 
 	for a in GlobalManager.artifacts:
-		a.pre_tick_callback(tick_state)
+		await a.pre_tick_callback(tick_state)
 
 	for c in chosen:
 		c.curr -= 1
@@ -250,7 +251,7 @@ func countdown_cards(delta: float) -> void:
 			await c.shake_done
 
 	for a in GlobalManager.artifacts:
-		a.post_tick_callback(tick_state)
+		await a.post_tick_callback(tick_state)
 
 	for active_debuff in active_debuffs:
 		active_debuff.debuff.post_tick_callback(
