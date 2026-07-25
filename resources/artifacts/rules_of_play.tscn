@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c52ltjhfg3qtk"]
+
+[ext_resource type="Script" uid="uid://bermioo3u2dy3" path="res://resources/artifacts/rules_of_play.gd" id="1_ua818"]
+
+[node name="RulesOfPlay" type="Node2D" unique_id=258059512]
+script = ExtResource("1_ua818")
+title = "Rules of Play"
+description = "Multiply all damage by the Sprint number."

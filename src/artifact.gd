@@ -32,3 +32,7 @@ func hand_submit_callback(_state: TickState) -> void:
 func shake(show_text: String = "") -> void:
 	if game_repr != null:
 		await game_repr.shake(show_text)
+		
+func encounter_start_callback() -> void:
+	if false:
+		await Engine.get_main_loop().process_frame

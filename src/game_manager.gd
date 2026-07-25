@@ -102,7 +102,8 @@ func _ready() -> void:
 
 	%ScoreBar.max_score = GlobalManager.enemy.health
 	%ScoreBar.curr_score = 0
-
+	for a in GlobalManager.artifacts:
+		await a.encounter_start_callback()
 	deal_hand()
 
 
