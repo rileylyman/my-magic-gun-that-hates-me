@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cvmbfs7c0jv7f"]
+
+[ext_resource type="Script" uid="uid://b128703yvegem" path="res://resources/artifacts/the_one.gd" id="1_dndfi"]
+
+[node name="TheOne" type="Node2D" unique_id=120669760]
+script = ExtResource("1_dndfi")
+title = "The One"
+description = "At the start of a Sprint, change the value of the Leftmost Task on Field to 1."
