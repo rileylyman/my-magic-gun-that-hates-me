@@ -42,16 +42,14 @@ var task_fire_max_pitch: float = 2.0
 
 @export_category("Battle Speed")
 
-@export var double_speed_enabled: bool = false
+@export_range(0.1, 10.0, 0.1, "or_greater")
+var base_battle_speed: float = 1.0
 
 @export_range(0.0, 1.0, 0.01)
-var sprint_speed_increase_per_day: float = 0.08
+var sprint_speed_increase_per_trigger: float = 0.08
 
 @export_range(1.0, 10.0, 0.1)
 var max_sprint_speed_multiplier: float = 2.0
-
-@export_range(1.0, 4.0, 0.1)
-var double_speed_multiplier: float = 2.0
 
 const artifact_icon_scene: PackedScene = preload(
 	"res://src/artifact_icon.tscn"
@@ -80,7 +78,7 @@ var padding: Vector2 = Vector2(24, 24)
 var _accum: float = 0.0
 var _tick_trigger_sfx_index: int = 0
 var _tick_trigger_sfx_active: bool = false
-var _sprint_elapsed_days: int = 0
+var _sprint_trigger_count: int = 0
 
 
 func _ready() -> void:
@@ -164,17 +162,6 @@ func _ready() -> void:
 	deal_hand()
 
 
-func set_double_speed(enabled: bool) -> void:
-	double_speed_enabled = enabled
-	apply_battle_time_scale()
-
-
-func toggle_double_speed() -> void:
-	set_double_speed(
-		not double_speed_enabled
-	)
-
-
 func get_sprint_speed_multiplier() -> float:
 	var maximum_speed: float = maxf(
 		max_sprint_speed_multiplier,
@@ -183,22 +170,17 @@ func get_sprint_speed_multiplier() -> float:
 
 	return minf(
 		1.0
-		+ float(_sprint_elapsed_days)
-		* sprint_speed_increase_per_day,
+		+ float(_sprint_trigger_count)
+		* sprint_speed_increase_per_trigger,
 		maximum_speed
 	)
 
 
 func apply_battle_time_scale() -> void:
 	var speed_multiplier: float = (
-		get_sprint_speed_multiplier()
+		maxf(base_battle_speed, 0.01)
+		* get_sprint_speed_multiplier()
 	)
-
-	if double_speed_enabled:
-		speed_multiplier *= maxf(
-			double_speed_multiplier,
-			1.0
-		)
 
 	Engine.time_scale = maxf(
 		speed_multiplier,
@@ -207,24 +189,27 @@ func apply_battle_time_scale() -> void:
 
 
 func begin_sprint_speed() -> void:
-	_sprint_elapsed_days = 0
+	_sprint_trigger_count = 0
 	_accum = 0.0
 	apply_battle_time_scale()
 
 
-func advance_sprint_speed() -> void:
-	_sprint_elapsed_days += 1
+func advance_sprint_speed_from_trigger() -> void:
+	if active_counter == null:
+		return
+
+	_sprint_trigger_count += 1
 	apply_battle_time_scale()
 
 
 func reset_sprint_speed() -> void:
-	_sprint_elapsed_days = 0
+	_sprint_trigger_count = 0
 	_accum = 0.0
 	apply_battle_time_scale()
 
 
 func reset_engine_time_scale() -> void:
-	_sprint_elapsed_days = 0
+	_sprint_trigger_count = 0
 	Engine.time_scale = 1.0
 
 
@@ -297,21 +282,25 @@ func end_tick_trigger_sfx_sequence() -> void:
 func play_next_tick_trigger_sound(
 	stream: AudioStream
 ) -> void:
-	if not _tick_trigger_sfx_active:
-		play_sfx(stream, true)
+	if stream == null:
 		return
 
-	var pitch_scale: float = get_task_fire_pitch(
-		_tick_trigger_sfx_index
-	)
+	if not _tick_trigger_sfx_active:
+		play_sfx(stream, true)
+	else:
+		var pitch_scale: float = get_task_fire_pitch(
+			_tick_trigger_sfx_index
+		)
 
-	_tick_trigger_sfx_index += 1
+		_tick_trigger_sfx_index += 1
 
-	play_sfx(
-		stream,
-		false,
-		pitch_scale
-	)
+		play_sfx(
+			stream,
+			false,
+			pitch_scale
+		)
+
+	advance_sprint_speed_from_trigger()
 
 
 func play_stamp_trigger_sound() -> void:
@@ -757,8 +746,6 @@ func finish_tick_day(
 
 	if active_counter.value == 0:
 		finish_sprint()
-	else:
-		advance_sprint_speed()
 
 
 func finish_sprint() -> void:
@@ -963,8 +950,6 @@ func add_to_hand(card) -> void:
 	%DeckContainer.remove_child(card)
 	%HandPos.add_child(card)
 
-
-	
 func deal_hand() -> void:
 	var drew_card: bool = false
 

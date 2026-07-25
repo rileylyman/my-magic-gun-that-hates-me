@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://b4tdt5afkxhbk"]
 
 [ext_resource type="Script" uid="uid://uvsgfjrpyo8r" path="res://resources/stamps/lone_lupine.gd" id="1_x1yje"]
+[ext_resource type="Texture2D" uid="uid://cd6avov42y6b5" path="res://art/stamp/Stamp_Lupine.png" id="2_fhv2f"]
 
 [node name="LoneLupine" type="Node2D" unique_id=251644683]
 script = ExtResource("1_x1yje")
 title = "Lone Lupine"
 description = "When fires alone, deal triple Damage."
+stamp_texture = ExtResource("2_fhv2f")

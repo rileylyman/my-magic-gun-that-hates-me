@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cyioj8qlnf3d4"]
 
 [ext_resource type="Script" uid="uid://bu30tyao4ljm4" path="res://resources/stamps/positive_possum.gd" id="1_ep8t1"]
+[ext_resource type="Texture2D" uid="uid://8le3o8a6tcwc" path="res://art/stamp/Stamp_Possum.png" id="2_hblk5"]
 
 [node name="Positive Possum" type="Node2D" unique_id=251644683]
 script = ExtResource("1_ep8t1")
 title = "Positive Possum"
 description = "At the start of a Sprint, Tasks played next to this one on Field have their values increased by 1."
+stamp_texture = ExtResource("2_hblk5")

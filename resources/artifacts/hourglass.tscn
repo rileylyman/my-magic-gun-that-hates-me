@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dbio11p3hebho"]
 
 [ext_resource type="Script" uid="uid://bci52elqib44h" path="res://resources/artifacts/hourglass.gd" id="1_mah8o"]
+[ext_resource type="Texture2D" uid="uid://bnyp8o2dyeuiq" path="res://art/artifact_icons/46Hourglass.png" id="2_7ejfv"]
 
 [node name="Hourglass" type="Node2D" unique_id=73529023]
 script = ExtResource("1_mah8o")
 title = "Hourglass"
 description = "Whenever a Task fires, the next Day, all other Tasks progress an extra time."
+rarity = 4
+icon = ExtResource("2_7ejfv")
