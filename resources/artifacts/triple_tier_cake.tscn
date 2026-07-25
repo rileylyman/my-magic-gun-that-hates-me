@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cpve85ia8aly5"]
+
+[ext_resource type="Script" uid="uid://v5ivsx32opyb" path="res://resources/artifacts/triple_tier_cake.gd" id="1_5qkev"]
+
+[node name="TripleTierCake" type="Node2D" unique_id=838347528]
+script = ExtResource("1_5qkev")
+title = "Triple Tier Cake"
+description = "When 3 consecutive numbers are on the Field, add Damage equal to double their sum."
+rarity = 1

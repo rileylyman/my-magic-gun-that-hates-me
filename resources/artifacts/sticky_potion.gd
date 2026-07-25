@@ -4,6 +4,12 @@ extends Artifact
 #maybe resets each new sprint?
 
 var stacks := 0
+func hand_submit_callback(state: TickState) -> void:
+	stacks = 0
+
+
+
+
 func post_tick_callback(state: TickState) -> void:
 	var fired := 0
 
