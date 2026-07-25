@@ -135,8 +135,21 @@ func update_number_feature() -> void:
 		features.append("SQUARED")
 
 	%NumberFeature.text = " • ".join(features)
-	if has_stamp:
-		%Stamp.text = stamp.description
+	update_stamp_display()
+
+
+func update_stamp_display() -> void:
+	has_stamp = stamp != null
+
+	if not has_stamp:
+		%Stamp.text = ""
+		%StampTexture.texture = null
+		%StampTexture.visible = false
+		return
+
+	%Stamp.text = stamp.description
+	%StampTexture.texture = stamp.stamp_texture
+	%StampTexture.visible = stamp.stamp_texture != null
 
 
 func is_prime(number: int) -> bool:
@@ -191,6 +204,16 @@ func set_stamp(new_stamp: Stamp) -> void:
 	stamp = new_stamp
 	has_stamp = true
 	add_child(stamp)
+	update_stamp_display()
+
+
+func clear_stamp() -> void:
+	if stamp != null:
+		stamp.queue_free()
+
+	stamp = null
+	has_stamp = false
+	update_stamp_display()
 
 
 func _on_mouse_entered() -> void:

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://b8l7rr3s88vws"]
 
 [ext_resource type="Script" uid="uid://d4dnr584cyayg" path="res://resources/stamps/sequential_squirrel.gd" id="1_yu86a"]
+[ext_resource type="Texture2D" uid="uid://dlwiavbi1i7sk" path="res://art/stamp/Stamp_Squirrel.png" id="2_mprr7"]
 
 [node name="SequentialSquirrel" type="Node2D" unique_id=251644683]
 script = ExtResource("1_yu86a")
 title = "Sequental Squirrel"
 description = "When fires a Day after another Task has fired, deal triple Damage."
+stamp_texture = ExtResource("2_mprr7")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chrlr4xg5rkn6" path="res://src/card.gd" id="1_kd8v5"]
 [ext_resource type="Texture2D" uid="uid://dfbmaw3xs27gt" path="res://art/ui/Card.png" id="2_oj312"]
+[ext_resource type="Texture2D" uid="uid://dm72lw36ekxw8" path="res://art/stamp/Stamp_Adder.png" id="3_d8ann"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
 bg_color = Color(1, 1, 1, 0)
@@ -61,6 +62,16 @@ offset_bottom = 31.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "5"
 horizontal_alignment = 1
+
+[node name="StampTexture" type="TextureRect" parent="PanelContainer/Control" unique_id=477478304]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 106.71756
+offset_bottom = 138.0
+texture = ExtResource("3_d8ann")
+expand_mode = 1
 
 [node name="CountdownLabel" type="Label" parent="PanelContainer/Control" unique_id=2137815184]
 unique_name_in_owner = true
