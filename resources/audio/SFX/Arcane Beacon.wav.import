@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfdheyqomusns"
+path="res://.godot/imported/Arcane Beacon.wav-27e961f5e21d6c19506a143f2c268e60.sample"
+
+[deps]
+
+source_file="res://resources/audio/SFX/Arcane Beacon.wav"
+dest_files=["res://.godot/imported/Arcane Beacon.wav-27e961f5e21d6c19506a143f2c268e60.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

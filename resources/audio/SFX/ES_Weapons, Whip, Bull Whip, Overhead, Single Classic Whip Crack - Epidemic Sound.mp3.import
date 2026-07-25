@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ip882djds3vl"
+path="res://.godot/imported/ES_Weapons, Whip, Bull Whip, Overhead, Single Classic Whip Crack - Epidemic Sound.mp3-4ccb0e70d4f3ff9546d2a2f2037ed61a.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/SFX/ES_Weapons, Whip, Bull Whip, Overhead, Single Classic Whip Crack - Epidemic Sound.mp3"
+dest_files=["res://.godot/imported/ES_Weapons, Whip, Bull Whip, Overhead, Single Classic Whip Crack - Epidemic Sound.mp3-4ccb0e70d4f3ff9546d2a2f2037ed61a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

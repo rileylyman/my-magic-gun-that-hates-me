@@ -19,6 +19,20 @@
 [ext_resource type="Texture2D" uid="uid://c00qmf8lyt3w1" path="res://art/ui/Frame_Middle.png" id="12_jt4fi"]
 [ext_resource type="Script" uid="uid://dav24etkysumc" path="res://src/sprint_score.gd" id="13_k8us1"]
 [ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="13_mdmcc"]
+[ext_resource type="AudioStream" uid="uid://j45jkaft2qgq" path="res://resources/audio/SFX/Sword_unsheath.wav" id="19_l0nas"]
+[ext_resource type="AudioStream" uid="uid://bvrxp6elghes2" path="res://resources/audio/SFX/BUTTON_12.wav" id="21_teun7"]
+[ext_resource type="AudioStream" uid="uid://b4q2e6blshpr1" path="res://resources/audio/SFX/impactGeneric_light_002.ogg" id="22_l0nas"]
+[ext_resource type="AudioStream" uid="uid://cn1dawhfrcvp6" path="res://resources/audio/SFX/impactGeneric_light_004.ogg" id="23_ctv0l"]
+[ext_resource type="AudioStream" uid="uid://dnmi7m4gwwjt5" path="res://resources/audio/SFX/SUB_DROP_DEEP.wav" id="24_rrs27"]
+[ext_resource type="AudioStream" uid="uid://drdjn8qkemj5p" path="res://resources/audio/SFX/footstep_concrete_002.ogg" id="25_br1p1"]
+[ext_resource type="AudioStream" uid="uid://bou6infbsxsqi" path="res://resources/audio/SFX/impactGlass_medium_002.ogg" id="26_id4ro"]
+[ext_resource type="AudioStream" uid="uid://ck58nhsrqu15h" path="res://resources/audio/SFX/hand_ trick08.wav" id="27_4f78d"]
+[ext_resource type="AudioStream" uid="uid://bi8xflf4i3tdt" path="res://resources/audio/SFX/knife_hard_hit11.wav" id="28_8niob"]
+[ext_resource type="AudioStream" uid="uid://b631eap7ny3nk" path="res://resources/audio/SFX/SCIEnrg_Energy Orb_05.wav" id="29_vpw1m"]
+[ext_resource type="AudioStream" uid="uid://cfdheyqomusns" path="res://resources/audio/SFX/Arcane Beacon.wav" id="30_43nnu"]
+[ext_resource type="AudioStream" uid="uid://c5e1tkdullaqj" path="res://resources/audio/SFX/plastic_rub15.wav" id="30_l0nas"]
+[ext_resource type="AudioStream" uid="uid://cfds3ubdlubxx" path="res://resources/audio/SFX/iron_hit07.wav" id="31_ctv0l"]
+[ext_resource type="AudioStream" uid="uid://cyx7s28ngmwl4" path="res://resources/audio/SFX/DSGNStngr_Power Up Bright Positive Successful Light Saturation Crash Shimmer 05_ESM_AG.wav" id="33_rrs27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
@@ -429,6 +443,21 @@ stretch_mode = 4
 script = ExtResource("7_i3k2v")
 card_scene = ExtResource("5_12btj")
 counter_scene = ExtResource("1_2cweb")
+battle_start_sfx = ExtResource("19_l0nas")
+card_draw_sfx = ExtResource("21_teun7")
+card_select_sfx = ExtResource("22_l0nas")
+card_deselect_sfx = ExtResource("23_ctv0l")
+sprint_start_sfx = ExtResource("24_rrs27")
+day_tick_sfx = ExtResource("25_br1p1")
+task_fire_sfx = ExtResource("26_id4ro")
+score_launch_sfx = ExtResource("27_4f78d")
+score_impact_sfx = ExtResource("28_8niob")
+sprint_end_sfx = ExtResource("29_vpw1m")
+card_discard_sfx = ExtResource("30_l0nas")
+enemy_defeated_sfx = ExtResource("31_ctv0l")
+stamp_trigger_sfx = ExtResource("30_43nnu")
+artifact_trigger_sfx = ExtResource("33_rrs27")
+sfx_pitch_variation = 0.2
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
 unique_name_in_owner = true

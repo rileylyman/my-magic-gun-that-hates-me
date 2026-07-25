@@ -4,6 +4,33 @@ extends Node2D
 @export var card_scene: PackedScene
 @export var counter_scene: PackedScene
 
+@export_category("Sound Effects")
+
+@export var battle_start_sfx: AudioStream
+@export var card_draw_sfx: AudioStream
+@export var card_select_sfx: AudioStream
+@export var card_deselect_sfx: AudioStream
+@export var sprint_start_sfx: AudioStream
+@export var day_tick_sfx: AudioStream
+@export var task_fire_sfx: AudioStream
+@export var score_launch_sfx: AudioStream
+@export var score_impact_sfx: AudioStream
+@export var sprint_end_sfx: AudioStream
+@export var card_discard_sfx: AudioStream
+@export var enemy_defeated_sfx: AudioStream
+@export var stamp_trigger_sfx: AudioStream
+@export var artifact_trigger_sfx: AudioStream
+
+@export_category("Sound Settings")
+
+@export var sfx_bus: StringName = &"Master"
+
+@export_range(-40.0, 10.0, 0.5)
+var sfx_volume_db: float = 0.0
+
+@export_range(0.0, 0.25, 0.01)
+var sfx_pitch_variation: float = 0.04
+
 const artifact_icon_scene: PackedScene = preload(
 	"res://src/artifact_icon.tscn"
 )
@@ -35,6 +62,8 @@ func _ready() -> void:
 	if GlobalManager.enemy == null:
 		push_error("No current enemy is loaded.")
 		return
+
+	play_sfx(battle_start_sfx)
 
 	%SubmitButton.pressed.connect(
 		on_start_round_pressed
@@ -107,6 +136,47 @@ func _ready() -> void:
 	deal_hand()
 
 
+func play_sfx(
+	stream: AudioStream,
+	randomize_pitch: bool = false
+) -> void:
+	if stream == null:
+		return
+
+	var player: AudioStreamPlayer = AudioStreamPlayer.new()
+
+	player.stream = stream
+	player.bus = sfx_bus
+	player.volume_db = sfx_volume_db
+
+	if randomize_pitch:
+		var minimum_pitch: float = maxf(
+			0.01,
+			1.0 - sfx_pitch_variation
+		)
+
+		var maximum_pitch: float = (
+			1.0 + sfx_pitch_variation
+		)
+
+		player.pitch_scale = randf_range(
+			minimum_pitch,
+			maximum_pitch
+		)
+
+	get_tree().root.add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()
+
+
+func play_stamp_trigger_sound() -> void:
+	play_sfx(stamp_trigger_sfx, true)
+
+
+func play_artifact_trigger_sound() -> void:
+	play_sfx(artifact_trigger_sfx, true)
+
+
 func load_artifacts() -> void:
 	for a in %ArtifactHBox.get_children():
 		a.queue_free()
@@ -121,6 +191,7 @@ func load_artifacts() -> void:
 		%ArtifactHBox.add_child(icon)
 		icons.append(icon)
 		a.game_repr = icon
+
 
 func _process(delta: float) -> void:
 	if battle_ended:
@@ -153,6 +224,8 @@ func end_round() -> void:
 
 	battle_ended = true
 	previous_day_fired_cards.clear()
+
+	play_sfx(enemy_defeated_sfx)
 
 	for c in hand:
 		%HandPos.remove_child(c)
@@ -198,6 +271,8 @@ func countdown_cards(delta: float) -> void:
 
 	is_ticking = true
 	_accum -= 1.0
+
+	play_sfx(day_tick_sfx, true)
 
 	var tick_state := TickState.new()
 
@@ -255,6 +330,7 @@ func countdown_cards(delta: float) -> void:
 		for c in tick_state.today_fired_cards:
 			tick_state.score *= c.max_value
 
+			play_sfx(task_fire_sfx, true)
 			await c.bump()
 
 			if score_label == null:
@@ -332,6 +408,7 @@ func countdown_cards(delta: float) -> void:
 
 		previous_day_fired_cards.clear()
 
+		play_sfx(sprint_end_sfx)
 		discard_chosen()
 
 	is_ticking = false
@@ -377,6 +454,8 @@ func send_sprint_score_off(
 ) -> void:
 	var score_amount: int = int(score_label.text)
 
+	play_sfx(score_launch_sfx, true)
+
 	var tween := score_label.create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_IN)
@@ -395,6 +474,7 @@ func send_sprint_score_off(
 
 	tween.tween_callback(
 		func():
+			play_sfx(score_impact_sfx, true)
 			%ScoreBar.curr_score += score_amount
 			score_label.queue_free()
 	)
@@ -502,6 +582,8 @@ func arrange_row(
 
 
 func discard_chosen() -> void:
+	var discarded_any: bool = not chosen.is_empty()
+
 	for c in chosen:
 		c.curr = c.max_value
 		c.show_damage = false
@@ -511,10 +593,16 @@ func discard_chosen() -> void:
 		%DeckContainer.add_child(c)
 
 	chosen.clear()
+
+	if discarded_any:
+		play_sfx(card_discard_sfx, true)
+
 	deal_hand()
 
 
 func deal_hand() -> void:
+	var drew_card: bool = false
+
 	for _i in range(
 		GlobalManager.handsize - hand.size()
 	):
@@ -527,6 +615,10 @@ func deal_hand() -> void:
 			hand.append(card)
 			%DeckContainer.remove_child(card)
 			%HandPos.add_child(card)
+			drew_card = true
+
+	if drew_card:
+		play_sfx(card_draw_sfx, true)
 
 
 func on_card_clicked(card: Card) -> void:
@@ -541,12 +633,16 @@ func on_card_clicked(card: Card) -> void:
 		%HandPos.remove_child(card)
 		%ChosenPos.add_child(card)
 
+		play_sfx(card_select_sfx, true)
+
 	elif card in chosen and active_counter == null:
 		chosen.erase(card)
 		hand.append(card)
 
 		%ChosenPos.remove_child(card)
 		%HandPos.add_child(card)
+
+		play_sfx(card_deselect_sfx, true)
 
 
 func on_start_round_pressed() -> void:
@@ -565,6 +661,8 @@ func on_start_round_pressed() -> void:
 		active_counter = counter
 		active_counter_index = i
 		counter.active = true
+
+		play_sfx(sprint_start_sfx)
 
 		for active_debuff in get_current_enemy_debuffs():
 			active_debuff.debuff.counter_start_callback(
