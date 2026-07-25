@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bf7hydc0hqsnj"]
+
+[ext_resource type="Script" uid="uid://bxg0a8larnskj" path="res://resources/artifacts/primordial_force.gd" id="1_1ymu3"]
+[ext_resource type="Texture2D" uid="uid://jxi86oqg7aa2" path="res://art/artifact_icons/7Primordial Force.png" id="2_3ydf8"]
+
+[node name="PrimordialForce" type="Node2D" unique_id=238915859]
+script = ExtResource("1_1ymu3")
+title = "Primordial Force"
+description = "When two different Prime-Value Tasks hit together, multiply it by the the sum of the numbers"
+rarity = 1
+icon = ExtResource("2_3ydf8")

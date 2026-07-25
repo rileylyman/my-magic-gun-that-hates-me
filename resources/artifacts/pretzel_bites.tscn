@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cepb3b2df473n"]
 
 [ext_resource type="Script" uid="uid://nsunjngbmc15" path="res://resources/artifacts/pretzel_bites.gd" id="1_wcvnk"]
+[ext_resource type="Texture2D" uid="uid://boak4peliv55q" path="res://art/artifact_icons/56Pretzel Bite.png" id="2_ddckr"]
 
 [node name="PretzelBites" type="Node2D" unique_id=238915859]
 script = ExtResource("1_wcvnk")
 title = "Pretzel Bites"
 description = "The rightmost played Task adds its current number as Damage. This effect disables after it fires."
+icon = ExtResource("2_ddckr")
