@@ -44,7 +44,6 @@ func apply_scene_size() -> void:
 	size_flags_vertical = Control.SIZE_SHRINK_CENTER
 
 	size = _scene_size
-	pivot_offset = _scene_size / 2.0
 
 
 func prepare_for_task_grid() -> void:
