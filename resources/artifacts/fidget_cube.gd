@@ -15,7 +15,7 @@ func post_tick_callback(state: TickState) -> void:
 			y +=1
 		x+=1
 	for c in hits:
-			hit += c
+			hit += 2
 	if hit > 0:
 		state.score *= hit
 		await shake("x"+str(hit))
