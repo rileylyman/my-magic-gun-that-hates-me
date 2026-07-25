@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c01r3jutrt1vo"]
+
+[ext_resource type="Script" uid="uid://b1f87bvg1b17c" path="res://resources/artifacts/potted_plant.gd" id="1_q54t5"]
+
+[node name="Potted Plant" type="Node2D" unique_id=1283920870]
+script = ExtResource("1_q54t5")
+title = "Potted Plant"
+description = "Multiply Task fire Damage by the number of consectutive Days without a Task firing."

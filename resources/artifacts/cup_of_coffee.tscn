@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5027mpms6m1o"]
+
+[ext_resource type="Script" uid="uid://gl6d6lpp8xij" path="res://resources/artifacts/cup_of_coffee.gd" id="1_hbph5"]
+
+[node name="CupOfCoffee" type="Node2D" unique_id=272006685]
+script = ExtResource("1_hbph5")
+title = "Cup of Coffee"
+description = "If the sum of the numbers on the Field is 10 or more, multiply that Day's Damage by that sum. "
