@@ -432,6 +432,17 @@ func countdown_cards(delta: float) -> void:
 
 	for a in GlobalManager.artifacts:
 		await a.post_tick_callback(tick_state)
+		if (tick_state.score > 0 or tick_state.bonus_score > 0):
+			if score_label == null:
+				score_label = show_sprint_score(
+					tick_state
+				)
+
+			update_sprint_score(
+				tick_state,
+				score_label
+			)
+
 
 	for active_debuff in active_debuffs:
 		active_debuff.debuff.post_tick_callback(
