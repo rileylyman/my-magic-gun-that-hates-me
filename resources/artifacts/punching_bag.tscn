@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dalx3ibp17fav"]
+
+[ext_resource type="Script" uid="uid://dqcjbuooclomh" path="res://resources/artifacts/punching_bag.gd" id="1_p8wg5"]
+[ext_resource type="Texture2D" uid="uid://dh6gbh38k2pln" path="res://art/artifact_icons/26Punch Bag.png" id="2_lvdpf"]
+
+[node name="PunchingBag" type="Node2D" unique_id=1283920870]
+script = ExtResource("1_p8wg5")
+title = "Punching Bag"
+description = "All Damage dealt in the final Sprint is tripled."
+icon = ExtResource("2_lvdpf")

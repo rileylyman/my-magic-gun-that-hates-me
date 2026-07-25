@@ -6,7 +6,10 @@ func pre_tick_callback(state: TickState) -> void:
 	for c in state.cards:
 		for i in tickcounts:
 			if i and index != index2:
+				
 				c.curr -= 1
+				
+				await shake(" Hourglass! ")
 			index2 += 1
 		index +=1
 	#print(tickcounts)
