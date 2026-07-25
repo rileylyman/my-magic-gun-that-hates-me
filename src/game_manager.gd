@@ -31,6 +31,15 @@ var sfx_volume_db: float = 0.0
 @export_range(0.0, 0.25, 0.01)
 var sfx_pitch_variation: float = 0.04
 
+@export_range(0.1, 4.0, 0.01)
+var task_fire_base_pitch: float = 1.0
+
+@export_range(0.0, 1.0, 0.01)
+var task_fire_pitch_step: float = 0.08
+
+@export_range(0.1, 4.0, 0.01)
+var task_fire_max_pitch: float = 2.0
+
 const artifact_icon_scene: PackedScene = preload(
 	"res://src/artifact_icon.tscn"
 )
@@ -138,12 +147,17 @@ func _ready() -> void:
 
 func play_sfx(
 	stream: AudioStream,
-	randomize_pitch: bool = false
+	randomize_pitch: bool = false,
+	pitch_scale: float = 1.0
 ) -> void:
 	if stream == null:
 		return
 
 	var player: AudioStreamPlayer = AudioStreamPlayer.new()
+	var final_pitch: float = maxf(
+		pitch_scale,
+		0.01
+	)
 
 	player.stream = stream
 	player.bus = sfx_bus
@@ -159,14 +173,32 @@ func play_sfx(
 			1.0 + sfx_pitch_variation
 		)
 
-		player.pitch_scale = randf_range(
+		final_pitch *= randf_range(
 			minimum_pitch,
 			maximum_pitch
 		)
 
+	player.pitch_scale = final_pitch
+
 	get_tree().root.add_child(player)
 	player.finished.connect(player.queue_free)
 	player.play()
+
+
+func get_task_fire_pitch(
+	fire_index: int
+) -> float:
+	var maximum_pitch: float = maxf(
+		task_fire_base_pitch,
+		task_fire_max_pitch
+	)
+
+	return minf(
+		task_fire_base_pitch
+		+ task_fire_pitch_step
+		* float(fire_index),
+		maximum_pitch
+	)
 
 
 func play_stamp_trigger_sound() -> void:
@@ -188,6 +220,7 @@ func load_artifacts() -> void:
 		)
 
 		icon.artifact = a
+		icon.gm = self
 		%ArtifactHBox.add_child(icon)
 		icons.append(icon)
 		a.game_repr = icon
@@ -327,10 +360,20 @@ func countdown_cards(delta: float) -> void:
 	var score_label: SprintScore = null
 
 	if tick_state.should_fire:
+		var task_fire_index: int = 0
+
 		for c in tick_state.today_fired_cards:
 			tick_state.score *= c.max_value
 
-			play_sfx(task_fire_sfx, true)
+			play_sfx(
+				task_fire_sfx,
+				false,
+				get_task_fire_pitch(
+					task_fire_index
+				)
+			)
+
+			task_fire_index += 1
 			await c.bump()
 
 			if score_label == null:
