@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b2ku66qsq02b4"]
 
 [ext_resource type="Script" uid="uid://dctklxotdvsn5" path="res://src/artifact_icon.gd" id="1_lydgm"]
-[ext_resource type="PackedScene" uid="uid://wucq84pt6ueb" path="res://src/artifact_selector.tscn" id="2_qor8w"]
+[ext_resource type="Texture2D" uid="uid://ds07xgbtxb5kr" path="res://art/artifact_icons/50Pushpin.png" id="2_kmb0c"]
+[ext_resource type="Texture2D" uid="uid://dil5vsbhhqf0f" path="res://art/ui/PostIt_White.png" id="4_kmb0c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
 corner_radius_top_left = 32
@@ -9,28 +10,78 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01wwf"]
+
 [node name="ArtifactIcon" type="Control" unique_id=448662212]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_default_cursor_shape = 2
 script = ExtResource("1_lydgm")
 
 [node name="Panel" type="Panel" parent="." unique_id=1662591686]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
 
-[node name="ArtifactSelector" parent="." unique_id=1778769872 instance=ExtResource("2_qor8w")]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1187103941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kmb0c")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Tooltip" type="PanelContainer" parent="." unique_id=1778769872]
+clip_contents = true
 layout_mode = 0
 offset_left = -3.0
 offset_top = 51.0
-offset_right = 197.0
-offset_bottom = 301.0
+offset_right = 201.0
+offset_bottom = 161.0
 scale = Vector2(0.75, 0.75)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_01wwf")
+
+[node name="TextureRect" type="TextureRect" parent="Tooltip" unique_id=2070078160]
+modulate = Color(0.8784314, 0.69803923, 0.29803923, 1)
+layout_mode = 2
+texture = ExtResource("4_kmb0c")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip" unique_id=227767431]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tooltip/MarginContainer" unique_id=802708651]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=904013901]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
+theme_override_font_sizes/font_size = 18
+text = "Artifact name"
+
+[node name="Desc" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1857807250]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
+theme_override_font_sizes/font_size = 14
+text = "Description"
+autowrap_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

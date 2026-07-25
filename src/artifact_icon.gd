@@ -4,12 +4,14 @@ extends Control
 var artifact: Artifact
 
 func _ready() -> void:
-	$ArtifactSelector.set_artifact(artifact)
-	$ArtifactSelector.visible = false
+	%Title.text = artifact.name
+	%Desc.text = artifact.description
+	$Tooltip.visible = false
+	$TextureRect.texture = artifact.icon
 
 func _on_mouse_entered() -> void:
-	$ArtifactSelector.visible = true
+	$Tooltip.visible = true
 
 
 func _on_mouse_exited() -> void:
-	$ArtifactSelector.visible = false
+	$Tooltip.visible = false

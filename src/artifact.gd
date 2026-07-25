@@ -12,6 +12,7 @@ enum ArtifactRarity {
 @export var title: String
 @export_multiline var description: String
 @export var rarity: ArtifactRarity
+@export var icon: Texture = preload("res://art/artifact_icons/13Purple Box.png")
 
 func pre_tick_callback(_state: TickState) -> void:
 	pass
