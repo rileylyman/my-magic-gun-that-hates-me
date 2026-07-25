@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c2g1d6mxujvjs"]
+
+[ext_resource type="Script" uid="uid://cqv1jte1vv53t" path="res://resources/artifacts/dartboard.gd" id="1_r0esd"]
+
+[node name="Dartboard" type="Node2D" unique_id=1247518903]
+script = ExtResource("1_r0esd")
+title = "Dartboard"
+description = "When (5-15) Tasks fire, multiply that Damage by (5-15). This target changes every Sprint."
