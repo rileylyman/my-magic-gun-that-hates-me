@@ -129,7 +129,7 @@ func _ready() -> void:
 		)
 
 	load_artifacts()
-
+	
 	drawpile.shuffle()
 
 	if drawpile.is_empty():
@@ -642,6 +642,10 @@ func discard_chosen() -> void:
 
 	deal_hand()
 
+func add_to_hand(card) -> void:
+	hand.append(card)
+	%DeckContainer.remove_child(card)
+	%HandPos.add_child(card)
 
 func deal_hand() -> void:
 	var drew_card: bool = false
