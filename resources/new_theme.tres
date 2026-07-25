@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://d4ccwscoujb6a"]
+
+[ext_resource type="FontFile" uid="uid://dkgidg6rn5mh" path="res://art/fonts/MADE Mirage Bold PERSONAL USE.otf" id="1_2a54a"]
+
+[resource]
+default_font = ExtResource("1_2a54a")

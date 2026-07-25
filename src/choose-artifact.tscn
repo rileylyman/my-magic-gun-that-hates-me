@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://eds3x0ekkbfw"]
 
+[ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_2ilvo"]
 [ext_resource type="Script" uid="uid://byeepeesjhh4d" path="res://src/choose_artifact.gd" id="1_6ilnx"]
 [ext_resource type="PackedScene" uid="uid://wucq84pt6ueb" path="res://src/artifact_selector.tscn" id="2_4mqxf"]
 [ext_resource type="PackedScene" uid="uid://cx351ihx0uusp" path="res://src/task_selector.tscn" id="3_8v8u7"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2ilvo")
 script = ExtResource("1_6ilnx")
 done_button = NodePath("Button")
 pass_artifact_button = NodePath("CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer/PassArtifact")
