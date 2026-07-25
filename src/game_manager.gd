@@ -42,16 +42,14 @@ var task_fire_max_pitch: float = 2.0
 
 @export_category("Battle Speed")
 
-@export var double_speed_enabled: bool = false
+@export_range(0.1, 10.0, 0.1, "or_greater")
+var base_battle_speed: float = 1.0
 
 @export_range(0.0, 1.0, 0.01)
 var sprint_speed_increase_per_day: float = 0.08
 
 @export_range(1.0, 10.0, 0.1)
 var max_sprint_speed_multiplier: float = 2.0
-
-@export_range(1.0, 4.0, 0.1)
-var double_speed_multiplier: float = 2.0
 
 const artifact_icon_scene: PackedScene = preload(
 	"res://src/artifact_icon.tscn"
@@ -164,17 +162,6 @@ func _ready() -> void:
 	deal_hand()
 
 
-func set_double_speed(enabled: bool) -> void:
-	double_speed_enabled = enabled
-	apply_battle_time_scale()
-
-
-func toggle_double_speed() -> void:
-	set_double_speed(
-		not double_speed_enabled
-	)
-
-
 func get_sprint_speed_multiplier() -> float:
 	var maximum_speed: float = maxf(
 		max_sprint_speed_multiplier,
@@ -191,14 +178,9 @@ func get_sprint_speed_multiplier() -> float:
 
 func apply_battle_time_scale() -> void:
 	var speed_multiplier: float = (
-		get_sprint_speed_multiplier()
+		maxf(base_battle_speed, 0.01)
+		* get_sprint_speed_multiplier()
 	)
-
-	if double_speed_enabled:
-		speed_multiplier *= maxf(
-			double_speed_multiplier,
-			1.0
-		)
 
 	Engine.time_scale = maxf(
 		speed_multiplier,
@@ -963,8 +945,6 @@ func add_to_hand(card) -> void:
 	%DeckContainer.remove_child(card)
 	%HandPos.add_child(card)
 
-
-	
 func deal_hand() -> void:
 	var drew_card: bool = false
 
