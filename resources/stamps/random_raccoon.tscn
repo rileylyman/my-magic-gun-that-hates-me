@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://sftnr5swi5h0"]
+
+[ext_resource type="Script" uid="uid://d4dnr584cyayg" path="res://resources/stamps/sequential_squirrel.gd" id="1_qimw3"]
+
+[node name="RandomRaccoon" type="Node2D" unique_id=251644683]
+script = ExtResource("1_qimw3")
+title = "Random Raccoon"
+description = "After starting a Sprint, this Task's value is randomized each time it fires, but it quadrouples it's Damage."

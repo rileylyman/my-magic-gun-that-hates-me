@@ -7,4 +7,4 @@ func when_hit_callback(state: TickState) -> void:
 		if c.curr <= 0:
 			i = i +1
 	if i == 1:
-		state.score_mult *= 3
+		state.score *= 3

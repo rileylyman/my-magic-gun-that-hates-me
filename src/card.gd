@@ -128,6 +128,8 @@ func update_number_feature() -> void:
 		features.append("SQUARED")
 
 	%NumberFeature.text = " • ".join(features)
+	if has_stamp:
+		%Stamp.text = stamp.description
 
 
 func is_prime(number: int) -> bool:

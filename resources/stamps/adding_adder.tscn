@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://05lirotl88tj"]
+
+[ext_resource type="Script" uid="uid://delmukdn71bjt" path="res://resources/stamps/adding_adder.gd" id="1_yu258"]
+
+[node name="AddingAdder" type="Node2D" unique_id=251644683]
+script = ExtResource("1_yu258")
+title = "Adding Adder"
+description = "When fires, adds 5 to Damage before any multiplication occurs."

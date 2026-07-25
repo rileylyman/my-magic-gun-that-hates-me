@@ -11,7 +11,12 @@ const artifact_icon_scene: PackedScene = preload(
 var counters: Array[Counter] = []
 var active_counter: Counter
 var active_counter_index: int = -1
+
 var first_tick: bool = false
+var is_ticking: bool = false
+var battle_ended: bool = false
+
+var previous_day_fired_cards: Array[Card] = []
 
 var icons: Array[ArtifactIcon] = []
 
@@ -23,9 +28,7 @@ var chosen: Array[Card] = []
 var card_size: Vector2
 var padding: Vector2 = Vector2(24, 24)
 
-var _accum := 0.0
-var battle_ended := false
-var is_ticking := false
+var _accum: float = 0.0
 
 
 func _ready() -> void:
@@ -38,6 +41,7 @@ func _ready() -> void:
 	)
 
 	%EnemyNameLabel.text = GlobalManager.enemy.name
+
 	%EncounterNLabel.text = (
 		"Encounter "
 		+ str(
@@ -66,7 +70,7 @@ func _ready() -> void:
 	for i in range(
 		GlobalManager.enemy.counter_values.size()
 	):
-		var counter := (
+		var counter: Counter = (
 			counter_scene.instantiate()
 			as Counter
 		)
@@ -147,6 +151,7 @@ func end_round() -> void:
 		return
 
 	battle_ended = true
+	previous_day_fired_cards.clear()
 
 	for c in hand:
 		%HandPos.remove_child(c)
@@ -156,10 +161,15 @@ func end_round() -> void:
 		%ChosenPos.remove_child(c)
 		%DeckContainer.add_child(c)
 
-	for c in %DeckContainer.get_children():
-		%DeckContainer.remove_child(c)
-		c.curr = c.max_value
-		c.show_damage = false
+	for child in %DeckContainer.get_children():
+		var card := child as Card
+
+		if card == null:
+			continue
+
+		%DeckContainer.remove_child(card)
+		card.curr = card.max_value
+		card.show_damage = false
 
 	GlobalManager.finish_current_battle()
 
@@ -189,11 +199,18 @@ func countdown_cards(delta: float) -> void:
 	_accum -= 1.0
 
 	var tick_state := TickState.new()
-	var active_debuffs := get_current_enemy_debuffs()
+
+	var active_debuffs: Array[ActiveEnemyDebuff] = (
+		get_current_enemy_debuffs()
+	)
 
 	tick_state.gm = self
 	tick_state.hand = hand
 	tick_state.days = active_counter.value
+
+	tick_state.previous_day_fired_cards.assign(
+		previous_day_fired_cards
+	)
 
 	for c in chosen:
 		tick_state.cards.append(c)
@@ -226,25 +243,40 @@ func countdown_cards(delta: float) -> void:
 		if c.curr <= 0:
 			c.show_damage = true
 			tick_state.should_fire = true
-			tick_state.score = 1
+			tick_state.today_fired_cards.append(c)
+
+	if tick_state.should_fire:
+		tick_state.score = 1
 
 	var score_label: Label = null
 
 	if tick_state.should_fire:
-		for c in tick_state.cards:
-			if c.curr <= 0:
-				tick_state.score *= c.max_value
-				await c.bump()
+		for c in tick_state.today_fired_cards:
+			tick_state.score *= c.max_value
 
-				if score_label == null:
-					score_label = show_sprint_score(
-						tick_state
-					)
-				else:
-					update_sprint_score(
-						tick_state,
-						score_label
-					)
+			await c.bump()
+
+			if score_label == null:
+				score_label = show_sprint_score(
+					tick_state
+				)
+			else:
+				update_sprint_score(
+					tick_state,
+					score_label
+				)
+
+		for c in tick_state.today_fired_cards:
+			if c.stamp == null:
+				continue
+
+			tick_state.current_card = c
+
+			c.stamp.when_hit_callback(
+				tick_state
+			)
+
+		tick_state.current_card = null
 
 	for c in tick_state.cards:
 		if c.is_shaking:
@@ -280,6 +312,12 @@ func countdown_cards(delta: float) -> void:
 
 		send_sprint_score_off(score_label)
 
+	previous_day_fired_cards.clear()
+
+	previous_day_fired_cards.assign(
+		tick_state.today_fired_cards
+	)
+
 	for c in chosen:
 		if c.curr <= 0:
 			c.curr = c.max_value
@@ -290,6 +328,9 @@ func countdown_cards(delta: float) -> void:
 		active_counter.active = false
 		active_counter = null
 		active_counter_index = -1
+
+		previous_day_fired_cards.clear()
+
 		discard_chosen()
 
 	is_ticking = false
@@ -298,7 +339,7 @@ func countdown_cards(delta: float) -> void:
 func show_sprint_score(
 	tick_state: TickState
 ) -> Label:
-	var score_label := (
+	var score_label: Label = (
 		%SprintScore.duplicate()
 		as Label
 	)
@@ -331,7 +372,7 @@ func update_sprint_score(
 func send_sprint_score_off(
 	score_label: Label
 ) -> void:
-	var score_amount := int(score_label.text)
+	var score_amount: int = int(score_label.text)
 
 	var tween := score_label.create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
@@ -372,24 +413,24 @@ func arrange_items() -> void:
 
 
 func arrange_fan_row(
-	cards: Array,
+	cards: Array[Card],
 	overlap: float = 0.5,
 	max_fan_angle: float = PI / 16,
 	arc_height: float = 14.0
 ) -> void:
-	var card_count := cards.size()
+	var card_count: int = cards.size()
 
 	if card_count == 0:
 		return
 
-	var spacing := (
+	var spacing: float = (
 		card_size.x
 		* (1.0 - overlap)
 	)
 
-	var width := spacing * (card_count - 1)
-	var start_x := -width / 2.0
-	var middle := (card_count - 1) / 2.0
+	var width: float = spacing * (card_count - 1)
+	var start_x: float = -width / 2.0
+	var middle: float = (card_count - 1) / 2.0
 
 	for i in range(card_count):
 		if cards[i].is_shaking:
@@ -397,13 +438,17 @@ func arrange_fan_row(
 
 		cards[i].apply_scene_size()
 
-		var offset_from_middle := i - middle
-
-		var normalized_offset := (
-			offset_from_middle / middle
-			if middle > 0.0
-			else 0.0
+		var offset_from_middle: float = (
+			float(i) - middle
 		)
+
+		var normalized_offset: float = 0.0
+
+		if middle > 0.0:
+			normalized_offset = (
+				offset_from_middle
+				/ middle
+			)
 
 		cards[i].position = Vector2(
 			start_x + i * spacing,
@@ -432,7 +477,7 @@ func arrange_row(
 		* new_scale
 	)
 
-	var start_x := -width / 2.0
+	var start_x: float = -width / 2.0
 
 	for i in range(cards.size()):
 		if cards[i].is_shaking:
@@ -470,7 +515,10 @@ func deal_hand() -> void:
 		GlobalManager.handsize - hand.size()
 	):
 		if drawpile.size() > 0:
-			var card = drawpile.pop_front()
+			var card: Card = (
+				drawpile.pop_front()
+				as Card
+			)
 
 			hand.append(card)
 			%DeckContainer.remove_child(card)
@@ -502,9 +550,10 @@ func on_start_round_pressed() -> void:
 		return
 
 	first_tick = true
+	previous_day_fired_cards.clear()
 
 	for i in range(counters.size()):
-		var counter := counters[i]
+		var counter: Counter = counters[i]
 
 		if counter.value <= 0:
 			continue
@@ -517,6 +566,26 @@ func on_start_round_pressed() -> void:
 			active_debuff.debuff.counter_start_callback(
 				active_counter
 			)
+
+		var start_state := TickState.new()
+
+		start_state.gm = self
+		start_state.hand = hand
+		start_state.days = active_counter.value
+		start_state.max_days = active_counter.value
+		start_state.cards.assign(chosen)
+
+		for card in start_state.cards:
+			if card.stamp == null:
+				continue
+
+			start_state.current_card = card
+
+			card.stamp.start_of_round_callback(
+				start_state
+			)
+
+		start_state.current_card = null
 
 		break
 

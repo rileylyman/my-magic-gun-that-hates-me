@@ -4,9 +4,13 @@ extends Control
 signal closed
 
 var selected_card: Card
-var opened_as_overlay := false
+var opened_as_overlay: bool = false
 
 @export var view_return_scene: PackedScene
+
+@onready var task_grid_container: GridContainer = (
+	%TaskGridContainer
+)
 
 
 func _ready() -> void:
@@ -52,25 +56,36 @@ func setup_mode() -> void:
 
 
 func setup_cards() -> void:
-	for child in %TaskGridContainer.get_children():
+	if task_grid_container == null:
+		push_error("TaskGridContainer is missing.")
+		return
+
+	for child in task_grid_container.get_children():
 		if child is Card:
-			%TaskGridContainer.remove_child(child)
+			task_grid_container.remove_child(child)
 
 	for card in GlobalManager.deck:
 		if card.get_parent() != null:
 			card.get_parent().remove_child(card)
 
 		card.prepare_for_task_grid()
-		%TaskGridContainer.add_child(card)
+		task_grid_container.add_child(card)
 		card.do_setup()
 
-		if not card.pressed.is_connected(on_card_pressed):
+		if not card.pressed.is_connected(
+			on_card_pressed
+		):
 			card.pressed.connect(on_card_pressed)
 
-	%TaskGridContainer.queue_sort()
+	task_grid_container.queue_sort()
 
-	%TaskCountLabel.text = str(GlobalManager.deck.size())
-	%EmptyDeckLabel.visible = GlobalManager.deck.is_empty()
+	%TaskCountLabel.text = str(
+		GlobalManager.deck.size()
+	)
+
+	%EmptyDeckLabel.visible = (
+		GlobalManager.deck.is_empty()
+	)
 
 
 func setup_stamp_preview() -> void:
@@ -81,7 +96,7 @@ func setup_stamp_preview() -> void:
 		%StampName.text = "No Stamp"
 		return
 
-	var stamp := (
+	var stamp: Stamp = (
 		GlobalManager.pending_stamp_scene.instantiate()
 		as Stamp
 	)
@@ -106,11 +121,15 @@ func on_card_pressed(card: Card) -> void:
 	selected_card = card
 
 	for deck_card in GlobalManager.deck:
-		deck_card.modulate = (
-			Color(0.7, 1.0, 0.7, 1.0)
-			if deck_card == selected_card
-			else Color.WHITE
-		)
+		if deck_card == selected_card:
+			deck_card.modulate = Color(
+				0.7,
+				1.0,
+				0.7,
+				1.0
+			)
+		else:
+			deck_card.modulate = Color.WHITE
 
 	%SelectedTaskLabel.text = (
 		"Selected Task: "
@@ -144,9 +163,10 @@ func on_confirm_pressed() -> void:
 
 
 func remove_selected_card() -> void:
-	var card_to_remove := selected_card
+	var card_to_remove: Card = selected_card
 
 	selected_card = null
+
 	GlobalManager.deck.erase(card_to_remove)
 
 	if card_to_remove.get_parent() != null:
@@ -163,7 +183,7 @@ func stamp_selected_card() -> void:
 	if GlobalManager.pending_stamp_scene == null:
 		return
 
-	var new_stamp := (
+	var new_stamp: Stamp = (
 		GlobalManager.pending_stamp_scene.instantiate()
 		as Stamp
 	)
@@ -182,20 +202,21 @@ func stamp_selected_card() -> void:
 
 func finish_task_action() -> void:
 	detach_cards()
+
 	GlobalManager.finish_task_selection()
 	GlobalManager.enter_current_battle()
 
 
 func on_cancel_pressed() -> void:
 	detach_cards()
+
 	GlobalManager.finish_task_selection()
 	GlobalManager.enter_current_battle()
 
 
 func on_back_pressed() -> void:
-	detach_cards()
-
 	if opened_as_overlay:
+		detach_cards()
 		closed.emit()
 		queue_free()
 		return
@@ -204,20 +225,28 @@ func on_back_pressed() -> void:
 		push_error("View return scene is not assigned.")
 		return
 
+	detach_cards()
+
 	get_tree().change_scene_to_packed(
 		view_return_scene
 	)
 
 
 func detach_cards() -> void:
-	if %TaskGridContainer != null:
-		if not is_instance_valid(%TaskGridContainer):
-			return
+	if task_grid_container == null:
+		return
 
-	for child in %TaskGridContainer.get_children():
-		if child is Card:
-			%TaskGridContainer.remove_child(child)
-			child.prepare_for_battle()
+	if not is_instance_valid(task_grid_container):
+		return
+
+	for child in task_grid_container.get_children():
+		if child is not Card:
+			continue
+
+		var card := child as Card
+
+		task_grid_container.remove_child(card)
+		card.prepare_for_battle()
 
 
 func open_as_overlay() -> void:
