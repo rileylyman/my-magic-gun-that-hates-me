@@ -25,18 +25,25 @@ var padding: Vector2 = Vector2(24, 24)
 
 var _accum := 0.0
 var battle_ended := false
-
 var is_ticking := false
+
 
 func _ready() -> void:
 	if GlobalManager.enemy == null:
 		push_error("No current enemy is loaded.")
 		return
 
-	%SubmitButton.pressed.connect(on_start_round_pressed)
+	%SubmitButton.pressed.connect(
+		on_start_round_pressed
+	)
 
 	%EnemyNameLabel.text = GlobalManager.enemy.name
-	%EncounterNLabel.text = "Encounter " + str(GlobalManager.defeated_enemy_count + 1)
+	%EncounterNLabel.text = (
+		"Encounter "
+		+ str(
+			GlobalManager.defeated_enemy_count + 1
+		)
+	)
 
 	for c in %HandPos.get_children():
 		c.queue_free()
@@ -45,6 +52,10 @@ func _ready() -> void:
 		c.queue_free()
 
 	for c in GlobalManager.deck:
+		if c.get_parent() != null:
+			c.get_parent().remove_child(c)
+
+		c.prepare_for_battle()
 		%DeckContainer.add_child(c)
 		c.do_setup()
 		drawpile.append(c)
@@ -52,22 +63,38 @@ func _ready() -> void:
 	for c in %SprintHBox.get_children():
 		c.queue_free()
 
-	for i in range(GlobalManager.enemy.counter_values.size()):
-		var c = counter_scene.instantiate()
-		c.value = GlobalManager.enemy.counter_values[i]
-		c.seq = i + 1
-		c.active = false
-		counters.append(c)
-		%SprintHBox.add_child(c)
+	for i in range(
+		GlobalManager.enemy.counter_values.size()
+	):
+		var counter := (
+			counter_scene.instantiate()
+			as Counter
+		)
+
+		counter.value = (
+			GlobalManager.enemy.counter_values[i]
+		)
+
+		counter.seq = i + 1
+		counter.active = false
+
+		counters.append(counter)
+		%SprintHBox.add_child(counter)
 
 	for active_debuff in GlobalManager.enemy.active_debuffs:
-		active_debuff.debuff.battle_start_callback(self)
+		active_debuff.debuff.battle_start_callback(
+			self
+		)
 
 	for a in %ArtifactHBox.get_children():
 		a.queue_free()
 
 	for a in GlobalManager.artifacts:
-		var icon = artifact_icon_scene.instantiate()
+		var icon := (
+			artifact_icon_scene.instantiate()
+			as ArtifactIcon
+		)
+
 		icon.artifact = a
 		%ArtifactHBox.add_child(icon)
 		icons.append(icon)
@@ -79,6 +106,7 @@ func _ready() -> void:
 		return
 
 	card_size = drawpile[0].size
+
 	%ScoreBar.max_score = GlobalManager.enemy.health
 	%ScoreBar.curr_score = 0
 
@@ -94,9 +122,17 @@ func _process(delta: float) -> void:
 	if active_counter != null and not is_ticking:
 		countdown_cards(delta)
 
-	%SubmitButton.visible = active_counter == null and chosen.size() > 0
+	%SubmitButton.visible = (
+		active_counter == null
+		and chosen.size() > 0
+	)
+
 	%ScoreBar.max_score = GlobalManager.enemy.health
-	%SubmitButton.disabled = active_counter != null or chosen.size() < 1
+
+	%SubmitButton.disabled = (
+		active_counter != null
+		or chosen.size() < 1
+	)
 
 	if %ScoreBar.curr_score >= %ScoreBar.max_score:
 		end_round()
@@ -142,101 +178,126 @@ func get_current_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
 func countdown_cards(delta: float) -> void:
 	_accum += delta * 3.0
 
-	if _accum > 1.0:
-		is_ticking = true
-		_accum -= 1.0
+	if _accum <= 1.0:
+		return
 
-		var tick_state := TickState.new()
-		tick_state.gm = self
-		var active_debuffs := get_current_enemy_debuffs()
-		
-		tick_state.hand = hand
-		tick_state.days = active_counter.value
-		for c in chosen:
-			tick_state.cards.append(c)
-			c.show_damage = false
-			c.show_zero_on_damage = true
+	is_ticking = true
+	_accum -= 1.0
 
-		if first_tick:
-			for a in GlobalManager.artifacts:
-				a.hand_submit_callback(tick_state)
+	var tick_state := TickState.new()
+	var active_debuffs := get_current_enemy_debuffs()
 
-			first_tick = false
+	tick_state.gm = self
+	tick_state.hand = hand
+	tick_state.days = active_counter.value
 
+	for c in chosen:
+		tick_state.cards.append(c)
+		c.show_damage = false
+		c.show_zero_on_damage = true
+
+	if first_tick:
+		for a in GlobalManager.artifacts:
+			a.hand_submit_callback(tick_state)
+
+		first_tick = false
+
+	for active_debuff in active_debuffs:
+		active_debuff.debuff.pre_tick_callback(
+			tick_state
+		)
+
+	for a in GlobalManager.artifacts:
+		a.pre_tick_callback(tick_state)
+
+	for c in chosen:
+		c.curr -= 1
+		c.shake()
+
+	for c in tick_state.cards:
+		if c.is_shaking:
+			await c.shake_done
+
+	for c in tick_state.cards:
+		if c.curr <= 0:
+			c.show_damage = true
+			tick_state.should_fire = true
+			tick_state.score = 1
+
+	var score_label: Label = null
+
+	if tick_state.should_fire:
+		for c in tick_state.cards:
+			if c.curr <= 0:
+				tick_state.score *= c.max_value
+				await c.bump()
+
+				if score_label == null:
+					score_label = show_sprint_score(
+						tick_state
+					)
+				else:
+					update_sprint_score(
+						tick_state,
+						score_label
+					)
+
+	for c in tick_state.cards:
+		if c.is_shaking:
+			await c.shake_done
+
+	for a in GlobalManager.artifacts:
+		a.post_tick_callback(tick_state)
+
+	for active_debuff in active_debuffs:
+		active_debuff.debuff.post_tick_callback(
+			tick_state
+		)
+
+	if tick_state.should_fire:
 		for active_debuff in active_debuffs:
-			active_debuff.debuff.pre_tick_callback(
+			active_debuff.debuff.when_hit_callback(
 				tick_state
 			)
 
-		for a in GlobalManager.artifacts:
-			a.pre_tick_callback(tick_state)
-
-		for c in chosen:
-			c.curr -= 1
-			c.shake()
-
-		for c in tick_state.cards:
-			if c.is_shaking:
-				await c.shake_done
-
-		for c in tick_state.cards:
-			if c.curr <= 0:
-				c.show_damage = true
-				tick_state.should_fire = true
-				tick_state.score = 1
-
-		var sc: Label = null
-		if tick_state.should_fire:
-			for c in tick_state.cards:
-				if c.curr <= 0:
-					tick_state.score *= c.max_value
-					await c.bump()
-					if sc == null:
-						sc = show_sprint_score(tick_state)
-					else:
-						update_sprint_score(tick_state, sc)
-
-		for c in tick_state.cards:
-			if c.is_shaking:
-				await c.shake_done
-
-		for a in GlobalManager.artifacts:
-			a.post_tick_callback(tick_state)
-
-		for active_debuff in active_debuffs:
-			active_debuff.debuff.post_tick_callback(
+	if (
+		tick_state.score > 0
+		or tick_state.bonus_score > 0
+	):
+		if score_label == null:
+			score_label = show_sprint_score(
 				tick_state
 			)
 
-		if tick_state.should_fire:
-			for active_debuff in active_debuffs:
-				active_debuff.debuff.when_hit_callback(
-					tick_state
-				)
+		update_sprint_score(
+			tick_state,
+			score_label
+		)
 
-		if tick_state.score > 0 or tick_state.bonus_score > 0:
-			if sc == null: 
-				sc = show_sprint_score(tick_state)
-			update_sprint_score(tick_state, sc)
-			send_sprint_score_off(sc)
+		send_sprint_score_off(score_label)
 
-		for c in chosen:
-			if c.curr <= 0:
-				c.curr = c.max_value
+	for c in chosen:
+		if c.curr <= 0:
+			c.curr = c.max_value
 
-		active_counter.value -= 1
+	active_counter.value -= 1
 
-		if active_counter.value == 0:
-			active_counter.active = false
-			active_counter = null
-			active_counter_index = -1
-			discard_chosen()
+	if active_counter.value == 0:
+		active_counter.active = false
+		active_counter = null
+		active_counter_index = -1
+		discard_chosen()
 
-		is_ticking = false
+	is_ticking = false
 
 
-func show_sprint_score(tick_state: TickState) -> Label:
-	var score_label = %SprintScore.duplicate()
+func show_sprint_score(
+	tick_state: TickState
+) -> Label:
+	var score_label := (
+		%SprintScore.duplicate()
+		as Label
+	)
 
 	score_label.text = str(
 		tick_state.score
@@ -252,13 +313,22 @@ func show_sprint_score(tick_state: TickState) -> Label:
 
 	return score_label
 
-func update_sprint_score(tick_state: TickState, score_label: Label) -> void:
+
+func update_sprint_score(
+	tick_state: TickState,
+	score_label: Label
+) -> void:
 	score_label.text = str(
 		tick_state.score
 		+ tick_state.bonus_score
 	)
 
-func send_sprint_score_off(score_label: Label) -> void:
+
+func send_sprint_score_off(
+	score_label: Label
+) -> void:
+	var score_amount := int(score_label.text)
+
 	var tween := score_label.create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_IN)
@@ -277,8 +347,8 @@ func send_sprint_score_off(score_label: Label) -> void:
 
 	tween.tween_callback(
 		func():
+			%ScoreBar.curr_score += score_amount
 			score_label.queue_free()
-			%ScoreBar.curr_score += int(score_label.text)
 	)
 
 
@@ -290,74 +360,86 @@ func arrange_items() -> void:
 		c.position = -card_size
 
 	for c in GlobalManager.deck:
+		c.apply_scene_size()
 		c.scale = Vector2.ONE
 
-	arrange_row(hand, 0.75)
-
+	arrange_row(hand)
 	arrange_row(chosen)
 
 
 func arrange_fan_row(
 	cards: Array,
-	new_scale: float = 1.0,
 	overlap: float = 0.5,
 	max_fan_angle: float = PI / 16,
 	arc_height: float = 14.0
 ) -> void:
-	var n := cards.size()
+	var card_count := cards.size()
 
-	if n == 0:
+	if card_count == 0:
 		return
 
-	var spacing := card_size.x * new_scale * (1.0 - overlap)
-	var width := spacing * (n - 1)
-	var start_x := -width / 2
-	var mid := (n - 1) / 2.0
+	var spacing := (
+		card_size.x
+		* (1.0 - overlap)
+	)
 
-	for i in range(n):
+	var width := spacing * (card_count - 1)
+	var start_x := -width / 2.0
+	var middle := (card_count - 1) / 2.0
+
+	for i in range(card_count):
 		if cards[i].is_shaking:
 			continue
 
-		var offset_from_mid := i - mid
-		var t := (offset_from_mid / mid) if mid > 0.0 else 0.0
+		cards[i].apply_scene_size()
+
+		var offset_from_middle := i - middle
+
+		var normalized_offset := (
+			offset_from_middle / middle
+			if middle > 0.0
+			else 0.0
+		)
 
 		cards[i].position = Vector2(
 			start_x + i * spacing,
-			arc_height * t * t
+			arc_height
+			* normalized_offset
+			* normalized_offset
 		)
 
-		cards[i].rotation = t * max_fan_angle
-		cards[i].scale = Vector2.ONE * new_scale
+		cards[i].rotation = (
+			normalized_offset
+			* max_fan_angle
+		)
+
+		cards[i].scale = Vector2.ONE
 
 
-func arrange_row(
-	cards: Array,
-	new_scale: float = 1.0
-) -> void:
+func arrange_row(cards: Array) -> void:
 	var width := (
 		(card_size.x + padding.x)
 		* cards.size()
-		* new_scale
 		- padding.x
-		* new_scale
 	)
 
-	var start_x := -width / 2
+	var start_x := -width / 2.0
 
 	for i in range(cards.size()):
 		if cards[i].is_shaking:
 			continue
 
+		cards[i].apply_scene_size()
+
 		cards[i].position = Vector2(
 			start_x
 			+ i
-			* (card_size.x + padding.x)
-			* new_scale,
+			* (card_size.x + padding.x),
 			0
 		)
 
 		cards[i].rotation = 0
-		cards[i].scale = Vector2.ONE * new_scale
+		cards[i].scale = Vector2.ONE
 
 
 func discard_chosen() -> void:
@@ -374,7 +456,9 @@ func discard_chosen() -> void:
 
 
 func deal_hand() -> void:
-	for i in range(GlobalManager.handsize - hand.size()):
+	for _i in range(
+		GlobalManager.handsize - hand.size()
+	):
 		if drawpile.size() > 0:
 			var card = drawpile.pop_front()
 
@@ -384,7 +468,11 @@ func deal_hand() -> void:
 
 
 func on_card_clicked(card: Card) -> void:
-	if card in hand and chosen.size() < GlobalManager.spellslots and active_counter == null:
+	if (
+		card in hand
+		and chosen.size() < GlobalManager.spellslots
+		and active_counter == null
+	):
 		hand.erase(card)
 		chosen.append(card)
 

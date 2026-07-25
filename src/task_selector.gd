@@ -70,6 +70,7 @@ func generate_reward() -> void:
 			%Desc.text = remove_task_description
 
 		TaskRewardType.STAMP_TASK:
+			generated_stamp_scene = generate_stamp_scene()
 			%Title.text = stamp_task_title
 			%Desc.text = stamp_task_description
 
@@ -175,6 +176,8 @@ func apply_reward() -> void:
 			)
 
 		TaskRewardType.STAMP_TASK:
+			GlobalManager.pending_stamp_scene = generated_stamp_scene
+
 			GlobalManager.open_task_selection(
 				GlobalManager.TaskSelectionMode.STAMP_TASK
 			)

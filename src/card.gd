@@ -2,6 +2,7 @@ class_name Card
 extends Control
 
 @export var max_value: int = 5
+
 @onready var curr := max_value
 
 var show_damage := false
@@ -13,30 +14,111 @@ var has_stamp: bool
 
 var show_zero_on_damage := true
 
+var _scene_size: Vector2
+var _scene_size_cached := false
+
+signal pressed(card: Card)
 signal shake_done
 
+
 func _ready() -> void:
+	cache_scene_size()
+	apply_scene_size()
 	do_setup()
 
+
+func cache_scene_size() -> void:
+	if _scene_size_cached:
+		return
+
+	_scene_size = size
+	_scene_size_cached = true
+
+
+func apply_scene_size() -> void:
+	cache_scene_size()
+
+	custom_minimum_size = _scene_size
+	size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
+	size = _scene_size
+	pivot_offset = _scene_size / 2.0
+
+
+func prepare_for_task_grid() -> void:
+	apply_scene_size()
+
+	curr = max_value
+	show_damage = false
+	show_zero_on_damage = true
+	is_shaking = false
+
+	visible = true
+	modulate = Color.WHITE
+	rotation = 0
+	scale = Vector2.ONE
+	position = Vector2.ZERO
+
+
+func prepare_for_battle() -> void:
+	apply_scene_size()
+
+	curr = max_value
+	show_damage = false
+	show_zero_on_damage = true
+	is_shaking = false
+
+	visible = true
+	modulate = Color.WHITE
+	rotation = 0
+	scale = Vector2.ONE
+	position = Vector2.ZERO
+
+
 func do_setup() -> void:
-	game_mgr = get_tree().current_scene.find_child("GameManager")
-	# pivot_offset = size / 2
+	game_mgr = null
+
+	var current_scene := get_tree().current_scene
+
+	if current_scene == null:
+		return
+
+	var manager := current_scene.find_child(
+		"GameManager",
+		true,
+		false
+	)
+
+	if manager is GameManager:
+		game_mgr = manager
+
 
 func _process(_delta: float) -> void:
 	%TitleLabel.text = str(max_value)
 	%ShootLabel.text = str(max_value)
 	%CountdownLabel.text = str(curr)
 
-	%ShootLabel.visible = false # show_damage
+	%ShootLabel.visible = false
+
 	if show_damage:
-		%CountdownLabel.text = str(0) if show_zero_on_damage else str(max_value)
+		%CountdownLabel.text = (
+			str(0)
+			if show_zero_on_damage
+			else str(max_value)
+		)
+
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
+	if (
+		event is InputEventMouseButton
+		and event.button_index == MOUSE_BUTTON_LEFT
+		and event.pressed
+	):
+		pressed.emit(self)
+
 		if game_mgr != null:
 			game_mgr.on_card_clicked(self)
-		else:
-			print("Game manager not found")
 
 
 func set_stamp(new_stamp: Stamp) -> void:
@@ -48,6 +130,7 @@ func set_stamp(new_stamp: Stamp) -> void:
 
 	stamp = new_stamp
 	has_stamp = true
+	add_child(stamp)
 
 
 func _on_mouse_entered() -> void:
@@ -64,17 +147,50 @@ func shake() -> void:
 	var curr_rot := rotation
 	var curr_scale := scale
 
-	var new_rotation = curr_rot + PI / 32
-	var new_scale = scale * 1.05 
+	var new_rotation := curr_rot + PI / 32
+	var new_scale := scale * 1.05
 
-	var t = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	t.tween_property(self, "rotation", new_rotation, 0.1)
-	t.tween_property(self, "scale", new_scale, 0.1)
-	await t.finished
-	t = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	t.tween_property(self, "rotation", curr_rot, 0.1)
-	t.tween_property(self, "scale", curr_scale, 0.1)
-	await t.finished
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"rotation",
+		new_rotation,
+		0.1
+	)
+
+	tween.tween_property(
+		self,
+		"scale",
+		new_scale,
+		0.1
+	)
+
+	await tween.finished
+
+	tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"rotation",
+		curr_rot,
+		0.1
+	)
+
+	tween.tween_property(
+		self,
+		"scale",
+		curr_scale,
+		0.1
+	)
+
+	await tween.finished
 
 	rotation = curr_rot
 	scale = curr_scale
@@ -82,23 +198,56 @@ func shake() -> void:
 	is_shaking = false
 	shake_done.emit()
 
+
 func bump() -> void:
 	is_shaking = true
 
-	var curr_pos = global_position
-	var curr_scale = scale
+	var curr_pos := global_position
+	var curr_scale := scale
 
-	var t = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	t.tween_property(self, "global_position", curr_pos + Vector2(0, -16), 0.1)
-	t.tween_property(self, "scale", Vector2(0, scale.y), 0.1)
-	await t.finished
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"global_position",
+		curr_pos + Vector2(0, -16),
+		0.1
+	)
+
+	tween.tween_property(
+		self,
+		"scale",
+		Vector2(0, scale.y),
+		0.1
+	)
+
+	await tween.finished
 
 	show_zero_on_damage = false
 
-	t = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	t.tween_property(self, "global_position", curr_pos, 0.1)
-	t.tween_property(self, "scale", curr_scale, 0.1)
-	await t.finished
+	tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"global_position",
+		curr_pos,
+		0.1
+	)
+
+	tween.tween_property(
+		self,
+		"scale",
+		curr_scale,
+		0.1
+	)
+
+	await tween.finished
 
 	is_shaking = false
 	shake_done.emit()

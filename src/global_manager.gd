@@ -20,6 +20,8 @@ enum TaskSelectionMode {
 @export var win_scene: PackedScene
 @export var all_tasks_scene: PackedScene
 
+var pending_stamp_scene: PackedScene
+
 var task_selection_mode: TaskSelectionMode = TaskSelectionMode.NONE
 
 var deck: Array[Card] = []
@@ -84,6 +86,7 @@ func open_task_selection(mode: TaskSelectionMode) -> void:
 
 func finish_task_selection() -> void:
 	task_selection_mode = TaskSelectionMode.NONE
+	pending_stamp_scene = null
 
 func load_current_enemy() -> bool:
 	if defeated_enemy_count >= enemy_order.size():

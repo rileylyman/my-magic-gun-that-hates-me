@@ -26,6 +26,7 @@ var rare_weight: float = 10.0
 @export_range(0.0, 100.0, 0.01)
 var legendary_weight: float = 5.0
 
+var deck_overlay: AllTasksScreen
 
 func _ready() -> void:
 	done_button.disabled = true
@@ -45,6 +46,13 @@ func _ready() -> void:
 	):
 		pass_task_button.pressed.connect(
 			on_pass_task_pressed
+		)
+		
+	if not %ViewDeckButton.pressed.is_connected(
+		on_view_deck_pressed
+	):
+		%ViewDeckButton.pressed.connect(
+			on_view_deck_pressed
 		)
 
 	load_artifacts()
@@ -237,6 +245,49 @@ func on_pass_task_pressed() -> void:
 			selector.selected = false
 
 	update_continue_button()
+	
+	
+func on_view_deck_pressed() -> void:
+	if (
+		deck_overlay != null
+		and is_instance_valid(deck_overlay)
+	):
+		return
+
+	if GlobalManager.all_tasks_scene == null:
+		push_error("All-tasks scene is not assigned.")
+		return
+
+	GlobalManager.task_selection_mode = (
+		GlobalManager.TaskSelectionMode.NONE
+	)
+
+	deck_overlay = (
+		GlobalManager.all_tasks_scene.instantiate()
+		as AllTasksScreen
+	)
+
+	if deck_overlay == null:
+		push_error(
+			"All-tasks scene root does not use AllTasksScreen."
+		)
+		return
+
+	add_child(deck_overlay)
+
+	deck_overlay.set_anchors_and_offsets_preset(
+		Control.PRESET_FULL_RECT
+	)
+
+	deck_overlay.closed.connect(
+		on_deck_overlay_closed
+	)
+
+	deck_overlay.open_as_overlay()
+
+
+func on_deck_overlay_closed() -> void:
+	deck_overlay = null
 
 
 func update_continue_button() -> void:

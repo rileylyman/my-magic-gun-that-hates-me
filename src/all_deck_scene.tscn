@@ -1,53 +1,18 @@
 [gd_scene format=3 uid="uid://c83cot66mcmdl"]
 
-[ext_resource type="Script" uid="uid://byeepeesjhh4d" path="res://src/choose_artifact.gd" id="1_uhpsr"]
-[ext_resource type="PackedScene" uid="uid://cx351ihx0uusp" path="res://src/task_selector.tscn" id="2_sa2kc"]
-[ext_resource type="PackedScene" uid="uid://wucq84pt6ueb" path="res://src/artifact_selector.tscn" id="3_ukyq8"]
+[ext_resource type="Script" uid="uid://c7y0c7mg0wows" path="res://src/all_deck_scene.gd" id="1_8twpu"]
 
-[node name="ChooseArtifact" type="Control" unique_id=661720228 node_paths=PackedStringArray("done_button", "pass_artifact_button", "pass_task_button")]
+[node name="AllDeck" type="Control" unique_id=661720228]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uhpsr")
-done_button = NodePath("Button")
-pass_artifact_button = NodePath("CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer/PassArtifact")
-pass_task_button = NodePath("CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer/PassTask")
-
-[node name="Label" type="Label" parent="." unique_id=1216155231]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -146.0
-offset_top = 15.0
-offset_right = 146.0
-offset_bottom = 103.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
-text = "Enemy Defeated"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="." unique_id=973714817]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -92.0
-offset_right = 110.0
-offset_bottom = -17.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 48
-text = "Continue"
+script = ExtResource("1_8twpu")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1366166573]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,99 +21,87 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="AllRewards" type="PanelContainer" parent="CenterContainer" unique_id=2125934438]
-visible = false
-custom_minimum_size = Vector2(350, 400)
+[node name="AllTasks" type="PanelContainer" parent="CenterContainer" unique_id=2125934438]
+custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/AllRewards" unique_id=763260804]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/AllRewards/MarginContainer" unique_id=1374667685]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/AllRewards/MarginContainer/VBoxContainer" unique_id=20187510]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Rewards"
-
-[node name="ChooseTask" type="Button" parent="CenterContainer/AllRewards/MarginContainer/VBoxContainer" unique_id=1298690951]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Choose new card"
-
-[node name="ChooseArtifact" type="Button" parent="CenterContainer/AllRewards/MarginContainer/VBoxContainer" unique_id=129152720]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Choose new artifact"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2136316144]
-layout_mode = 2
-
-[node name="ChooseTask" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=1060690765]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/ChooseTask" unique_id=2143242547]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/AllTasks" unique_id=763260804]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TaskContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer" unique_id=1529714914]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/AllTasks/MarginContainer" unique_id=1374667685]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer" unique_id=359478752]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/HeaderContainer" unique_id=1684139080]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 32
-alignment = 1
+text = "Back"
 
-[node name="TaskSelector" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1692323313 instance=ExtResource("2_sa2kc")]
-layout_mode = 2
-
-[node name="TaskSelector2" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1227490680 instance=ExtResource("2_sa2kc")]
-layout_mode = 2
-
-[node name="TaskSelector3" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=17461257 instance=ExtResource("2_sa2kc")]
-layout_mode = 2
-
-[node name="PassTask" type="Button" parent="CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer" unique_id=1666246544]
-layout_mode = 2
-text = "PASS"
-
-[node name="ChooseArtifact" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=842772602]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/ChooseArtifact" unique_id=1894858614]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="ArtifactContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer" unique_id=378871311]
+[node name="ScreenTitle" type="Label" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/HeaderContainer" unique_id=1753946381]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 32
-alignment = 1
+text = "View Deck"
 
-[node name="ArtifactSelector" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1778769872 instance=ExtResource("3_ukyq8")]
+[node name="HeaderSpacer" type="Control" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/HeaderContainer" unique_id=926317121]
 layout_mode = 2
 
-[node name="ArtifactSelector2" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=315394457 instance=ExtResource("3_ukyq8")]
+[node name="TaskCountLabel" type="Label" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/HeaderContainer" unique_id=211693403]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Count: 0"
+
+[node name="StampPreviewContainer" type="HBoxContainer" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer" unique_id=1090290475]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ArtifactSelector3" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=1546768994 instance=ExtResource("3_ukyq8")]
+[node name="StampName" type="Label" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/StampPreviewContainer" unique_id=1855714767]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lone Lupine"
+
+[node name="StampDescription" type="Label" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/StampPreviewContainer" unique_id=897766665]
+unique_name_in_owner = true
+layout_mode = 2
+text = "*Effect*"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer" unique_id=1045236655]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TaskGridContainer" type="GridContainer" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1190382659]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 10
+
+[node name="EmptyDeckLabel" type="Label" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer" unique_id=2009757528]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Desk is Empty"
+
+[node name="FooterContainer" type="HBoxContainer" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer" unique_id=180787023]
 layout_mode = 2
 
-[node name="PassArtifact" type="Button" parent="CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer" unique_id=955777101]
+[node name="SelectedTaskLabel" type="Label" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/FooterContainer" unique_id=745516088]
+unique_name_in_owner = true
 layout_mode = 2
-text = "PASS"
+text = "Selected"
 
-[connection signal="pressed" from="Button" to="." method="on_done"]
+[node name="FooterSpacer" type="Control" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/FooterContainer" unique_id=820301931]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/FooterContainer" unique_id=1875920525]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/AllTasks/MarginContainer/VBoxContainer/FooterContainer" unique_id=1565853566]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Confirm"

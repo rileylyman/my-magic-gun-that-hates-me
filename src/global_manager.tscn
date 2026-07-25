@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlpsg74tnfn38" path="res://src/encounter-screen.tscn" id="5_ioumm"]
 [ext_resource type="PackedScene" uid="uid://cuqahqq52hgo0" path="res://scenes/win_or_lose_scene.tscn" id="6_4njm7"]
 [ext_resource type="PackedScene" uid="uid://eds3x0ekkbfw" path="res://src/choose-artifact.tscn" id="6_ioumm"]
+[ext_resource type="PackedScene" uid="uid://c83cot66mcmdl" path="res://src/all_deck_scene.tscn" id="8_4worf"]
 
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
@@ -14,3 +15,4 @@ enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("4_4worf"), ExtResource
 battle_scene = ExtResource("5_ioumm")
 choose_artifact_scene = ExtResource("6_ioumm")
 win_scene = ExtResource("6_4njm7")
+all_tasks_scene = ExtResource("8_4worf")
