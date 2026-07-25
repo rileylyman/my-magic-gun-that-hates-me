@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://qdcjdq38v1em"]
 
 [ext_resource type="Script" uid="uid://bviudeld18mye" path="res://resources/artifacts/sticky_potion.gd" id="1_jdht3"]
+[ext_resource type="Texture2D" uid="uid://bd8t1hw0hvvtn" path="res://art/artifact_icons/15potion.png" id="2_sxuf5"]
 
 [node name="StickyPotion" type="Node2D" unique_id=1067744872]
 script = ExtResource("1_jdht3")
 title = "Sticky Potion"
 description = "If a Task fires alone, the next Task that fires alone deals double Damage. This effect stacks, and resets when two Tasks fire together."
-rarity = 1
+rarity = 3
+icon = ExtResource("2_sxuf5")

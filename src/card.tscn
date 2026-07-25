@@ -23,6 +23,7 @@ script = ExtResource("1_kd8v5")
 
 [node name="ShootLabel" type="Label" parent="." unique_id=1096390588]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 46.0
 offset_top = -65.0

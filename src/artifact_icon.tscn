@@ -51,6 +51,8 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=1778769872]
+visible = false
+z_index = 1
 clip_contents = true
 layout_mode = 0
 offset_left = -3.0

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://db671r8l20fc8"]
+
+[ext_resource type="Script" uid="uid://bs721m3smj0tx" path="res://resources/debuffs/paper_jammed.gd" id="1_eyr5i"]
+
+[node name="PaperJammed" type="Node2D" unique_id=603250126]
+script = ExtResource("1_eyr5i")
+title = "Paper Jammed"
+description = "The first 3 Task fires do not do Damage this Sprint."

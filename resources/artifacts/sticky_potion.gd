@@ -6,6 +6,7 @@ extends Artifact
 var stacks := 0
 func hand_submit_callback(state: TickState) -> void:
 	stacks = 0
+	
 
 
 
@@ -19,8 +20,14 @@ func post_tick_callback(state: TickState) -> void:
 
 	if fired == 1:
 		if stacks > 0:
-			state.score *= pow(2, stacks)
+			if(state.score>0):
+				
+				for stack in stacks:
+					state.score *= 2
+					await shake("x2")
+			
 		stacks += 1
 
 	elif fired >= 2:
 		stacks = 0
+		await shake(" Not sticky! ")

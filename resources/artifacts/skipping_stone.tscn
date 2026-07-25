@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://brcumov16mxrk"]
 
 [ext_resource type="Script" uid="uid://dkgiw1xiquq1e" path="res://resources/artifacts/skipping_stone.gd" id="1_fa4sm"]
+[ext_resource type="Texture2D" uid="uid://b3mhsktx3u3wc" path="res://art/artifact_icons/14skip_stone.png" id="2_eb7sd"]
 
 [node name="SkippingStone" type="Node2D" unique_id=717250870]
 script = ExtResource("1_fa4sm")
 title = "Skipping Stone"
 description = "Odd-value Tasks progress an additional 1 time each Day."
-rarity = 2
+rarity = 3
+icon = ExtResource("2_eb7sd")

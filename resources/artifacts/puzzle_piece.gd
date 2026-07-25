@@ -10,6 +10,7 @@ func hand_submit_callback(state: TickState) -> void:
 				if  state.cards[k].max_value == target:
 					state.cards[j].max_value = target
 					state.cards[i].max_value = target
+					await shake(" Puzzle Piece! ")
 					#state.cards[i].curr = target
 					#state.cards[j].curr = target
 				

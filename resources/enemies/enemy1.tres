@@ -1,10 +1,22 @@
 [gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://djeit7nerenk8"]
 
 [ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="1_4fgll"]
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_gvme8"]
+[ext_resource type="Script" uid="uid://bs721m3smj0tx" path="res://resources/debuffs/paper_jammed.gd" id="2_gvme8"]
+
+[sub_resource type="Resource" id="Resource_r6ell"]
+script = ExtResource("2_gvme8")
+metadata/_custom_type_script = "uid://bs721m3smj0tx"
+
+[sub_resource type="Resource" id="Resource_eyr5i"]
+script = ExtResource("1_gvme8")
+debuff = SubResource("Resource_r6ell")
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [resource]
 script = ExtResource("1_4fgll")
 name = "Jackal"
 health = 250
 counter_values = Array[int]([15, 20, 25, 40])
+debuffs = Array[ExtResource("1_gvme8")]([SubResource("Resource_eyr5i")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

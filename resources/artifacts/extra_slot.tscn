@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://bapmbeqarymyj"]
 
 [ext_resource type="Script" uid="uid://6avaxu5sgaqb" path="res://resources/artifacts/extra_slot.gd" id="1_1dvim"]
+[ext_resource type="Texture2D" uid="uid://3x0p02x1n0t2" path="res://art/artifact_icons/4Sticky Notes.png" id="2_u5lst"]
 
 [node name="ExtraSlot" type="Node2D" unique_id=1113472306]
 script = ExtResource("1_1dvim")
 title = "Sticky Notes"
 description = "Gain 1 slot on the Field."
 rarity = 2
+icon = ExtResource("2_u5lst")

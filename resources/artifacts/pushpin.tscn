@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://wbhy7f0pdt1d"]
 
 [ext_resource type="Script" uid="uid://c8vk3xm7ujj5k" path="res://resources/artifacts/pushpin.gd" id="1_7viyk"]
+[ext_resource type="Texture2D" uid="uid://ds07xgbtxb5kr" path="res://art/artifact_icons/50Pushpin.png" id="2_qrr3y"]
 
 [node name="pushpin" type="Node2D" unique_id=838347528]
 script = ExtResource("1_7viyk")
 title = "Pushpin"
 description = "Multiply all damage by 1.0. Each Day where a Task fires alone, improve this multiplier by 0.2 permenantly."
+icon = ExtResource("2_qrr3y")

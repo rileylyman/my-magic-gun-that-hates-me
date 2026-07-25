@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://1t2a1a48qlkc"]
 
 [ext_resource type="Script" uid="uid://c6sfxt5ptfkld" path="res://resources/artifacts/white_out_tape.gd" id="1_517wq"]
+[ext_resource type="Texture2D" uid="uid://b1u5qsc6wwwc0" path="res://art/artifact_icons/49Whiteout Tape.png" id="2_01ky1"]
 
 [node name="WhiteOutTape" type="Node2D" unique_id=1430223395]
 script = ExtResource("1_517wq")
 title = "White-Out Tape"
 description = "When the Task played on the leftmost Field slot fires, reset all other Tasks to their starting values."
+rarity = 2
+icon = ExtResource("2_01ky1")

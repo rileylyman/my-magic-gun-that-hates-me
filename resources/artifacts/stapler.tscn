@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c7snag3lxeguq"]
 
 [ext_resource type="Script" uid="uid://dpffem27am0bg" path="res://resources/artifacts/stapler.gd" id="1_gayaw"]
+[ext_resource type="Texture2D" uid="uid://c7r26d5vgs0dm" path="res://art/artifact_icons/53Stapler.png" id="2_mgn80"]
 
 [node name="Stapler" type="Node2D" unique_id=1067744872]
 script = ExtResource("1_gayaw")
 title = "Stapler"
 description = "Multiply all damage by 1.0. At the start of a Sprint, if two played Tasks are the same value, improve this multiplier by 0.2 permenantly."
+icon = ExtResource("2_mgn80")

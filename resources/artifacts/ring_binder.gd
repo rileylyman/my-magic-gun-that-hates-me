@@ -9,7 +9,7 @@ func _ready() -> void:
 	update_description()
 
 func post_tick_callback(state: TickState) -> void:
-	state.score *= multiplier
+	
 
 	var fired := 0
 
@@ -20,3 +20,8 @@ func post_tick_callback(state: TickState) -> void:
 	if fired == 0:
 		multiplier += 0.02
 		update_description()
+		await shake("+0.02 Mult")
+		
+	if(state.score>0):
+		state.score *= multiplier
+		await shake("x"+str(multiplier))
