@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://qusmy0duqyf5" path="res://art/submit-button-mockup-press.png" id="3_12btj"]
 [ext_resource type="Texture2D" uid="uid://dcah7whlcxl2v" path="res://art/submit-button-mockup-hover.png" id="4_wow6c"]
 [ext_resource type="PackedScene" uid="uid://dedwdl7bsg75m" path="res://src/card.tscn" id="5_12btj"]
-[ext_resource type="PackedScene" uid="uid://btx5k3mifinlb" path="res://src/card-outline.tscn" id="6_wow6c"]
 [ext_resource type="Script" uid="uid://dobrtn8e6f2ve" path="res://src/game_manager.gd" id="7_i3k2v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
@@ -241,9 +240,9 @@ text = "Tasks"
 unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 355.0
-offset_top = 490.0
+offset_top = 461.0
 offset_right = 395.0
-offset_bottom = 530.0
+offset_bottom = 501.0
 
 [node name="Card2" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/HandPos" unique_id=1368151009 instance=ExtResource("5_12btj")]
 layout_mode = 0
@@ -256,19 +255,14 @@ offset_bottom = 154.0
 unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 355.0
-offset_top = 306.0
+offset_top = 281.0
 offset_right = 395.0
-offset_bottom = 346.0
+offset_bottom = 321.0
 
 [node name="Card" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/ChosenPos" unique_id=405309802 instance=ExtResource("5_12btj")]
 layout_mode = 0
 offset_left = -239.0
 offset_right = -119.0
-
-[node name="Card2" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/ChosenPos" unique_id=367690884 instance=ExtResource("6_wow6c")]
-layout_mode = 0
-offset_left = -71.0
-offset_right = 49.0
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=829031375]
 custom_minimum_size = Vector2(0, 60)

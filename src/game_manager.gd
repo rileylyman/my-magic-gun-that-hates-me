@@ -26,6 +26,8 @@ var padding: Vector2 = Vector2(24, 24)
 var _accum := 0.0
 var battle_ended := false
 
+var is_ticking := false
+
 func _ready() -> void:
 	if GlobalManager.enemy == null:
 		push_error("No current enemy is loaded.")
@@ -88,7 +90,7 @@ func _process(delta: float) -> void:
 
 	arrange_items()
 
-	if active_counter != null:
+	if active_counter != null and not is_ticking:
 		countdown_cards(delta)
 
 	%SubmitButton.visible = active_counter == null
@@ -137,9 +139,10 @@ func get_current_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
 
 
 func countdown_cards(delta: float) -> void:
-	_accum += delta * 2.0
+	_accum += delta * 3.0
 
 	if _accum > 1.0:
+		is_ticking = true
 		_accum -= 1.0
 
 		var tick_state := TickState.new()
@@ -151,6 +154,7 @@ func countdown_cards(delta: float) -> void:
 		for c in chosen:
 			tick_state.cards.append(c)
 			c.show_damage = false
+			c.show_zero_on_damage = true
 
 		if first_tick:
 			for a in GlobalManager.artifacts:
@@ -168,17 +172,27 @@ func countdown_cards(delta: float) -> void:
 
 		for c in chosen:
 			c.curr -= 1
+			c.shake()
+
+		for c in tick_state.cards:
+			if c.is_shaking:
+				await c.shake_done
 
 		for c in tick_state.cards:
 			if c.curr <= 0:
+				c.show_damage = true
 				tick_state.should_fire = true
 				tick_state.score = 1
-				break
 
 		if tick_state.should_fire:
 			for c in tick_state.cards:
 				if c.curr <= 0:
 					tick_state.score *= c.max_value
+					c.bump()
+
+		for c in tick_state.cards:
+			if c.is_shaking:
+				await c.shake_done
 
 		for a in GlobalManager.artifacts:
 			a.post_tick_callback(tick_state)
@@ -200,7 +214,6 @@ func countdown_cards(delta: float) -> void:
 		for c in chosen:
 			if c.curr <= 0:
 				c.curr = c.max_value
-				c.show_damage = true
 
 		active_counter.value -= 1
 
@@ -209,6 +222,8 @@ func countdown_cards(delta: float) -> void:
 			active_counter = null
 			active_counter_index = -1
 			discard_chosen()
+
+		is_ticking = false
 
 
 func show_sprint_score(tick_state: TickState) -> void:
@@ -290,6 +305,9 @@ func arrange_row(
 	var start := center - Vector2(width / 2, 0)
 
 	for i in range(cards.size()):
+		if cards[i].is_shaking:
+			continue
+
 		cards[i].global_position = (
 			start
 			+ Vector2(
