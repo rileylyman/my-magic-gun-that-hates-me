@@ -52,9 +52,10 @@ func _ready() -> void:
 	for c in %SprintHBox.get_children():
 		c.queue_free()
 
-	for v in GlobalManager.enemy.counter_values:
+	for i in range(GlobalManager.enemy.counter_values.size()):
 		var c = counter_scene.instantiate()
-		c.value = v
+		c.value = GlobalManager.enemy.counter_values[i]
+		c.seq = i + 1
 		c.active = false
 		counters.append(c)
 		%SprintHBox.add_child(c)
@@ -93,7 +94,7 @@ func _process(delta: float) -> void:
 	if active_counter != null and not is_ticking:
 		countdown_cards(delta)
 
-	%SubmitButton.visible = active_counter == null
+	%SubmitButton.visible = active_counter == null and chosen.size() > 0
 	%ScoreBar.max_score = GlobalManager.enemy.health
 	%SubmitButton.disabled = active_counter != null or chosen.size() < 1
 
@@ -291,20 +292,45 @@ func arrange_items() -> void:
 	for c in GlobalManager.deck:
 		c.scale = Vector2.ONE
 
-	arrange_row(
-		%HandPos.global_position,
-		hand,
-		0.75
-	)
+	arrange_row(hand, 0.75)
 
-	arrange_row(
-		%ChosenPos.global_position,
-		chosen
-	)
+	arrange_row(chosen)
+
+
+func arrange_fan_row(
+	cards: Array,
+	new_scale: float = 1.0,
+	overlap: float = 0.5,
+	max_fan_angle: float = PI / 16,
+	arc_height: float = 14.0
+) -> void:
+	var n := cards.size()
+
+	if n == 0:
+		return
+
+	var spacing := card_size.x * new_scale * (1.0 - overlap)
+	var width := spacing * (n - 1)
+	var start_x := -width / 2
+	var mid := (n - 1) / 2.0
+
+	for i in range(n):
+		if cards[i].is_shaking:
+			continue
+
+		var offset_from_mid := i - mid
+		var t := (offset_from_mid / mid) if mid > 0.0 else 0.0
+
+		cards[i].position = Vector2(
+			start_x + i * spacing,
+			arc_height * t * t
+		)
+
+		cards[i].rotation = t * max_fan_angle
+		cards[i].scale = Vector2.ONE * new_scale
 
 
 func arrange_row(
-	center: Vector2,
 	cards: Array,
 	new_scale: float = 1.0
 ) -> void:
@@ -316,22 +342,21 @@ func arrange_row(
 		* new_scale
 	)
 
-	var start := center - Vector2(width / 2, 0)
+	var start_x := -width / 2
 
 	for i in range(cards.size()):
 		if cards[i].is_shaking:
 			continue
 
-		cards[i].global_position = (
-			start
-			+ Vector2(
-				i
-				* (card_size.x + padding.x)
-				* new_scale,
-				0
-			)
+		cards[i].position = Vector2(
+			start_x
+			+ i
+			* (card_size.x + padding.x)
+			* new_scale,
+			0
 		)
 
+		cards[i].rotation = 0
 		cards[i].scale = Vector2.ONE * new_scale
 
 

@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func do_setup() -> void:
 	game_mgr = get_tree().current_scene.find_child("GameManager")
+	# pivot_offset = size / 2
 
 func _process(_delta: float) -> void:
 	%TitleLabel.text = str(max_value)

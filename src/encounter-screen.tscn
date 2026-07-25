@@ -4,23 +4,24 @@
 [ext_resource type="Script" uid="uid://cwkew3fc38mbq" path="res://src/encounter_screen.gd" id="1_gha8e"]
 [ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_una4h"]
 [ext_resource type="Script" uid="uid://uehr738u0uon" path="res://src/score_bar.gd" id="1_vh02q"]
-[ext_resource type="Texture2D" uid="uid://dmdtltf6uu4ek" path="res://art/submit-button-mockup.png" id="2_1m3sw"]
-[ext_resource type="Texture2D" uid="uid://qusmy0duqyf5" path="res://art/submit-button-mockup-press.png" id="3_12btj"]
-[ext_resource type="Texture2D" uid="uid://dcah7whlcxl2v" path="res://art/submit-button-mockup-hover.png" id="4_wow6c"]
+[ext_resource type="Texture2D" uid="uid://tho0hgc0h6rb" path="res://art/ui/Hallway.png" id="3_2luu3"]
+[ext_resource type="Texture2D" uid="uid://bun7xomljms8o" path="res://art/ui/Frame_Left.png" id="3_una4h"]
+[ext_resource type="Texture2D" uid="uid://dy3hjx5x28kfc" path="res://art/ui/TopBar_Blue.png" id="4_jt4fi"]
 [ext_resource type="PackedScene" uid="uid://dedwdl7bsg75m" path="res://src/card.tscn" id="5_12btj"]
+[ext_resource type="Texture2D" uid="uid://kb2ufe72ipy5" path="res://art/ui/HP_Bar.png" id="6_mdmcc"]
 [ext_resource type="Script" uid="uid://dobrtn8e6f2ve" path="res://src/game_manager.gd" id="7_i3k2v"]
+[ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="8_jt4fi"]
+[ext_resource type="Texture2D" uid="uid://bhai0cokx4e4a" path="res://art/ui/Frame_Top.png" id="9_8i6ns"]
+[ext_resource type="Texture2D" uid="uid://co8k45566mjrn" path="res://art/ui/Submit_Highlight.png" id="9_mdmcc"]
+[ext_resource type="Texture2D" uid="uid://bu8quyctmdpfb" path="res://art/ui/Frame_Bottom.png" id="10_2luu3"]
+[ext_resource type="Texture2D" uid="uid://cg6lgpulfhoba" path="res://art/ui/TaskFolder.png" id="10_w77pv"]
+[ext_resource type="Texture2D" uid="uid://dfawxbgscysfe" path="res://art/ui/TopBar_Yellow.png" id="11_mdmcc"]
+[ext_resource type="Texture2D" uid="uid://c00qmf8lyt3w1" path="res://art/ui/Frame_Middle.png" id="12_jt4fi"]
+[ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="13_mdmcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
 border_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_051xp"]
 bg_color = Color(0.51, 0.153, 0, 1)
@@ -33,12 +34,7 @@ bg_color = Color(0.77254903, 0.50980395, 0.23137255, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_le2o2"]
-bg_color = Color(0.8784314, 0.69803923, 0.29803923, 1)
-border_width_bottom = 4
-border_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01wwf"]
 
 [node name="EncounterScreen" type="Control" unique_id=1278179402]
 layout_mode = 3
@@ -73,7 +69,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2125710542]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 23
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=835000850]
 layout_mode = 2
@@ -83,53 +79,77 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_01wwf")
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1019174276]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=722947457]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+offset_top = 57.0
+offset_right = 199.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2luu3")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=697560682]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+texture = ExtResource("4_jt4fi")
+expand_mode = 1
+
 [node name="EncounterNLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=139324052]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -139.5
-offset_top = 17.0
-offset_right = 139.5
-offset_bottom = 84.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = -8.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
 text = "Encounter 1"
 horizontal_alignment = 1
 
 [node name="EnemyNameLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=99218152]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -139.5
-offset_top = 78.0
-offset_right = 139.5
-offset_bottom = 145.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -103.0
+offset_bottom = -40.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
 text = "Dude"
 horizontal_alignment = 1
 
 [node name="ScoreBar" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=659621728]
 unique_name_in_owner = true
 anchors_preset = 0
+offset_top = -7.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 33.0
 script = ExtResource("1_vh02q")
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer/Control/ScoreBar" unique_id=1903837497]
-custom_minimum_size = Vector2(311.565, 0)
+custom_minimum_size = Vector2(245.095, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -2.0
-offset_top = 137.0
-offset_right = 309.565
-offset_bottom = 164.0
+offset_left = 20.0
+offset_top = 82.0
+offset_right = 302.0
+offset_bottom = 109.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_051xp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_f6noq")
@@ -141,14 +161,24 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 14.577499
-offset_top = 137.0
-offset_right = 293.5775
-offset_bottom = 204.0
+offset_left = 22.0
+offset_top = 86.0
+offset_right = 301.0
+offset_bottom = 153.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 16
 text = "50/100"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/Control/ScoreBar" unique_id=2068241229]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 80.0
+offset_right = 340.0
+offset_bottom = 138.0
+texture = ExtResource("6_mdmcc")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=930904406]
 layout_mode = 2
@@ -186,7 +216,7 @@ layout_mode = 2
 
 [node name="SubmitButton" type="TextureButton" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=1120983932]
 unique_name_in_owner = true
-custom_maximum_size = Vector2(237.435, 54.585)
+custom_maximum_size = Vector2(313.98, 54.585)
 propagate_maximum_size = true
 layout_mode = 1
 anchors_preset = 8
@@ -195,17 +225,32 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -118.49997
-offset_top = -87.0
+offset_top = -109.0
 offset_right = 118.93503
-offset_bottom = -32.41501
+offset_bottom = -54.41501
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("2_1m3sw")
-texture_pressed = ExtResource("3_12btj")
-texture_hover = ExtResource("4_wow6c")
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("8_jt4fi")
+texture_pressed = ExtResource("8_jt4fi")
+texture_hover = ExtResource("9_mdmcc")
 stretch_mode = 4
 
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/SubmitButton" unique_id=38083669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -2.584999
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Submit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=75012259]
+visible = false
 custom_minimum_size = Vector2(645.975, 143.025)
 layout_mode = 1
 anchors_preset = 7
@@ -222,6 +267,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t85sp")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=51380752]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -236,6 +282,15 @@ theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
 theme_override_font_sizes/font_size = 24
 text = "Tasks"
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=784054604]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 484.0
+offset_right = 680.0
+offset_bottom = 845.0
+texture = ExtResource("10_w77pv")
+expand_mode = 2
+
 [node name="HandPos" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=2142074482]
 unique_name_in_owner = true
 anchors_preset = 0
@@ -245,6 +300,7 @@ offset_right = 395.0
 offset_bottom = 501.0
 
 [node name="Card2" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/HandPos" unique_id=1368151009 instance=ExtResource("5_12btj")]
+visible = false
 layout_mode = 0
 offset_left = -254.0
 offset_top = -3.0
@@ -260,6 +316,7 @@ offset_right = 395.0
 offset_bottom = 321.0
 
 [node name="Card" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/ChosenPos" unique_id=405309802 instance=ExtResource("5_12btj")]
+visible = false
 layout_mode = 0
 offset_left = -239.0
 offset_right = -119.0
@@ -269,9 +326,15 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 4.0
+offset_right = 3.0
+offset_bottom = 60.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_le2o2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_01wwf")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/PanelContainer2" unique_id=764201276]
+layout_mode = 2
+texture = ExtResource("11_mdmcc")
+expand_mode = 1
 
 [node name="ArtifactHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/PanelContainer2" unique_id=1805307745]
 unique_name_in_owner = true
@@ -299,6 +362,66 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
+
+[node name="TopFrame" type="TextureRect" parent="." unique_id=343435194]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.1
+grow_horizontal = 2
+texture = ExtResource("9_8i6ns")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="BottomFrame" type="TextureRect" parent="." unique_id=226304222]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.1
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_2luu3")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="LeftFrame" type="TextureRect" parent="." unique_id=732105102]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 62.977776
+grow_vertical = 2
+texture = ExtResource("3_una4h")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="MiddleFrame" type="TextureRect" parent="." unique_id=923625950]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -199.0
+offset_right = -161.79999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_jt4fi")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="RightFrame" type="TextureRect" parent="." unique_id=1929909525]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.699997
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("13_mdmcc")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1642058958]
 script = ExtResource("7_i3k2v")
