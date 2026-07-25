@@ -220,6 +220,7 @@ func load_artifacts() -> void:
 		)
 
 		icon.artifact = a
+		icon.gm = self
 		%ArtifactHBox.add_child(icon)
 		icons.append(icon)
 		a.game_repr = icon

@@ -2,6 +2,7 @@ class_name ArtifactIcon
 extends Control
 
 var artifact: Artifact
+var gm: GameManager
 
 var _stylebox: StyleBoxFlat
 
@@ -68,7 +69,7 @@ func shake(show_text: String = "") -> void:
 
 	await tween.finished
 	if show_text != "":
-		%GameManager.play_artifact_trigger_sound()
+		gm.play_artifact_trigger_sound()
 		%ShakeText.text = show_text
 		%ShakeTextContainer.visible = true
 		%ShakeTextContainer.global_position = global_position + Vector2(0, 48)
