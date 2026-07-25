@@ -4,6 +4,7 @@ extends Node2D
 enum ArtifactRarity {
 	COMMON,
 	UNCOMMON,
+	CURSED,
 	RARE,
 	LEGENDARY
 }

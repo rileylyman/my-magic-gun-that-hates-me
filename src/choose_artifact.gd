@@ -21,6 +21,9 @@ var common_weight: float = 60.0
 var uncommon_weight: float = 25.0
 
 @export_range(0.0, 100.0, 0.01)
+var cursed_weight: float = 25.0
+
+@export_range(0.0, 100.0, 0.01)
 var rare_weight: float = 10.0
 
 @export_range(0.0, 100.0, 0.01)
@@ -164,6 +167,9 @@ func get_artifact_weight(artifact: Artifact) -> float:
 
 		Artifact.ArtifactRarity.UNCOMMON:
 			return maxf(uncommon_weight, 0.0)
+			
+		Artifact.ArtifactRarity.CURSED:
+			return maxf(cursed_weight, 0.0)
 
 		Artifact.ArtifactRarity.RARE:
 			return maxf(rare_weight, 0.0)

@@ -99,14 +99,15 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Tooltip/PanelContainer/MarginContainer/VBoxContainer" unique_id=2088726825]
+[node name="NumberFeature" type="Label" parent="Tooltip/PanelContainer/MarginContainer/VBoxContainer" unique_id=2088726825]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Basic Spell"
 
-[node name="Label2" type="Label" parent="Tooltip/PanelContainer/MarginContainer/VBoxContainer" unique_id=507483178]
+[node name="Stamp" type="Label" parent="Tooltip/PanelContainer/MarginContainer/VBoxContainer" unique_id=507483178]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Not a special number"
 autowrap_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

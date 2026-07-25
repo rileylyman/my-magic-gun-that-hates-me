@@ -25,6 +25,7 @@ func _ready() -> void:
 	cache_scene_size()
 	apply_scene_size()
 	do_setup()
+	update_number_feature()
 
 
 func cache_scene_size() -> void:
@@ -60,6 +61,8 @@ func prepare_for_task_grid() -> void:
 	scale = Vector2.ONE
 	position = Vector2.ZERO
 
+	update_number_feature()
+
 
 func prepare_for_battle() -> void:
 	apply_scene_size()
@@ -74,6 +77,8 @@ func prepare_for_battle() -> void:
 	rotation = 0
 	scale = Vector2.ONE
 	position = Vector2.ZERO
+
+	update_number_feature()
 
 
 func do_setup() -> void:
@@ -107,6 +112,53 @@ func _process(_delta: float) -> void:
 			if show_zero_on_damage
 			else str(max_value)
 		)
+
+
+func update_number_feature() -> void:
+	var features := PackedStringArray()
+
+	if max_value % 2 == 0:
+		features.append("EVEN")
+	else:
+		features.append("ODD")
+
+	if is_prime(max_value):
+		features.append("PRIME")
+
+	if is_perfect_square(max_value):
+		features.append("SQUARED")
+
+	%NumberFeature.text = " • ".join(features)
+
+
+func is_prime(number: int) -> bool:
+	if number < 2:
+		return false
+
+	if number == 2:
+		return true
+
+	if number % 2 == 0:
+		return false
+
+	var divisor := 3
+
+	while divisor * divisor <= number:
+		if number % divisor == 0:
+			return false
+
+		divisor += 2
+
+	return true
+
+
+func is_perfect_square(number: int) -> bool:
+	if number < 0:
+		return false
+
+	var root := int(sqrt(float(number)))
+
+	return root * root == number
 
 
 func _gui_input(event: InputEvent) -> void:

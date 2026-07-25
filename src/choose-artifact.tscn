@@ -17,6 +17,8 @@ script = ExtResource("1_6ilnx")
 done_button = NodePath("Button")
 pass_artifact_button = NodePath("CenterContainer/VBoxContainer/ChooseArtifact/MarginContainer/ArtifactContainer/PassArtifact")
 pass_task_button = NodePath("CenterContainer/VBoxContainer/ChooseTask/MarginContainer/TaskContainer/PassTask")
+cursed_weight = 10.0
+legendary_weight = 2.0
 
 [node name="Label" type="Label" parent="." unique_id=1216155231]
 layout_mode = 1
