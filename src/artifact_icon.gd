@@ -1,7 +1,7 @@
 class_name ArtifactIcon
 extends Control
 
-var artifact: Artifact
+var artifact: Artifact = Artifact.new()
 var gm: GameManager
 
 var _stylebox: StyleBoxFlat
