@@ -40,6 +40,19 @@ var task_fire_pitch_step: float = 0.08
 @export_range(0.1, 4.0, 0.01)
 var task_fire_max_pitch: float = 2.0
 
+@export_category("Battle Speed")
+
+@export var double_speed_enabled: bool = false
+
+@export_range(0.0, 1.0, 0.01)
+var sprint_speed_increase_per_day: float = 0.08
+
+@export_range(1.0, 10.0, 0.1)
+var max_sprint_speed_multiplier: float = 2.0
+
+@export_range(1.0, 4.0, 0.1)
+var double_speed_multiplier: float = 2.0
+
 const artifact_icon_scene: PackedScene = preload(
 	"res://src/artifact_icon.tscn"
 )
@@ -67,13 +80,17 @@ var padding: Vector2 = Vector2(24, 24)
 var _accum: float = 0.0
 var _tick_trigger_sfx_index: int = 0
 var _tick_trigger_sfx_active: bool = false
+var _sprint_elapsed_days: int = 0
 
 
 func _ready() -> void:
+	Engine.time_scale = 1.0
+
 	if GlobalManager.enemy == null:
 		push_error("No current enemy is loaded.")
 		return
 
+	apply_battle_time_scale()
 	play_sfx(battle_start_sfx)
 
 	%SubmitButton.pressed.connect(
@@ -145,6 +162,70 @@ func _ready() -> void:
 	for a in GlobalManager.artifacts:
 		await a.encounter_start_callback()
 	deal_hand()
+
+
+func set_double_speed(enabled: bool) -> void:
+	double_speed_enabled = enabled
+	apply_battle_time_scale()
+
+
+func toggle_double_speed() -> void:
+	set_double_speed(
+		not double_speed_enabled
+	)
+
+
+func get_sprint_speed_multiplier() -> float:
+	var maximum_speed: float = maxf(
+		max_sprint_speed_multiplier,
+		1.0
+	)
+
+	return minf(
+		1.0
+		+ float(_sprint_elapsed_days)
+		* sprint_speed_increase_per_day,
+		maximum_speed
+	)
+
+
+func apply_battle_time_scale() -> void:
+	var speed_multiplier: float = (
+		get_sprint_speed_multiplier()
+	)
+
+	if double_speed_enabled:
+		speed_multiplier *= maxf(
+			double_speed_multiplier,
+			1.0
+		)
+
+	Engine.time_scale = maxf(
+		speed_multiplier,
+		0.01
+	)
+
+
+func begin_sprint_speed() -> void:
+	_sprint_elapsed_days = 0
+	_accum = 0.0
+	apply_battle_time_scale()
+
+
+func advance_sprint_speed() -> void:
+	_sprint_elapsed_days += 1
+	apply_battle_time_scale()
+
+
+func reset_sprint_speed() -> void:
+	_sprint_elapsed_days = 0
+	_accum = 0.0
+	apply_battle_time_scale()
+
+
+func reset_engine_time_scale() -> void:
+	_sprint_elapsed_days = 0
+	Engine.time_scale = 1.0
 
 
 func play_sfx(
@@ -292,6 +373,7 @@ func end_round() -> void:
 	battle_ended = true
 	previous_day_fired_cards.clear()
 
+	reset_engine_time_scale()
 	play_sfx(enemy_defeated_sfx)
 
 	for c in hand:
@@ -331,27 +413,113 @@ func get_current_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
 
 
 func countdown_cards(delta: float) -> void:
-	_accum += delta * 3.0
-
-	if _accum <= 1.0:
+	if not consume_tick_interval(delta):
 		return
 
-	is_ticking = true
-	_accum -= 1.0
+	begin_tick_processing()
 
-	begin_tick_trigger_sfx_sequence()
-	play_sfx(day_tick_sfx, true)
-
-	var tick_state := TickState.new()
-
+	var tick_state: TickState = create_tick_state()
 	var active_debuffs: Array[ActiveEnemyDebuff] = (
 		get_current_enemy_debuffs()
 	)
 
+	await run_tick_setup_phase(
+		tick_state,
+		active_debuffs
+	)
+
+	var score_label: SprintScore = await run_tick_damage_phase(
+		tick_state
+	)
+
+	run_tick_debuff_phase(
+		tick_state,
+		active_debuffs
+	)
+
+	resolve_sprint_score(
+		tick_state,
+		score_label
+	)
+	finish_tick_day(tick_state)
+	end_tick_processing()
+
+
+func run_tick_setup_phase(
+	tick_state: TickState,
+	active_debuffs: Array[ActiveEnemyDebuff]
+) -> void:
+	await run_first_tick_callbacks(tick_state)
+	run_enemy_pre_tick_callbacks(
+		tick_state,
+		active_debuffs
+	)
+	await run_artifact_pre_tick_callbacks(tick_state)
+
+	start_card_countdowns()
+	await wait_for_card_animations(tick_state.cards)
+	collect_firing_cards(tick_state)
+
+
+func run_tick_damage_phase(
+	tick_state: TickState
+) -> SprintScore:
+	var score_label: SprintScore = (
+		await process_firing_cards(tick_state)
+	)
+
+	run_firing_stamp_callbacks(tick_state)
+	await wait_for_card_animations(tick_state.cards)
+
+	score_label = await run_artifact_post_tick_callbacks(
+		tick_state,
+		score_label
+	)
+
+	return score_label
+
+
+func run_tick_debuff_phase(
+	tick_state: TickState,
+	active_debuffs: Array[ActiveEnemyDebuff]
+) -> void:
+	run_enemy_post_tick_callbacks(
+		tick_state,
+		active_debuffs
+	)
+	run_enemy_hit_callbacks(
+		tick_state,
+		active_debuffs
+	)
+
+
+func consume_tick_interval(delta: float) -> bool:
+	_accum += delta * 3.0
+
+	if _accum <= 1.0:
+		return false
+
+	_accum -= 1.0
+	return true
+
+
+func begin_tick_processing() -> void:
+	is_ticking = true
+	begin_tick_trigger_sfx_sequence()
+	play_sfx(day_tick_sfx, true)
+
+
+func end_tick_processing() -> void:
+	end_tick_trigger_sfx_sequence()
+	is_ticking = false
+
+
+func create_tick_state() -> TickState:
+	var tick_state: TickState = TickState.new()
+
 	tick_state.gm = self
 	tick_state.hand = hand
 	tick_state.days = active_counter.value
-
 	tick_state.previous_day_fired_cards.assign(
 		previous_day_fired_cards
 	)
@@ -361,157 +529,248 @@ func countdown_cards(delta: float) -> void:
 		c.show_damage = false
 		c.show_zero_on_damage = true
 
-	if first_tick:
-		for a in GlobalManager.artifacts:
-			await a.hand_submit_callback(tick_state)
+	return tick_state
 
-		first_tick = false
 
+func run_first_tick_callbacks(
+	tick_state: TickState
+) -> void:
+	if not first_tick:
+		return
+
+	for artifact in GlobalManager.artifacts:
+		await artifact.hand_submit_callback(
+			tick_state
+		)
+
+	first_tick = false
+
+
+func run_enemy_pre_tick_callbacks(
+	tick_state: TickState,
+	active_debuffs: Array[ActiveEnemyDebuff]
+) -> void:
 	for active_debuff in active_debuffs:
 		active_debuff.debuff.pre_tick_callback(
 			tick_state
 		)
 
-	for a in GlobalManager.artifacts:
-		await a.pre_tick_callback(tick_state)
 
-	for c in chosen:
-		c.curr -= 1
-		c.shake()
+func run_artifact_pre_tick_callbacks(
+	tick_state: TickState
+) -> void:
+	for artifact in GlobalManager.artifacts:
+		await artifact.pre_tick_callback(
+			tick_state
+		)
 
-	for c in tick_state.cards:
-		if c.is_shaking:
-			await c.shake_done
 
-	for c in tick_state.cards:
-		if c.curr <= 0:
-			c.show_damage = true
-			tick_state.should_fire = true
-			tick_state.today_fired_cards.append(c)
+func start_card_countdowns() -> void:
+	for card in chosen:
+		card.curr -= 1
+		card.shake()
+
+
+func wait_for_card_animations(
+	cards: Array[Card]
+) -> void:
+	for card in cards:
+		if card.is_shaking:
+			await card.shake_done
+
+
+func collect_firing_cards(
+	tick_state: TickState
+) -> void:
+	for card in tick_state.cards:
+		if card.curr > 0:
+			continue
+
+		card.show_damage = true
+		tick_state.should_fire = true
+		tick_state.today_fired_cards.append(card)
 
 	if tick_state.should_fire:
 		tick_state.score = 1
 
+
+func process_firing_cards(
+	tick_state: TickState
+) -> SprintScore:
 	var score_label: SprintScore = null
 
-	if tick_state.should_fire:
-		for c in tick_state.today_fired_cards:
-			tick_state.score *= c.max_value
+	if not tick_state.should_fire:
+		return score_label
 
-			play_next_tick_trigger_sound(
-				task_fire_sfx
-			)
+	for card in tick_state.today_fired_cards:
+		tick_state.score *= card.max_value
 
-			await c.bump()
+		play_next_tick_trigger_sound(
+			task_fire_sfx
+		)
 
-			if score_label == null:
-				score_label = show_sprint_score(
-					tick_state
-				)
-			else:
-				update_sprint_score(
-					tick_state,
-					score_label
-				)
+		await card.bump()
 
-		for c in tick_state.today_fired_cards:
-			if c.stamp == null:
-				continue
+		score_label = sync_sprint_score_label(
+			tick_state,
+			score_label
+		)
 
-			tick_state.current_card = c
-
-			c.stamp.when_hit_callback(
-				tick_state
-			)
-
-		tick_state.current_card = null
-
-	for c in tick_state.cards:
-		if c.is_shaking:
-			await c.shake_done
-
-	for a in GlobalManager.artifacts:
-		await a.post_tick_callback(tick_state)
-		if (tick_state.score > 0 or tick_state.bonus_score > 0):
-			if score_label == null:
-				score_label = show_sprint_score(
-					tick_state
-				)
-
-			update_sprint_score(
-				tick_state,
-				score_label
-			)
+	return score_label
 
 
+func run_firing_stamp_callbacks(
+	tick_state: TickState
+) -> void:
+	if not tick_state.should_fire:
+		return
+
+	for card in tick_state.today_fired_cards:
+		if card.stamp == null:
+			continue
+
+		tick_state.current_card = card
+
+		card.stamp.when_hit_callback(
+			tick_state
+		)
+
+	tick_state.current_card = null
+
+
+func run_artifact_post_tick_callbacks(
+	tick_state: TickState,
+	score_label: SprintScore
+) -> SprintScore:
+	for artifact in GlobalManager.artifacts:
+		await artifact.post_tick_callback(
+			tick_state
+		)
+
+		score_label = sync_sprint_score_label(
+			tick_state,
+			score_label
+		)
+
+	return score_label
+
+
+func run_enemy_post_tick_callbacks(
+	tick_state: TickState,
+	active_debuffs: Array[ActiveEnemyDebuff]
+) -> void:
 	for active_debuff in active_debuffs:
 		active_debuff.debuff.post_tick_callback(
 			tick_state
 		)
 
-	if tick_state.should_fire:
-		for active_debuff in active_debuffs:
-			active_debuff.debuff.when_hit_callback(
-				tick_state
-			)
 
-	if (
+func run_enemy_hit_callbacks(
+	tick_state: TickState,
+	active_debuffs: Array[ActiveEnemyDebuff]
+) -> void:
+	if not tick_state.should_fire:
+		return
+
+	for active_debuff in active_debuffs:
+		active_debuff.debuff.when_hit_callback(
+			tick_state
+		)
+
+
+func tick_has_positive_score(
+	tick_state: TickState
+) -> bool:
+	return (
 		tick_state.score > 0
 		or tick_state.bonus_score > 0
-	):
-		if score_label == null:
-			score_label = show_sprint_score(
-				tick_state
-			)
+	)
 
-		update_sprint_score(
+
+func sync_sprint_score_label(
+	tick_state: TickState,
+	score_label: SprintScore
+) -> SprintScore:
+	if not tick_has_positive_score(tick_state):
+		return score_label
+
+	if score_label == null:
+		return show_sprint_score(tick_state)
+
+	update_sprint_score(
+		tick_state,
+		score_label
+	)
+
+	return score_label
+
+
+func resolve_sprint_score(
+	tick_state: TickState,
+	score_label: SprintScore
+) -> void:
+	if tick_has_positive_score(tick_state):
+		score_label = sync_sprint_score_label(
 			tick_state,
 			score_label
 		)
-
 		send_sprint_score_off(score_label)
+		return
 
-	elif score_label != null:
-		var tween := score_label.create_tween()
-		tween.set_trans(Tween.TRANS_CUBIC)
-		tween.set_ease(Tween.EASE_OUT)
+	fade_sprint_score_out(score_label)
 
-		tween.tween_property(
-			score_label,
-			"modulate:a",
-			0.0,
-			0.4
-		)
 
-		tween.tween_callback(
-			score_label.queue_free
-		)
-		score_label = null
+func fade_sprint_score_out(
+	score_label: SprintScore
+) -> void:
+	if score_label == null:
+		return
 
-	previous_day_fired_cards.clear()
+	var tween: Tween = score_label.create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
 
+	tween.tween_property(
+		score_label,
+		"modulate:a",
+		0.0,
+		0.4
+	)
+
+	tween.tween_callback(
+		score_label.queue_free
+	)
+
+
+func finish_tick_day(
+	tick_state: TickState
+) -> void:
 	previous_day_fired_cards.assign(
 		tick_state.today_fired_cards
 	)
 
-	for c in chosen:
-		if c.curr <= 0:
-			c.curr = c.max_value
+	for card in chosen:
+		if card.curr <= 0:
+			card.curr = card.max_value
 
 	active_counter.value -= 1
 
 	if active_counter.value == 0:
-		active_counter.active = false
-		active_counter = null
-		active_counter_index = -1
+		finish_sprint()
+	else:
+		advance_sprint_speed()
 
-		previous_day_fired_cards.clear()
 
-		play_sfx(sprint_end_sfx)
-		discard_chosen()
+func finish_sprint() -> void:
+	active_counter.active = false
+	active_counter = null
+	active_counter_index = -1
 
-	end_tick_trigger_sfx_sequence()
-	is_ticking = false
+	previous_day_fired_cards.clear()
+
+	reset_sprint_speed()
+	play_sfx(sprint_end_sfx)
+	discard_chosen()
 
 
 func show_sprint_score(
@@ -766,6 +1025,7 @@ func on_start_round_pressed() -> void:
 		active_counter_index = i
 		counter.active = true
 
+		begin_sprint_speed()
 		play_sfx(sprint_start_sfx)
 
 		for active_debuff in get_current_enemy_debuffs():
@@ -798,3 +1058,7 @@ func on_start_round_pressed() -> void:
 
 func kill_enemy_early_for_debug() -> void:
 	%ScoreBar.curr_score = %ScoreBar.max_score
+
+
+func _exit_tree() -> void:
+	reset_engine_time_scale()
