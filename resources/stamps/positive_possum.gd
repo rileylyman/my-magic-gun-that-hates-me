@@ -3,11 +3,11 @@ extends Stamp
 @export var value_change: int = 1
 
 func start_of_round_callback(state: TickState) -> void:
-	if state.source_card == null:
+	if state.current_card == null:
 		return
 
 	var source_index := state.cards.find(
-		state.source_card
+		state.current_card
 	)
 
 	if source_index < 0:
