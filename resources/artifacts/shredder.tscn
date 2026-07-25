@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c1bpc3hb4f86s"]
+
+[ext_resource type="Script" uid="uid://dtjideelyr8sk" path="res://resources/artifacts/shredder.gd" id="1_hse4y"]
+
+[node name="Shredder" type="Node2D" unique_id=975277382]
+script = ExtResource("1_hse4y")
+title = "Shredder"
+description = "The Task played in the last slot on Field deals triple Damage. At the end of the Sprint, destory that Task permenantly."
