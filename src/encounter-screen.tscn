@@ -544,10 +544,10 @@ unique_name_in_owner = true
 [node name="ViewFullDeckButton" type="TextureButton" parent="." unique_id=935543409]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 1025.0
-offset_top = 549.0
-offset_right = 1078.6838
-offset_bottom = 598.0
+offset_left = 1040.0
+offset_top = 455.0
+offset_right = 1093.6838
+offset_bottom = 504.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("37_4f78d")
 texture_hover = ExtResource("38_4f78d")
@@ -574,6 +574,7 @@ use_duplicate_cards = true
 layer = 100
 
 [node name="BattleTutorial" type="Control" parent="TutorialCanvasLayer" unique_id=758133999 node_paths=PackedStringArray("tutorial_panels", "dim_background")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

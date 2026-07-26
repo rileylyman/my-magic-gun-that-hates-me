@@ -48,7 +48,10 @@ func _process(_delta: float) -> void:
 	%Desc.text = artifact.description
 	%Rarity.text = Artifact.ArtifactRarity.keys()[artifact.rarity]
 
-	%ButtonContainer.visible = show_buttons
+	%ButtonContainer.visible = (
+		show_buttons
+		and (gm == null or gm.active_counter == null)
+	)
 
 	match artifact.rarity:
 		Artifact.ArtifactRarity.COMMON:
