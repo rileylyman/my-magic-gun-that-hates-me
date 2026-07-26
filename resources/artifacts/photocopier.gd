@@ -7,3 +7,4 @@ func hand_submit_callback(state: TickState) -> void:
 		var card = state.cards[0].duplicate()
 		card.stamp = state.cards[0].stamp.duplicate()
 		state.gm.add_to_hand(card)
+		GlobalManager.deck.append(card)

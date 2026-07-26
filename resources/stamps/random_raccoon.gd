@@ -4,13 +4,11 @@ extends Stamp
 @export var maximum_value: int = 10
 
 
-func when_hit_callback(state: TickState) -> void:
+func start_of_round_callback(state: TickState) -> void:
 	var source_card := state.current_card
 
 	if source_card == null:
 		return
-
-	state.score *= 4
 
 	var lower_value := mini(
 		minimum_value,
@@ -37,3 +35,10 @@ func when_hit_callback(state: TickState) -> void:
 	source_card.max_value = new_value
 	source_card.curr = new_value
 	source_card.update_number_feature()
+
+
+func when_hit_callback(state: TickState) -> void:
+	if state.current_card == null:
+		return
+
+	state.score *= 4

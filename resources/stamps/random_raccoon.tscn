@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sftnr5swi5h0"]
 
-[ext_resource type="Script" uid="uid://d4dnr584cyayg" path="res://resources/stamps/sequential_squirrel.gd" id="1_qimw3"]
+[ext_resource type="Script" uid="uid://dnt57ytmxppro" path="res://resources/stamps/random_raccoon.gd" id="1_qimw3"]
 [ext_resource type="Texture2D" uid="uid://dx8fpxv3malu6" path="res://art/stamp/Stamp_Raccoon.png" id="2_ebett"]
 
 [node name="RandomRaccoon" type="Node2D" unique_id=251644683]

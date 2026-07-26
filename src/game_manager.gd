@@ -801,6 +801,11 @@ func process_firing_cards(
 		return score_label
 
 	for card in tick_state.today_fired_cards:
+		tick_state.current_card = card
+
+		if card.stamp != null:
+			card.stamp.pre_tick_callback(tick_state)
+
 		tick_state.score *= card.max_value
 
 		play_next_tick_trigger_sound(
@@ -813,6 +818,8 @@ func process_firing_cards(
 			tick_state,
 			score_label
 		)
+
+	tick_state.current_card = null
 
 	return score_label
 
