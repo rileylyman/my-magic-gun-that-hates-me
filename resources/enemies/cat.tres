@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://cmqh2lhnw7k8y"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_2bvm0"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_j7l2u"]
+[ext_resource type="Texture2D" uid="uid://dfsxa8enfb7ig" path="res://art/enemy_debuffs/debuff_ethan2.png" id="2_puahh"]
+[ext_resource type="Script" uid="uid://bfobo23lu5qyy" path="res://resources/debuffs/hot_dogged.gd" id="3_ihjlf"]
+[ext_resource type="Texture2D" uid="uid://4elcuss88mp5" path="res://art/enemy_debuffs/debuff_amber.png" id="4_krdxx"]
+[ext_resource type="Script" uid="uid://crrqbfmtm1sxn" path="res://resources/debuffs/rotted.gd" id="5_0vb0e"]
+[ext_resource type="Texture2D" uid="uid://b8l4alkkqmjph" path="res://art/enemy_debuffs/debuff_Nic.png" id="6_o0pr3"]
+[ext_resource type="Script" uid="uid://bs3aamudahvww" path="res://resources/debuffs/scribbled.gd" id="7_qkj0b"]
+[ext_resource type="Texture2D" uid="uid://cebw04yg1guv7" path="res://art/enemy_debuffs/debuff_Hansong.png" id="8_npi7w"]
+[ext_resource type="Script" uid="uid://cvlsdht1uvy10" path="res://resources/debuffs/onboarding_call.gd" id="9_1bjt6"]
+[ext_resource type="Texture2D" uid="uid://cq6i6x00k4xm4" path="res://art/enemies/Enemy_Zaizai.png" id="10_1divl"]
+
+[sub_resource type="Resource" id="Resource_ihjlf"]
+script = ExtResource("3_ihjlf")
+title = "Hot Dogged"
+description = "Whenever a Card deals Damage, all other Cards progress 1 fewer time."
+icon = ExtResource("2_puahh")
+metadata/_custom_type_script = "uid://bfobo23lu5qyy"
+
+[sub_resource type="Resource" id="Resource_ekcp6"]
+script = ExtResource("1_2bvm0")
+debuff = SubResource("Resource_ihjlf")
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_krdxx"]
+script = ExtResource("5_0vb0e")
+title = "Rotted"
+description = "Negate Damage less than 10% of the Enemy's total Health."
+icon = ExtResource("4_krdxx")
+metadata/_custom_type_script = "uid://crrqbfmtm1sxn"
+
+[sub_resource type="Resource" id="Resource_wljqk"]
+script = ExtResource("1_2bvm0")
+debuff = SubResource("Resource_krdxx")
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_0vb0e"]
+script = ExtResource("7_qkj0b")
+title = "Scribbled"
+description = "At the start of a Round, permanently change a random Card's Max Value to a random number between 2-13."
+icon = ExtResource("6_o0pr3")
+metadata/_custom_type_script = "uid://bs3aamudahvww"
+
+[sub_resource type="Resource" id="Resource_gm845"]
+script = ExtResource("1_2bvm0")
+debuff = SubResource("Resource_0vb0e")
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_o0pr3"]
+script = ExtResource("9_1bjt6")
+title = "Onboarded"
+description = "Cards deal half Damage during the first 5 Ticks of this Round."
+icon = ExtResource("8_npi7w")
+metadata/_custom_type_script = "uid://cvlsdht1uvy10"
+
+[sub_resource type="Resource" id="Resource_p08vf"]
+script = ExtResource("1_2bvm0")
+debuff = SubResource("Resource_o0pr3")
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("2_j7l2u")
+name = "Zaizai, The CEO"
+health = 1000
+enemy_texture = ExtResource("10_1divl")
+counter_values = Array[int]([30, 35, 40, 45])
+debuffs = Array[ExtResource("1_2bvm0")]([SubResource("Resource_ekcp6"), SubResource("Resource_wljqk"), SubResource("Resource_gm845"), SubResource("Resource_p08vf")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

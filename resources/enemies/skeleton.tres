@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://b1fpsewgo607s"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_yxr72"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_7hthy"]
+[ext_resource type="Texture2D" uid="uid://b8l4alkkqmjph" path="res://art/enemy_debuffs/debuff_Nic.png" id="2_g1uiq"]
+[ext_resource type="Texture2D" uid="uid://csdwj3cchasmd" path="res://art/enemies/Enemy_NicGraphicDesigner.png" id="2_repbl"]
+[ext_resource type="Script" uid="uid://bs3aamudahvww" path="res://resources/debuffs/scribbled.gd" id="3_5ekml"]
+[ext_resource type="Texture2D" uid="uid://bq4p7wey6vpdc" path="res://art/enemy_debuffs/debuff_Nic2.png" id="4_5ekml"]
+[ext_resource type="Script" uid="uid://dl2dbpsigukpg" path="res://resources/debuffs/erased.gd" id="4_yjnup"]
+
+[sub_resource type="Resource" id="Resource_br1p1"]
+script = ExtResource("3_5ekml")
+title = "Scribbled"
+description = "At the start of a Round, permanently change a random Card's Max Value to a random number between 2-13."
+icon = ExtResource("2_g1uiq")
+metadata/_custom_type_script = "uid://bs3aamudahvww"
+
+[sub_resource type="Resource" id="Resource_yxr72"]
+script = ExtResource("1_yxr72")
+debuff = SubResource("Resource_br1p1")
+scope = 1
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_id4ro"]
+script = ExtResource("4_yjnup")
+title = "Erased"
+description = "At the start of a Round, permanently decrease a random Card with a Max Value greater than 1 by 1."
+icon = ExtResource("4_5ekml")
+metadata/_custom_type_script = "uid://dl2dbpsigukpg"
+
+[sub_resource type="Resource" id="Resource_rrs27"]
+script = ExtResource("1_yxr72")
+debuff = SubResource("Resource_id4ro")
+scope = 1
+sprint_number = 3
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("2_7hthy")
+name = "Nic, Graphic Designer"
+health = 300
+counter_values = Array[int]([25, 30, 35, 40])
+enemy_texture = ExtResource("2_repbl")
+debuffs = Array[ExtResource("1_yxr72")]([SubResource("Resource_yxr72"), SubResource("Resource_rrs27")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

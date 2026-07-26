@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="1_4fgll"]
 [ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_gvme8"]
 [ext_resource type="Script" uid="uid://bs721m3smj0tx" path="res://resources/debuffs/paper_jammed.gd" id="2_gvme8"]
+[ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="2_ul1hr"]
 
 [sub_resource type="Resource" id="Resource_r6ell"]
 script = ExtResource("2_gvme8")

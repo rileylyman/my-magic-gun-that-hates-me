@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://vv8tu6yhnjfb"]
+
+[ext_resource type="Script" uid="uid://c88r8ouneftis" path="res://src/debuff_icon.gd" id="1_l1l1v"]
+[ext_resource type="Texture2D" uid="uid://ds07xgbtxb5kr" path="res://art/artifact_icons/50Pushpin.png" id="2_kjhp6"]
+[ext_resource type="Texture2D" uid="uid://dil5vsbhhqf0f" path="res://art/ui/PostIt_White.png" id="3_uad1n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01wwf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlt6q"]
+
+[node name="Debuff" type="Control" unique_id=448662212]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_default_cursor_shape = 2
+script = ExtResource("1_l1l1v")
+
+[node name="Panel" type="Panel" parent="." unique_id=1662591686]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1187103941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kjhp6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Tooltip" type="PanelContainer" parent="." unique_id=1778769872]
+visible = false
+z_index = 1
+clip_contents = true
+layout_mode = 0
+offset_left = -3.0
+offset_top = 51.0
+offset_right = 201.0
+offset_bottom = 161.0
+scale = Vector2(0.75, 0.75)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_01wwf")
+
+[node name="TextureRect" type="TextureRect" parent="Tooltip" unique_id=2070078160]
+modulate = Color(0.8784314, 0.69803923, 0.29803923, 1)
+layout_mode = 2
+texture = ExtResource("3_uad1n")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip" unique_id=227767431]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tooltip/MarginContainer" unique_id=802708651]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=904013901]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
+theme_override_font_sizes/font_size = 18
+text = "Artifact name"
+
+[node name="HSeparator" type="HSeparator" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1469039190]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rlt6q")
+
+[node name="Desc" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1857807250]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
+theme_override_font_sizes/font_size = 14
+text = "Description"
+autowrap_mode = 2
+
+[node name="ShakeTextContainer" type="PanelContainer" parent="." unique_id=2047658962]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = 9.0
+offset_right = 41.0
+offset_bottom = 81.00001
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+pivot_offset_ratio = Vector2(0.5, 0)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_01wwf")
+
+[node name="TextureRect" type="TextureRect" parent="ShakeTextContainer" unique_id=1771467100]
+modulate = Color(0.8784314, 0.69803923, 0.29803923, 1)
+layout_mode = 2
+texture = ExtResource("3_uad1n")
+expand_mode = 1
+
+[node name="ShakeText" type="Label" parent="ShakeTextContainer" unique_id=154798101]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.13333334, 0.12941177, 0.09411765, 1)
+theme_override_font_sizes/font_size = 48
+text = "+1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

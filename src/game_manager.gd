@@ -3,6 +3,7 @@ extends Node2D
 
 @export var card_scene: PackedScene
 @export var counter_scene: PackedScene
+@export var debuff_icon_scene: PackedScene
 
 @export_category("Sound Effects")
 
@@ -18,8 +19,13 @@ extends Node2D
 @export var sprint_end_sfx: AudioStream
 @export var card_discard_sfx: AudioStream
 @export var enemy_defeated_sfx: AudioStream
+@export var game_over_sfx: AudioStream
 @export var stamp_trigger_sfx: AudioStream
 @export var artifact_trigger_sfx: AudioStream
+
+@export_category("Scene Flow")
+
+@export var game_over_scene: PackedScene
 
 @export_category("Sound Settings")
 
@@ -71,6 +77,7 @@ var previous_day_fired_cards: Array[Card] = []
 
 var icons: Array[ArtifactIcon] = []
 var chosen_outlines: Array[Control] = []
+var debuff_icons: Array[DebuffIcon] = []
 
 var drawpile: Array[Card] = []
 var discard: Array[Card] = []
@@ -84,6 +91,7 @@ var _accum: float = 0.0
 var _tick_trigger_sfx_index: int = 0
 var _tick_trigger_sfx_active: bool = false
 var _sprint_trigger_count: int = 0
+var _pending_score_amount: int = 0
 
 
 func _ready() -> void:
@@ -101,6 +109,7 @@ func _ready() -> void:
 	)
 
 	%EnemyNameLabel.text = GlobalManager.enemy.name
+	%EnemyTexture.texture = GlobalManager.enemy.enemy_texture
 
 	%EncounterNLabel.text = (
 		"Encounter "
@@ -145,12 +154,13 @@ func _ready() -> void:
 		counters.append(counter)
 		%SprintHBox.add_child(counter)
 
-	for active_debuff in GlobalManager.enemy.active_debuffs:
+	for active_debuff in get_global_enemy_debuffs():
 		active_debuff.debuff.battle_start_callback(
 			self
 		)
 
 	load_artifacts()
+	load_debuff_icons()
 	
 	drawpile.shuffle()
 
@@ -336,6 +346,48 @@ func load_artifacts() -> void:
 		a.game_repr = icon
 
 
+func load_debuff_icons() -> void:
+	for child in %DebuffsHBox.get_children():
+		child.queue_free()
+
+	debuff_icons.clear()
+
+	var visible_debuffs := (
+		get_visible_enemy_debuffs()
+	)
+
+	if visible_debuffs.is_empty():
+		return
+
+	if debuff_icon_scene == null:
+		push_error("Debuff icon scene is not assigned.")
+		return
+
+	for active_debuff in visible_debuffs:
+		if (
+			active_debuff == null
+			or active_debuff.debuff == null
+		):
+			continue
+
+		var icon := (
+			debuff_icon_scene.instantiate()
+			as DebuffIcon
+		)
+
+		if icon == null:
+			push_error(
+				"Debuff icon scene root does not use DebuffIcon."
+			)
+			continue
+
+		icon.debuff = active_debuff.debuff
+		icon.gm = self
+
+		%DebuffsHBox.add_child(icon)
+		debuff_icons.append(icon)
+
+
 func _process(delta: float) -> void:
 	if battle_ended:
 		return
@@ -357,8 +409,35 @@ func _process(delta: float) -> void:
 		or chosen.size() < 1
 	)
 
+	check_battle_resolution()
+
+
+func check_battle_resolution() -> void:
+	if battle_ended:
+		return
+
 	if %ScoreBar.curr_score >= %ScoreBar.max_score:
 		end_round()
+		return
+
+	if is_ticking or active_counter != null:
+		return
+
+	if has_remaining_sprints():
+		return
+
+	if _pending_score_amount > 0:
+		return
+
+	enter_game_over()
+
+
+func has_remaining_sprints() -> bool:
+	for counter in counters:
+		if counter.value > 0:
+			return true
+
+	return false
 
 
 func end_round() -> void:
@@ -371,25 +450,44 @@ func end_round() -> void:
 	reset_engine_time_scale()
 	play_sfx(enemy_defeated_sfx)
 
-	for c in hand:
-		%HandPos.remove_child(c)
-		%DeckContainer.add_child(c)
-
-	for c in chosen:
-		%ChosenPos.remove_child(c)
-		%DeckContainer.add_child(c)
-
-	for child in %DeckContainer.get_children():
-		var card := child as Card
-
-		if card == null:
-			continue
-
-		%DeckContainer.remove_child(card)
-		card.curr = card.max_value
-		card.show_damage = false
+	detach_all_cards_from_battle()
 
 	GlobalManager.finish_current_battle()
+
+
+func enter_game_over() -> void:
+	if battle_ended:
+		return
+
+	if game_over_scene == null:
+		push_error("Game over scene is not assigned.")
+		return
+
+	battle_ended = true
+	previous_day_fired_cards.clear()
+
+	reset_engine_time_scale()
+	play_sfx(game_over_sfx)
+	detach_all_cards_from_battle()
+
+	get_tree().change_scene_to_packed(
+		game_over_scene
+	)
+
+
+func detach_all_cards_from_battle() -> void:
+	for card in GlobalManager.deck:
+		if not is_instance_valid(card):
+			continue
+
+		if card.get_parent() != null:
+			card.get_parent().remove_child(card)
+
+		card.curr = card.max_value
+		card.show_damage = false
+		card.show_zero_on_damage = true
+		card.rotation = 0.0
+		card.scale = Vector2.ONE
 
 
 func get_current_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
@@ -401,6 +499,56 @@ func get_current_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
 	for active_debuff in GlobalManager.enemy.active_debuffs:
 		if active_debuff.applies_to_counter(
 			active_counter_index
+		):
+			result.append(active_debuff)
+
+	return result
+
+
+func get_global_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
+	var result: Array[ActiveEnemyDebuff] = []
+
+	if GlobalManager.enemy == null:
+		return result
+
+	for active_debuff in GlobalManager.enemy.active_debuffs:
+		if (
+			active_debuff != null
+			and active_debuff.debuff != null
+			and active_debuff.counter_index < 0
+		):
+			result.append(active_debuff)
+
+	return result
+
+
+func get_debuff_display_counter_index() -> int:
+	if active_counter_index >= 0:
+		return active_counter_index
+
+	for i in range(counters.size()):
+		if counters[i].value > 0:
+			return i
+
+	return -1
+
+
+func get_visible_enemy_debuffs() -> Array[ActiveEnemyDebuff]:
+	var result: Array[ActiveEnemyDebuff] = []
+
+	if GlobalManager.enemy == null:
+		return result
+
+	var display_counter_index := (
+		get_debuff_display_counter_index()
+	)
+
+	for active_debuff in GlobalManager.enemy.active_debuffs:
+		if (
+			active_debuff != null
+			and active_debuff.applies_to_counter(
+				display_counter_index
+			)
 		):
 			result.append(active_debuff)
 
@@ -764,6 +912,7 @@ func finish_sprint() -> void:
 	reset_sprint_speed()
 	play_sfx(sprint_end_sfx)
 	discard_chosen()
+	load_debuff_icons()
 
 
 func show_sprint_score(
@@ -806,6 +955,7 @@ func send_sprint_score_off(
 ) -> void:
 	var score_amount: int = int(score_label.text)
 
+	_pending_score_amount += score_amount
 	play_sfx(score_launch_sfx, true)
 
 	var tween := score_label.create_tween()
@@ -827,6 +977,10 @@ func send_sprint_score_off(
 	tween.tween_callback(
 		func():
 			play_sfx(score_impact_sfx, true)
+			_pending_score_amount = maxi(
+				_pending_score_amount - score_amount,
+				0
+			)
 			%ScoreBar.curr_score += score_amount
 			score_label.queue_free()
 	)
@@ -1083,14 +1237,10 @@ func on_start_round_pressed() -> void:
 		active_counter = counter
 		active_counter_index = i
 		counter.active = true
+		load_debuff_icons()
 
 		begin_sprint_speed()
 		play_sfx(sprint_start_sfx)
-
-		for active_debuff in get_current_enemy_debuffs():
-			active_debuff.debuff.counter_start_callback(
-				active_counter
-			)
 
 		var start_state := TickState.new()
 
@@ -1099,6 +1249,12 @@ func on_start_round_pressed() -> void:
 		start_state.days = active_counter.value
 		start_state.max_days = active_counter.value
 		start_state.cards.assign(chosen)
+
+		for active_debuff in get_current_enemy_debuffs():
+			active_debuff.debuff.counter_start_callback(
+				active_counter,
+				start_state
+			)
 
 		for card in start_state.cards:
 			if card.stamp == null:

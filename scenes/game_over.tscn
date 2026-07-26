@@ -1,3 +1,35 @@
 [gd_scene format=3 uid="uid://e517ujgylxx5"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_0nqlu"]
+font_size = 56
+
 [node name="GameOver" type="Node2D" unique_id=548742447]
+
+[node name="Credits2" type="Label" parent="." unique_id=1585778959]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 231.0
+offset_top = 151.0
+offset_right = 942.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Job failed! You are fired!"
+label_settings = SubResource("LabelSettings_0nqlu")
+horizontal_alignment = 1
+
+[node name="Credits4" type="Button" parent="." unique_id=219530503]
+offset_left = 473.0
+offset_top = 368.0
+offset_right = 674.29034
+offset_bottom = 433.0
+text = "Back to Main Menu"
+
+[node name="Credits" type="Button" parent="." unique_id=222004712]
+offset_left = 473.0
+offset_top = 462.0
+offset_right = 674.29034
+offset_bottom = 527.0
+text = "Credits"

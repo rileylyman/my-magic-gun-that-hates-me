@@ -1,25 +1,19 @@
-class_name Scribbled
+class_name Scibbled
 extends EnemyDebuff
 
-var number_of_jammed: int = 0
 
 func counter_start_callback(
-	counter: Counter
-) -> void:
-	pass
-
-func battle_start_callback(
-	_manager: GameManager
-) -> void:
-	number_of_jammed = 0
-
-
-func when_hit_callback(
+	_counter: Counter,
 	state: TickState
 ) -> void:
-	if number_of_jammed >= 3:
+	if state.cards.is_empty():
 		return
 
-	number_of_jammed += 1
-	state.score *= 0
-	state.bonus_score *= 0
+	var affected_card: Card = state.cards.pick_random()
+
+	if affected_card == null:
+		return
+
+	affected_card.max_value = randi_range(2, 13)
+	affected_card.curr = affected_card.max_value
+	affected_card.update_number_feature()

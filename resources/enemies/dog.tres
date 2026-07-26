@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://p4mcah2tyxlk"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_bygru"]
+[ext_resource type="Texture2D" uid="uid://go8vk3n4j1q" path="res://art/enemy_debuffs/debuff_ethan.png" id="2_1ctfe"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_a1q4s"]
+[ext_resource type="Script" uid="uid://bdy736a1xfb65" path="res://resources/debuffs/buried.gd" id="3_26mv8"]
+[ext_resource type="Texture2D" uid="uid://dfsxa8enfb7ig" path="res://art/enemy_debuffs/debuff_ethan2.png" id="4_nj1br"]
+[ext_resource type="Script" uid="uid://bfobo23lu5qyy" path="res://resources/debuffs/hot_dogged.gd" id="5_2xfqk"]
+[ext_resource type="Texture2D" uid="uid://bex7u2x26rjf8" path="res://art/enemies/Enemy_EthanOfficeDog.png" id="6_u01tq"]
+
+[sub_resource type="Resource" id="Resource_id4ro"]
+script = ExtResource("3_26mv8")
+title = "Buried"
+description = "The lowest Max Value Card no longer progresses this Round."
+icon = ExtResource("2_1ctfe")
+metadata/_custom_type_script = "uid://bdy736a1xfb65"
+
+[sub_resource type="Resource" id="Resource_rrs27"]
+script = ExtResource("1_bygru")
+debuff = SubResource("Resource_id4ro")
+scope = 1
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_4f78d"]
+script = ExtResource("5_2xfqk")
+title = "Hot Dogged"
+description = "Whenever a Card deals Damage, all other Cards progress 1 fewer time."
+icon = ExtResource("4_nj1br")
+metadata/_custom_type_script = "uid://bfobo23lu5qyy"
+
+[sub_resource type="Resource" id="Resource_br1p1"]
+script = ExtResource("1_bygru")
+debuff = SubResource("Resource_4f78d")
+scope = 1
+sprint_number = 2
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("2_a1q4s")
+name = "Mark, Office Dog"
+health = 500
+counter_values = Array[int]([20, 30, 40])
+enemy_texture = ExtResource("6_u01tq")
+debuffs = Array[ExtResource("1_bygru")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

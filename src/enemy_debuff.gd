@@ -3,6 +3,8 @@ extends Resource
 
 @export var title: String
 @export_multiline var description: String
+@export var icon: Texture = preload("res://art/enemy_debuffs/debuff_amber2.png")
+
 
 
 func battle_start_callback(
@@ -12,7 +14,8 @@ func battle_start_callback(
 
 
 func counter_start_callback(
-	_counter: Counter
+	_counter: Counter,
+	_state: TickState
 ) -> void:
 	pass
 

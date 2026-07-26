@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://oo4ea2glv2vq"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_qln16"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_dnrcc"]
+[ext_resource type="Texture2D" uid="uid://cy1eolbfbobc8" path="res://art/enemy_debuffs/debuff_david.png" id="2_dophr"]
+[ext_resource type="Texture2D" uid="uid://cf28gjw5jlq71" path="res://art/enemies/Enemy_DavidTalentAquisition.png" id="2_jxjhr"]
+[ext_resource type="Script" uid="uid://b0jfl4twb1cos" path="res://resources/debuffs/ghosted.gd" id="3_e3ns3"]
+[ext_resource type="Texture2D" uid="uid://jlo7e562l3tl" path="res://art/enemy_debuffs/debuff_david2.png" id="4_0qhyx"]
+[ext_resource type="Script" uid="uid://dyjg4orysl1qa" path="res://resources/debuffs/lured.gd" id="5_vfwur"]
+
+[sub_resource type="Resource" id="Resource_id4ro"]
+script = ExtResource("3_e3ns3")
+title = "Ghosted"
+description = "At the end of the Round, destroy the leftmost played Card permanently."
+icon = ExtResource("2_dophr")
+metadata/_custom_type_script = "uid://b0jfl4twb1cos"
+
+[sub_resource type="Resource" id="Resource_rrs27"]
+script = ExtResource("1_qln16")
+debuff = SubResource("Resource_id4ro")
+scope = 1
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_4f78d"]
+script = ExtResource("5_vfwur")
+title = "Lured"
+description = "A random Card from your Card Folder is chosen for you this Round."
+icon = ExtResource("4_0qhyx")
+metadata/_custom_type_script = "uid://dyjg4orysl1qa"
+
+[sub_resource type="Resource" id="Resource_br1p1"]
+script = ExtResource("1_qln16")
+debuff = SubResource("Resource_4f78d")
+scope = 1
+sprint_number = 2
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("2_dnrcc")
+name = "David, Talent Aquisition"
+health = 350
+counter_values = Array[int]([20, 20, 20, 20])
+enemy_texture = ExtResource("2_jxjhr")
+debuffs = Array[ExtResource("1_qln16")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dy3hjx5x28kfc" path="res://art/ui/TopBar_Blue.png" id="4_jt4fi"]
 [ext_resource type="PackedScene" uid="uid://dedwdl7bsg75m" path="res://src/card.tscn" id="5_12btj"]
 [ext_resource type="Texture2D" uid="uid://kb2ufe72ipy5" path="res://art/ui/HP_Bar.png" id="6_mdmcc"]
+[ext_resource type="Texture2D" uid="uid://ccctspnpq1eg8" path="res://art/enemies/Enemy_AmberTorturedArtist.png" id="7_ctv0l"]
 [ext_resource type="Script" uid="uid://dobrtn8e6f2ve" path="res://src/game_manager.gd" id="7_i3k2v"]
 [ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="8_jt4fi"]
 [ext_resource type="Texture2D" uid="uid://bhai0cokx4e4a" path="res://art/ui/Frame_Top.png" id="9_8i6ns"]
@@ -20,6 +21,7 @@
 [ext_resource type="Script" uid="uid://dav24etkysumc" path="res://src/sprint_score.gd" id="13_k8us1"]
 [ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="13_mdmcc"]
 [ext_resource type="AudioStream" uid="uid://j45jkaft2qgq" path="res://resources/audio/SFX/Sword_unsheath.wav" id="19_l0nas"]
+[ext_resource type="PackedScene" uid="uid://vv8tu6yhnjfb" path="res://src/debuff_icon.tscn" id="21_rrs27"]
 [ext_resource type="AudioStream" uid="uid://bvrxp6elghes2" path="res://resources/audio/SFX/BUTTON_12.wav" id="21_teun7"]
 [ext_resource type="AudioStream" uid="uid://b4q2e6blshpr1" path="res://resources/audio/SFX/impactGeneric_light_002.ogg" id="22_l0nas"]
 [ext_resource type="AudioStream" uid="uid://cn1dawhfrcvp6" path="res://resources/audio/SFX/impactGeneric_light_004.ogg" id="23_ctv0l"]
@@ -31,6 +33,8 @@
 [ext_resource type="AudioStream" uid="uid://cfdheyqomusns" path="res://resources/audio/SFX/Arcane Beacon.wav" id="30_43nnu"]
 [ext_resource type="AudioStream" uid="uid://c5e1tkdullaqj" path="res://resources/audio/SFX/plastic_rub15.wav" id="30_l0nas"]
 [ext_resource type="AudioStream" uid="uid://cfds3ubdlubxx" path="res://resources/audio/SFX/iron_hit07.wav" id="31_ctv0l"]
+[ext_resource type="AudioStream" uid="uid://buaruvopcvjnc" path="res://resources/audio/SFX/Clive Davis Institute of Recorded Music 2.mp3" id="31_l0nas"]
+[ext_resource type="PackedScene" uid="uid://e517ujgylxx5" path="res://scenes/game_over.tscn" id="32_teun7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
@@ -43,6 +47,9 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekydl"]
+font_size = 26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_051xp"]
 bg_color = Color(0.51, 0.153, 0, 1)
@@ -124,6 +131,20 @@ grow_horizontal = 2
 texture = ExtResource("4_jt4fi")
 expand_mode = 1
 
+[node name="DebuffsHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/Control/TextureRect2" unique_id=812959413]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+alignment = 1
+
 [node name="EncounterNLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=139324052]
 unique_name_in_owner = true
 layout_mode = 1
@@ -152,6 +173,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 48
 text = "Dude"
+label_settings = SubResource("LabelSettings_ekydl")
 horizontal_alignment = 1
 
 [node name="ScoreBar" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=659621728]
@@ -201,6 +223,20 @@ offset_bottom = 138.0
 texture = ExtResource("6_mdmcc")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="EnemyTexture" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/Control" unique_id=605195154]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11400001
+anchor_bottom = 0.109000005
+offset_left = 14.0
+offset_top = 110.0
+offset_right = 298.872
+offset_bottom = 427.472
+texture = ExtResource("7_ctv0l")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=930904406]
 layout_mode = 2
@@ -456,6 +492,7 @@ unique_name_in_owner = true
 script = ExtResource("7_i3k2v")
 card_scene = ExtResource("5_12btj")
 counter_scene = ExtResource("1_2cweb")
+debuff_icon_scene = ExtResource("21_rrs27")
 battle_start_sfx = ExtResource("19_l0nas")
 card_draw_sfx = ExtResource("21_teun7")
 card_select_sfx = ExtResource("22_l0nas")
@@ -467,8 +504,10 @@ score_launch_sfx = ExtResource("27_4f78d")
 score_impact_sfx = ExtResource("28_8niob")
 card_discard_sfx = ExtResource("30_l0nas")
 enemy_defeated_sfx = ExtResource("31_ctv0l")
+game_over_sfx = ExtResource("31_l0nas")
 stamp_trigger_sfx = ExtResource("30_43nnu")
 artifact_trigger_sfx = ExtResource("26_id4ro")
+game_over_scene = ExtResource("32_teun7")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.1
 base_battle_speed = 0.7999999999999999

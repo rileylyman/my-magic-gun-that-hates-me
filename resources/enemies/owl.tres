@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://ccbwljkg6hrs"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_fh237"]
+[ext_resource type="Texture2D" uid="uid://cebw04yg1guv7" path="res://art/enemy_debuffs/debuff_Hansong.png" id="2_3spnw"]
+[ext_resource type="Script" uid="uid://cvlsdht1uvy10" path="res://resources/debuffs/onboarding_call.gd" id="2_76dlj"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_cmvcr"]
+[ext_resource type="Texture2D" uid="uid://coxpafiod20m2" path="res://art/enemy_debuffs/debuff_Hansong2.png" id="2_f2tfv"]
+[ext_resource type="Script" uid="uid://7d5o3fjxoth" path="res://resources/debuffs/time_crunched.gd" id="3_fxabb"]
+[ext_resource type="Texture2D" uid="uid://bp2kgraihu4h7" path="res://art/enemies/Enemy_HansongProductionWizard.png" id="6_fxabb"]
+
+[sub_resource type="Resource" id="Resource_fxabb"]
+script = ExtResource("3_fxabb")
+title = "Time Crunched"
+description = "Lose 5 Ticks this Round."
+icon = ExtResource("2_f2tfv")
+metadata/_custom_type_script = "uid://7d5o3fjxoth"
+
+[sub_resource type="Resource" id="Resource_f2tfv"]
+script = ExtResource("1_fh237")
+debuff = SubResource("Resource_fxabb")
+scope = 1
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_3spnw"]
+script = ExtResource("2_76dlj")
+title = "Onboarded"
+description = "Cards deal half Damage during the first 5 Ticks of this Round."
+icon = ExtResource("2_3spnw")
+metadata/_custom_type_script = "uid://cvlsdht1uvy10"
+
+[sub_resource type="Resource" id="Resource_76dlj"]
+script = ExtResource("1_fh237")
+debuff = SubResource("Resource_3spnw")
+scope = 1
+sprint_number = 2
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_8s7se"]
+script = ExtResource("3_fxabb")
+title = "Time Crunched"
+description = "Lose 5 Ticks this Round."
+icon = ExtResource("2_f2tfv")
+metadata/_custom_type_script = "uid://7d5o3fjxoth"
+
+[sub_resource type="Resource" id="Resource_444rb"]
+script = ExtResource("1_fh237")
+debuff = SubResource("Resource_8s7se")
+scope = 1
+sprint_number = 3
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_b16t5"]
+script = ExtResource("2_76dlj")
+title = "Onboarded"
+description = "Cards deal half Damage during the first 5 Ticks of this Round."
+icon = ExtResource("2_3spnw")
+metadata/_custom_type_script = "uid://cvlsdht1uvy10"
+
+[sub_resource type="Resource" id="Resource_s4dih"]
+script = ExtResource("1_fh237")
+debuff = SubResource("Resource_b16t5")
+scope = 1
+sprint_number = 4
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("2_cmvcr")
+name = "Hansong, Production Wizard"
+health = 350
+counter_values = Array[int]([15, 20, 15, 20])
+enemy_texture = ExtResource("6_fxabb")
+debuffs = Array[ExtResource("1_fh237")]([SubResource("Resource_f2tfv"), SubResource("Resource_76dlj"), SubResource("Resource_444rb"), SubResource("Resource_s4dih")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

@@ -3,6 +3,7 @@ extends Resource
 
 @export var name: String
 @export var health: int
+@export var enemy_texture: Texture2D
 @export var counter_values: Array[int]
 
 @export_category("Debuffs")
@@ -19,7 +20,7 @@ func prepare_debuffs() -> void:
 		if entry == null or entry.debuff == null:
 			continue
 
-		var debuff_copy: EnemyDebuff = (
+		var debuff_copy := (
 			entry.debuff.duplicate(true)
 			as EnemyDebuff
 		)
@@ -27,17 +28,14 @@ func prepare_debuffs() -> void:
 		if debuff_copy == null:
 			continue
 
-		var active_debuff: ActiveEnemyDebuff = (
-			ActiveEnemyDebuff.new()
-		)
-
+		var active_debuff := ActiveEnemyDebuff.new()
 		active_debuff.debuff = debuff_copy
 
 		if (
 			entry.scope
 			== EnemyDebuffEntry.Scope.SPRINT
 		):
-			var counter_index: int = (
+			var counter_index := (
 				entry.sprint_number - 1
 			)
 
@@ -49,8 +47,7 @@ func prepare_debuffs() -> void:
 				push_warning(
 					(
 						"Enemy %s has debuff %s "
-						+ "assigned to invalid "
-						+ "Sprint %d."
+						+ "assigned to invalid Sprint %d."
 					)
 					% [
 						name,
