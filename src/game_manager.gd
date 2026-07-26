@@ -1012,19 +1012,19 @@ func send_sprint_score_off(
 
 func arrange_items() -> void:
 	for c in drawpile:
-		if c.is_shaking:
+		if c.is_shaking or c.is_dealing:
 			continue
 
 		c.position = - card_size
 
 	for c in discard:
-		if c.is_shaking:
+		if c.is_shaking or c.is_dealing:
 			continue
 
 		c.position = - card_size
 
 	for c in GlobalManager.deck:
-		if c.is_shaking:
+		if c.is_dealing:
 			continue
 
 		c.apply_scene_size()
@@ -1118,7 +1118,7 @@ func arrange_row(
 	custom_padding: Vector2 = padding
 ) -> void:
 	for i in range(cards.size()):
-		if cards[i].is_shaking:
+		if cards[i].is_shaking or cards[i].is_dealing:
 			continue
 
 		cards[i].apply_scene_size()
@@ -1159,7 +1159,7 @@ func arrange_chosen_row() -> void:
 		)
 
 	for i in range(chosen.size()):
-		if chosen[i].is_shaking:
+		if chosen[i].is_shaking or chosen[i].is_dealing:
 			continue
 
 		chosen[i].apply_scene_size()
@@ -1211,7 +1211,7 @@ func discard_chosen() -> void:
 		%DeckContainer.add_child(c)
 
 		c.global_position = start_global
-		c.is_shaking = true
+		c.is_dealing = true
 
 	if discarded_any:
 		play_sfx(card_discard_sfx, true)
@@ -1253,7 +1253,7 @@ func animate_card_discard(card: Card) -> void:
 
 	await tween.finished
 
-	card.is_shaking = false
+	card.is_dealing = false
 	card.rotation = 0
 	card.scale = Vector2.ONE
 
@@ -1289,7 +1289,7 @@ func deal_hand() -> void:
 			%DeckContainer.remove_child(card)
 			%HandPos.add_child(card)
 			card.global_position = start_global
-			card.is_shaking = true
+			card.is_dealing = true
 
 			drawn_cards.append(card)
 
@@ -1350,7 +1350,7 @@ func animate_card_deal(
 
 	await tween.finished
 
-	card.is_shaking = false
+	card.is_dealing = false
 	card.rotation = 0
 	card.scale = Vector2.ONE * 0.75
 
