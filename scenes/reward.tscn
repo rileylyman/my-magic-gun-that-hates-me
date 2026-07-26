@@ -433,7 +433,7 @@ theme_override_font_sizes/font_size = 48
 text = "- and -"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=231778483]
+[node name="ChestTexture" type="TextureRect" parent="." unique_id=231778483]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
