@@ -214,8 +214,9 @@ offset_bottom = 340.0
 
 [node name="Label" type="Label" parent="ArtifactControl" unique_id=619564964]
 layout_mode = 1
+offset_top = 40.0
 offset_right = 284.0
-offset_bottom = 63.0
+offset_bottom = 103.0
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -228,9 +229,9 @@ horizontal_alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="ArtifactControl" unique_id=1708323228]
 layout_mode = 0
 offset_left = -44.0
-offset_top = 77.0
+offset_top = 116.0
 offset_right = 294.0
-offset_bottom = 165.0
+offset_bottom = 204.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
 
 [node name="MarginContainer" type="MarginContainer" parent="ArtifactControl/PanelContainer" unique_id=998446129]
@@ -265,9 +266,9 @@ buy_on_click = true
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 32.0
-offset_top = 216.0
+offset_top = 284.0
 offset_right = 251.515
-offset_bottom = 253.255
+offset_bottom = 321.255
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -300,9 +301,9 @@ offset_bottom = 340.0
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 282.0
-offset_top = 8.0
+offset_top = 48.0
 offset_right = 335.68384
-offset_bottom = 57.0
+offset_bottom = 97.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("22_l2mp2")
 texture_hover = ExtResource("23_luggl")
@@ -322,8 +323,9 @@ text = " View full deck "
 [node name="Label" type="Label" parent="CardControl" unique_id=132146924]
 layout_mode = 0
 offset_left = 55.0
+offset_top = 43.0
 offset_right = 251.0
-offset_bottom = 63.0
+offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -345,31 +347,31 @@ expand_mode = 2
 [node name="Card" parent="CardControl" unique_id=1368151009 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = -38.0
-offset_top = 76.0
+offset_top = 128.0
 offset_right = 82.0
-offset_bottom = 233.0
+offset_bottom = 285.0
 
 [node name="Card2" parent="CardControl" unique_id=786837243 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 93.0
-offset_top = 76.0
+offset_top = 128.0
 offset_right = 213.0
-offset_bottom = 233.0
+offset_bottom = 285.0
 
 [node name="Card3" parent="CardControl" unique_id=225665184 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 225.0
-offset_top = 76.0
+offset_top = 128.0
 offset_right = 345.0
-offset_bottom = 233.0
+offset_bottom = 285.0
 
 [node name="TextureButton" type="TextureButton" parent="CardControl" unique_id=1241487462]
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 45.0
-offset_top = 245.0
+offset_top = 297.0
 offset_right = 264.515
-offset_bottom = 282.255
+offset_bottom = 334.255
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -416,10 +418,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -149.0
-offset_top = 395.0
-offset_right = 115.0
-offset_bottom = 458.0
+offset_left = -178.0
+offset_top = 443.0
+offset_right = 86.0
+offset_bottom = 506.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

@@ -62,6 +62,7 @@ var _all_icons: Array[ArtifactIcon] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	apply_defeated_enemy_texture()
 	load_artifacts()
 	setup_artifact_selectors()
 	setup_card_selectors()
@@ -121,6 +122,16 @@ func _process(_delta: float) -> void:
 
 func _on_continue_button_pressed() -> void:
 	GlobalManager.enter_current_battle()
+
+func apply_defeated_enemy_texture() -> void:
+	var defeated_enemy: EnemyResource = GlobalManager.last_defeated_enemy
+
+	if defeated_enemy == null or defeated_enemy.enemy_texture == null:
+		return
+
+	left_shaker.texture = defeated_enemy.enemy_texture
+	right_shaker.texture = defeated_enemy.enemy_texture
+
 
 func shake_shakers() -> void:
 	var dir = 1

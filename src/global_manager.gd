@@ -17,9 +17,11 @@ enum TaskSelectionMode {
 }
 
 @export var battle_scene: PackedScene
-@export var choose_artifact_scene: PackedScene
+@export var reward_scene: PackedScene
 @export var win_scene: PackedScene
 @export var all_tasks_scene: PackedScene
+
+var last_defeated_enemy: EnemyResource = null
 
 var pending_stamp_scene: PackedScene
 
@@ -192,6 +194,7 @@ func enter_current_battle() -> void:
 
 
 func finish_current_battle() -> void:
+	last_defeated_enemy = enemy
 	defeated_enemy_count += 1
 	enemy = null
 
@@ -199,14 +202,14 @@ func finish_current_battle() -> void:
 		enter_win_scene()
 		return
 
-	if choose_artifact_scene == null:
+	if reward_scene == null:
 		push_error(
-			"Choose artifact scene is not assigned."
+			"Reward scene is not assigned."
 		)
 		return
 
 	get_tree().change_scene_to_packed(
-		choose_artifact_scene
+		reward_scene
 	)
 
 
