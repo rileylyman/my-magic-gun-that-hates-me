@@ -59,10 +59,16 @@ var handsize: int:
 			).size() + 5
 		)
 
+var _default_enemy_order: Array[EnemyResource] = []
+
 func _challenge_mode() -> void:
-	enemy_order = Challenge_enemy_order
+	enemy_order = Challenge_enemy_order.duplicate()
+
+func _normal_mode() -> void:
+	enemy_order = _default_enemy_order.duplicate()
 
 func _ready() -> void:
+	_default_enemy_order = enemy_order.duplicate()
 	create_starting_deck()
 
 var decklista = [3, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10]

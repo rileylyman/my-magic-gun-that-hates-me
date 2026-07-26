@@ -9,6 +9,7 @@ func _ready() -> void:
 
 
 func on_start_game_pressed() -> void:
+	GlobalManager._normal_mode()
 	GlobalManager.reset_run()
 	GlobalManager.enter_current_battle()
 	
