@@ -81,23 +81,24 @@ horizontal_alignment = 1
 [node name="StampTexture" type="TextureRect" parent="PanelContainer/Control" unique_id=477478304]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 12.0
-offset_top = 44.0
-offset_right = 106.71756
-offset_bottom = 138.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 50.335884
+offset_bottom = 50.0
 texture = ExtResource("3_d8ann")
 expand_mode = 1
 
 [node name="CountdownLabel" type="Label" parent="PanelContainer/Control" unique_id=2137815184]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 35.0
-offset_top = 30.0
-offset_right = 84.0
-offset_bottom = 148.0
+offset_left = 9.0
+offset_top = 34.0
+offset_right = 112.0
+offset_bottom = 152.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 86
 text = "5"
+horizontal_alignment = 1
 
 [node name="Tooltip" type="Control" parent="." unique_id=527350933]
 visible = false
