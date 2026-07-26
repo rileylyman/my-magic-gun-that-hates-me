@@ -47,6 +47,26 @@ const stamp_card_button_scene: PackedScene = preload(
 	"res://src/stamp_card_button.tscn"
 )
 
+@export_category("Sound Effects")
+
+@export var reward_screen_open_sfx: AudioStream
+@export var reward_claim_sfx: AudioStream
+@export var reward_denied_sfx: AudioStream
+@export var reward_skip_sfx: AudioStream
+@export var deck_open_sfx: AudioStream
+@export var card_destroy_sfx: AudioStream
+@export var card_stamp_sfx: AudioStream
+@export var panel_slide_sfx: AudioStream
+@export var continue_sfx: AudioStream
+
+@export var sfx_bus: StringName = &"Master"
+
+@export_range(-40.0, 10.0, 0.5)
+var sfx_volume_db: float = 0.0
+
+@export_range(0.0, 0.25, 0.01)
+var sfx_pitch_variation: float = 0.04
+
 @onready var left_shaker: TextureRect = %LeftEnemyShaker
 @onready var right_shaker: TextureRect = %RightEnemyShaker
 
@@ -76,6 +96,36 @@ func _ready() -> void:
 	%Deck.card_stamped.connect(_on_deck_card_stamped)
 	%Deck.closed.connect(_on_deck_closed)
 
+	play_sfx(reward_screen_open_sfx)
+
+
+func play_sfx(
+	stream: AudioStream,
+	randomize_pitch: bool = false
+) -> void:
+	if stream == null:
+		return
+
+	var player := AudioStreamPlayer.new()
+
+	player.stream = stream
+	player.bus = sfx_bus
+	player.volume_db = sfx_volume_db
+
+	if randomize_pitch:
+		player.pitch_scale = randf_range(
+			1.0 - sfx_pitch_variation,
+			1.0 + sfx_pitch_variation
+		)
+
+	get_tree().root.add_child(player)
+
+	player.finished.connect(
+		player.queue_free
+	)
+
+	player.play()
+
 
 func _on_view_full_deck_mouse_entered() -> void:
 	%ViewFullDeckButton.get_node("Tooltip").visible = true
@@ -86,6 +136,7 @@ func _on_view_full_deck_mouse_exited() -> void:
 
 
 func _on_view_full_deck_pressed() -> void:
+	play_sfx(deck_open_sfx)
 	%Deck.open()
 
 func reload_our_artifacts() -> void:
@@ -121,6 +172,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_continue_button_pressed() -> void:
+	play_sfx(continue_sfx)
 	GlobalManager.enter_current_battle()
 
 func apply_defeated_enemy_texture() -> void:
@@ -227,10 +279,12 @@ func setup_artifact_selectors() -> void:
 				return
 
 			if not GlobalManager.add_artifact(artifact):
+				play_sfx(reward_denied_sfx)
 				await a.shake(" No room! ", false)
 				return
 
 			_has_bought_artifact = true
+			play_sfx(reward_claim_sfx, true)
 			await a.shake(" Yay! ", false)
 			await get_tree().create_timer(0.5).timeout
 			go_away_artifacts()
@@ -245,7 +299,12 @@ func setup_artifact_selectors() -> void:
 
 
 func _on_skip_artifacts_button_pressed() -> void:
+	if _has_bought_artifact:
+		return
+
 	_has_bought_artifact = true
+	play_sfx(reward_skip_sfx)
+
 	var i = 0
 	for a in %ArtifactContainer.get_children():
 		i += 1
@@ -258,6 +317,8 @@ func _on_skip_artifacts_button_pressed() -> void:
 
 
 func go_away_artifacts() -> void:
+	play_sfx(panel_slide_sfx, true)
+
 	var t = create_tween().set_ease(Tween.EASE_IN)
 	t.tween_property(%ArtifactControl, "position:x", -1000, 1.0)
 
@@ -402,19 +463,23 @@ func setup_stamp_card_button(at_position: Vector2, stamp_scene: PackedScene) -> 
 
 
 func _on_cut_card_button_pressed() -> void:
+	play_sfx(deck_open_sfx)
 	%Deck.open_for_destroy()
 
 
 func _on_stamp_card_button_pressed(stamp_scene: PackedScene) -> void:
+	play_sfx(deck_open_sfx)
 	%Deck.open_for_stamp(stamp_scene)
 
 
 func _on_deck_card_destroyed() -> void:
 	_card_reward_claimed = true
+	play_sfx(card_destroy_sfx, true)
 
 
 func _on_deck_card_stamped() -> void:
 	_card_reward_claimed = true
+	play_sfx(card_stamp_sfx, true)
 
 
 func _on_deck_closed() -> void:
@@ -514,6 +579,7 @@ func on_card_selected(card: Card) -> void:
 	var stamp_scene: PackedScene = _card_stamp_scenes.get(card)
 
 	GlobalManager.add_task(card.max_value, stamp_scene)
+	play_sfx(reward_claim_sfx, true)
 
 	await card.shake()
 	await get_tree().create_timer(0.5).timeout
@@ -521,10 +587,16 @@ func on_card_selected(card: Card) -> void:
 
 
 func _on_skip_cards_button_pressed() -> void:
+	if _has_bought_card:
+		return
+
 	_has_bought_card = true
+	play_sfx(reward_skip_sfx)
 	go_away_cards()
 
 
 func go_away_cards() -> void:
+	play_sfx(panel_slide_sfx, true)
+
 	var t = create_tween().set_ease(Tween.EASE_IN)
 	t.tween_property(%CardControl, "position:x", 3000, 1.0)

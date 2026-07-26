@@ -20,7 +20,14 @@
 [ext_resource type="PackedScene" uid="uid://cyioj8qlnf3d4" path="res://resources/stamps/positive_possum.tscn" id="8_luggl"]
 [ext_resource type="PackedScene" uid="uid://sftnr5swi5h0" path="res://resources/stamps/random_raccoon.tscn" id="9_gl7qb"]
 [ext_resource type="PackedScene" uid="uid://b8l7rr3s88vws" path="res://resources/stamps/sequential_squirrel.tscn" id="10_sdmt1"]
+[ext_resource type="AudioStream" uid="uid://cu3gbtmysp5tj" path="res://resources/audio/SFX/Button Arp Twinkle.wav" id="11_af621"]
+[ext_resource type="AudioStream" uid="uid://d1vkncnglpo7o" path="res://resources/audio/SFX/130787__alexsani__butane-lighter-turn-on.wav" id="11_sdmt1"]
+[ext_resource type="AudioStream" uid="uid://bld5x3kcb52ib" path="res://resources/audio/SFX/347323__newagesoup__thick-stamp-sub.wav" id="12_aiut5"]
+[ext_resource type="AudioStream" uid="uid://ct1c1gspnresc" path="res://resources/audio/SFX/Interface Percussion Snap.wav" id="12_ibq3n"]
+[ext_resource type="AudioStream" uid="uid://bklmkvrif44oj" path="res://resources/audio/SFX/SBvr_Power Button 003.wav" id="13_0da4l"]
+[ext_resource type="AudioStream" uid="uid://ccnkybi1mqv24" path="res://resources/audio/SFX/530448__mellau__whoosh-short-5.wav" id="13_v3xle"]
 [ext_resource type="Texture2D" uid="uid://3ys1rl51rd4y" path="res://art/big-group.png" id="16_1mu3d"]
+[ext_resource type="AudioStream" uid="uid://c16b4kno18chu" path="res://resources/audio/SFX/Wooden05.wav" id="17_ibq3n"]
 [ext_resource type="Texture2D" uid="uid://cmlw0uhah3h5d" path="res://art/ui/Folder_Blue.png" id="22_l2mp2"]
 [ext_resource type="Texture2D" uid="uid://cdbpv1l0ma3jw" path="res://art/ui/Folder_Red.png" id="23_luggl"]
 [ext_resource type="PackedScene" uid="uid://bg63q87i1t10o" path="res://src/deck.tscn" id="24_gl7qb"]
@@ -164,6 +171,13 @@ cursed_weight = 10.0
 legendary_weight = 2.0
 possible_card_values = Array[ExtResource("3_ebjq7")]([SubResource("Resource_vctk2"), SubResource("Resource_8v8u7"), SubResource("Resource_kc07b"), SubResource("Resource_qa3yo"), SubResource("Resource_2ilvo"), SubResource("Resource_ia4kg"), SubResource("Resource_tlg2c"), SubResource("Resource_h3134"), SubResource("Resource_qtfs4"), SubResource("Resource_h75i6")])
 possible_card_stamps = Array[ExtResource("4_1mu3d")]([SubResource("Resource_uhfec"), SubResource("Resource_8ay58"), SubResource("Resource_rrs27"), SubResource("Resource_teun7"), SubResource("Resource_ctv0l"), SubResource("Resource_l0nas"), SubResource("Resource_0cqvu")])
+reward_claim_sfx = ExtResource("11_af621")
+reward_denied_sfx = ExtResource("12_ibq3n")
+reward_skip_sfx = ExtResource("13_0da4l")
+card_destroy_sfx = ExtResource("11_sdmt1")
+card_stamp_sfx = ExtResource("12_aiut5")
+panel_slide_sfx = ExtResource("13_v3xle")
+continue_sfx = ExtResource("17_ibq3n")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1335340930]
 layout_mode = 1

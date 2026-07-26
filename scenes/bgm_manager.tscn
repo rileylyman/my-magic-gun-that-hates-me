@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bvn4wblxpraex"]
+
+[ext_resource type="Script" uid="uid://c7botnoxch6er" path="res://scenes/bgm_manager.gd" id="1_pf0ca"]
+[ext_resource type="AudioStream" uid="uid://dgrkccf732bes" path="res://resources/audio/Music/wizardstuff.mp3" id="2_ecr01"]
+
+[node name="BgmManager" type="Node2D" unique_id=1309025124 node_paths=PackedStringArray("bgm_player")]
+script = ExtResource("1_pf0ca")
+bgm_stream = ExtResource("2_ecr01")
+bgm_player = NodePath("BGMPlayer")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=653157366]
+stream = ExtResource("2_ecr01")

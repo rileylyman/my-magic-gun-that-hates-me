@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalManager="*uid://qmxgs3yld73w"
 DebugPanel="*uid://d2s1bh7goagw7"
+BGMManager="*uid://bvn4wblxpraex"
 
 [display]
 

@@ -36,11 +36,15 @@
 [ext_resource type="AudioStream" uid="uid://cfds3ubdlubxx" path="res://resources/audio/SFX/iron_hit07.wav" id="31_ctv0l"]
 [ext_resource type="AudioStream" uid="uid://buaruvopcvjnc" path="res://resources/audio/SFX/Clive Davis Institute of Recorded Music 2.mp3" id="31_l0nas"]
 [ext_resource type="PackedScene" uid="uid://e517ujgylxx5" path="res://scenes/game_over.tscn" id="32_teun7"]
+[ext_resource type="AudioStream" uid="uid://c4qcllwwhiqkj" path="res://resources/audio/SFX/789793__quatricise__pop-4.wav" id="36_0kxc8"]
 [ext_resource type="PackedScene" uid="uid://bg63q87i1t10o" path="res://src/deck.tscn" id="36_id4ro"]
 [ext_resource type="Texture2D" uid="uid://cmlw0uhah3h5d" path="res://art/ui/Folder_Blue.png" id="37_4f78d"]
+[ext_resource type="AudioStream" uid="uid://cbb5stysqrlos" path="res://resources/audio/SFX/SBmb_Music Box C 059.wav" id="37_5vw3x"]
 [ext_resource type="Texture2D" uid="uid://cdbpv1l0ma3jw" path="res://art/ui/Folder_Red.png" id="38_4f78d"]
 [ext_resource type="Script" uid="uid://gkif0nt3x13i" path="res://src/battle_tutorial.gd" id="39_8niob"]
 [ext_resource type="FontFile" uid="uid://ufw3f8ks77rw" path="res://art/fonts/MADE Mirage Black PERSONAL USE.otf" id="40_vpw1m"]
+[ext_resource type="AudioStream" uid="uid://bai1gibjmlqrs" path="res://resources/audio/SFX/paper.wav" id="41_7o1e3"]
+[ext_resource type="AudioStream" uid="uid://lshl1ya5w7sf" path="res://resources/audio/SFX/coin.wav" id="42_0kxc8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
@@ -561,6 +565,8 @@ enemy_defeated_sfx = ExtResource("31_ctv0l")
 game_over_sfx = ExtResource("31_l0nas")
 stamp_trigger_sfx = ExtResource("30_43nnu")
 artifact_trigger_sfx = ExtResource("26_id4ro")
+chest_reveal_sfx = ExtResource("36_0kxc8")
+chest_open_sfx = ExtResource("37_5vw3x")
 game_over_scene = ExtResource("32_teun7")
 battle_tutorial = NodePath("../TutorialCanvasLayer/BattleTutorial")
 sfx_pitch_variation = 0.2
@@ -615,6 +621,8 @@ grow_vertical = 2
 script = ExtResource("39_8niob")
 tutorial_panels = [NodePath("Panel"), NodePath("Panel2"), NodePath("Panel3"), NodePath("Panel4"), NodePath("Panel5")]
 dim_background = NodePath("ColorRect")
+panel_advance_sfx = ExtResource("41_7o1e3")
+tutorial_finish_sfx = ExtResource("42_0kxc8")
 
 [node name="ColorRect" type="ColorRect" parent="TutorialCanvasLayer/BattleTutorial" unique_id=606853863]
 layout_mode = 1

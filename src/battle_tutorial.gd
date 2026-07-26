@@ -5,6 +5,8 @@ signal finished
 
 @export var tutorial_panels: Array[Control] = []
 @export var dim_background: ColorRect
+@export var panel_advance_sfx: AudioStream
+@export var tutorial_finish_sfx: AudioStream
 
 var current_panel_index: int = -1
 var is_running: bool = false
@@ -105,6 +107,16 @@ func _input(event: InputEvent) -> void:
 	show_next_panel()
 
 
+func play_tutorial_sfx(
+	stream: AudioStream
+) -> void:
+	if %GameManager != null:
+		%GameManager.play_sfx(
+			stream,
+			true
+		)
+
+
 func show_next_panel() -> void:
 	hide_current_panel()
 
@@ -113,8 +125,16 @@ func show_next_panel() -> void:
 	)
 
 	if current_panel_index < 0:
+		play_tutorial_sfx(
+			tutorial_finish_sfx
+		)
+
 		finish_tutorial()
 		return
+
+	play_tutorial_sfx(
+		panel_advance_sfx
+	)
 
 	show_current_panel()
 

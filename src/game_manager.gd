@@ -22,6 +22,8 @@ extends Node2D
 @export var game_over_sfx: AudioStream
 @export var stamp_trigger_sfx: AudioStream
 @export var artifact_trigger_sfx: AudioStream
+@export var chest_reveal_sfx: AudioStream
+@export var chest_open_sfx: AudioStream
 
 @export_category("Scene Flow")
 
@@ -491,12 +493,16 @@ func end_round() -> void:
 func transform_enemy_into_chest() -> void:
 	%EnemyTexture.visible = false
 	%ChestTexture.visible = true
+	
+	play_sfx(chest_reveal_sfx)
 
 	if not %ChestTexture.pressed.is_connected(_on_chest_pressed):
 		%ChestTexture.pressed.connect(_on_chest_pressed)
 
 
 func _on_chest_pressed() -> void:
+	play_sfx(chest_open_sfx)
+	
 	%ChestTexture.pressed.disconnect(_on_chest_pressed)
 	GlobalManager.finish_current_battle()
 
@@ -1283,6 +1289,7 @@ func animate_card_discard(card: Card) -> void:
 func add_to_hand(card) -> void:
 	hand.append(card)
 	%HandPos.add_child(card)
+	play_sfx(card_draw_sfx, true)
 
 func reshuffle_discard_into_drawpile() -> void:
 	drawpile.append_array(discard)
