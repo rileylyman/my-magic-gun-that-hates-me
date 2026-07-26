@@ -402,6 +402,7 @@ func load_debuff_icons() -> void:
 
 		icon.debuff = active_debuff.debuff
 		icon.gm = self
+		active_debuff.debuff.game_repr = icon
 
 		%DebuffsHBox.add_child(icon)
 		debuff_icons.append(icon)

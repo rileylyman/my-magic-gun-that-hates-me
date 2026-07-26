@@ -9,7 +9,7 @@ var seq: int = 0
 var _was_ever_active := false
 
 func _process(_delta: float) -> void:
-	$SprintLabel.text = "Sprint " + str(seq)
+	$SprintLabel.text = "Round " + str(seq)
 	$Label.text = str(value)
 	if not active:
 		scale = Vector2.ONE

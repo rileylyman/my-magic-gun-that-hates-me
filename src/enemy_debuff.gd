@@ -5,6 +5,17 @@ extends Resource
 @export_multiline var description: String
 @export var icon: Texture = preload("res://art/enemy_debuffs/debuff_amber2.png")
 
+var game_repr: DebuffIcon = null
+
+
+func shake(show_text: String = "") -> void:
+	if game_repr != null:
+		await game_repr.shake(show_text, true)
+
+
+func shake_no_sound(show_text: String = "") -> void:
+	if game_repr != null:
+		await game_repr.shake(show_text, false)
 
 
 func battle_start_callback(

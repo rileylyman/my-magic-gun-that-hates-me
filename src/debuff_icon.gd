@@ -23,7 +23,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	$Tooltip.visible = false
 
-func shake(show_text: String = "") -> void:
+func shake(show_text: String = "", play_sound: bool = true) -> void:
 
 	var curr_rot := rotation
 	var curr_scale := scale
@@ -52,7 +52,8 @@ func shake(show_text: String = "") -> void:
 
 	await tween.finished
 	if show_text != "":
-		gm.play_artifact_trigger_sound()
+		if play_sound:
+			gm.play_artifact_trigger_sound()
 		%ShakeText.text = show_text
 		%ShakeTextContainer.visible = true
 		%ShakeTextContainer.global_position = global_position + Vector2(0, 48)
