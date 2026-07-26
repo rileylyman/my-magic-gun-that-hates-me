@@ -4,7 +4,7 @@ extends Node
 
 @export var bgm_stream: AudioStream
 @export var autoplay: bool = true
-@export var music_bus: StringName = &"Music"
+@export var music_bus: StringName = &"Master"
 
 @export_range(-40.0, 6.0, 0.1)
 var base_volume_db: float = -8.0
