@@ -3,18 +3,10 @@
 [ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_o7lef"]
 [ext_resource type="Texture2D" uid="uid://ogxcfd5n5acc" path="res://art/enemy_debuffs/debuff_stapleRemover.png" id="2_xm2ig"]
 [ext_resource type="Script" uid="uid://dt2nsdsn3jid1" path="res://resources/debuffs/pulled_apart.gd" id="3_brcpu"]
-[ext_resource type="Texture2D" uid="uid://cebw04yg1guv7" path="res://art/enemy_debuffs/debuff_Hansong.png" id="4_fgckp"]
-[ext_resource type="Script" uid="uid://cvlsdht1uvy10" path="res://resources/debuffs/onboarding_call.gd" id="5_p43kq"]
 [ext_resource type="Texture2D" uid="uid://cy1eolbfbobc8" path="res://art/enemy_debuffs/debuff_david.png" id="6_j0klh"]
 [ext_resource type="Script" uid="uid://dyjg4orysl1qa" path="res://resources/debuffs/lured.gd" id="7_rensi"]
-[ext_resource type="Texture2D" uid="uid://go8vk3n4j1q" path="res://art/enemy_debuffs/debuff_ethan.png" id="8_0t158"]
-[ext_resource type="Script" uid="uid://bdy736a1xfb65" path="res://resources/debuffs/buried.gd" id="9_nu0ie"]
 [ext_resource type="Texture2D" uid="uid://bq4p7wey6vpdc" path="res://art/enemy_debuffs/debuff_Nic2.png" id="10_skwsv"]
 [ext_resource type="Script" uid="uid://bs3aamudahvww" path="res://resources/debuffs/scribbled.gd" id="11_hxvt1"]
-[ext_resource type="Texture2D" uid="uid://be05hn7llsatd" path="res://art/enemy_debuffs/debuff_riley2.png" id="12_4h0jy"]
-[ext_resource type="Script" uid="uid://dymdp36vip465" path="res://resources/debuffs/git_forked.gd" id="13_r8xq1"]
-[ext_resource type="Texture2D" uid="uid://yyb1axlyxfdh" path="res://art/enemy_debuffs/debuff_riley.png" id="14_so8i4"]
-[ext_resource type="Script" uid="uid://37dh0q1211gb" path="res://resources/debuffs/merge_conflict.gd" id="15_8jyrx"]
 [ext_resource type="Texture2D" uid="uid://b8l4alkkqmjph" path="res://art/enemy_debuffs/debuff_Nic.png" id="16_7no04"]
 [ext_resource type="Script" uid="uid://dl2dbpsigukpg" path="res://resources/debuffs/erased.gd" id="17_1tm3g"]
 [ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="18_mvxlf"]
@@ -37,19 +29,6 @@ debuff = SubResource("Resource_gjng7")
 scope = 1
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
-[sub_resource type="Resource" id="Resource_h8uh0"]
-script = ExtResource("5_p43kq")
-title = "Onboarded"
-description = "Cards deal half Damage during the first 5 Ticks of this Round."
-icon = ExtResource("4_fgckp")
-metadata/_custom_type_script = "uid://cvlsdht1uvy10"
-
-[sub_resource type="Resource" id="Resource_oru4l"]
-script = ExtResource("1_o7lef")
-debuff = SubResource("Resource_h8uh0")
-scope = 1
-metadata/_custom_type_script = "uid://ci46gty6mtmrb"
-
 [sub_resource type="Resource" id="Resource_2tn58"]
 script = ExtResource("7_rensi")
 title = "Lured"
@@ -60,20 +39,6 @@ metadata/_custom_type_script = "uid://dyjg4orysl1qa"
 [sub_resource type="Resource" id="Resource_qfcpf"]
 script = ExtResource("1_o7lef")
 debuff = SubResource("Resource_2tn58")
-scope = 1
-sprint_number = 2
-metadata/_custom_type_script = "uid://ci46gty6mtmrb"
-
-[sub_resource type="Resource" id="Resource_e243k"]
-script = ExtResource("9_nu0ie")
-title = "Buried"
-description = "The lowest Max Value Card no longer progresses this Round."
-icon = ExtResource("8_0t158")
-metadata/_custom_type_script = "uid://bdy736a1xfb65"
-
-[sub_resource type="Resource" id="Resource_rjy10"]
-script = ExtResource("1_o7lef")
-debuff = SubResource("Resource_e243k")
 scope = 1
 sprint_number = 2
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
@@ -90,34 +55,6 @@ script = ExtResource("1_o7lef")
 debuff = SubResource("Resource_g5d72")
 scope = 1
 sprint_number = 3
-metadata/_custom_type_script = "uid://ci46gty6mtmrb"
-
-[sub_resource type="Resource" id="Resource_y6b1l"]
-script = ExtResource("13_r8xq1")
-title = "Git Forked"
-description = "Whenever a 3 is displayed on the Field, Cards cannot deal Damage."
-icon = ExtResource("12_4h0jy")
-metadata/_custom_type_script = "uid://dymdp36vip465"
-
-[sub_resource type="Resource" id="Resource_af2ii"]
-script = ExtResource("1_o7lef")
-debuff = SubResource("Resource_y6b1l")
-scope = 1
-sprint_number = 3
-metadata/_custom_type_script = "uid://ci46gty6mtmrb"
-
-[sub_resource type="Resource" id="Resource_q4fo0"]
-script = ExtResource("15_8jyrx")
-title = "Merge Conflicted"
-description = "Cards with a Max Value of a multiple of 3 deal no Damage."
-icon = ExtResource("14_so8i4")
-metadata/_custom_type_script = "uid://37dh0q1211gb"
-
-[sub_resource type="Resource" id="Resource_nfhcq"]
-script = ExtResource("1_o7lef")
-debuff = SubResource("Resource_q4fo0")
-scope = 1
-sprint_number = 5
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_p2mre"]
@@ -167,5 +104,5 @@ name = "Zaizai, The CEO"
 health = 500000
 enemy_texture = ExtResource("22_nivxh")
 counter_values = Array[int]([99, 88, 77, 66, 99])
-debuffs = Array[ExtResource("1_o7lef")]([SubResource("Resource_gxc0c"), SubResource("Resource_oru4l"), SubResource("Resource_qfcpf"), SubResource("Resource_rjy10"), SubResource("Resource_135ie"), SubResource("Resource_af2ii"), SubResource("Resource_nfhcq"), SubResource("Resource_hw7af"), SubResource("Resource_1fprt"), SubResource("Resource_22cjp")])
+debuffs = Array[ExtResource("1_o7lef")]([SubResource("Resource_gxc0c"), SubResource("Resource_qfcpf"), SubResource("Resource_135ie"), SubResource("Resource_hw7af"), SubResource("Resource_1fprt"), SubResource("Resource_22cjp")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"
