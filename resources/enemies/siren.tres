@@ -53,7 +53,7 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 [resource]
 script = ExtResource("2_dnrcc")
 name = "David, Talent Aquisition"
-health = 45000
+health = 90000
 enemy_texture = ExtResource("2_jxjhr")
 counter_values = Array[int]([80, 30, 30, 80])
 debuffs = Array[ExtResource("1_qln16")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1"), SubResource("Resource_agsw6"), SubResource("Resource_4spe6")])

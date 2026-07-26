@@ -61,6 +61,7 @@ metadata/_custom_type_script = "uid://bdy736a1xfb65"
 [sub_resource type="Resource" id="Resource_mkmdd"]
 script = ExtResource("1_bygru")
 debuff = SubResource("Resource_lp0wq")
+scope = 1
 sprint_number = 5
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
@@ -78,7 +79,7 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 [resource]
 script = ExtResource("2_a1q4s")
 name = "Marq, Office Dog"
-health = 60000
+health = 600000
 enemy_texture = ExtResource("6_u01tq")
 counter_values = Array[int]([34, 49, 40, 18, 49, 27])
 debuffs = Array[ExtResource("1_bygru")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1"), SubResource("Resource_62x02"), SubResource("Resource_1aunc"), SubResource("Resource_mkmdd"), SubResource("Resource_ugxhh")])

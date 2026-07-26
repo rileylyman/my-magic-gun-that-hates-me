@@ -138,7 +138,7 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 [resource]
 script = ExtResource("2_j7l2u")
 name = "Zaizai, The CEO"
-health = 999999
+health = 9999999
 enemy_texture = ExtResource("10_1divl")
 counter_values = Array[int]([99, 88, 77, 66, 55, 99])
 debuffs = Array[ExtResource("1_2bvm0")]([SubResource("Resource_gxc0c"), SubResource("Resource_oru4l"), SubResource("Resource_qfcpf"), SubResource("Resource_rjy10"), SubResource("Resource_135ie"), SubResource("Resource_af2ii"), SubResource("Resource_nfhcq"), SubResource("Resource_hw7af"), SubResource("Resource_1fprt"), SubResource("Resource_22cjp"), SubResource("Resource_fasfm")])
