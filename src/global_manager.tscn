@@ -33,7 +33,6 @@
 [ext_resource type="Resource" uid="uid://cb8j14mgaq8eu" path="res://resources/Cenemies/dog.tres" id="14_pdhvp"]
 [ext_resource type="Resource" uid="uid://c3n65230nbgx8" path="res://resources/Cenemies/cat.tres" id="15_nmktb"]
 [ext_resource type="PackedScene" uid="uid://bcg3y8w20bks5" path="res://scenes/main_menu.tscn" id="20_444rb"]
-
 [ext_resource type="PackedScene" uid="uid://viqtlyh54ekq" path="res://resources/artifacts/blueprints.tscn" id="art50"]
 [ext_resource type="PackedScene" uid="uid://2aav8s8wt476" path="res://resources/artifacts/broken_clock.tscn" id="art51"]
 [ext_resource type="PackedScene" uid="uid://cg2rtaqtfwp3l" path="res://resources/artifacts/cosmic_accelerator.tscn" id="art52"]
@@ -81,8 +80,8 @@
 script = ExtResource("1_nyfjn")
 enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_8s7se"), ExtResource("4_rx5eu"), ExtResource("5_16507"), ExtResource("6_ialgl"), ExtResource("7_e4fbi"), ExtResource("8_r81dc"), ExtResource("9_kejkm"), ExtResource("10_td8da"), ExtResource("11_mfeft"), ExtResource("12_7gtfv"), ExtResource("13_ynwwa"), ExtResource("14_pdhvp"), ExtResource("15_nmktb")])
 Challenge_enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("3_3ed05"), ExtResource("4_edw4j"), ExtResource("7_47fa5"), ExtResource("8_444rb"), ExtResource("9_47fa5"), ExtResource("10_47fa5"), ExtResource("5_iuecx"), ExtResource("6_k753k"), ExtResource("8_bbp0f"), ExtResource("7_o3l8d"), ExtResource("12_47fa5")])
-enemy_health_multiplier = 1.0
 artifact_scenes = Array[PackedScene]([ExtResource("art50"), ExtResource("art51"), ExtResource("art52"), ExtResource("art53"), ExtResource("art54"), ExtResource("art55"), ExtResource("art56"), ExtResource("art57"), ExtResource("art58"), ExtResource("art59"), ExtResource("art60"), ExtResource("art61"), ExtResource("art62"), ExtResource("art63"), ExtResource("art64"), ExtResource("art65"), ExtResource("art67"), ExtResource("art68"), ExtResource("art69"), ExtResource("art70"), ExtResource("art71"), ExtResource("art72"), ExtResource("art73"), ExtResource("art74"), ExtResource("art75"), ExtResource("art76"), ExtResource("art77"), ExtResource("art78"), ExtResource("art79"), ExtResource("art80"), ExtResource("art81"), ExtResource("art82"), ExtResource("art83"), ExtResource("art84"), ExtResource("art85"), ExtResource("art86"), ExtResource("art87"), ExtResource("art88"), ExtResource("art89"), ExtResource("art90"), ExtResource("art91"), ExtResource("art92")])
+enemy_health_multiplier = 1.0
 battle_scene = ExtResource("5_ioumm")
 reward_scene = ExtResource("6_ioumm")
 win_scene = ExtResource("6_4njm7")
