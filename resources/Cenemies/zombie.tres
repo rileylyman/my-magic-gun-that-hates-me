@@ -45,7 +45,6 @@ metadata/_custom_type_script = "uid://crrqbfmtm1sxn"
 script = ExtResource("1_qrusp")
 debuff = SubResource("Resource_kni80")
 scope = 1
-sprint_number = 4
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [resource]
