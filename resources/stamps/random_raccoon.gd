@@ -35,4 +35,5 @@ func when_hit_callback(state: TickState) -> void:
 			)
 
 	source_card.max_value = new_value
+	source_card.curr = new_value
 	source_card.update_number_feature()

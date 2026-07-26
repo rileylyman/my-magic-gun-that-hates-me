@@ -2,12 +2,20 @@
 
 [ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://i4hdh85ll2lc" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://bfk3qcjtesyr3" path="res://art/DungeonsAtWork.png" id="3_5pajh"]
 [ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://co8k45566mjrn" path="res://art/ui/Submit_Highlight.png" id="4_8ln24"]
+[ext_resource type="Texture2D" uid="uid://ccctspnpq1eg8" path="res://art/enemies/Enemy_AmberTorturedArtist.png" id="4_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://bex7u2x26rjf8" path="res://art/enemies/Enemy_EthanOfficeDog.png" id="5_a8gd2"]
 [ext_resource type="Texture2D" uid="uid://bhai0cokx4e4a" path="res://art/ui/Frame_Top.png" id="5_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://cq6i6x00k4xm4" path="res://art/enemies/Enemy_Zaizai.png" id="6_hstxw"]
 [ext_resource type="Texture2D" uid="uid://bu8quyctmdpfb" path="res://art/ui/Frame_Bottom.png" id="6_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://bun7xomljms8o" path="res://art/ui/Frame_Left.png" id="7_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://csdwj3cchasmd" path="res://art/enemies/Enemy_NicGraphicDesigner.png" id="7_8egab"]
+[ext_resource type="Texture2D" uid="uid://bi7pag67w2nbh" path="res://art/enemies/Enemy_RileySoftwareImp.png" id="8_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="8_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://bp2kgraihu4h7" path="res://art/enemies/Enemy_HansongProductionWizard.png" id="9_svtp6"]
+[ext_resource type="Texture2D" uid="uid://cf28gjw5jlq71" path="res://art/enemies/Enemy_DavidTalentAquisition.png" id="10_1dfpl"]
 
 [node name="MainMenu" type="Control" unique_id=1011572421]
 layout_mode = 3
@@ -28,25 +36,94 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2627451, 0.21568628, 0.654902, 1)
 
-[node name="Label" type="Label" parent="." unique_id=1144237558]
+[node name="DungeonsAtWork" type="Sprite2D" parent="." unique_id=1155860688]
+position = Vector2(573.00006, 124)
+scale = Vector2(0.24743587, 0.24743591)
+texture = ExtResource("3_5pajh")
+
+[node name="EnemyAmberTorturedArtist" type="Sprite2D" parent="." unique_id=310173986]
+position = Vector2(810.00006, 485)
+scale = Vector2(0.23320891, 0.23320891)
+texture = ExtResource("4_j7ex8")
+
+[node name="EnemyEthanOfficeDog" type="Sprite2D" parent="." unique_id=638905963]
+position = Vector2(231.99998, 430.99997)
+scale = Vector2(0.24480549, 0.24480546)
+texture = ExtResource("5_a8gd2")
+
+[node name="EnemyZaizai" type="Sprite2D" parent="." unique_id=1475324190]
+position = Vector2(136, 261)
+scale = Vector2(0.35606065, 0.35606065)
+texture = ExtResource("6_hstxw")
+
+[node name="EnemyNicGraphicDesigner" type="Sprite2D" parent="." unique_id=763204047]
+position = Vector2(1041.9999, 209.00003)
+rotation = -0.05887394
+scale = Vector2(0.22279304, 0.22279309)
+texture = ExtResource("7_8egab")
+
+[node name="EnemyRileySoftwareImp" type="Sprite2D" parent="." unique_id=1792924676]
+position = Vector2(338, 280)
+scale = Vector2(0.34902596, 0.34902596)
+texture = ExtResource("8_gw5y6")
+
+[node name="EnemyHansongProductionWizard" type="Sprite2D" parent="." unique_id=1727481648]
+position = Vector2(876.00006, 291.00003)
+scale = Vector2(0.22797692, 0.22797692)
+texture = ExtResource("9_svtp6")
+
+[node name="EnemyDavidTalentAquisition" type="Sprite2D" parent="." unique_id=796013753]
+position = Vector2(1000.00006, 461)
+rotation = 0.08574955
+scale = Vector2(0.23863627, 0.2386363)
+texture = ExtResource("10_1dfpl")
+
+[node name="TopFrame" type="TextureRect" parent="." unique_id=1479268614]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -132.0
-offset_top = 86.0
-offset_right = 132.0
-offset_bottom = 169.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.1
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 64
-text = "Dungeons At Work"
-horizontal_alignment = 1
+texture = ExtResource("5_tbmy8")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="BottomFrame" type="TextureRect" parent="." unique_id=1174453000]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.099976
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_jk1qb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="LeftFrame" type="TextureRect" parent="." unique_id=1592927053]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 69.08374
+grow_vertical = 2
+texture = ExtResource("7_5dd4i")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="RightFrame" type="TextureRect" parent="." unique_id=175181930]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.69995
+offset_right = 36.38379
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_lgwnu")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="StartGame" type="TextureButton" parent="." unique_id=1887007508]
 unique_name_in_owner = true
@@ -56,10 +133,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -173.71875
-offset_top = -27.25
-offset_right = 173.71875
-offset_bottom = 27.25
+offset_left = -173.0
+offset_top = 17.0
+offset_right = 174.4375
+offset_bottom = 71.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -96,10 +173,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -173.719
-offset_top = 176.0
-offset_right = 173.7185
-offset_bottom = 230.5
+offset_left = -174.0
+offset_top = 129.0
+offset_right = 173.4375
+offset_bottom = 183.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -124,52 +201,6 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 2
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 27
-text = "Challenge Mode"
+text = "Hard Mode"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TopFrame" type="TextureRect" parent="." unique_id=1479268614]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 29.1
-grow_horizontal = 2
-texture = ExtResource("5_tbmy8")
-expand_mode = 5
-stretch_mode = 4
-
-[node name="BottomFrame" type="TextureRect" parent="." unique_id=1174453000]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -29.099976
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("6_jk1qb")
-expand_mode = 5
-stretch_mode = 4
-
-[node name="LeftFrame" type="TextureRect" parent="." unique_id=1592927053]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 62.977776
-grow_vertical = 2
-texture = ExtResource("7_5dd4i")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="RightFrame" type="TextureRect" parent="." unique_id=175181930]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.69995
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("8_lgwnu")
-expand_mode = 3
-stretch_mode = 4

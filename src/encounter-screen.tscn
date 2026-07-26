@@ -617,6 +617,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 script = ExtResource("39_8niob")
 tutorial_panels = [NodePath("Panel"), NodePath("Panel2"), NodePath("Panel3"), NodePath("Panel4"), NodePath("Panel5")]
 dim_background = NodePath("ColorRect")
@@ -631,6 +632,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+mouse_default_cursor_shape = 2
 color = Color(0, 0, 0, 0.39215687)
 
 [node name="Panel" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=1666911915]
@@ -642,6 +644,7 @@ offset_left = 27.0
 offset_top = 208.0
 offset_right = 222.568
 offset_bottom = 324.208
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel" unique_id=1193906716]
 layout_mode = 0
@@ -649,11 +652,13 @@ offset_left = 11.0
 offset_top = 18.0
 offset_right = 345.0
 offset_bottom = 244.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "Welcome to your first day on the job!
 The task is simple enough: by the end of your deadline, defeat the co-worker."
 label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel2" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=1165448139]
@@ -665,6 +670,7 @@ offset_left = 409.0
 offset_top = 86.0
 offset_right = 962.568
 offset_bottom = 114.20799
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel2" unique_id=663045684]
 layout_mode = 0
@@ -672,10 +678,12 @@ offset_left = 21.0
 offset_top = 16.0
 offset_right = 706.0
 offset_bottom = 194.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "Here is your deadline. Use your time wisely - if all rounds tick out and you've not defeated your enemy, well, you'll hear from our HR department."
 label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel3" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=677257578]
@@ -687,6 +695,7 @@ offset_left = 427.0
 offset_top = 466.0
 offset_right = 947.568
 offset_bottom = 513.208
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel3" unique_id=903735330]
 layout_mode = 0
@@ -694,10 +703,12 @@ offset_left = 7.0
 offset_top = 5.0
 offset_right = 685.0
 offset_bottom = 183.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "How to do that, you ask? Each round, you get 5 cards dealt to you from your deck. You can submit up to 3 cards per round. Once submitted, the card number counts down one tick at a time and deals damage when it reaches zero."
 label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel4" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=885197114]
@@ -709,6 +720,7 @@ offset_left = 411.0
 offset_top = 258.0
 offset_right = 964.568
 offset_bottom = 320.208
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel4" unique_id=2361377]
 layout_mode = 0
@@ -716,10 +728,12 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 697.0
 offset_bottom = 194.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "The damage multiplies if mutliple cards deal damage on the same tick. After winning the encounter, you will have a chance to modify your deck and acquire powerful relics to outperform yourself."
 label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel5" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=1847498340]
@@ -731,15 +745,18 @@ offset_left = 454.0
 offset_top = 300.0
 offset_right = 903.568
 offset_bottom = 301.208
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel5" unique_id=1122755573]
 layout_mode = 0
-offset_left = 33.0
+offset_left = -17.0
 offset_top = 16.0
-offset_right = 675.0
+offset_right = 625.0
 offset_bottom = 194.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "I think that's all for now. Happy climbing up the corporate ladder!"
 label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
 autowrap_mode = 2
