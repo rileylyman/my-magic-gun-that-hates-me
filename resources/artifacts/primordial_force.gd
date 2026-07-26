@@ -7,6 +7,9 @@ func post_tick_callback(state: TickState) -> void:
 		if c.curr <= 0:
 			fired.append(c)
 
+	if fired.size() < 2:
+		return
+
 	var a = fired[0]
 	var b = fired[1]
 
