@@ -37,48 +37,51 @@ grow_vertical = 2
 color = Color(0.2627451, 0.21568628, 0.654902, 1)
 
 [node name="DungeonsAtWork" type="Sprite2D" parent="." unique_id=1155860688]
-position = Vector2(573.00006, 124)
+position = Vector2(577, 230)
 scale = Vector2(0.24743587, 0.24743591)
 texture = ExtResource("3_5pajh")
 
 [node name="EnemyAmberTorturedArtist" type="Sprite2D" parent="." unique_id=310173986]
-position = Vector2(810.00006, 485)
-scale = Vector2(0.23320891, 0.23320891)
+position = Vector2(921.00006, 452)
+scale = Vector2(0.2575664, 0.2575664)
 texture = ExtResource("4_j7ex8")
 
 [node name="EnemyEthanOfficeDog" type="Sprite2D" parent="." unique_id=638905963]
-position = Vector2(231.99998, 430.99997)
+z_index = 1
+position = Vector2(254.99998, 420.99997)
 scale = Vector2(0.24480549, 0.24480546)
 texture = ExtResource("5_a8gd2")
 
 [node name="EnemyZaizai" type="Sprite2D" parent="." unique_id=1475324190]
-position = Vector2(136, 261)
-scale = Vector2(0.35606065, 0.35606065)
+z_index = 11
+position = Vector2(120.000015, 526.00006)
+scale = Vector2(0.31322846, 0.31322846)
 texture = ExtResource("6_hstxw")
 
-[node name="EnemyNicGraphicDesigner" type="Sprite2D" parent="." unique_id=763204047]
-position = Vector2(1041.9999, 209.00003)
-rotation = -0.05887394
-scale = Vector2(0.22279304, 0.22279309)
-texture = ExtResource("7_8egab")
-
 [node name="EnemyRileySoftwareImp" type="Sprite2D" parent="." unique_id=1792924676]
-position = Vector2(338, 280)
-scale = Vector2(0.34902596, 0.34902596)
+position = Vector2(553, 136)
+scale = Vector2(0.2644075, 0.2644075)
 texture = ExtResource("8_gw5y6")
 
 [node name="EnemyHansongProductionWizard" type="Sprite2D" parent="." unique_id=1727481648]
-position = Vector2(876.00006, 291.00003)
+position = Vector2(834, 520)
 scale = Vector2(0.22797692, 0.22797692)
 texture = ExtResource("9_svtp6")
 
 [node name="EnemyDavidTalentAquisition" type="Sprite2D" parent="." unique_id=796013753]
-position = Vector2(1000.00006, 461)
+position = Vector2(1079.9999, 357)
 rotation = 0.08574955
-scale = Vector2(0.23863627, 0.2386363)
+scale = Vector2(0.27889636, 0.27889642)
 texture = ExtResource("10_1dfpl")
 
+[node name="EnemyNicGraphicDesigner" type="Sprite2D" parent="." unique_id=763204047]
+position = Vector2(77, 316)
+rotation = -0.017453292
+scale = Vector2(0.2468607, 0.24686077)
+texture = ExtResource("7_8egab")
+
 [node name="TopFrame" type="TextureRect" parent="." unique_id=1479268614]
+z_index = 20
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -89,6 +92,7 @@ expand_mode = 5
 stretch_mode = 4
 
 [node name="BottomFrame" type="TextureRect" parent="." unique_id=1174453000]
+z_index = 20
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -102,6 +106,7 @@ expand_mode = 5
 stretch_mode = 4
 
 [node name="LeftFrame" type="TextureRect" parent="." unique_id=1592927053]
+z_index = 20
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -112,13 +117,14 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="RightFrame" type="TextureRect" parent="." unique_id=175181930]
+z_index = 20
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.69995
-offset_right = 36.38379
+offset_left = -31.699951
+offset_right = 37.38379
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("8_lgwnu")
@@ -134,9 +140,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -173.0
-offset_top = 17.0
+offset_top = 8.0
 offset_right = 174.4375
-offset_bottom = 71.5
+offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -174,9 +180,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -174.0
-offset_top = 129.0
+offset_top = 79.0
 offset_right = 173.4375
-offset_bottom = 183.5
+offset_bottom = 133.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
