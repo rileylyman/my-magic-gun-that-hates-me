@@ -1,5 +1,6 @@
 extends Artifact
 var working = true
+
 func hand_submit_callback(state: TickState) -> void:
 	working = true
 

@@ -21,6 +21,60 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlt6q"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qor8w"]
+bg_color = Color(0.5019608, 0.6117647, 0.44705883, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmb0c"]
+bg_color = Color(0.2624, 0.32, 0.2336, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uwuh"]
+bg_color = Color(0.3034, 0.37, 0.2701, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3ys0"]
+bg_color = Color(0.627451, 0.29803923, 0.15294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1brii"]
+bg_color = Color(0.31, 0.14508, 0.0744, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0id1w"]
+bg_color = Color(0.45, 0.21059999, 0.108, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
 [node name="ArtifactIcon" type="Control" unique_id=448662212]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
@@ -51,7 +105,6 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=1778769872]
-visible = false
 z_index = 1
 clip_contents = true
 layout_mode = 0
@@ -60,7 +113,6 @@ offset_top = 51.0
 offset_right = 201.0
 offset_bottom = 161.0
 scale = Vector2(0.75, 0.75)
-mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_01wwf")
 
 [node name="TextureRect" type="TextureRect" parent="Tooltip" unique_id=2070078160]
@@ -119,6 +171,40 @@ theme_override_font_sizes/font_size = 14
 text = "Description"
 autowrap_mode = 2
 
+[node name="HSeparator2" type="HSeparator" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1810310820]
+layout_mode = 2
+theme_override_constants/separation = 19
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rlt6q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=685688888]
+layout_mode = 2
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="GoLeft" type="Button" parent="Tooltip/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1990477070]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qor8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kmb0c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uwuh")
+text = " Left "
+
+[node name="Discard" type="Button" parent="Tooltip/MarginContainer/VBoxContainer/HBoxContainer" unique_id=760478891]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_c3ys0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1brii")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0id1w")
+text = " Discard "
+
+[node name="GoRight" type="Button" parent="Tooltip/MarginContainer/VBoxContainer/HBoxContainer" unique_id=588633685]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qor8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kmb0c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uwuh")
+text = " Right "
+
 [node name="ShakeTextContainer" type="PanelContainer" parent="." unique_id=2047658962]
 unique_name_in_owner = true
 visible = false
@@ -156,5 +242,11 @@ text = "+1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Tooltip" to="." method="_on_tooltip_mouse_entered"]
+[connection signal="mouse_exited" from="Tooltip" to="." method="_on_tooltip_mouse_exited"]
+[connection signal="pressed" from="Tooltip/MarginContainer/VBoxContainer/HBoxContainer/GoLeft" to="." method="_on_go_left_pressed"]
+[connection signal="pressed" from="Tooltip/MarginContainer/VBoxContainer/HBoxContainer/Discard" to="." method="_on_discard_pressed"]
+[connection signal="pressed" from="Tooltip/MarginContainer/VBoxContainer/HBoxContainer/GoRight" to="." method="_on_go_right_pressed"]

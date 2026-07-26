@@ -31,7 +31,11 @@ func hand_submit_callback(_state: TickState) -> void:
 
 func shake(show_text: String = "") -> void:
 	if game_repr != null:
-		await game_repr.shake(show_text)
+		await game_repr.shake(show_text, true)
+
+func shake_no_sound(show_text: String = "") -> void:
+	if game_repr != null:
+		await game_repr.shake(show_text, false)
 		
 func encounter_start_callback() -> void:
 	if false:

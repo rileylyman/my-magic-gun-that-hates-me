@@ -32,15 +32,24 @@ func _process(_delta: float) -> void:
 			_stylebox.bg_color = Color(0x5f77bfff)
 		Artifact.ArtifactRarity.LEGENDARY:
 			_stylebox.bg_color = Color(0xa14b22ff)
+	
+	if $Tooltip.visible:
+		var rect = get_global_rect()
+		rect = rect.merge($Tooltip.get_global_rect())
+		if not rect.has_point(get_viewport().get_mouse_position()):
+			$Tooltip.visible = false
+
+	if $Tooltip.visible and gm != null:
+		for a in gm.icons:
+			if a != self and a != null and a.get_node("Tooltip").visible:
+				$Tooltip.visible = false
+				break
+	
 
 func _on_mouse_entered() -> void:
 	$Tooltip.visible = true
 
-
-func _on_mouse_exited() -> void:
-	$Tooltip.visible = false
-
-func shake(show_text: String = "") -> void:
+func shake(show_text: String, play_sound: bool)-> void:
 
 	var curr_rot := rotation
 	var curr_scale := scale
@@ -69,7 +78,8 @@ func shake(show_text: String = "") -> void:
 
 	await tween.finished
 	if show_text != "":
-		gm.play_artifact_trigger_sound()
+		if play_sound:
+			gm.play_artifact_trigger_sound()
 		%ShakeText.text = show_text
 		%ShakeTextContainer.visible = true
 		%ShakeTextContainer.global_position = global_position + Vector2(0, 48)
@@ -102,3 +112,26 @@ func shake(show_text: String = "") -> void:
 		await get_tree().create_timer(0.5).timeout
 		%ShakeTextContainer.visible = false
 	f.call()
+
+
+func _on_go_left_pressed() -> void:
+	move_order(-1)
+
+
+func _on_go_right_pressed() -> void:
+	move_order(1)
+
+func move_order(off: int) -> void:
+	var idx = GlobalManager.artifacts.find(artifact)
+	var new_idx := clampi(idx + off, 0, GlobalManager.artifacts.size() - 1)
+	if new_idx == idx:
+		return
+
+	GlobalManager.artifacts.remove_at(idx)
+	GlobalManager.artifacts.insert(new_idx, artifact)
+	gm.load_artifacts()
+
+
+func _on_discard_pressed() -> void:
+	GlobalManager.artifacts.erase(artifact)
+	gm.load_artifacts()

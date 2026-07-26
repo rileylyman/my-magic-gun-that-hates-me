@@ -248,9 +248,9 @@ func play_sfx(
 
 	player.pitch_scale = final_pitch
 
-	get_tree().root.add_child(player)
+	get_tree().root.add_child.call_deferred(player)
 	player.finished.connect(player.queue_free)
-	player.play()
+	player.play.call_deferred()
 
 
 func get_task_fire_pitch(
@@ -316,6 +316,7 @@ func play_artifact_trigger_sound() -> void:
 func load_artifacts() -> void:
 	for a in %ArtifactHBox.get_children():
 		a.queue_free()
+	icons.clear()
 
 	for a in GlobalManager.artifacts:
 		var icon := (
