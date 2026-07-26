@@ -18,11 +18,11 @@ func post_tick_callback(state: TickState) -> void:
 			fired += 1
 
 	if fired == 0:
-		multiplier += 0.02
+		multiplier += 0.01
 		multiplier = snappedf(multiplier, 0.01)
 		update_description()
-		await shake("+0.02 Mult")
+		await shake("+0.01 Mult")
 		
 	if(state.score>0&&multiplier!=1.0):
-		state.score *= multiplier
+		state.score = round(float(state.score) * multiplier)
 		await shake("x"+str(multiplier))
