@@ -38,6 +38,8 @@
 [ext_resource type="PackedScene" uid="uid://bg63q87i1t10o" path="res://src/deck.tscn" id="36_id4ro"]
 [ext_resource type="Texture2D" uid="uid://cmlw0uhah3h5d" path="res://art/ui/Folder_Blue.png" id="37_4f78d"]
 [ext_resource type="Texture2D" uid="uid://cdbpv1l0ma3jw" path="res://art/ui/Folder_Red.png" id="38_4f78d"]
+[ext_resource type="Script" uid="uid://gkif0nt3x13i" path="res://src/battle_tutorial.gd" id="39_8niob"]
+[ext_resource type="FontFile" uid="uid://ufw3f8ks77rw" path="res://art/fonts/MADE Mirage Black PERSONAL USE.otf" id="40_vpw1m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
@@ -69,6 +71,10 @@ corner_radius_top_right = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
 bg_color = Color(0.02, 0.02, 0.02, 0.5372549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
+font = ExtResource("40_vpw1m")
+font_size = 25
 
 [node name="EncounterScreen" type="Control" unique_id=1278179402]
 layout_mode = 3
@@ -504,7 +510,7 @@ texture = ExtResource("13_mdmcc")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="GameManager" type="Node2D" parent="." unique_id=1642058958]
+[node name="GameManager" type="Node2D" parent="." unique_id=1642058958 node_paths=PackedStringArray("battle_tutorial")]
 unique_name_in_owner = true
 script = ExtResource("7_i3k2v")
 card_scene = ExtResource("5_12btj")
@@ -525,6 +531,7 @@ game_over_sfx = ExtResource("31_l0nas")
 stamp_trigger_sfx = ExtResource("30_43nnu")
 artifact_trigger_sfx = ExtResource("26_id4ro")
 game_over_scene = ExtResource("32_teun7")
+battle_tutorial = NodePath("../TutorialCanvasLayer/BattleTutorial")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.1
 base_battle_speed = 0.7999999999999999
@@ -561,3 +568,128 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 use_duplicate_cards = true
+
+[node name="TutorialCanvasLayer" type="CanvasLayer" parent="." unique_id=1587279946]
+layer = 100
+
+[node name="BattleTutorial" type="Control" parent="TutorialCanvasLayer" unique_id=758133999 node_paths=PackedStringArray("tutorial_panels", "dim_background")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("39_8niob")
+tutorial_panels = [NodePath("Panel"), NodePath("Panel2"), NodePath("Panel3"), NodePath("Panel4"), NodePath("Panel5")]
+dim_background = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="TutorialCanvasLayer/BattleTutorial" unique_id=606853863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Panel" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=1666911915]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.141
+anchor_bottom = 0.15400001
+offset_left = 27.0
+offset_top = 208.0
+offset_right = 222.568
+offset_bottom = 324.208
+
+[node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel" unique_id=1193906716]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 18.0
+offset_right = 356.0
+offset_bottom = 244.0
+text = "Welcome to your first day on the job!
+The task is simple enough: by the end of your deadline, beat down the monster."
+label_settings = SubResource("LabelSettings_bhunq")
+autowrap_mode = 2
+
+[node name="Panel2" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=1165448139]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.141
+anchor_bottom = 0.15400001
+offset_left = 409.0
+offset_top = 86.0
+offset_right = 962.568
+offset_bottom = 173.208
+
+[node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel2" unique_id=663045684]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 194.0
+text = "Here is your deadline. Do use your time wisely. If all the rounds tick out and you are still not done, well, you will be contacted by the HR department."
+label_settings = SubResource("LabelSettings_bhunq")
+autowrap_mode = 2
+
+[node name="Panel3" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=677257578]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.141
+anchor_bottom = 0.15400001
+offset_left = 411.0
+offset_top = 432.0
+offset_right = 964.568
+offset_bottom = 519.208
+
+[node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel3" unique_id=903735330]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 194.0
+text = "How to do that, you ask? Each round, you get 5 cards dealt to you from your deck, and you can play at most 3 of them. Once submitted, the card number counts down and deal damage when it reaches zero."
+label_settings = SubResource("LabelSettings_bhunq")
+autowrap_mode = 2
+
+[node name="Panel4" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=885197114]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.141
+anchor_bottom = 0.15400001
+offset_left = 411.0
+offset_top = 258.0
+offset_right = 964.568
+offset_bottom = 345.208
+
+[node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel4" unique_id=2361377]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 194.0
+text = "The damage multiplies if mutliple card deal damages at the same tick. After each combat, you will have chance to modify your deck and acquire powerful relics to empower yourself."
+label_settings = SubResource("LabelSettings_bhunq")
+autowrap_mode = 2
+
+[node name="Panel5" type="Panel" parent="TutorialCanvasLayer/BattleTutorial" unique_id=1847498340]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.141
+anchor_bottom = 0.15400001
+offset_left = 411.0
+offset_top = 258.0
+offset_right = 964.568
+offset_bottom = 345.208
+
+[node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel5" unique_id=1122755573]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 194.0
+text = "I think that's all for now. Happy leveling up the corporate ladder!"
+label_settings = SubResource("LabelSettings_bhunq")
+autowrap_mode = 2

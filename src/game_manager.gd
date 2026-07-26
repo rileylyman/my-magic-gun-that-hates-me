@@ -27,6 +27,10 @@ extends Node2D
 
 @export var game_over_scene: PackedScene
 
+@export_category("Tutorial")
+
+@export var battle_tutorial: BattleTutorial
+
 @export_category("Sound Settings")
 
 @export var sfx_bus: StringName = &"Master"
@@ -175,6 +179,14 @@ func _ready() -> void:
 	for a in GlobalManager.artifacts:
 		await a.encounter_start_callback()
 	deal_hand()
+
+
+func is_tutorial_active() -> bool:
+	return (
+		battle_tutorial != null
+		and is_instance_valid(battle_tutorial)
+		and battle_tutorial.is_running
+	)
 
 
 func get_sprint_speed_multiplier() -> float:
@@ -400,6 +412,10 @@ func _process(delta: float) -> void:
 		return
 
 	arrange_items()
+
+	if is_tutorial_active():
+		%SubmitButton.disabled = true
+		return
 
 	if active_counter != null and not is_ticking:
 		countdown_cards(delta)
@@ -1205,6 +1221,9 @@ func deal_hand() -> void:
 
 
 func on_card_clicked(card: Card) -> void:
+	if is_tutorial_active():
+		return
+
 	if (
 		card in hand
 		and chosen.size() < GlobalManager.spellslots
@@ -1229,6 +1248,9 @@ func on_card_clicked(card: Card) -> void:
 
 
 func on_start_round_pressed() -> void:
+	if is_tutorial_active():
+		return
+
 	if active_counter != null:
 		return
 
