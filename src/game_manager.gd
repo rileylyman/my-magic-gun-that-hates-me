@@ -1013,12 +1013,21 @@ func add_to_hand(card) -> void:
 	hand.append(card)
 	%HandPos.add_child(card)
 
+func reshuffle_discard_into_drawpile() -> void:
+	drawpile.append_array(discard)
+	discard.clear()
+	drawpile.shuffle()
+
+
 func deal_hand() -> void:
 	var drew_card: bool = false
 
 	for _i in range(
 		GlobalManager.handsize - hand.size()
 	):
+		if drawpile.is_empty() and not discard.is_empty():
+			reshuffle_discard_into_drawpile()
+
 		if drawpile.size() > 0:
 			var card: Card = (
 				drawpile.pop_front()
