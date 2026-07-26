@@ -652,7 +652,7 @@ offset_bottom = 244.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "Welcome to your first day on the job!
-The task is simple enough: by the end of your deadline, beat down the monster."
+The task is simple enough: by the end of your deadline, defeat the co-worker."
 label_settings = SubResource("LabelSettings_bhunq")
 autowrap_mode = 2
 
@@ -674,7 +674,7 @@ offset_right = 706.0
 offset_bottom = 194.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "Here is your deadline. Do use your time wisely. If all the rounds tick out and you are still not done, well, you will hear from the HR department."
+text = "Here is your deadline. Use your time wisely - if all rounds tick out and you've not defeated your enemy, well, you'll hear from our HR department."
 label_settings = SubResource("LabelSettings_bhunq")
 autowrap_mode = 2
 
@@ -696,7 +696,7 @@ offset_right = 685.0
 offset_bottom = 183.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "How to do that, you ask? Each round, you get 5 cards dealt to you from your deck, and you can play at most 3 of them. Once submitted, the card number counts down and deal damage when it reaches zero."
+text = "How to do that, you ask? Each round, you get 5 cards dealt to you from your deck. You can submit up to 3 cards per round. Once submitted, the card number counts down one tick at a time and deals damage when it reaches zero."
 label_settings = SubResource("LabelSettings_bhunq")
 autowrap_mode = 2
 
@@ -718,7 +718,7 @@ offset_right = 697.0
 offset_bottom = 194.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "The damage multiplies if mutliple cards deal damage at the same tick. After winning combat, you will have chances to modify your deck and acquire powerful relics to outperform yourself."
+text = "The damage multiplies if mutliple cards deal damage on the same tick. After winning the encounter, you will have a chance to modify your deck and acquire powerful relics to outperform yourself."
 label_settings = SubResource("LabelSettings_bhunq")
 autowrap_mode = 2
 
@@ -740,6 +740,6 @@ offset_right = 675.0
 offset_bottom = 194.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "I think that's all for now. Happy leveling up the corporate ladder!"
+text = "I think that's all for now. Happy climbing up the corporate ladder!"
 label_settings = SubResource("LabelSettings_bhunq")
 autowrap_mode = 2
