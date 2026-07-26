@@ -6,6 +6,6 @@
 [node name="BrokenClock" type="Node2D" unique_id=1904705558]
 script = ExtResource("1_82exx")
 title = "Broken Clock"
-description = "Even-valued Tasks progress twice each Even Day, but don't progress on Odd Days. Odd-valued Tasks progress twice each Odd Day, but don't progress on Even Days."
+description = "Even Cards progress twice on even Ticks, but do not progress on odd Ticks. Odd Cards progress twice on odd Ticks, but do not progress on even Ticks."
 rarity = 2
 icon = ExtResource("2_4o4hs")

@@ -6,6 +6,6 @@
 [node name="CosmicAccelerator" type="Node2D" unique_id=272006685]
 script = ExtResource("1_1c6r0")
 title = "Cosmic Accelerator"
-description = "When two different Prime-Value Tasks hit together, multiply it by the the sum of the numbers"
+description = "Cards with a Max Value of 10 or higher progress 2 additional times each Tick."
 rarity = 4
 icon = ExtResource("2_vaapf")

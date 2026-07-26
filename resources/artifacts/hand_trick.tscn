@@ -6,6 +6,6 @@
 [node name="HandTrick" type="Node2D" unique_id=48861732]
 script = ExtResource("1_jg1p8")
 title = "Bronze Hand"
-description = "Multiply all Damage by the lowest value Task in your Task Folder."
+description = "Multiply all Damage by the lowest Value Card in your Card Folder."
 rarity = 4
 icon = ExtResource("2_ph3yj")
