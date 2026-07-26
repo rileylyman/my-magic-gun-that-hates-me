@@ -31,6 +31,7 @@ var _rng := RandomNumberGenerator.new()
 var _should_play: bool = false
 var _loop_index: int = 0
 var _target_volume_db: float = 0.0
+var _muted: bool = false
 
 
 func _ready() -> void:
@@ -106,6 +107,20 @@ func stop_bgm(
 	_fade_tween.tween_callback(
 		bgm_player.stop
 	)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("music_toggle"):
+		toggle_mute()
+
+
+func toggle_mute() -> void:
+	_muted = not _muted
+
+	if _muted:
+		pause_bgm()
+	else:
+		resume_bgm()
 
 
 func pause_bgm() -> void:
