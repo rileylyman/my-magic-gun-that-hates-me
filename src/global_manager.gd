@@ -20,6 +20,7 @@ enum TaskSelectionMode {
 @export var reward_scene: PackedScene
 @export var win_scene: PackedScene
 @export var all_tasks_scene: PackedScene
+@export var main_menu_scene: PackedScene
 
 var last_defeated_enemy: EnemyResource = null
 

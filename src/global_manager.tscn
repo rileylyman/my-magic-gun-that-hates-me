@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://bumpgoykipf4s" path="res://resources/enemies/zombie.tres" id="9_47fa5"]
 [ext_resource type="Resource" uid="uid://dkyrdfphfq0h8" path="res://resources/enemies/staple_remover2.tres" id="10_47fa5"]
 [ext_resource type="Resource" uid="uid://cmqh2lhnw7k8y" path="res://resources/enemies/cat.tres" id="12_47fa5"]
+[ext_resource type="PackedScene" uid="uid://bcg3y8w20bks5" path="res://scenes/main_menu.tscn" id="20_444rb"]
 
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
@@ -28,3 +29,4 @@ battle_scene = ExtResource("5_ioumm")
 reward_scene = ExtResource("6_ioumm")
 win_scene = ExtResource("6_4njm7")
 all_tasks_scene = ExtResource("8_4worf")
+main_menu_scene = ExtResource("20_444rb")

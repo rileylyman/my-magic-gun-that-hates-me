@@ -540,6 +540,7 @@ max_sprint_speed_multiplier = 7.0
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
 unique_name_in_owner = true
+position = Vector2(737, 809)
 
 [node name="ViewFullDeckButton" type="TextureButton" parent="." unique_id=935543409]
 unique_name_in_owner = true

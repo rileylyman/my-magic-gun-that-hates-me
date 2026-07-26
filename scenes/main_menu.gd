@@ -1,6 +1,6 @@
 extends Control
 
-@onready var start_game_button: Button = %StartGame
+@onready var start_game_button: TextureButton = %StartGame
 
 
 func _ready() -> void:

@@ -178,7 +178,7 @@ func _ready() -> void:
 	%ScoreBar.curr_score = 0
 	for a in GlobalManager.artifacts:
 		await a.encounter_start_callback()
-	deal_hand()
+	await deal_hand()
 
 
 func is_tutorial_active() -> bool:
@@ -608,7 +608,7 @@ func countdown_cards(delta: float) -> void:
 		tick_state,
 		score_label
 	)
-	finish_tick_day(tick_state)
+	await finish_tick_day(tick_state)
 	end_tick_processing()
 
 
@@ -923,7 +923,7 @@ func finish_tick_day(
 	active_counter.value -= 1
 
 	if active_counter.value == 0:
-		finish_sprint()
+		await finish_sprint()
 
 
 func finish_sprint() -> void:
@@ -935,7 +935,7 @@ func finish_sprint() -> void:
 
 	reset_sprint_speed()
 	play_sfx(sprint_end_sfx)
-	discard_chosen()
+	await discard_chosen()
 	load_debuff_icons()
 
 
@@ -1012,12 +1012,21 @@ func send_sprint_score_off(
 
 func arrange_items() -> void:
 	for c in drawpile:
+		if c.is_shaking:
+			continue
+
 		c.position = - card_size
 
 	for c in discard:
+		if c.is_shaking:
+			continue
+
 		c.position = - card_size
 
 	for c in GlobalManager.deck:
+		if c.is_shaking:
+			continue
+
 		c.apply_scene_size()
 		c.scale = Vector2.ONE
 
@@ -1078,14 +1087,15 @@ func arrange_fan_row(
 		cards[i].scale = Vector2.ONE
 
 
-func arrange_row(
-	cards: Array,
+func get_row_position(
+	index: int,
+	total: int,
 	new_scale: float = 1.0,
 	custom_padding: Vector2 = padding
-) -> void:
+) -> Vector2:
 	var width := (
 		(card_size.x + custom_padding.x)
-		* cards.size()
+		* total
 		* new_scale
 		- custom_padding.x
 		* new_scale
@@ -1093,18 +1103,31 @@ func arrange_row(
 
 	var start_x: float = - width / 2.0
 
+	return Vector2(
+		start_x
+		+ index
+		* (card_size.x + custom_padding.x)
+		* new_scale,
+		0
+	)
+
+
+func arrange_row(
+	cards: Array,
+	new_scale: float = 1.0,
+	custom_padding: Vector2 = padding
+) -> void:
 	for i in range(cards.size()):
 		if cards[i].is_shaking:
 			continue
 
 		cards[i].apply_scene_size()
 
-		cards[i].position = Vector2(
-			start_x
-			+i
-			* (card_size.x + custom_padding.x)
-			* new_scale,
-			0
+		cards[i].position = get_row_position(
+			i,
+			cards.size(),
+			new_scale,
+			custom_padding
 		)
 
 		cards[i].rotation = 0
@@ -1170,22 +1193,70 @@ func ensure_chosen_outlines(total: int) -> void:
 
 
 func discard_chosen() -> void:
-	var discarded_any: bool = not chosen.is_empty()
+	var discarding: Array[Card] = chosen.duplicate()
+	var discarded_any: bool = not discarding.is_empty()
 
-	for c in chosen:
+	for c in discarding:
 		c.curr = c.max_value
 		c.show_damage = false
+
+	chosen.clear()
+
+	for c in discarding:
 		discard.append(c)
+
+		var start_global: Vector2 = c.global_position
 
 		%ChosenPos.remove_child(c)
 		%DeckContainer.add_child(c)
 
-	chosen.clear()
+		c.global_position = start_global
+		c.is_shaking = true
 
 	if discarded_any:
 		play_sfx(card_discard_sfx, true)
 
-	deal_hand()
+	await get_tree().create_timer(0.25).timeout
+
+	for c in discarding:
+		await animate_card_discard(c)
+
+	await deal_hand()
+
+
+func animate_card_discard(card: Card) -> void:
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		card,
+		"position",
+		- card_size,
+		0.3
+	)
+
+	tween.tween_property(
+		card,
+		"rotation",
+		card.rotation + PI / 10,
+		0.3
+	)
+
+	tween.tween_property(
+		card,
+		"scale",
+		Vector2.ONE * 0.6,
+		0.3
+	)
+
+	await tween.finished
+
+	card.is_shaking = false
+	card.rotation = 0
+	card.scale = Vector2.ONE
+
 
 func add_to_hand(card) -> void:
 	hand.append(card)
@@ -1198,7 +1269,7 @@ func reshuffle_discard_into_drawpile() -> void:
 
 
 func deal_hand() -> void:
-	var drew_card: bool = false
+	var drawn_cards: Array[Card] = []
 
 	for _i in range(
 		GlobalManager.handsize - hand.size()
@@ -1212,13 +1283,76 @@ func deal_hand() -> void:
 				as Card
 			)
 
+			var start_global: Vector2 = card.global_position
+
 			hand.append(card)
 			%DeckContainer.remove_child(card)
 			%HandPos.add_child(card)
-			drew_card = true
+			card.global_position = start_global
+			card.is_shaking = true
 
-	if drew_card:
+			drawn_cards.append(card)
+
+	if drawn_cards.is_empty():
+		return
+
+	for card in drawn_cards:
 		play_sfx(card_draw_sfx, true)
+
+		await animate_card_deal(
+			card,
+			hand.find(card),
+			hand.size()
+		)
+
+
+func animate_card_deal(
+	card: Card,
+	index: int,
+	total: int
+) -> void:
+	card.apply_scene_size()
+	card.rotation = randf_range(-0.15, 0.15)
+	card.scale = Vector2.ONE * 0.6
+
+	var target: Vector2 = get_row_position(
+		index,
+		total,
+		0.75,
+		Vector2(-8, 0)
+	)
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		card,
+		"position",
+		target,
+		0.3
+	)
+
+	tween.tween_property(
+		card,
+		"rotation",
+		0.0,
+		0.3
+	)
+
+	tween.tween_property(
+		card,
+		"scale",
+		Vector2.ONE * 0.75,
+		0.3
+	)
+
+	await tween.finished
+
+	card.is_shaking = false
+	card.rotation = 0
+	card.scale = Vector2.ONE * 0.75
 
 
 func on_card_clicked(card: Card) -> void:

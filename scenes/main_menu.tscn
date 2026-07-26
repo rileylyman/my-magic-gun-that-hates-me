@@ -2,9 +2,12 @@
 
 [ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://i4hdh85ll2lc" path="res://scenes/main_menu.gd" id="1_l6cm7"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
-font_size = 56
+[ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://co8k45566mjrn" path="res://art/ui/Submit_Highlight.png" id="4_8ln24"]
+[ext_resource type="Texture2D" uid="uid://bhai0cokx4e4a" path="res://art/ui/Frame_Top.png" id="5_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://bu8quyctmdpfb" path="res://art/ui/Frame_Bottom.png" id="6_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://bun7xomljms8o" path="res://art/ui/Frame_Left.png" id="7_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="8_lgwnu"]
 
 [node name="MainMenu" type="Control" unique_id=1011572421]
 layout_mode = 3
@@ -16,36 +19,117 @@ grow_vertical = 2
 theme = ExtResource("1_ekxnf")
 script = ExtResource("1_l6cm7")
 
-[node name="GameTitle" type="Label" parent="." unique_id=379783219]
-layout_mode = 0
-offset_left = 361.0
-offset_top = 84.0
-offset_right = 796.0
-offset_bottom = 161.0
-text = "Awesome Game"
-label_settings = SubResource("LabelSettings_bhunq")
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1772540565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2627451, 0.21568628, 0.654902, 1)
 
-[node name="StartGame" type="Button" parent="." unique_id=751509466]
+[node name="Label" type="Label" parent="." unique_id=1144237558]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_top = 86.0
+offset_right = 132.0
+offset_bottom = 169.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 64
+text = "Dungeons At Work"
+horizontal_alignment = 1
+
+[node name="StartGame" type="TextureButton" parent="." unique_id=1887007508]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 473.0
-offset_top = 259.0
-offset_right = 674.29034
-offset_bottom = 324.0
-text = "Start Game"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.71875
+offset_top = -27.25
+offset_right = 173.71875
+offset_bottom = 27.25
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_wu84c")
+texture_pressed = ExtResource("3_wu84c")
+texture_hover = ExtResource("4_8ln24")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Options" type="Button" parent="." unique_id=1852489794]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 360.0
-offset_right = 674.29034
-offset_bottom = 425.0
-text = "Options"
+[node name="Label" type="Label" parent="StartGame" unique_id=2048547266]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 27
+text = "Begin Adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Credits" type="Button" parent="." unique_id=2096711884]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 462.0
-offset_right = 674.29034
-offset_bottom = 527.0
-text = "Credits"
+[node name="TopFrame" type="TextureRect" parent="." unique_id=1479268614]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.1
+grow_horizontal = 2
+texture = ExtResource("5_tbmy8")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="BottomFrame" type="TextureRect" parent="." unique_id=1174453000]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.099976
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_jk1qb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="LeftFrame" type="TextureRect" parent="." unique_id=1592927053]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 62.977776
+grow_vertical = 2
+texture = ExtResource("7_5dd4i")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="RightFrame" type="TextureRect" parent="." unique_id=175181930]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.69995
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_lgwnu")
+expand_mode = 3
+stretch_mode = 4
