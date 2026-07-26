@@ -31,7 +31,29 @@ metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
 script = ExtResource("1_v7am5")
 debuff = SubResource("Resource_4f78d")
 scope = 1
+sprint_number = 2
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_0tlya"]
+script = ExtResource("5_xmakp")
+metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
+
+[sub_resource type="Resource" id="Resource_ka2sh"]
+script = ExtResource("1_v7am5")
+debuff = SubResource("Resource_0tlya")
+scope = 1
 sprint_number = 3
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_kni80"]
+script = ExtResource("3_wry4j")
+metadata/_custom_type_script = "uid://crrqbfmtm1sxn"
+
+[sub_resource type="Resource" id="Resource_5ji5t"]
+script = ExtResource("1_v7am5")
+debuff = SubResource("Resource_kni80")
+scope = 1
+sprint_number = 4
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [resource]
@@ -40,5 +62,5 @@ name = "Amber, Tortured Artist"
 health = 3500
 enemy_texture = ExtResource("2_kekpa")
 counter_values = Array[int]([30, 30, 35, 40])
-debuffs = Array[ExtResource("1_v7am5")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
+debuffs = Array[ExtResource("1_v7am5")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1"), SubResource("Resource_ka2sh"), SubResource("Resource_5ji5t")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

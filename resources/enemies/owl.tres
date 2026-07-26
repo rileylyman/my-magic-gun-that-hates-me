@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_cmvcr"]
 [ext_resource type="Texture2D" uid="uid://coxpafiod20m2" path="res://art/enemy_debuffs/debuff_Hansong2.png" id="2_f2tfv"]
 [ext_resource type="Script" uid="uid://7d5o3fjxoth" path="res://resources/debuffs/time_crunched.gd" id="3_fxabb"]
+[ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="6_b16t5"]
 [ext_resource type="Texture2D" uid="uid://bp2kgraihu4h7" path="res://art/enemies/Enemy_HansongProductionWizard.png" id="6_fxabb"]
 
 [sub_resource type="Resource" id="Resource_fxabb"]
@@ -63,11 +64,33 @@ scope = 1
 sprint_number = 4
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
+[sub_resource type="Resource" id="Resource_15s0k"]
+script = ExtResource("3_fxabb")
+metadata/_custom_type_script = "uid://7d5o3fjxoth"
+
+[sub_resource type="Resource" id="Resource_4c3x1"]
+script = ExtResource("1_fh237")
+debuff = SubResource("Resource_15s0k")
+scope = 1
+sprint_number = 5
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_3m5te"]
+script = ExtResource("2_76dlj")
+metadata/_custom_type_script = "uid://cvlsdht1uvy10"
+
+[sub_resource type="Resource" id="Resource_kwpwa"]
+script = ExtResource("1_fh237")
+debuff = SubResource("Resource_3m5te")
+scope = 1
+sprint_number = 6
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
 [resource]
 script = ExtResource("2_cmvcr")
 name = "Hansong, Production Wizard"
 health = 1300
 enemy_texture = ExtResource("6_fxabb")
 counter_values = Array[int]([15, 20, 15, 20, 15, 20])
-debuffs = Array[ExtResource("1_fh237")]([SubResource("Resource_f2tfv"), SubResource("Resource_76dlj"), SubResource("Resource_444rb"), SubResource("Resource_s4dih")])
+debuffs = Array[ExtResource("1_fh237")]([SubResource("Resource_f2tfv"), SubResource("Resource_76dlj"), SubResource("Resource_444rb"), SubResource("Resource_s4dih"), SubResource("Resource_4c3x1"), SubResource("Resource_kwpwa")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"
