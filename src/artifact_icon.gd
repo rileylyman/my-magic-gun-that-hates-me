@@ -1,10 +1,15 @@
 class_name ArtifactIcon
 extends Control
 
+@export var show_buttons := true
+@export var buy_on_click := false
+
 var artifact: Artifact = Artifact.new()
 var gm: GameManager
 
 var _stylebox: StyleBoxFlat
+
+signal on_buy
 
 func _ready() -> void:
 	%Title.text = artifact.title
@@ -17,10 +22,22 @@ func _ready() -> void:
 	_stylebox = %RarityBg.get_theme_stylebox("panel").duplicate()
 	%RarityBg.add_theme_stylebox_override("panel", _stylebox)
 
+func force_tooltip_above() -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	# var tooltip_height: float = $Tooltip.size.y * $Tooltip.scale.y
+
+	# $Tooltip.top_level = true
+	# $Tooltip.global_position = global_position + Vector2(0, -tooltip_height)
+
 func _process(_delta: float) -> void:
 	%Title.text = artifact.title
 	%Desc.text = artifact.description
 	%Rarity.text = Artifact.ArtifactRarity.keys()[artifact.rarity]
+
+	%ButtonContainer.visible = show_buttons
+
 	match artifact.rarity:
 		Artifact.ArtifactRarity.COMMON:
 			_stylebox.bg_color = Color(0xc68338ff)
@@ -38,16 +55,26 @@ func _process(_delta: float) -> void:
 		rect = rect.merge($Tooltip.get_global_rect())
 		if not rect.has_point(get_viewport().get_mouse_position()):
 			$Tooltip.visible = false
+			$TextureRect.scale = Vector2(1, 1)
 
 	if $Tooltip.visible and gm != null:
 		for a in gm.icons:
 			if a != self and a != null and a.get_node("Tooltip").visible:
 				$Tooltip.visible = false
+				$TextureRect.scale = Vector2(1, 1)
 				break
 	
 
 func _on_mouse_entered() -> void:
 	$Tooltip.visible = true
+	$TextureRect.scale = Vector2(1.5, 1.5)
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if buy_on_click:
+				$Tooltip.visible = false
+				on_buy.emit()
 
 func shake(show_text: String, play_sound: bool)-> void:
 

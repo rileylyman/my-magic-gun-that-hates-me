@@ -2,6 +2,7 @@ class_name Card
 extends Control
 
 @export var max_value: int = 5
+@export var can_buy: bool = false
 
 @onready var curr := max_value
 
@@ -17,6 +18,8 @@ var show_zero_on_damage := true
 
 var _scene_size: Vector2
 var _scene_size_cached := false
+
+@onready var original_pos := position
 
 signal pressed(card: Card)
 signal mouse_enter()
@@ -219,9 +222,13 @@ func clear_stamp() -> void:
 func _on_mouse_entered() -> void:
 	$Tooltip.visible = true
 
+	position.y = original_pos.y - 16
+
 
 func _on_mouse_exited() -> void:
 	$Tooltip.visible = false
+
+	position.y = original_pos.y
 
 
 func shake() -> void:

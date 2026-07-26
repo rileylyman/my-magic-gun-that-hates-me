@@ -50,14 +50,45 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2627451, 0.21568628, 0.654902, 1)
 
-[node name="Control" type="Control" parent="." unique_id=1531833497]
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1580180203]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 20.0
+offset_right = 1134.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2" unique_id=1688167506]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="OurArtifactsContainer" type="HBoxContainer" parent="PanelContainer2/MarginContainer" unique_id=2034175252]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="ArtifactIcon" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=475881361 instance=ExtResource("6_gwrng")]
+layout_mode = 2
+
+[node name="ArtifactIcon2" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=203709837 instance=ExtResource("6_gwrng")]
+layout_mode = 2
+
+[node name="ArtifactIcon3" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=1212189465 instance=ExtResource("6_gwrng")]
+layout_mode = 2
+
+[node name="ArtifactControl" type="Control" parent="." unique_id=1531833497]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 77.0
 offset_top = 300.0
 offset_right = 117.0
 offset_bottom = 340.0
 
-[node name="Label" type="Label" parent="Control" unique_id=619564964]
+[node name="Label" type="Label" parent="ArtifactControl" unique_id=619564964]
 layout_mode = 1
 offset_right = 284.0
 offset_bottom = 63.0
@@ -70,70 +101,49 @@ theme_override_font_sizes/font_size = 48
 text = "Choose 1:"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1708323228]
+[node name="PanelContainer" type="PanelContainer" parent="ArtifactControl" unique_id=1708323228]
 layout_mode = 0
-offset_top = 144.0
-offset_right = 284.0
-offset_bottom = 220.0
+offset_left = -33.0
+offset_top = 77.0
+offset_right = 317.0
+offset_bottom = 189.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=998446129]
+[node name="MarginContainer" type="MarginContainer" parent="ArtifactControl/PanelContainer" unique_id=998446129]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1129782287]
+[node name="ArtifactContainer" type="HBoxContainer" parent="ArtifactControl/PanelContainer/MarginContainer" unique_id=1129782287]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 48
+theme_override_constants/separation = 72
 alignment = 1
 
-[node name="ArtifactIcon" parent="Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=448662212 instance=ExtResource("6_gwrng")]
+[node name="ArtifactIcon" parent="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer" unique_id=448662212 instance=ExtResource("6_gwrng")]
 layout_mode = 2
+show_buttons = false
+buy_on_click = true
 
-[node name="ArtifactIcon2" parent="Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=1909847757 instance=ExtResource("6_gwrng")]
+[node name="ArtifactIcon2" parent="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer" unique_id=1909847757 instance=ExtResource("6_gwrng")]
 layout_mode = 2
+show_buttons = false
+buy_on_click = true
 
-[node name="ArtifactIcon3" parent="Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=685655593 instance=ExtResource("6_gwrng")]
+[node name="ArtifactIcon3" parent="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer" unique_id=685655593 instance=ExtResource("6_gwrng")]
 layout_mode = 2
+show_buttons = false
+buy_on_click = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="Control" unique_id=1580180203]
-layout_mode = 0
-offset_left = 623.0
-offset_top = -280.0
-offset_right = 1057.0
-offset_bottom = -204.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer2" unique_id=1688167506]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/MarginContainer" unique_id=2034175252]
-layout_mode = 2
-theme_override_constants/separation = 48
-alignment = 1
-
-[node name="ArtifactIcon" parent="Control/PanelContainer2/MarginContainer/HBoxContainer" unique_id=475881361 instance=ExtResource("6_gwrng")]
-layout_mode = 2
-
-[node name="ArtifactIcon2" parent="Control/PanelContainer2/MarginContainer/HBoxContainer" unique_id=203709837 instance=ExtResource("6_gwrng")]
-layout_mode = 2
-
-[node name="ArtifactIcon3" parent="Control/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1212189465 instance=ExtResource("6_gwrng")]
-layout_mode = 2
-
-[node name="TextureButton" type="TextureButton" parent="Control" unique_id=909196187]
+[node name="SkipArtifactsButton" type="TextureButton" parent="ArtifactControl" unique_id=909196187]
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 32.0
-offset_top = 271.0
+offset_top = 216.0
 offset_right = 251.515
-offset_bottom = 308.255
+offset_bottom = 253.255
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -143,7 +153,7 @@ texture_hover = ExtResource("8_ghuxa")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Control/TextureButton" unique_id=247289482]
+[node name="Label" type="Label" parent="ArtifactControl/SkipArtifactsButton" unique_id=247289482]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,40 +188,40 @@ horizontal_alignment = 1
 [node name="TextureRect" type="TextureRect" parent="Control2" unique_id=285975597]
 layout_mode = 0
 offset_left = -68.0
-offset_top = 174.0
+offset_top = 149.0
 offset_right = 362.0
-offset_bottom = 396.0
+offset_bottom = 371.0
 texture = ExtResource("5_gwrng")
 expand_mode = 2
 
 [node name="Card" parent="Control2" unique_id=1368151009 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = -38.0
-offset_top = 101.0
+offset_top = 76.0
 offset_right = 82.0
-offset_bottom = 258.0
+offset_bottom = 233.0
 
 [node name="Card2" parent="Control2" unique_id=786837243 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 93.0
-offset_top = 101.0
+offset_top = 76.0
 offset_right = 213.0
-offset_bottom = 258.0
+offset_bottom = 233.0
 
 [node name="Card3" parent="Control2" unique_id=225665184 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 225.0
-offset_top = 101.0
+offset_top = 76.0
 offset_right = 345.0
-offset_bottom = 258.0
+offset_bottom = 233.0
 
 [node name="TextureButton" type="TextureButton" parent="Control2" unique_id=1241487462]
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 45.0
-offset_top = 271.0
+offset_top = 245.0
 offset_right = 264.515
-offset_bottom = 308.255
+offset_bottom = 282.255
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -303,10 +313,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -177.73999
-offset_top = 454.0
-offset_right = 86.26001
-offset_bottom = 517.0
+offset_left = -178.0
+offset_top = 395.0
+offset_right = 86.0
+offset_bottom = 458.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -327,9 +337,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -201.0
-offset_top = -136.73001
+offset_top = -197.0
 offset_right = 109.52002
-offset_bottom = 136.72998
+offset_bottom = 76.45999
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_01wwf")
@@ -345,10 +355,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 183.00006
-offset_top = -224.00002
-offset_right = 493.52002
-offset_bottom = 49.45996
+offset_left = 183.0921
+offset_top = -271.04593
+offset_right = 493.61206
+offset_bottom = 2.4140625
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.38227543, 0.36337352)
@@ -366,10 +376,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -508.99997
-offset_top = -224.00003
-offset_right = -198.47995
-offset_bottom = 49.45996
+offset_left = -508.90793
+offset_top = -271.04593
+offset_right = -198.38791
+offset_bottom = 2.4140625
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.38227543, 0.36337352)
@@ -377,3 +387,5 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_01wwf")
 expand_mode = 1
 stretch_mode = 5
+
+[connection signal="pressed" from="ArtifactControl/SkipArtifactsButton" to="." method="_on_skip_artifacts_button_pressed"]

@@ -13,13 +13,12 @@ func _ready() -> void:
 	update_description()
 
 
-
 func post_tick_callback(state: TickState) -> void:
 	for c in state.cards:
 		if c.curr <= 0:
-			hits +=1
-	if  hits >= target and !hashit:
-		if(state.score>0):
+			hits += 1
+	if hits >= target and !hashit:
+		if (state.score > 0):
 			state.score *= target
 			await shake("x" + str(target))
 			hashit = true
@@ -27,7 +26,7 @@ func post_tick_callback(state: TickState) -> void:
 	if state.days == 1:
 		target = randi_range(lowtar, hightar)
 		await shake()
-		await shake(" New Tagret: " + str(target) + " ")
+		await shake(" New Target: " + str(target) + " ")
 		update_description()
 
 func hand_submit_callback(_state: TickState) -> void:
