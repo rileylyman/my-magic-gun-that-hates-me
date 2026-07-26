@@ -34,11 +34,55 @@
 [ext_resource type="Resource" uid="uid://c3n65230nbgx8" path="res://resources/Cenemies/cat.tres" id="15_nmktb"]
 [ext_resource type="PackedScene" uid="uid://bcg3y8w20bks5" path="res://scenes/main_menu.tscn" id="20_444rb"]
 
+[ext_resource type="PackedScene" uid="uid://viqtlyh54ekq" path="res://resources/artifacts/blueprints.tscn" id="art50"]
+[ext_resource type="PackedScene" uid="uid://2aav8s8wt476" path="res://resources/artifacts/broken_clock.tscn" id="art51"]
+[ext_resource type="PackedScene" uid="uid://cg2rtaqtfwp3l" path="res://resources/artifacts/cosmic_accelerator.tscn" id="art52"]
+[ext_resource type="PackedScene" uid="uid://b5027mpms6m1o" path="res://resources/artifacts/cup_of_coffee.tscn" id="art53"]
+[ext_resource type="PackedScene" uid="uid://c2g1d6mxujvjs" path="res://resources/artifacts/dartboard.tscn" id="art54"]
+[ext_resource type="PackedScene" uid="uid://dw2036mhyaxta" path="res://resources/artifacts/extra_hand.tscn" id="art55"]
+[ext_resource type="PackedScene" uid="uid://bapmbeqarymyj" path="res://resources/artifacts/extra_slot.tscn" id="art56"]
+[ext_resource type="PackedScene" uid="uid://ccx2hspuyti82" path="res://resources/artifacts/fidget_cube.tscn" id="art57"]
+[ext_resource type="PackedScene" uid="uid://ckfdss6dkb1ix" path="res://resources/artifacts/fidget_spinner.tscn" id="art58"]
+[ext_resource type="PackedScene" uid="uid://c8qe4l1ewhn3l" path="res://resources/artifacts/fireworks.tscn" id="art59"]
+[ext_resource type="PackedScene" uid="uid://bxpou3ytet1l2" path="res://resources/artifacts/five_piece_candy.tscn" id="art60"]
+[ext_resource type="PackedScene" uid="uid://bdft81wvjq8a8" path="res://resources/artifacts/frozen_lunch.tscn" id="art61"]
+[ext_resource type="PackedScene" uid="uid://b0cwgc5mln2lx" path="res://resources/artifacts/golden_calendar.tscn" id="art62"]
+[ext_resource type="PackedScene" uid="uid://ccutdm8rjy7i4" path="res://resources/artifacts/hand_trick.tscn" id="art63"]
+[ext_resource type="PackedScene" uid="uid://dbio11p3hebho" path="res://resources/artifacts/hourglass.tscn" id="art64"]
+[ext_resource type="PackedScene" uid="uid://b7x2ho1p11rug" path="res://resources/artifacts/leave_of_absance.tscn" id="art65"]
+[ext_resource type="PackedScene" uid="uid://cakgroumbux3v" path="res://resources/artifacts/odd_rod.tscn" id="art67"]
+[ext_resource type="PackedScene" uid="uid://2xpvh2sodeci" path="res://resources/artifacts/paper_crane.tscn" id="art68"]
+[ext_resource type="PackedScene" uid="uid://cheifw32vll5t" path="res://resources/artifacts/paperclip.tscn" id="art69"]
+[ext_resource type="PackedScene" uid="uid://ds84x2w64vyh" path="res://resources/artifacts/photocopier.tscn" id="art70"]
+[ext_resource type="PackedScene" uid="uid://c01r3jutrt1vo" path="res://resources/artifacts/potted_plant.tscn" id="art71"]
+[ext_resource type="PackedScene" uid="uid://cepb3b2df473n" path="res://resources/artifacts/pretzel_bites.tscn" id="art72"]
+[ext_resource type="PackedScene" uid="uid://bf7hydc0hqsnj" path="res://resources/artifacts/primordial_force.tscn" id="art73"]
+[ext_resource type="PackedScene" uid="uid://dalx3ibp17fav" path="res://resources/artifacts/punching_bag.tscn" id="art74"]
+[ext_resource type="PackedScene" uid="uid://curyuwlg7citu" path="res://resources/artifacts/purple_box.tscn" id="art75"]
+[ext_resource type="PackedScene" uid="uid://wbhy7f0pdt1d" path="res://resources/artifacts/pushpin.tscn" id="art76"]
+[ext_resource type="PackedScene" uid="uid://dcxp7aq724w5j" path="res://resources/artifacts/puzzle_piece.tscn" id="art77"]
+[ext_resource type="PackedScene" uid="uid://cso1uw42gmy7h" path="res://resources/artifacts/ring_binder.tscn" id="art78"]
+[ext_resource type="PackedScene" uid="uid://c52ltjhfg3qtk" path="res://resources/artifacts/rules_of_play.tscn" id="art79"]
+[ext_resource type="PackedScene" uid="uid://c1bpc3hb4f86s" path="res://resources/artifacts/shredder.tscn" id="art80"]
+[ext_resource type="PackedScene" uid="uid://brcumov16mxrk" path="res://resources/artifacts/skipping_stone.tscn" id="art81"]
+[ext_resource type="PackedScene" uid="uid://bdu026fves47q" path="res://resources/artifacts/spell_scope.tscn" id="art82"]
+[ext_resource type="PackedScene" uid="uid://d2o8yhdx6buv1" path="res://resources/artifacts/squares.tscn" id="art83"]
+[ext_resource type="PackedScene" uid="uid://c6o361mja4cc2" path="res://resources/artifacts/stack_of_document.tscn" id="art84"]
+[ext_resource type="PackedScene" uid="uid://c7snag3lxeguq" path="res://resources/artifacts/stapler.tscn" id="art85"]
+[ext_resource type="PackedScene" uid="uid://qdcjdq38v1em" path="res://resources/artifacts/sticky_potion.tscn" id="art86"]
+[ext_resource type="PackedScene" uid="uid://d3tbjs3n8cuhw" path="res://resources/artifacts/the_magic_circle.tscn" id="art87"]
+[ext_resource type="PackedScene" uid="uid://cvmbfs7c0jv7f" path="res://resources/artifacts/the_one.tscn" id="art88"]
+[ext_resource type="PackedScene" uid="uid://dd2y76uia5ftv" path="res://resources/artifacts/toupee.tscn" id="art89"]
+[ext_resource type="PackedScene" uid="uid://cpve85ia8aly5" path="res://resources/artifacts/triple_tier_cake.tscn" id="art90"]
+[ext_resource type="PackedScene" uid="uid://c3ep1s4vmo2xq" path="res://resources/artifacts/two_pronged_trident.tscn" id="art91"]
+[ext_resource type="PackedScene" uid="uid://1t2a1a48qlkc" path="res://resources/artifacts/white_out_tape.tscn" id="art92"]
+
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
 enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_8s7se"), ExtResource("4_rx5eu"), ExtResource("5_16507"), ExtResource("6_ialgl"), ExtResource("7_e4fbi"), ExtResource("8_r81dc"), ExtResource("9_kejkm"), ExtResource("10_td8da"), ExtResource("11_mfeft"), ExtResource("12_7gtfv"), ExtResource("13_ynwwa"), ExtResource("14_pdhvp"), ExtResource("15_nmktb")])
 Challenge_enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("3_3ed05"), ExtResource("4_edw4j"), ExtResource("7_47fa5"), ExtResource("8_444rb"), ExtResource("9_47fa5"), ExtResource("10_47fa5"), ExtResource("5_iuecx"), ExtResource("6_k753k"), ExtResource("8_bbp0f"), ExtResource("7_o3l8d"), ExtResource("12_47fa5")])
 enemy_health_multiplier = 1.0
+artifact_scenes = Array[PackedScene]([ExtResource("art50"), ExtResource("art51"), ExtResource("art52"), ExtResource("art53"), ExtResource("art54"), ExtResource("art55"), ExtResource("art56"), ExtResource("art57"), ExtResource("art58"), ExtResource("art59"), ExtResource("art60"), ExtResource("art61"), ExtResource("art62"), ExtResource("art63"), ExtResource("art64"), ExtResource("art65"), ExtResource("art67"), ExtResource("art68"), ExtResource("art69"), ExtResource("art70"), ExtResource("art71"), ExtResource("art72"), ExtResource("art73"), ExtResource("art74"), ExtResource("art75"), ExtResource("art76"), ExtResource("art77"), ExtResource("art78"), ExtResource("art79"), ExtResource("art80"), ExtResource("art81"), ExtResource("art82"), ExtResource("art83"), ExtResource("art84"), ExtResource("art85"), ExtResource("art86"), ExtResource("art87"), ExtResource("art88"), ExtResource("art89"), ExtResource("art90"), ExtResource("art91"), ExtResource("art92")])
 battle_scene = ExtResource("5_ioumm")
 reward_scene = ExtResource("6_ioumm")
 win_scene = ExtResource("6_4njm7")

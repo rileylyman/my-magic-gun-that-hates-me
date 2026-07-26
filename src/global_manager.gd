@@ -7,6 +7,11 @@ const MAX_ARTIFACTS: int = 5
 
 @export var enemy_order: Array[EnemyResource] = []
 @export var Challenge_enemy_order: Array[EnemyResource] = []
+
+@export_category("Artifacts")
+
+@export var artifact_scenes: Array[PackedScene] = []
+
 @export_range(0.01, 10.0, 0.01, "or_greater")
 var enemy_health_multiplier: float = 1.2
 
@@ -52,7 +57,7 @@ var handsize: int:
 			* artifacts.filter(
 				func(a): return a is ExtraHand
 			).size()
-			+ 5
+			+5
 		)
 
 func _challenge_mode() -> void:
@@ -61,8 +66,8 @@ func _challenge_mode() -> void:
 func _ready() -> void:
 	create_starting_deck()
 
-var decklista = [3,3,4,4,5,6,7,7,8,9,10]
-var decklistb = [3,4,5,5,6,7,7,8,9]
+var decklista = [3, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10]
+var decklistb = [3, 4, 5, 5, 6, 7, 7, 8, 9]
 func create_starting_deck() -> void:
 	#for i in range(3, 8 + 1):
 		#for _j in range(2):
@@ -70,7 +75,6 @@ func create_starting_deck() -> void:
 	#this is tester deck spot
 	for i in decklistb:
 		add_task(i)
-
 
 
 func add_task(

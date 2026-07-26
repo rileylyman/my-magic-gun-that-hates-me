@@ -37,17 +37,7 @@ func _on_kill_current_enemy_pressed() -> void:
 
 
 func load_artifacts() -> void:
-	var search_dir := "res://resources/artifacts/"
-
-	for file in DirAccess.get_files_at(search_dir):
-		if file.ends_with(".uid"):
-			continue
-
-		var scene := (
-			load(search_dir + file)
-			as PackedScene
-		)
-
+	for scene in GlobalManager.artifact_scenes:
 		if scene == null:
 			continue
 

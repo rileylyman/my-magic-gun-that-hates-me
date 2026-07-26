@@ -7,6 +7,9 @@ func _ready() -> void:
 	button.visible = false
 	var search_dir = "res://resources/enemies/"
 	for file in DirAccess.get_files_at(search_dir):
+		if not file.ends_with(".tres"):
+			continue
+
 		var res = load(search_dir + file)
 		var b = button.duplicate()
 		%EnemyList.add_child(b)
