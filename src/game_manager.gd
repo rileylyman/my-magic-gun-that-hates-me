@@ -476,6 +476,28 @@ func end_round() -> void:
 
 	detach_all_cards_from_battle()
 
+	var is_final_enemy: bool = (
+		GlobalManager.defeated_enemy_count + 1
+		>= GlobalManager.enemy_order.size()
+	)
+
+	if is_final_enemy:
+		GlobalManager.finish_current_battle()
+		return
+
+	transform_enemy_into_chest()
+
+
+func transform_enemy_into_chest() -> void:
+	%EnemyTexture.visible = false
+	%ChestTexture.visible = true
+
+	if not %ChestTexture.pressed.is_connected(_on_chest_pressed):
+		%ChestTexture.pressed.connect(_on_chest_pressed)
+
+
+func _on_chest_pressed() -> void:
+	%ChestTexture.pressed.disconnect(_on_chest_pressed)
 	GlobalManager.finish_current_battle()
 
 
