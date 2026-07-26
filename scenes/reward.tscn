@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://sftnr5swi5h0" path="res://resources/stamps/random_raccoon.tscn" id="9_gl7qb"]
 [ext_resource type="PackedScene" uid="uid://b8l7rr3s88vws" path="res://resources/stamps/sequential_squirrel.tscn" id="10_sdmt1"]
 [ext_resource type="Texture2D" uid="uid://3ys1rl51rd4y" path="res://art/big-group.png" id="16_1mu3d"]
+[ext_resource type="Texture2D" uid="uid://rsenb2x64vc1" path="res://art/lighter.png" id="16_luggl"]
+[ext_resource type="Texture2D" uid="uid://cmlw0uhah3h5d" path="res://art/ui/Folder_Blue.png" id="22_l2mp2"]
+[ext_resource type="Texture2D" uid="uid://cdbpv1l0ma3jw" path="res://art/ui/Folder_Red.png" id="23_luggl"]
+[ext_resource type="PackedScene" uid="uid://bg63q87i1t10o" path="res://src/deck.tscn" id="24_gl7qb"]
 
 [sub_resource type="Resource" id="Resource_vctk2"]
 script = ExtResource("3_ebjq7")
@@ -144,6 +148,9 @@ region = Rect2(2912, 1344, 608, 512)
 [sub_resource type="AtlasTexture" id="AtlasTexture_01wwf"]
 atlas = ExtResource("7_3l8rl")
 region = Rect2(160, 96, 1120, 976)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdmt1"]
+bg_color = Color(0.02, 0.02, 0.02, 0.5372549)
 
 [node name="Reward" type="Control" unique_id=1018820335]
 layout_mode = 3
@@ -361,6 +368,17 @@ text = "or skip..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureButton2" type="TextureButton" parent="CardControl" unique_id=1055901291]
+layout_mode = 0
+offset_left = -207.0
+offset_top = 161.0
+offset_right = -84.0
+offset_bottom = 308.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("16_luggl")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="Label" type="Label" parent="." unique_id=491080822]
 layout_mode = 1
 anchors_preset = 5
@@ -539,18 +557,35 @@ texture = ExtResource("5_nyred")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="ViewFullDeckButton" type="TextureButton" parent="." unique_id=1963492749]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 308.0
+offset_right = 1093.6838
+offset_bottom = 357.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("22_l2mp2")
+texture_hover = ExtResource("23_luggl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Tooltip" type="Label" parent="ViewFullDeckButton" unique_id=1165208139]
+visible = false
+layout_mode = 0
+offset_left = -28.0
+offset_top = -31.0
+offset_right = 81.0
+offset_bottom = -9.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sdmt1")
+text = " View full deck "
+
+[node name="Deck" parent="." unique_id=1314020823 instance=ExtResource("24_gl7qb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+use_duplicate_cards = true
+
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" method="_on_gui_input"]
-[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" method="_on_mouse_exited"]
-[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" method="_on_gui_input"]
-[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" method="_on_mouse_exited"]
-[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" method="_on_gui_input"]
-[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" method="_on_mouse_exited"]
 [connection signal="pressed" from="ArtifactControl/SkipArtifactsButton" to="." method="_on_skip_artifacts_button_pressed"]
 [connection signal="pressed" from="CardControl/TextureButton" to="." method="_on_skip_cards_button_pressed"]
-[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" method="_on_gui_input"]
-[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" method="_on_mouse_exited"]
-[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" method="_on_gui_input"]
-[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" method="_on_mouse_exited"]
-[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" method="_on_gui_input"]
-[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" method="_on_mouse_exited"]

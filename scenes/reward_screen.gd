@@ -53,6 +53,22 @@ func _ready() -> void:
 	shake_shakers()
 	reload_our_artifacts()
 
+	%ViewFullDeckButton.mouse_entered.connect(_on_view_full_deck_mouse_entered)
+	%ViewFullDeckButton.mouse_exited.connect(_on_view_full_deck_mouse_exited)
+	%ViewFullDeckButton.pressed.connect(_on_view_full_deck_pressed)
+
+
+func _on_view_full_deck_mouse_entered() -> void:
+	%ViewFullDeckButton.get_node("Tooltip").visible = true
+
+
+func _on_view_full_deck_mouse_exited() -> void:
+	%ViewFullDeckButton.get_node("Tooltip").visible = false
+
+
+func _on_view_full_deck_pressed() -> void:
+	%Deck.open()
+
 func reload_our_artifacts() -> void:
 	for a in %OurArtifactsContainer.get_children():
 		_all_icons.erase(a)

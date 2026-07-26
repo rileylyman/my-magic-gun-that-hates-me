@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b4rv2aqtevh5c"]
+
+[ext_resource type="Texture2D" uid="uid://rsenb2x64vc1" path="res://art/lighter.png" id="1_8mori"]
+
+[node name="CutCardButton" type="TextureButton" unique_id=2059630404]
+offset_left = -207.0
+offset_top = 161.0
+offset_right = -84.0
+offset_bottom = 308.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_8mori")
+ignore_texture_size = true
+stretch_mode = 0
