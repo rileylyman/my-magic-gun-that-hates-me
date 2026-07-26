@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_hkf22")
 name = "Fox"
-health = 200
+health = 10000000
 counter_values = Array[int]([20, 25, 15])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

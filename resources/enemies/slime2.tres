@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://db31j0iwambt1"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_70hlo"]
+[ext_resource type="Texture2D" uid="uid://hkkh7s1scg8q" path="res://art/enemies/Enemy_Slime.png" id="2_noyxa"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="3_rhs0i"]
+
+[resource]
+script = ExtResource("3_rhs0i")
+name = "Stephen, Demoted Janitor"
+health = 1900
+enemy_texture = ExtResource("2_noyxa")
+counter_values = Array[int]([30, 60])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

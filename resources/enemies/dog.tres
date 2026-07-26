@@ -37,9 +37,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [resource]
 script = ExtResource("2_a1q4s")
-name = "Mark, Office Dog"
-health = 500
+name = "Marq, Office Dog"
+health = 60000
 enemy_texture = ExtResource("6_u01tq")
-counter_values = Array[int]([20, 30, 40])
+counter_values = Array[int]([34, 49, 40, 18, 49, 27])
 debuffs = Array[ExtResource("1_bygru")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

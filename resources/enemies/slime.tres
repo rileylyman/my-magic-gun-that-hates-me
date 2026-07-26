@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("2_pssbi")
-name = "Stephen, Head Janitor"
-health = 250
+name = "Stephen, Janitor"
+health = 400
 enemy_texture = ExtResource("2_k071p")
-counter_values = Array[int]([15, 20, 25])
+counter_values = Array[int]([20, 20, 25, 15])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

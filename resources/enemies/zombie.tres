@@ -37,8 +37,8 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 [resource]
 script = ExtResource("2_2liaa")
 name = "Amber, Tortured Artist"
-health = 400
+health = 3500
 enemy_texture = ExtResource("2_kekpa")
-counter_values = Array[int]([30, 15, 35, 20])
+counter_values = Array[int]([30, 30, 35, 40])
 debuffs = Array[ExtResource("1_v7am5")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

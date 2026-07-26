@@ -10,17 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://cuqahqq52hgo0" path="res://scenes/win_or_lose_scene.tscn" id="6_4njm7"]
 [ext_resource type="PackedScene" uid="uid://eds3x0ekkbfw" path="res://src/choose-artifact.tscn" id="6_ioumm"]
 [ext_resource type="Resource" uid="uid://pbwewwxct5px" path="res://resources/enemies/riley.tres" id="6_k753k"]
+[ext_resource type="Resource" uid="uid://cgqw2ybedgds5" path="res://resources/enemies/mouse2.tres" id="7_47fa5"]
 [ext_resource type="Resource" uid="uid://3ubiy5ruh6xe" path="res://resources/enemies/slime.tres" id="7_bbp0f"]
 [ext_resource type="Resource" uid="uid://p4mcah2tyxlk" path="res://resources/enemies/dog.tres" id="7_o3l8d"]
 [ext_resource type="PackedScene" uid="uid://c83cot66mcmdl" path="res://src/all_deck_scene.tscn" id="8_4worf"]
+[ext_resource type="Resource" uid="uid://db31j0iwambt1" path="res://resources/enemies/slime2.tres" id="8_444rb"]
 [ext_resource type="Resource" uid="uid://oo4ea2glv2vq" path="res://resources/enemies/siren.tres" id="8_bbp0f"]
 [ext_resource type="Resource" uid="uid://bumpgoykipf4s" path="res://resources/enemies/zombie.tres" id="9_47fa5"]
+[ext_resource type="Resource" uid="uid://dkyrdfphfq0h8" path="res://resources/enemies/staple_remover2.tres" id="10_47fa5"]
 [ext_resource type="Resource" uid="uid://cmqh2lhnw7k8y" path="res://resources/enemies/cat.tres" id="12_47fa5"]
 
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
-enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("3_3ed05"), ExtResource("4_edw4j"), ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("5_iuecx"), ExtResource("3_3ed05"), ExtResource("6_k753k"), ExtResource("7_o3l8d"), ExtResource("8_bbp0f"), ExtResource("9_47fa5"), ExtResource("12_47fa5")])
-enemy_health_multiplier = 2.0
+enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("3_3ed05"), ExtResource("4_edw4j"), ExtResource("7_47fa5"), ExtResource("8_444rb"), ExtResource("9_47fa5"), ExtResource("10_47fa5"), ExtResource("5_iuecx"), ExtResource("6_k753k"), ExtResource("8_bbp0f"), ExtResource("7_o3l8d"), ExtResource("12_47fa5")])
+enemy_health_multiplier = 1.0
 battle_scene = ExtResource("5_ioumm")
 choose_artifact_scene = ExtResource("6_ioumm")
 win_scene = ExtResource("6_4njm7")

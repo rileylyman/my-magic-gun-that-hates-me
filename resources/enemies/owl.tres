@@ -66,8 +66,8 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 [resource]
 script = ExtResource("2_cmvcr")
 name = "Hansong, Production Wizard"
-health = 150
+health = 1300
 enemy_texture = ExtResource("6_fxabb")
-counter_values = Array[int]([15, 20, 15, 20])
+counter_values = Array[int]([15, 20, 15, 20, 15, 20])
 debuffs = Array[ExtResource("1_fh237")]([SubResource("Resource_f2tfv"), SubResource("Resource_76dlj"), SubResource("Resource_444rb"), SubResource("Resource_s4dih")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

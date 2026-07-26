@@ -56,11 +56,16 @@ var handsize: int:
 func _ready() -> void:
 	create_starting_deck()
 
-
+var decklista = [3,3,4,4,5,6,7,7,8,9,10]
+var decklistb = [3,4,5,5,6,7,7,8,9]
 func create_starting_deck() -> void:
-	for i in range(3, 8 + 1):
-		for _j in range(2):
-			add_task(i)
+	#for i in range(3, 8 + 1):
+		#for _j in range(2):
+			#add_task(i)
+	#this is tester deck spot
+	for i in decklistb:
+		add_task(i)
+
 
 
 func add_task(
