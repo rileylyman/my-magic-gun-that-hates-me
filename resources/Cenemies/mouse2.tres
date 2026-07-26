@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://buj4oa2o1cxk1"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_lmiy3"]
+[ext_resource type="Texture2D" uid="uid://d2u41heeqi7oy" path="res://art/enemies/Enemy_Mouse.png" id="2_n17ld"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="3_vrd61"]
+
+[resource]
+script = ExtResource("3_vrd61")
+name = "Winnie, The Advisor"
+health = 1200
+enemy_texture = ExtResource("2_n17ld")
+counter_values = Array[int]([35, 50, 35])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://cb8j14mgaq8eu"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_br0ot"]
+[ext_resource type="Texture2D" uid="uid://go8vk3n4j1q" path="res://art/enemy_debuffs/debuff_ethan.png" id="2_vj0op"]
+[ext_resource type="Script" uid="uid://bdy736a1xfb65" path="res://resources/debuffs/buried.gd" id="3_olphc"]
+[ext_resource type="Texture2D" uid="uid://dfsxa8enfb7ig" path="res://art/enemy_debuffs/debuff_ethan2.png" id="4_kdyly"]
+[ext_resource type="Script" uid="uid://bfobo23lu5qyy" path="res://resources/debuffs/hot_dogged.gd" id="5_8b6gp"]
+[ext_resource type="Texture2D" uid="uid://bex7u2x26rjf8" path="res://art/enemies/Enemy_EthanOfficeDog.png" id="6_fo6j5"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="7_jtfdh"]
+
+[sub_resource type="Resource" id="Resource_id4ro"]
+script = ExtResource("3_olphc")
+title = "Buried"
+description = "The lowest Max Value Card no longer progresses this Round."
+icon = ExtResource("2_vj0op")
+metadata/_custom_type_script = "uid://bdy736a1xfb65"
+
+[sub_resource type="Resource" id="Resource_rrs27"]
+script = ExtResource("1_br0ot")
+debuff = SubResource("Resource_id4ro")
+scope = 1
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_3i827"]
+script = ExtResource("5_8b6gp")
+title = "Hot Dogged"
+description = "Whenever a Card deals Damage, all other Cards progress 1 fewer time."
+icon = ExtResource("4_kdyly")
+metadata/_custom_type_script = "uid://bfobo23lu5qyy"
+
+[sub_resource type="Resource" id="Resource_62x02"]
+script = ExtResource("1_br0ot")
+debuff = SubResource("Resource_3i827")
+scope = 1
+sprint_number = 3
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("7_jtfdh")
+name = "Marq, Office Dog"
+health = 100000
+enemy_texture = ExtResource("6_fo6j5")
+counter_values = Array[int]([34, 49, 40, 18, 49])
+debuffs = Array[ExtResource("1_br0ot")]([SubResource("Resource_rrs27"), SubResource("Resource_62x02")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

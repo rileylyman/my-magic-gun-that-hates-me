@@ -3,27 +3,41 @@
 [ext_resource type="Script" uid="uid://c1fxal7iq1o66" path="res://src/global_manager.gd" id="1_nyfjn"]
 [ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_kq6pe"]
 [ext_resource type="Resource" uid="uid://q377k5erqgy7" path="res://resources/enemies/staple_remover.tres" id="3_3ed05"]
+[ext_resource type="Resource" uid="uid://c37qmhoqv8d0p" path="res://resources/Cenemies/mouse.tres" id="3_8s7se"]
 [ext_resource type="Resource" uid="uid://c26oarrjib72" path="res://resources/enemies/mouse.tres" id="3_k753k"]
 [ext_resource type="Resource" uid="uid://ccbwljkg6hrs" path="res://resources/enemies/owl.tres" id="4_edw4j"]
+[ext_resource type="Resource" uid="uid://drcpl5vdyx6jk" path="res://resources/Cenemies/slime.tres" id="4_rx5eu"]
+[ext_resource type="Resource" uid="uid://dwibaddej0n52" path="res://resources/Cenemies/staple_remover.tres" id="5_16507"]
 [ext_resource type="PackedScene" uid="uid://dlpsg74tnfn38" path="res://src/encounter-screen.tscn" id="5_ioumm"]
 [ext_resource type="Resource" uid="uid://b1fpsewgo607s" path="res://resources/enemies/skeleton.tres" id="5_iuecx"]
 [ext_resource type="PackedScene" uid="uid://cuqahqq52hgo0" path="res://scenes/win_or_lose_scene.tscn" id="6_4njm7"]
+[ext_resource type="Resource" uid="uid://j3lswki2ixdj" path="res://resources/Cenemies/owl.tres" id="6_ialgl"]
 [ext_resource type="PackedScene" uid="uid://cm6c8vbppflqr" path="res://scenes/reward.tscn" id="6_ioumm"]
 [ext_resource type="Resource" uid="uid://pbwewwxct5px" path="res://resources/enemies/riley.tres" id="6_k753k"]
 [ext_resource type="Resource" uid="uid://cgqw2ybedgds5" path="res://resources/enemies/mouse2.tres" id="7_47fa5"]
 [ext_resource type="Resource" uid="uid://3ubiy5ruh6xe" path="res://resources/enemies/slime.tres" id="7_bbp0f"]
+[ext_resource type="Resource" uid="uid://buj4oa2o1cxk1" path="res://resources/Cenemies/mouse2.tres" id="7_e4fbi"]
 [ext_resource type="Resource" uid="uid://p4mcah2tyxlk" path="res://resources/enemies/dog.tres" id="7_o3l8d"]
 [ext_resource type="PackedScene" uid="uid://c83cot66mcmdl" path="res://src/all_deck_scene.tscn" id="8_4worf"]
 [ext_resource type="Resource" uid="uid://db31j0iwambt1" path="res://resources/enemies/slime2.tres" id="8_444rb"]
 [ext_resource type="Resource" uid="uid://oo4ea2glv2vq" path="res://resources/enemies/siren.tres" id="8_bbp0f"]
+[ext_resource type="Resource" uid="uid://4swglbw08rdq" path="res://resources/Cenemies/slime2.tres" id="8_r81dc"]
 [ext_resource type="Resource" uid="uid://bumpgoykipf4s" path="res://resources/enemies/zombie.tres" id="9_47fa5"]
+[ext_resource type="Resource" uid="uid://dhlkigfmqkgng" path="res://resources/Cenemies/zombie.tres" id="9_kejkm"]
 [ext_resource type="Resource" uid="uid://dkyrdfphfq0h8" path="res://resources/enemies/staple_remover2.tres" id="10_47fa5"]
+[ext_resource type="Resource" uid="uid://bp0asjsnlxql2" path="res://resources/Cenemies/staple_remover2.tres" id="10_td8da"]
+[ext_resource type="Resource" uid="uid://cb3l45oxueduq" path="res://resources/Cenemies/skeleton.tres" id="11_mfeft"]
+[ext_resource type="Resource" uid="uid://c726kr4ipv674" path="res://resources/Cenemies/riley.tres" id="12_7gtfv"]
 [ext_resource type="Resource" uid="uid://cmqh2lhnw7k8y" path="res://resources/enemies/cat.tres" id="12_47fa5"]
+[ext_resource type="Resource" uid="uid://dt1sl0vtvwsi3" path="res://resources/Cenemies/siren.tres" id="13_ynwwa"]
+[ext_resource type="Resource" uid="uid://cb8j14mgaq8eu" path="res://resources/Cenemies/dog.tres" id="14_pdhvp"]
+[ext_resource type="Resource" uid="uid://c3n65230nbgx8" path="res://resources/Cenemies/cat.tres" id="15_nmktb"]
 [ext_resource type="PackedScene" uid="uid://bcg3y8w20bks5" path="res://scenes/main_menu.tscn" id="20_444rb"]
 
 [node name="GlobalManager" type="Node2D" unique_id=815359404]
 script = ExtResource("1_nyfjn")
-enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("3_3ed05"), ExtResource("4_edw4j"), ExtResource("7_47fa5"), ExtResource("8_444rb"), ExtResource("9_47fa5"), ExtResource("10_47fa5"), ExtResource("5_iuecx"), ExtResource("6_k753k"), ExtResource("8_bbp0f"), ExtResource("7_o3l8d"), ExtResource("12_47fa5")])
+enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_8s7se"), ExtResource("4_rx5eu"), ExtResource("5_16507"), ExtResource("6_ialgl"), ExtResource("7_e4fbi"), ExtResource("8_r81dc"), ExtResource("9_kejkm"), ExtResource("10_td8da"), ExtResource("11_mfeft"), ExtResource("12_7gtfv"), ExtResource("13_ynwwa"), ExtResource("14_pdhvp"), ExtResource("15_nmktb")])
+Challenge_enemy_order = Array[ExtResource("2_kq6pe")]([ExtResource("3_k753k"), ExtResource("7_bbp0f"), ExtResource("3_3ed05"), ExtResource("4_edw4j"), ExtResource("7_47fa5"), ExtResource("8_444rb"), ExtResource("9_47fa5"), ExtResource("10_47fa5"), ExtResource("5_iuecx"), ExtResource("6_k753k"), ExtResource("8_bbp0f"), ExtResource("7_o3l8d"), ExtResource("12_47fa5")])
 enemy_health_multiplier = 1.0
 battle_scene = ExtResource("5_ioumm")
 reward_scene = ExtResource("6_ioumm")

@@ -6,7 +6,7 @@ const MAX_ARTIFACTS: int = 5
 @export_category("Enemy Progression")
 
 @export var enemy_order: Array[EnemyResource] = []
-
+@export var Challenge_enemy_order: Array[EnemyResource] = []
 @export_range(0.01, 10.0, 0.01, "or_greater")
 var enemy_health_multiplier: float = 1.2
 
@@ -55,6 +55,8 @@ var handsize: int:
 			+ 5
 		)
 
+func _challenge_mode() -> void:
+	enemy_order = Challenge_enemy_order
 
 func _ready() -> void:
 	create_starting_deck()

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://bp0asjsnlxql2"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_05g3u"]
+[ext_resource type="Texture2D" uid="uid://c0xrjoppamqor" path="res://art/enemies/Enemy_StapleRemover.png" id="2_17rrm"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="3_fme4n"]
+
+[resource]
+script = ExtResource("3_fme4n")
+name = "Georger, still from IT"
+health = 3000
+enemy_texture = ExtResource("2_17rrm")
+counter_values = Array[int]([90])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

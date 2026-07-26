@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://c37qmhoqv8d0p"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_rk6ap"]
+[ext_resource type="Texture2D" uid="uid://d2u41heeqi7oy" path="res://art/enemies/Enemy_Mouse.png" id="2_ynk7s"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="3_dxpgj"]
+
+[resource]
+script = ExtResource("3_dxpgj")
+name = "Eric, The Intern"
+health = 180
+enemy_texture = ExtResource("2_ynk7s")
+counter_values = Array[int]([30, 15, 25])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

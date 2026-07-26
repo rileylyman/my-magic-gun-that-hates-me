@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://ra3duemho4ua"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_kvxo5"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_46btj"]
+
+[resource]
+script = ExtResource("2_46btj")
+name = "Fox"
+health = 10000000
+counter_values = Array[int]([20, 25, 15])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://dhlkigfmqkgng"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_qrusp"]
+[ext_resource type="Texture2D" uid="uid://4elcuss88mp5" path="res://art/enemy_debuffs/debuff_amber.png" id="2_t1ppv"]
+[ext_resource type="Script" uid="uid://crrqbfmtm1sxn" path="res://resources/debuffs/rotted.gd" id="3_3ivih"]
+[ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="4_choss"]
+[ext_resource type="Script" uid="uid://dl1ijj0dswgm8" path="res://resources/debuffs/bone_spurred.gd" id="5_xp6qo"]
+[ext_resource type="Texture2D" uid="uid://ccctspnpq1eg8" path="res://art/enemies/Enemy_AmberTorturedArtist.png" id="6_rxirp"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="7_w7ujw"]
+
+[sub_resource type="Resource" id="Resource_4f78d"]
+script = ExtResource("5_xp6qo")
+title = "Bone Spurred"
+description = "Each Tick you deal Damage, the Enemy takes 1% less Damage permanently. (Caps at 50%)"
+metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
+
+[sub_resource type="Resource" id="Resource_br1p1"]
+script = ExtResource("1_qrusp")
+debuff = SubResource("Resource_4f78d")
+scope = 1
+sprint_number = 2
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_0tlya"]
+script = ExtResource("5_xp6qo")
+title = "Bone Spurred"
+description = "Each Tick you deal Damage, the Enemy takes 1% less Damage permanently. (Caps at 50%)"
+metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
+
+[sub_resource type="Resource" id="Resource_ka2sh"]
+script = ExtResource("1_qrusp")
+debuff = SubResource("Resource_0tlya")
+scope = 1
+sprint_number = 3
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_kni80"]
+script = ExtResource("3_3ivih")
+title = "Rotted"
+description = "Negate Damage less than 10% of the Enemy's total Health."
+icon = ExtResource("2_t1ppv")
+metadata/_custom_type_script = "uid://crrqbfmtm1sxn"
+
+[sub_resource type="Resource" id="Resource_5ji5t"]
+script = ExtResource("1_qrusp")
+debuff = SubResource("Resource_kni80")
+scope = 1
+sprint_number = 4
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("7_w7ujw")
+name = "Amber, Tortured Artist"
+health = 2500
+enemy_texture = ExtResource("6_rxirp")
+counter_values = Array[int]([30, 30, 35, 40])
+debuffs = Array[ExtResource("1_qrusp")]([SubResource("Resource_br1p1"), SubResource("Resource_ka2sh"), SubResource("Resource_5ji5t")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

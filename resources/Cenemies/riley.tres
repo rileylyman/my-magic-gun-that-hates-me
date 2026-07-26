@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://c726kr4ipv674"]
+
+[ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_1u7y0"]
+[ext_resource type="Texture2D" uid="uid://yyb1axlyxfdh" path="res://art/enemy_debuffs/debuff_riley.png" id="2_kvmi4"]
+[ext_resource type="Script" uid="uid://dymdp36vip465" path="res://resources/debuffs/git_forked.gd" id="3_qubek"]
+[ext_resource type="Texture2D" uid="uid://be05hn7llsatd" path="res://art/enemy_debuffs/debuff_riley2.png" id="4_ff0c7"]
+[ext_resource type="Script" uid="uid://37dh0q1211gb" path="res://resources/debuffs/merge_conflict.gd" id="5_hf73g"]
+[ext_resource type="Texture2D" uid="uid://bi7pag67w2nbh" path="res://art/enemies/Enemy_RileySoftwareImp.png" id="6_5nssk"]
+[ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="7_f3gpe"]
+
+[sub_resource type="Resource" id="Resource_id4ro"]
+script = ExtResource("3_qubek")
+title = "Git Forked"
+description = "Whenever a 3 is displayed on the Field, Cards cannot deal Damage."
+icon = ExtResource("2_kvmi4")
+metadata/_custom_type_script = "uid://dymdp36vip465"
+
+[sub_resource type="Resource" id="Resource_rrs27"]
+script = ExtResource("1_1u7y0")
+debuff = SubResource("Resource_id4ro")
+scope = 1
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[sub_resource type="Resource" id="Resource_4f78d"]
+script = ExtResource("5_hf73g")
+title = "Merge Conflicted"
+description = "Cards with a Max Value of a multiple of 3 deal no Damage."
+icon = ExtResource("4_ff0c7")
+metadata/_custom_type_script = "uid://37dh0q1211gb"
+
+[sub_resource type="Resource" id="Resource_br1p1"]
+script = ExtResource("1_1u7y0")
+debuff = SubResource("Resource_4f78d")
+scope = 1
+sprint_number = 3
+metadata/_custom_type_script = "uid://ci46gty6mtmrb"
+
+[resource]
+script = ExtResource("7_f3gpe")
+name = "Riley, Software Imp"
+health = 13333
+enemy_texture = ExtResource("6_5nssk")
+counter_values = Array[int]([33, 33, 33])
+debuffs = Array[ExtResource("1_1u7y0")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
+metadata/_custom_type_script = "uid://bifeeamvk3kte"

@@ -117,7 +117,7 @@ metadata/_custom_type_script = "uid://37dh0q1211gb"
 script = ExtResource("1_2bvm0")
 debuff = SubResource("Resource_q4fo0")
 scope = 1
-sprint_number = 4
+sprint_number = 5
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_p2mre"]
@@ -131,7 +131,7 @@ metadata/_custom_type_script = "uid://dl2dbpsigukpg"
 script = ExtResource("1_2bvm0")
 debuff = SubResource("Resource_p2mre")
 scope = 1
-sprint_number = 4
+sprint_number = 5
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_1s6p7"]
@@ -144,7 +144,7 @@ metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
 script = ExtResource("1_2bvm0")
 debuff = SubResource("Resource_1s6p7")
 scope = 1
-sprint_number = 5
+sprint_number = 4
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_nus7m"]
@@ -158,7 +158,7 @@ metadata/_custom_type_script = "uid://bfobo23lu5qyy"
 script = ExtResource("1_2bvm0")
 debuff = SubResource("Resource_nus7m")
 scope = 1
-sprint_number = 5
+sprint_number = 4
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [resource]
