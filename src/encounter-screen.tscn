@@ -35,6 +35,9 @@
 [ext_resource type="AudioStream" uid="uid://cfds3ubdlubxx" path="res://resources/audio/SFX/iron_hit07.wav" id="31_ctv0l"]
 [ext_resource type="AudioStream" uid="uid://buaruvopcvjnc" path="res://resources/audio/SFX/Clive Davis Institute of Recorded Music 2.mp3" id="31_l0nas"]
 [ext_resource type="PackedScene" uid="uid://e517ujgylxx5" path="res://scenes/game_over.tscn" id="32_teun7"]
+[ext_resource type="PackedScene" uid="uid://bg63q87i1t10o" path="res://src/deck.tscn" id="36_id4ro"]
+[ext_resource type="Texture2D" uid="uid://cmlw0uhah3h5d" path="res://art/ui/Folder_Blue.png" id="37_4f78d"]
+[ext_resource type="Texture2D" uid="uid://cdbpv1l0ma3jw" path="res://art/ui/Folder_Red.png" id="38_4f78d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
 bg_color = Color(0.2627451, 0.21568628, 0.654902, 1)
@@ -63,6 +66,9 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01wwf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
+bg_color = Color(0.02, 0.02, 0.02, 0.5372549)
 
 [node name="EncounterScreen" type="Control" unique_id=1278179402]
 layout_mode = 3
@@ -526,3 +532,32 @@ max_sprint_speed_multiplier = 3.0
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
 unique_name_in_owner = true
+
+[node name="ViewFullDeckButton" type="TextureButton" parent="." unique_id=935543409]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1025.0
+offset_top = 549.0
+offset_right = 1078.6838
+offset_bottom = 598.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("37_4f78d")
+texture_hover = ExtResource("38_4f78d")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Tooltip" type="Label" parent="ViewFullDeckButton" unique_id=447051664]
+visible = false
+layout_mode = 0
+offset_left = -28.0
+offset_top = -31.0
+offset_right = 81.0
+offset_bottom = -9.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rlt6q")
+text = " View full deck "
+
+[node name="Deck" parent="." unique_id=1314020823 instance=ExtResource("36_id4ro")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+use_duplicate_cards = true
