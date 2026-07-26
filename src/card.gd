@@ -115,6 +115,11 @@ func _process(_delta: float) -> void:
 	%CountdownLabel.text = str(curr)
 
 	%ShootLabel.visible = false
+	
+	var displayed_countdown := maxi(
+		curr,
+		0
+	)
 
 	if show_damage:
 		%CountdownLabel.text = (
