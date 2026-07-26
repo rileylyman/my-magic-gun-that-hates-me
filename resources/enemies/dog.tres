@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://go8vk3n4j1q" path="res://art/enemy_debuffs/debuff_ethan.png" id="2_1ctfe"]
 [ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_a1q4s"]
 [ext_resource type="Script" uid="uid://bdy736a1xfb65" path="res://resources/debuffs/buried.gd" id="3_26mv8"]
-[ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="4_1ctfe"]
+[ext_resource type="Texture2D" uid="uid://dfsxa8enfb7ig" path="res://art/enemy_debuffs/debuff_ethan2.png" id="4_nj1br"]
 [ext_resource type="Script" uid="uid://bfobo23lu5qyy" path="res://resources/debuffs/hot_dogged.gd" id="5_2xfqk"]
 [ext_resource type="Texture2D" uid="uid://bex7u2x26rjf8" path="res://art/enemies/Enemy_EthanOfficeDog.png" id="6_u01tq"]
 
@@ -23,6 +23,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_f76x4"]
 script = ExtResource("3_26mv8")
+title = "Buried"
+description = "The lowest Max Value Card no longer progresses this Round."
+icon = ExtResource("2_1ctfe")
 metadata/_custom_type_script = "uid://bdy736a1xfb65"
 
 [sub_resource type="Resource" id="Resource_br1p1"]
@@ -34,6 +37,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_3i827"]
 script = ExtResource("5_2xfqk")
+title = "Hot Dogged"
+description = "Whenever a Card deals Damage, all other Cards progress 1 fewer time."
+icon = ExtResource("4_nj1br")
 metadata/_custom_type_script = "uid://bfobo23lu5qyy"
 
 [sub_resource type="Resource" id="Resource_62x02"]
@@ -45,6 +51,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_kb65p"]
 script = ExtResource("5_2xfqk")
+title = "Hot Dogged"
+description = "Whenever a Card deals Damage, all other Cards progress 1 fewer time."
+icon = ExtResource("4_nj1br")
 metadata/_custom_type_script = "uid://bfobo23lu5qyy"
 
 [sub_resource type="Resource" id="Resource_1aunc"]
@@ -56,6 +65,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_lp0wq"]
 script = ExtResource("3_26mv8")
+title = "Buried"
+description = "The lowest Max Value Card no longer progresses this Round."
+icon = ExtResource("2_1ctfe")
 metadata/_custom_type_script = "uid://bdy736a1xfb65"
 
 [sub_resource type="Resource" id="Resource_mkmdd"]
@@ -65,22 +77,11 @@ scope = 1
 sprint_number = 5
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
-[sub_resource type="Resource" id="Resource_yf4is"]
-script = ExtResource("3_26mv8")
-metadata/_custom_type_script = "uid://bdy736a1xfb65"
-
-[sub_resource type="Resource" id="Resource_ugxhh"]
-script = ExtResource("1_bygru")
-debuff = SubResource("Resource_yf4is")
-scope = 1
-sprint_number = 6
-metadata/_custom_type_script = "uid://ci46gty6mtmrb"
-
 [resource]
 script = ExtResource("2_a1q4s")
 name = "Marq, Office Dog"
 health = 600000
 enemy_texture = ExtResource("6_u01tq")
-counter_values = Array[int]([34, 49, 40, 18, 49, 27])
-debuffs = Array[ExtResource("1_bygru")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1"), SubResource("Resource_62x02"), SubResource("Resource_1aunc"), SubResource("Resource_mkmdd"), SubResource("Resource_ugxhh")])
+counter_values = Array[int]([34, 49, 40, 18, 49])
+debuffs = Array[ExtResource("1_bygru")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1"), SubResource("Resource_62x02"), SubResource("Resource_1aunc"), SubResource("Resource_mkmdd")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"

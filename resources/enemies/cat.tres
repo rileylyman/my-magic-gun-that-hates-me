@@ -1,23 +1,34 @@
 [gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://cmqh2lhnw7k8y"]
 
 [ext_resource type="Script" uid="uid://ci46gty6mtmrb" path="res://src/enemy_debuff_entry.gd" id="1_2bvm0"]
+[ext_resource type="Texture2D" uid="uid://ogxcfd5n5acc" path="res://art/enemy_debuffs/debuff_stapleRemover.png" id="2_1bjt6"]
 [ext_resource type="Script" uid="uid://bifeeamvk3kte" path="res://src/enemy_resource.gd" id="2_j7l2u"]
 [ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="2_o0pr3"]
+[ext_resource type="Texture2D" uid="uid://dfsxa8enfb7ig" path="res://art/enemy_debuffs/debuff_ethan2.png" id="2_puahh"]
 [ext_resource type="Script" uid="uid://bfobo23lu5qyy" path="res://resources/debuffs/hot_dogged.gd" id="3_ihjlf"]
 [ext_resource type="Script" uid="uid://dt2nsdsn3jid1" path="res://resources/debuffs/pulled_apart.gd" id="3_qkj0b"]
-[ext_resource type="Script" uid="uid://crrqbfmtm1sxn" path="res://resources/debuffs/rotted.gd" id="5_0vb0e"]
 [ext_resource type="Script" uid="uid://dyjg4orysl1qa" path="res://resources/debuffs/lured.gd" id="5_npi7w"]
 [ext_resource type="Script" uid="uid://bdy736a1xfb65" path="res://resources/debuffs/buried.gd" id="6_1bjt6"]
+[ext_resource type="Texture2D" uid="uid://cy1eolbfbobc8" path="res://art/enemy_debuffs/debuff_david.png" id="6_1divl"]
+[ext_resource type="Texture2D" uid="uid://b8l4alkkqmjph" path="res://art/enemy_debuffs/debuff_Nic.png" id="6_o0pr3"]
 [ext_resource type="Script" uid="uid://bs3aamudahvww" path="res://resources/debuffs/scribbled.gd" id="7_qkj0b"]
 [ext_resource type="Script" uid="uid://dymdp36vip465" path="res://resources/debuffs/git_forked.gd" id="8_1divl"]
+[ext_resource type="Texture2D" uid="uid://go8vk3n4j1q" path="res://art/enemy_debuffs/debuff_ethan.png" id="8_am4v2"]
+[ext_resource type="Texture2D" uid="uid://cebw04yg1guv7" path="res://art/enemy_debuffs/debuff_Hansong.png" id="8_npi7w"]
 [ext_resource type="Script" uid="uid://cvlsdht1uvy10" path="res://resources/debuffs/onboarding_call.gd" id="9_1bjt6"]
 [ext_resource type="Script" uid="uid://37dh0q1211gb" path="res://resources/debuffs/merge_conflict.gd" id="9_am4v2"]
 [ext_resource type="Texture2D" uid="uid://cq6i6x00k4xm4" path="res://art/enemies/Enemy_Zaizai.png" id="10_1divl"]
+[ext_resource type="Texture2D" uid="uid://bq4p7wey6vpdc" path="res://art/enemy_debuffs/debuff_Nic2.png" id="10_2ud4c"]
 [ext_resource type="Script" uid="uid://dl2dbpsigukpg" path="res://resources/debuffs/erased.gd" id="10_ecuei"]
 [ext_resource type="Script" uid="uid://dl1ijj0dswgm8" path="res://resources/debuffs/bone_spurred.gd" id="11_rw11m"]
+[ext_resource type="Texture2D" uid="uid://be05hn7llsatd" path="res://art/enemy_debuffs/debuff_riley2.png" id="12_oy6ca"]
+[ext_resource type="Texture2D" uid="uid://yyb1axlyxfdh" path="res://art/enemy_debuffs/debuff_riley.png" id="14_sa0pl"]
 
 [sub_resource type="Resource" id="Resource_gjng7"]
 script = ExtResource("3_qkj0b")
+title = "Pulled Apart"
+description = "The first three times 2 Cards deal Damage together, they deal half Damage."
+icon = ExtResource("2_1bjt6")
 metadata/_custom_type_script = "uid://dt2nsdsn3jid1"
 
 [sub_resource type="Resource" id="Resource_gxc0c"]
@@ -28,6 +39,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_h8uh0"]
 script = ExtResource("9_1bjt6")
+title = "Onboarded"
+description = "Cards deal half Damage during the first 5 Ticks of this Round."
+icon = ExtResource("8_npi7w")
 metadata/_custom_type_script = "uid://cvlsdht1uvy10"
 
 [sub_resource type="Resource" id="Resource_oru4l"]
@@ -38,6 +52,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_2tn58"]
 script = ExtResource("5_npi7w")
+title = "Lured"
+description = "A random Card from your Card Folder is chosen for you this Round."
+icon = ExtResource("6_1divl")
 metadata/_custom_type_script = "uid://dyjg4orysl1qa"
 
 [sub_resource type="Resource" id="Resource_qfcpf"]
@@ -49,6 +66,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_e243k"]
 script = ExtResource("6_1bjt6")
+title = "Buried"
+description = "The lowest Max Value Card no longer progresses this Round."
+icon = ExtResource("8_am4v2")
 metadata/_custom_type_script = "uid://bdy736a1xfb65"
 
 [sub_resource type="Resource" id="Resource_rjy10"]
@@ -60,6 +80,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_g5d72"]
 script = ExtResource("7_qkj0b")
+title = "Scribbled"
+description = "At the start of a Round, permanently change a random Card's Max Value to a random number between 2-13."
+icon = ExtResource("10_2ud4c")
 metadata/_custom_type_script = "uid://bs3aamudahvww"
 
 [sub_resource type="Resource" id="Resource_135ie"]
@@ -71,6 +94,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_y6b1l"]
 script = ExtResource("8_1divl")
+title = "Git Forked"
+description = "Whenever a 3 is displayed on the Field, Cards cannot deal Damage."
+icon = ExtResource("12_oy6ca")
 metadata/_custom_type_script = "uid://dymdp36vip465"
 
 [sub_resource type="Resource" id="Resource_af2ii"]
@@ -82,6 +108,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_q4fo0"]
 script = ExtResource("9_am4v2")
+title = "Merge Conflicted"
+description = "Cards with a Max Value of a multiple of 3 deal no Damage."
+icon = ExtResource("14_sa0pl")
 metadata/_custom_type_script = "uid://37dh0q1211gb"
 
 [sub_resource type="Resource" id="Resource_nfhcq"]
@@ -93,6 +122,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_p2mre"]
 script = ExtResource("10_ecuei")
+title = "Erased"
+description = "At the start of a Round, permanently decrease a random Card with a Max Value greater than 1 by 1."
+icon = ExtResource("6_o0pr3")
 metadata/_custom_type_script = "uid://dl2dbpsigukpg"
 
 [sub_resource type="Resource" id="Resource_hw7af"]
@@ -104,6 +136,8 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_1s6p7"]
 script = ExtResource("11_rw11m")
+title = "Bone Spurred"
+description = "Each Tick you deal Damage, the Enemy takes 1% less Damage permanently. (Caps at 50%.)"
 metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
 
 [sub_resource type="Resource" id="Resource_1fprt"]
@@ -115,6 +149,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_nus7m"]
 script = ExtResource("3_ihjlf")
+title = "Hot Dogged"
+description = "Whenever a Card deals Damage, all other Cards progress 1 fewer time."
+icon = ExtResource("2_puahh")
 metadata/_custom_type_script = "uid://bfobo23lu5qyy"
 
 [sub_resource type="Resource" id="Resource_22cjp"]
@@ -124,22 +161,11 @@ scope = 1
 sprint_number = 5
 metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
-[sub_resource type="Resource" id="Resource_dhy4c"]
-script = ExtResource("5_0vb0e")
-metadata/_custom_type_script = "uid://crrqbfmtm1sxn"
-
-[sub_resource type="Resource" id="Resource_fasfm"]
-script = ExtResource("1_2bvm0")
-debuff = SubResource("Resource_dhy4c")
-scope = 1
-sprint_number = 6
-metadata/_custom_type_script = "uid://ci46gty6mtmrb"
-
 [resource]
 script = ExtResource("2_j7l2u")
 name = "Zaizai, The CEO"
 health = 9999999
 enemy_texture = ExtResource("10_1divl")
-counter_values = Array[int]([99, 88, 77, 66, 55, 99])
-debuffs = Array[ExtResource("1_2bvm0")]([SubResource("Resource_gxc0c"), SubResource("Resource_oru4l"), SubResource("Resource_qfcpf"), SubResource("Resource_rjy10"), SubResource("Resource_135ie"), SubResource("Resource_af2ii"), SubResource("Resource_nfhcq"), SubResource("Resource_hw7af"), SubResource("Resource_1fprt"), SubResource("Resource_22cjp"), SubResource("Resource_fasfm")])
+counter_values = Array[int]([99, 88, 77, 66, 99])
+debuffs = Array[ExtResource("1_2bvm0")]([SubResource("Resource_gxc0c"), SubResource("Resource_oru4l"), SubResource("Resource_qfcpf"), SubResource("Resource_rjy10"), SubResource("Resource_135ie"), SubResource("Resource_af2ii"), SubResource("Resource_nfhcq"), SubResource("Resource_hw7af"), SubResource("Resource_1fprt"), SubResource("Resource_22cjp")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"
