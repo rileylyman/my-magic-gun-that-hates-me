@@ -245,11 +245,7 @@ text = "+1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Tooltip" to="." method="_on_tooltip_mouse_entered"]
-[connection signal="mouse_exited" from="Tooltip" to="." method="_on_tooltip_mouse_exited"]
 [connection signal="pressed" from="Tooltip/MarginContainer/VBoxContainer/ButtonContainer/GoLeft" to="." method="_on_go_left_pressed"]
 [connection signal="pressed" from="Tooltip/MarginContainer/VBoxContainer/ButtonContainer/Discard" to="." method="_on_discard_pressed"]
 [connection signal="pressed" from="Tooltip/MarginContainer/VBoxContainer/ButtonContainer/GoRight" to="." method="_on_go_right_pressed"]

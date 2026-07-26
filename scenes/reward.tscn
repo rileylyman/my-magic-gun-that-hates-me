@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cyioj8qlnf3d4" path="res://resources/stamps/positive_possum.tscn" id="8_luggl"]
 [ext_resource type="PackedScene" uid="uid://sftnr5swi5h0" path="res://resources/stamps/random_raccoon.tscn" id="9_gl7qb"]
 [ext_resource type="PackedScene" uid="uid://b8l7rr3s88vws" path="res://resources/stamps/sequential_squirrel.tscn" id="10_sdmt1"]
+[ext_resource type="Texture2D" uid="uid://3ys1rl51rd4y" path="res://art/big-group.png" id="16_1mu3d"]
 
 [sub_resource type="Resource" id="Resource_vctk2"]
 script = ExtResource("3_ebjq7")
@@ -136,6 +137,10 @@ corner_radius_bottom_left = 16
 shadow_size = 3
 shadow_offset = Vector2(4, 4)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhpu0"]
+atlas = ExtResource("16_1mu3d")
+region = Rect2(2912, 1344, 608, 512)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_01wwf"]
 atlas = ExtResource("7_3l8rl")
 region = Rect2(160, 96, 1120, 976)
@@ -216,10 +221,10 @@ horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="ArtifactControl" unique_id=1708323228]
 layout_mode = 0
-offset_left = -33.0
+offset_left = -44.0
 offset_top = 77.0
-offset_right = 317.0
-offset_bottom = 189.0
+offset_right = 294.0
+offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
 
 [node name="MarginContainer" type="MarginContainer" parent="ArtifactControl/PanelContainer" unique_id=998446129]
@@ -397,22 +402,20 @@ text = "- and -"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=231778483]
-custom_minimum_size = Vector2(310.52, 273.46)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = -197.0
-offset_right = 109.52002
-offset_bottom = 76.45999
+offset_left = -174.0
+offset_top = -181.0
+offset_right = 97.91223
+offset_bottom = 58.45999
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_01wwf")
+texture = SubResource("AtlasTexture_xhpu0")
 expand_mode = 1
-stretch_mode = 5
 
 [node name="RightEnemyShaker" type="TextureRect" parent="." unique_id=1614344310]
 unique_name_in_owner = true
@@ -458,10 +461,10 @@ stretch_mode = 5
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1580180203]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 20.0
-offset_right = 1134.0
-offset_bottom = 96.0
+offset_left = 726.0
+offset_top = -6.0
+offset_right = 1160.0
+offset_bottom = 70.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer2" unique_id=1688167506]
@@ -487,6 +490,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TopFrame" type="TextureRect" parent="." unique_id=1582926399]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -497,6 +501,7 @@ expand_mode = 5
 stretch_mode = 4
 
 [node name="BottomFrame" type="TextureRect" parent="." unique_id=1897753423]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -510,6 +515,7 @@ expand_mode = 5
 stretch_mode = 4
 
 [node name="LeftFrame" type="TextureRect" parent="." unique_id=1982842443]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -520,6 +526,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="RightFrame" type="TextureRect" parent="." unique_id=1516244345]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -533,5 +540,17 @@ expand_mode = 3
 stretch_mode = 4
 
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" method="_on_gui_input"]
+[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" method="_on_mouse_exited"]
+[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" method="_on_gui_input"]
+[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" method="_on_mouse_exited"]
+[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" method="_on_gui_input"]
+[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" method="_on_mouse_exited"]
 [connection signal="pressed" from="ArtifactControl/SkipArtifactsButton" to="." method="_on_skip_artifacts_button_pressed"]
 [connection signal="pressed" from="CardControl/TextureButton" to="." method="_on_skip_cards_button_pressed"]
+[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" method="_on_gui_input"]
+[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" method="_on_mouse_exited"]
+[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" method="_on_gui_input"]
+[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" method="_on_mouse_exited"]
+[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" method="_on_gui_input"]
+[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" method="_on_mouse_exited"]

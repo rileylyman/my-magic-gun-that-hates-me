@@ -164,6 +164,10 @@ func setup_artifact_selectors() -> void:
 
 		a.visible = true
 		a.artifact = artifact
+		a.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		a.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		a.base_icon_scale = 1.5
+		a.hover_icon_scale = 2.0
 		a.sibling_icons = _all_icons
 		_all_icons.append(a)
 		a._ready()

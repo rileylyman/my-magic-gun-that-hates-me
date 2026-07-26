@@ -4,24 +4,35 @@ extends Control
 @export var show_buttons := true
 @export var buy_on_click := false
 
+@export var base_icon_scale: float = 1.0
+@export var hover_icon_scale: float = 1.5
+
 var artifact: Artifact = Artifact.new()
 var gm: GameManager
 var sibling_icons: Array[ArtifactIcon] = []
 
 var _stylebox: StyleBoxFlat
+var _base_min_size: Vector2
 
 signal on_buy
 
 func _ready() -> void:
+	_base_min_size = custom_minimum_size
 	%Title.text = artifact.title
 	%Desc.text = artifact.description
 	%Rarity.text = Artifact.ArtifactRarity.keys()[artifact.rarity]
 	$Tooltip.visible = false
 	$TextureRect.texture = artifact.icon
+	$TextureRect.scale = Vector2.ONE
+	apply_icon_scale(base_icon_scale)
 	%ShakeTextContainer.top_level = true
 
 	_stylebox = %RarityBg.get_theme_stylebox("panel").duplicate()
 	%RarityBg.add_theme_stylebox_override("panel", _stylebox)
+
+func apply_icon_scale(multiplier: float) -> void:
+	custom_minimum_size = _base_min_size * multiplier
+	size = custom_minimum_size
 
 func force_tooltip_above() -> void:
 	await get_tree().process_frame
@@ -56,7 +67,7 @@ func _process(_delta: float) -> void:
 		rect = rect.merge($Tooltip.get_global_rect())
 		if not rect.has_point(get_viewport().get_mouse_position()):
 			$Tooltip.visible = false
-			$TextureRect.scale = Vector2(1, 1)
+			$TextureRect.scale = Vector2.ONE
 
 	if $Tooltip.visible:
 		var others: Array[ArtifactIcon] = (
@@ -66,20 +77,31 @@ func _process(_delta: float) -> void:
 		for a in others:
 			if a != self and a != null and a.get_node("Tooltip").visible:
 				$Tooltip.visible = false
-				$TextureRect.scale = Vector2(1, 1)
+				$TextureRect.scale = Vector2.ONE
 				break
 	
 
 func _on_mouse_entered() -> void:
+	var others: Array[ArtifactIcon] = (
+		gm.icons if gm != null else sibling_icons
+	)
+
+	for a in others:
+		if a != self and a != null:
+			a.get_node("Tooltip").visible = false
+			a.get_node("TextureRect").scale = Vector2.ONE
+
 	$Tooltip.visible = true
-	$TextureRect.scale = Vector2(1.5, 1.5)
+
+	var hover_multiplier := hover_icon_scale / base_icon_scale
+	$TextureRect.scale = Vector2(hover_multiplier, hover_multiplier)
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if buy_on_click:
 				$Tooltip.visible = false
-				$TextureRect.scale = Vector2(1, 1)
+				$TextureRect.scale = Vector2.ONE
 				on_buy.emit()
 
 func shake(show_text: String, play_sound: bool)-> void:
