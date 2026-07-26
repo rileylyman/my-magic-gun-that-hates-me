@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://d11la8i1i5o7o" path="res://src/card_outline.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_outline"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6117647, 0.2901961, 0.17254902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CardOutline" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 157)
+offset_right = 120.0
+offset_bottom = 157.0
+mouse_filter = 2
+script = ExtResource("1_script")
+theme_override_styles/panel = SubResource("StyleBoxFlat_outline")

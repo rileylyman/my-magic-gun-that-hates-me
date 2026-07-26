@@ -6,7 +6,7 @@ var number_of_jammed: int = 0
 func counter_start_callback(
 	counter: Counter
 ) -> void:
-	counter.
+	pass
 
 func battle_start_callback(
 	_manager: GameManager

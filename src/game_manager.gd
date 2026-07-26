@@ -55,6 +55,10 @@ const artifact_icon_scene: PackedScene = preload(
 	"res://src/artifact_icon.tscn"
 )
 
+const card_outline_scene: PackedScene = preload(
+	"res://src/card_outline.tscn"
+)
+
 var counters: Array[Counter] = []
 var active_counter: Counter
 var active_counter_index: int = -1
@@ -66,6 +70,7 @@ var battle_ended: bool = false
 var previous_day_fired_cards: Array[Card] = []
 
 var icons: Array[ArtifactIcon] = []
+var chosen_outlines: Array[Control] = []
 
 var drawpile: Array[Card] = []
 var discard: Array[Card] = []
@@ -839,7 +844,7 @@ func arrange_items() -> void:
 		c.scale = Vector2.ONE
 
 	arrange_row(hand, 0.75, Vector2(-8, 0))
-	arrange_row(chosen)
+	arrange_chosen_row()
 
 
 func arrange_fan_row(
@@ -926,6 +931,64 @@ func arrange_row(
 
 		cards[i].rotation = 0
 		cards[i].scale = Vector2.ONE * new_scale
+
+
+func arrange_chosen_row() -> void:
+	var total_slots: int = maxi(GlobalManager.spellslots, chosen.size())
+	ensure_chosen_outlines(total_slots)
+
+	var width := (
+		(card_size.x + padding.x)
+		* total_slots
+		- padding.x
+	)
+
+	var start_x: float = - width / 2.0
+
+	for i in range(chosen_outlines.size()):
+		chosen_outlines[i].visible = i >= chosen.size()
+		chosen_outlines[i].custom_minimum_size = card_size
+		chosen_outlines[i].size = card_size
+
+		chosen_outlines[i].position = Vector2(
+			start_x
+			+ i
+			* (card_size.x + padding.x),
+			0
+		)
+
+	for i in range(chosen.size()):
+		if chosen[i].is_shaking:
+			continue
+
+		chosen[i].apply_scene_size()
+
+		chosen[i].position = Vector2(
+			start_x
+			+ i
+			* (card_size.x + padding.x),
+			0
+		)
+
+		chosen[i].rotation = 0
+		chosen[i].scale = Vector2.ONE
+
+
+func ensure_chosen_outlines(total: int) -> void:
+	while chosen_outlines.size() < total:
+		var outline := (
+			card_outline_scene.instantiate()
+			as Control
+		)
+
+		# outline.z_index = -1
+		outline.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		%ChosenPos.add_child(outline)
+		chosen_outlines.append(outline)
+
+	while chosen_outlines.size() > total:
+		var outline: Control = chosen_outlines.pop_back()
+		outline.queue_free()
 
 
 func discard_chosen() -> void:
