@@ -36,6 +36,8 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_0tlya"]
 script = ExtResource("5_xmakp")
+title = "Bone Spurred"
+description = "Each Tick you deal Damage, the Enemy takes 1% less Damage permanently. (Caps at 50%)"
 metadata/_custom_type_script = "uid://dl1ijj0dswgm8"
 
 [sub_resource type="Resource" id="Resource_ka2sh"]
@@ -47,6 +49,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_kni80"]
 script = ExtResource("3_wry4j")
+title = "Rotted"
+description = "Negate Damage less than 10% of the Enemy's total Health."
+icon = ExtResource("2_rta6v")
 metadata/_custom_type_script = "uid://crrqbfmtm1sxn"
 
 [sub_resource type="Resource" id="Resource_5ji5t"]

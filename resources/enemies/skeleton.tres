@@ -7,13 +7,12 @@
 [ext_resource type="Script" uid="uid://bs3aamudahvww" path="res://resources/debuffs/scribbled.gd" id="3_5ekml"]
 [ext_resource type="Texture2D" uid="uid://bq4p7wey6vpdc" path="res://art/enemy_debuffs/debuff_Nic2.png" id="4_5ekml"]
 [ext_resource type="Script" uid="uid://dl2dbpsigukpg" path="res://resources/debuffs/erased.gd" id="4_yjnup"]
-[ext_resource type="Texture2D" uid="uid://c5sbx1eowimfo" path="res://art/enemy_debuffs/debuff_amber2.png" id="6_yjnup"]
 
 [sub_resource type="Resource" id="Resource_br1p1"]
 script = ExtResource("3_5ekml")
 title = "Scribbled"
 description = "At the start of a Round, permanently change a random Card's Max Value to a random number between 2-13."
-icon = ExtResource("2_g1uiq")
+icon = ExtResource("4_5ekml")
 metadata/_custom_type_script = "uid://bs3aamudahvww"
 
 [sub_resource type="Resource" id="Resource_yxr72"]
@@ -26,7 +25,7 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 script = ExtResource("4_yjnup")
 title = "Erased"
 description = "At the start of a Round, permanently decrease a random Card with a Max Value greater than 1 by 1."
-icon = ExtResource("4_5ekml")
+icon = ExtResource("2_g1uiq")
 metadata/_custom_type_script = "uid://dl2dbpsigukpg"
 
 [sub_resource type="Resource" id="Resource_rrs27"]
@@ -38,6 +37,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_oeux1"]
 script = ExtResource("4_yjnup")
+title = "Erased"
+description = "At the start of a Round, permanently decrease a random Card with a Max Value greater than 1 by 1."
+icon = ExtResource("2_g1uiq")
 metadata/_custom_type_script = "uid://dl2dbpsigukpg"
 
 [sub_resource type="Resource" id="Resource_vblm0"]
@@ -49,6 +51,9 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 
 [sub_resource type="Resource" id="Resource_s6fyf"]
 script = ExtResource("3_5ekml")
+title = "Scribbled"
+description = "At the start of a Round, permanently change a random Card's Max Value to a random number between 2-13."
+icon = ExtResource("4_5ekml")
 metadata/_custom_type_script = "uid://bs3aamudahvww"
 
 [sub_resource type="Resource" id="Resource_vkdp5"]
