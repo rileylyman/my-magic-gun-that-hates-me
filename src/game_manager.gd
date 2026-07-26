@@ -329,6 +329,13 @@ func play_artifact_trigger_sound() -> void:
 
 
 func load_artifacts() -> void:
+	%ArtifactCount.text = (
+		"Relic Count "
+		+ str(GlobalManager.artifacts.size())
+		+ "/"
+		+ str(GlobalManager.MAX_ARTIFACTS)
+	)
+
 	for a in %ArtifactHBox.get_children():
 		a.queue_free()
 	icons.clear()

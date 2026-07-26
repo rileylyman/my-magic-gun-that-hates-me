@@ -427,6 +427,17 @@ text = "0"
 horizontal_alignment = 1
 script = ExtResource("13_k8us1")
 
+[node name="ArtifactCount" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=1899334925]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 585.0
+offset_top = 16.0
+offset_right = 618.0
+offset_bottom = 40.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "0/5"
+
 [node name="TopFrame" type="TextureRect" parent="." unique_id=343435194]
 layout_mode = 1
 anchors_preset = 10
