@@ -17,3 +17,4 @@ func counter_start_callback(
 	affected_card.max_value = randi_range(2, 13)
 	affected_card.curr = affected_card.max_value
 	affected_card.update_number_feature()
+	await shake(" Scribbled! ")

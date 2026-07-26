@@ -19,3 +19,4 @@ func when_hit_callback(state: TickState) -> void:
 	if float(total_damage) < minimum_damage:
 		state.score = 0
 		state.bonus_score = 0
+		await shake(" Rotted! ")

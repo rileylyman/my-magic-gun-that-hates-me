@@ -36,5 +36,6 @@ func post_tick_callback(state: TickState) -> void:
 		card_to_destroy.get_parent().remove_child(
 			card_to_destroy
 		)
+	await shake(" Drowned! ")
 
 	card_to_destroy.queue_free()

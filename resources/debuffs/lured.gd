@@ -90,3 +90,8 @@ func replace_card_in_zone(
 		return true
 
 	return false
+	
+func battle_start_callback(
+	_manager: GameManager
+) -> void:
+	await shake(" Lured! ")

@@ -33,6 +33,7 @@ func when_hit_callback(state: TickState) -> void:
 
 	state.score = reduced_damage
 	state.bonus_score = 0
+	await shake(" Reduced! ")
 
 	if reduced_damage <= 0:
 		return

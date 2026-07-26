@@ -14,3 +14,4 @@ func when_hit_callback(state: TickState) -> void:
 			card.curr + 1,
 			card.max_value
 		)
+		await shake(" GET DAWG'D! ")

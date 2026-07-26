@@ -13,11 +13,13 @@ func when_hit_callback(state: TickState) -> void:
 
 	if blocked_cards.size() == state.today_fired_cards.size():
 		state.score = 0
+		await shake(" Conflicted! ")
 		return
 
 	for card in blocked_cards:
 		if card.max_value == 0:
 			state.score = 0
+			await shake(" Conflicted! ")
 			return
 
 		state.score = roundi(

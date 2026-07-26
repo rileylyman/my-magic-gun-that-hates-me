@@ -36,3 +36,8 @@ func pre_tick_callback(state: TickState) -> void:
 		return
 
 	frozen_card.curr += 1
+	
+func battle_start_callback(
+	_manager: GameManager
+) -> void:
+	await shake(" Buried! ")

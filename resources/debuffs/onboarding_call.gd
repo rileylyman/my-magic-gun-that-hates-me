@@ -15,3 +15,5 @@ func when_hit_callback(
 	state.bonus_score = roundi(
 		float(state.bonus_score) * 0.5
 	)
+	
+	await shake(" Onboarded! ")

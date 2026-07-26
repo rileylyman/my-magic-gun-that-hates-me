@@ -19,3 +19,4 @@ func when_hit_callback(
 		number_of_jammed += 1
 		state.score *= 0
 		state.bonus_score *= 0
+		await shake(" Pulled Apart! ")

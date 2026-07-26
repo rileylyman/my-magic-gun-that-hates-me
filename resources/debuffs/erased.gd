@@ -20,3 +20,8 @@ func counter_start_callback(
 	affected_card.max_value -= 1
 	affected_card.curr = affected_card.max_value
 	affected_card.update_number_feature()
+	
+func battle_start_callback(
+	_manager: GameManager
+) -> void:
+	await shake(" Erased! ")
