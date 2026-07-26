@@ -56,8 +56,7 @@ var handsize: int:
 			2
 			* artifacts.filter(
 				func(a): return a is ExtraHand
-			).size()
-			+5
+			).size() + 5
 		)
 
 func _challenge_mode() -> void:

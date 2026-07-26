@@ -442,11 +442,14 @@ func check_battle_resolution() -> void:
 	if battle_ended:
 		return
 
+	if is_ticking:
+		return
+
 	if %ScoreBar.curr_score >= %ScoreBar.max_score:
 		end_round()
 		return
 
-	if is_ticking or active_counter != null:
+	if active_counter != null:
 		return
 
 	if has_remaining_sprints():
@@ -1231,11 +1234,16 @@ func discard_chosen() -> void:
 	chosen.clear()
 
 	for c in discarding:
+		if c in discard:
+			continue
+
 		discard.append(c)
 
 		var start_global: Vector2 = c.global_position
 
-		%ChosenPos.remove_child(c)
+		if c.get_parent() != null:
+			c.get_parent().remove_child(c)
+
 		%DeckContainer.add_child(c)
 
 		c.global_position = start_global
@@ -1312,10 +1320,16 @@ func deal_hand() -> void:
 				as Card
 			)
 
+			if card in hand:
+				continue
+
 			var start_global: Vector2 = card.global_position
 
 			hand.append(card)
-			%DeckContainer.remove_child(card)
+
+			if card.get_parent() != null:
+				card.get_parent().remove_child(card)
+
 			%HandPos.add_child(card)
 			card.global_position = start_global
 			card.is_dealing = true
