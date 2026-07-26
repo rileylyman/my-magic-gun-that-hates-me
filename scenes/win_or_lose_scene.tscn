@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://cuqahqq52hgo0"]
 
 [ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_r100t"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_lh3pb"]
-font_size = 56
+[ext_resource type="Script" uid="uid://d1ags2lwwwk3t" path="res://scenes/win_or_lose_scene.gd" id="2_fjnxr"]
+[ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="3_fwmsk"]
+[ext_resource type="Texture2D" uid="uid://co8k45566mjrn" path="res://art/ui/Submit_Highlight.png" id="4_dtayw"]
+[ext_resource type="Texture2D" uid="uid://bhai0cokx4e4a" path="res://art/ui/Frame_Top.png" id="5_kvc8h"]
+[ext_resource type="Texture2D" uid="uid://bu8quyctmdpfb" path="res://art/ui/Frame_Bottom.png" id="6_sno73"]
+[ext_resource type="Texture2D" uid="uid://bun7xomljms8o" path="res://art/ui/Frame_Left.png" id="7_bkgws"]
+[ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="8_ekdis"]
 
 [node name="WinnerScene" type="Control" unique_id=707360239]
 layout_mode = 3
@@ -13,48 +17,121 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_r100t")
+script = ExtResource("2_fjnxr")
 
-[node name="Credits2" type="Label" parent="." unique_id=133619641]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1587900652]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -258.0
-offset_bottom = -186.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Congratulations! You won!"
-label_settings = SubResource("LabelSettings_lh3pb")
+color = Color(0.2627451, 0.21568628, 0.654902, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1293862006]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -287.5
+offset_top = 86.0
+offset_right = 287.5
+offset_bottom = 174.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 64
+text = "Congratulations! You Won!"
 horizontal_alignment = 1
 
-[node name="Credits3" type="Label" parent="." unique_id=1829337685]
+[node name="StartGame" type="TextureButton" parent="." unique_id=1187569931]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -161.0
-offset_bottom = -14.0
+offset_left = -173.71875
+offset_top = -27.25
+offset_right = 173.71875
+offset_bottom = 27.25
 grow_horizontal = 2
 grow_vertical = 2
-text = "Placeholder for displaying deck and
-artifacts. Maybe also some interesting stats"
-label_settings = SubResource("LabelSettings_lh3pb")
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_fwmsk")
+texture_pressed = ExtResource("3_fwmsk")
+texture_hover = ExtResource("4_dtayw")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="StartGame" unique_id=1437832482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 27
+text = "Quit Game"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Credits4" type="Button" parent="." unique_id=1554497728]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 368.0
-offset_right = 674.29034
-offset_bottom = 433.0
-text = "Back to Main Menu"
+[node name="TopFrame" type="TextureRect" parent="." unique_id=1031812604]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.1
+grow_horizontal = 2
+texture = ExtResource("5_kvc8h")
+expand_mode = 5
+stretch_mode = 4
 
-[node name="Credits" type="Button" parent="." unique_id=1976900827]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 462.0
-offset_right = 674.29034
-offset_bottom = 527.0
-text = "Credits"
+[node name="BottomFrame" type="TextureRect" parent="." unique_id=1365004793]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.099976
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_sno73")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="LeftFrame" type="TextureRect" parent="." unique_id=293595312]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 62.977776
+grow_vertical = 2
+texture = ExtResource("7_bkgws")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="RightFrame" type="TextureRect" parent="." unique_id=2082961461]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.69995
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_ekdis")
+expand_mode = 3
+stretch_mode = 4
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]

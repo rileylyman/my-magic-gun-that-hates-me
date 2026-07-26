@@ -8,6 +8,7 @@ extends Control
 
 var show_damage := false
 var is_shaking := false
+var is_dealing := false
 var game_mgr: GameManager
 var reward_mgr: RewardScreen
 
