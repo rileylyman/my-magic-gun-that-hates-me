@@ -222,13 +222,15 @@ func clear_stamp() -> void:
 func _on_mouse_entered() -> void:
 	$Tooltip.visible = true
 
-	position.y = original_pos.y - 16
+	if can_buy:
+		position.y = original_pos.y - 16
 
 
 func _on_mouse_exited() -> void:
 	$Tooltip.visible = false
 
-	position.y = original_pos.y
+	if can_buy:
+		position.y = original_pos.y
 
 
 func shake() -> void:

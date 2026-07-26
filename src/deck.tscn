@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://bg63q87i1t10o"]
+
+[ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_ho3gf"]
+[ext_resource type="PackedScene" uid="uid://dedwdl7bsg75m" path="res://src/card.tscn" id="1_nanvt"]
+[ext_resource type="Script" uid="uid://6paxyy34w5h2" path="res://src/deck_view.gd" id="2_uok0u"]
+[ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="3_uok0u"]
+[ext_resource type="Texture2D" uid="uid://co8k45566mjrn" path="res://art/ui/Submit_Highlight.png" id="4_e31mm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01wwf"]
+bg_color = Color(0.25882354, 0.21568628, 0.654902, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.77254903, 0.50980395, 0.23137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Deck" type="Control" unique_id=1314020823]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ho3gf")
+script = ExtResource("2_uok0u")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1434940820]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=525899980]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01wwf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=875809387]
+clip_contents = true
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=833910884]
+custom_minimum_size = Vector2(0, 389.23)
+clip_contents = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=1001940162]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1608971741]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 44
+theme_override_constants/v_separation = 25
+columns = 6
+
+[node name="Card" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1368151009 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card2" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=242628085 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card3" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1290807645 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card4" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1895084785 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card5" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1692329194 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card6" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=380266984 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card7" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1239796850 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card8" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1761450228 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card9" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=416532843 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card10" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1517496241 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card11" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=2128289617 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card12" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=909701768 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card13" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1070715524 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card14" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1127370273 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card15" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1891255421 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Card16" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=695301355 instance=ExtResource("1_nanvt")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer" unique_id=1274384208]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PanelContainer/Control" unique_id=905841931]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -2.0
+offset_bottom = 81.0
+grow_horizontal = 2
+color = Color(0.23025994, 0.19139999, 0.58, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/PanelContainer/Control" unique_id=464190915]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 76.0
+offset_bottom = 86.0
+grow_horizontal = 2
+color = Color(0.10741996, 0.073800005, 0.41, 1)
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Control" unique_id=2138183120]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 228.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 48
+text = "All Cards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StampPrompt" type="Label" parent="MarginContainer/PanelContainer/Control" unique_id=1621194066]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.0
+offset_right = 109.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "Choose a card to stamp"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DestroyPrompt" type="Label" parent="MarginContainer/PanelContainer/Control" unique_id=1370564506]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.0
+offset_right = 109.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "Choose a card to destroy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkipArtifactsButton" type="TextureButton" parent="MarginContainer/PanelContainer/Control" unique_id=975129082]
+custom_minimum_size = Vector2(219.515, 37.255)
+layout_mode = 0
+offset_left = 754.0
+offset_top = 17.0
+offset_right = 973.515
+offset_bottom = 54.255005
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_uok0u")
+texture_pressed = ExtResource("3_uok0u")
+texture_hover = ExtResource("4_e31mm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Control/SkipArtifactsButton" unique_id=349059507]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Go Back"
+horizontal_alignment = 1
+vertical_alignment = 1
