@@ -163,36 +163,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2627451, 0.21568628, 0.654902, 1)
 
-[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1580180203]
-layout_mode = 0
-offset_left = 700.0
-offset_top = 20.0
-offset_right = 1134.0
-offset_bottom = 96.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2" unique_id=1688167506]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 16
-
-[node name="OurArtifactsContainer" type="HBoxContainer" parent="PanelContainer2/MarginContainer" unique_id=2034175252]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 48
-alignment = 1
-
-[node name="ArtifactIcon" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=475881361 instance=ExtResource("6_gwrng")]
-layout_mode = 2
-
-[node name="ArtifactIcon2" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=203709837 instance=ExtResource("6_gwrng")]
-layout_mode = 2
-
-[node name="ArtifactIcon3" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=1212189465 instance=ExtResource("6_gwrng")]
-layout_mode = 2
-
 [node name="ContinueButton" type="TextureButton" parent="." unique_id=357522124]
 unique_name_in_owner = true
 visible = false
@@ -386,52 +356,6 @@ text = "or skip..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TopFrame" type="TextureRect" parent="." unique_id=1582926399]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 29.1
-grow_horizontal = 2
-texture = ExtResource("2_unrml")
-expand_mode = 5
-stretch_mode = 4
-
-[node name="BottomFrame" type="TextureRect" parent="." unique_id=1897753423]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -29.1
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("3_p7sb0")
-expand_mode = 5
-stretch_mode = 4
-
-[node name="LeftFrame" type="TextureRect" parent="." unique_id=1982842443]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 62.977776
-grow_vertical = 2
-texture = ExtResource("4_ghuxa")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="RightFrame" type="TextureRect" parent="." unique_id=1516244345]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.699997
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("5_nyred")
-expand_mode = 3
-stretch_mode = 4
-
 [node name="Label" type="Label" parent="." unique_id=491080822]
 layout_mode = 1
 anchors_preset = 5
@@ -531,6 +455,82 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_01wwf")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1580180203]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 20.0
+offset_right = 1134.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2" unique_id=1688167506]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="OurArtifactsContainer" type="HBoxContainer" parent="PanelContainer2/MarginContainer" unique_id=2034175252]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ArtifactIcon" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=475881361 instance=ExtResource("6_gwrng")]
+layout_mode = 2
+
+[node name="ArtifactIcon2" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=203709837 instance=ExtResource("6_gwrng")]
+layout_mode = 2
+
+[node name="ArtifactIcon3" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=1212189465 instance=ExtResource("6_gwrng")]
+layout_mode = 2
+
+[node name="TopFrame" type="TextureRect" parent="." unique_id=1582926399]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.1
+grow_horizontal = 2
+texture = ExtResource("2_unrml")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="BottomFrame" type="TextureRect" parent="." unique_id=1897753423]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.099976
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_p7sb0")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="LeftFrame" type="TextureRect" parent="." unique_id=1982842443]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 62.977776
+grow_vertical = 2
+texture = ExtResource("4_ghuxa")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="RightFrame" type="TextureRect" parent="." unique_id=1516244345]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.69995
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("5_nyred")
+expand_mode = 3
+stretch_mode = 4
 
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ArtifactControl/SkipArtifactsButton" to="." method="_on_skip_artifacts_button_pressed"]

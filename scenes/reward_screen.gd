@@ -36,7 +36,7 @@ var stamp_chance: float = 20.0
 @onready var left_shaker: TextureRect = %LeftEnemyShaker
 @onready var right_shaker: TextureRect = %RightEnemyShaker
 
-@onready var artifacts_length: int = GlobalManager.artifacts.size()
+var _last_artifacts_snapshot: Array[Artifact] = GlobalManager.artifacts.duplicate()
 
 var _has_bought_artifact := false
 var _has_bought_card := false
@@ -63,15 +63,15 @@ func reload_our_artifacts() -> void:
 			artifact_icon_scene.instantiate()
 			as ArtifactIcon
 		)
-		icon.show_buttons = false
+		icon.show_buttons = true
 		icon.artifact = a
 		icon.sibling_icons = _all_icons
 		_all_icons.append(icon)
 		%OurArtifactsContainer.add_child(icon)
 
 func _process(_delta: float) -> void:
-	if GlobalManager.artifacts.size() != artifacts_length:
-		artifacts_length = GlobalManager.artifacts.size()
+	if GlobalManager.artifacts != _last_artifacts_snapshot:
+		_last_artifacts_snapshot = GlobalManager.artifacts.duplicate()
 		reload_our_artifacts()
 
 	%ContinueButton.visible = (
@@ -172,10 +172,13 @@ func setup_artifact_selectors() -> void:
 			if _has_bought_artifact:
 				return
 
+			if not GlobalManager.add_artifact(artifact):
+				await a.shake(" No room! ", false)
+				return
+
 			_has_bought_artifact = true
 			await a.shake(" Yay! ", false)
 			await get_tree().create_timer(0.5).timeout
-			GlobalManager.artifacts.append(artifact)
 			go_away_artifacts()
 		)
 
@@ -278,6 +281,7 @@ func setup_card_selectors() -> void:
 
 		card.prepare_for_task_grid()
 		card.do_setup()
+		card.can_buy = true
 		card.position = original_position
 
 		if not card.pressed.is_connected(on_card_selected):

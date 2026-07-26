@@ -79,6 +79,7 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if buy_on_click:
 				$Tooltip.visible = false
+				$TextureRect.scale = Vector2(1, 1)
 				on_buy.emit()
 
 func shake(show_text: String, play_sound: bool)-> void:
@@ -161,9 +162,13 @@ func move_order(off: int) -> void:
 
 	GlobalManager.artifacts.remove_at(idx)
 	GlobalManager.artifacts.insert(new_idx, artifact)
-	gm.load_artifacts()
+
+	if gm != null:
+		gm.load_artifacts()
 
 
 func _on_discard_pressed() -> void:
 	GlobalManager.artifacts.erase(artifact)
-	gm.load_artifacts()
+
+	if gm != null:
+		gm.load_artifacts()
