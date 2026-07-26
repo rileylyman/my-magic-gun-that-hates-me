@@ -176,6 +176,7 @@ horizontal_alignment = 1
 
 [node name="StampPromptDesc" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/Control/StampPrompt" unique_id=1621194067]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1

@@ -692,17 +692,17 @@ anchors_preset = -1
 anchor_right = 0.141
 anchor_bottom = 0.15400001
 offset_left = 427.0
-offset_top = 466.0
+offset_top = 431.0
 offset_right = 947.568
-offset_bottom = 513.208
+offset_bottom = 520.208
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="TutorialCanvasLayer/BattleTutorial/Panel3" unique_id=903735330]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 5.0
+offset_top = 6.0
 offset_right = 685.0
-offset_bottom = 183.0
+offset_bottom = 184.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
