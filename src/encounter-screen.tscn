@@ -371,11 +371,13 @@ offset_bottom = 501.0
 
 [node name="Card2" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/HandPos" unique_id=1368151009 instance=ExtResource("5_12btj")]
 visible = false
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
 offset_left = -254.0
 offset_top = -3.0
 offset_right = -134.0
 offset_bottom = 154.0
+theme = null
 
 [node name="ChosenPos" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=2107105898]
 unique_name_in_owner = true
@@ -387,9 +389,11 @@ offset_bottom = 321.0
 
 [node name="Card" parent="MarginContainer/HBoxContainer/PanelContainer2/Control/ChosenPos" unique_id=405309802 instance=ExtResource("5_12btj")]
 visible = false
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
 offset_left = -239.0
 offset_right = -119.0
+theme = null
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/Control" unique_id=829031375]
 custom_minimum_size = Vector2(0, 60)
@@ -534,8 +538,8 @@ game_over_scene = ExtResource("32_teun7")
 battle_tutorial = NodePath("../TutorialCanvasLayer/BattleTutorial")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.1
+task_fire_max_pitch = 4.0
 base_battle_speed = 0.7999999999999999
-sprint_speed_increase_per_trigger = 0.06
 max_sprint_speed_multiplier = 7.0
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
