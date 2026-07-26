@@ -6,6 +6,6 @@
 [node name="FidgetCube" type="Node2D" unique_id=540856853]
 script = ExtResource("1_mto2l")
 title = "Fidget Cube"
-description = "When two Tasks with the same value fire together, multiply their Damage by that number."
+description = "When two Cards with the same value deal Damage together, multiply their Damage by that number."
 rarity = 3
 icon = ExtResource("2_35uxx")

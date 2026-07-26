@@ -6,6 +6,6 @@
 [node name="TheOne" type="Node2D" unique_id=120669760]
 script = ExtResource("1_dndfi")
 title = "The One"
-description = "At the start of a Sprint, change the value of the Leftmost Task on Field to 1."
+description = "At the start of a Round, change the Max Value of the leftmost played Card to 1."
 rarity = 2
 icon = ExtResource("2_rv1qb")

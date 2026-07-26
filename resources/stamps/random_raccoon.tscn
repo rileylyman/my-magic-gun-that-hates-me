@@ -6,5 +6,5 @@
 [node name="RandomRaccoon" type="Node2D" unique_id=251644683]
 script = ExtResource("1_qimw3")
 title = "Random Raccoon"
-description = "After starting a Sprint, this Task's value is randomized each time it fires, but it quadrouples it's Damage."
+description = "At the start of a Round, this Card's Max Value is randomized. Whenever this Card deals Damage, quadruple its Damage."
 stamp_texture = ExtResource("2_ebett")

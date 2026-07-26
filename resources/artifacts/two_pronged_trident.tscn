@@ -6,5 +6,5 @@
 [node name="TwoProngedTrident" type="Node2D" unique_id=251644683]
 script = ExtResource("1_3tn70")
 title = "Two Pronged Fork"
-description = "2-value Tasks deal double Damage."
+description = "Cards with a Max Value of 2 deal double Damage."
 icon = ExtResource("2_nej3x")

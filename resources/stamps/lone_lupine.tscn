@@ -6,5 +6,5 @@
 [node name="LoneLupine" type="Node2D" unique_id=251644683]
 script = ExtResource("1_x1yje")
 title = "Lone Lupine"
-description = "When fires alone, deal triple Damage."
+description = "When this Card deals Damage alone, triple its Damage."
 stamp_texture = ExtResource("2_fhv2f")

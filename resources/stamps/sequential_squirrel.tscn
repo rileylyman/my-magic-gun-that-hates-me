@@ -6,5 +6,5 @@
 [node name="SequentialSquirrel" type="Node2D" unique_id=251644683]
 script = ExtResource("1_yu86a")
 title = "Sequental Squirrel"
-description = "When fires a Day after another Task has fired, deal triple Damage."
+description = "When this Card deals Damage the Tick after another Card dealt Damage, triple its Damage."
 stamp_texture = ExtResource("2_mprr7")

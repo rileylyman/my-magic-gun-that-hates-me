@@ -6,5 +6,5 @@
 [node name="Stapler" type="Node2D" unique_id=1067744872]
 script = ExtResource("1_gayaw")
 title = "Stapler"
-description = "Multiply all damage by 1.0. At the start of a Sprint, if two played Tasks are the same value, improve this multiplier by 0.2 permenantly."
+description = "Multiply all Damage by 1.0. At the start of a Round, if two played Cards have the same Max Value, increase this multiplier by 0.2 permanently."
 icon = ExtResource("2_mgn80")

@@ -6,5 +6,5 @@ func post_tick_callback(state: TickState) -> void:
 		for other in state.cards:
 			if c.max_value == other.max_value * other.max_value:
 				if(state.score>0):
-					state.score *= 2
-					await shake("x2")
+					state.score *= 3
+					await shake("x3")

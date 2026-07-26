@@ -6,5 +6,5 @@
 [node name="SpellScope" type="Node2D" unique_id=1486033492]
 script = ExtResource("1_fiuku")
 title = "Spell Scope"
-description = "If a Task fires alone, double its Damage."
+description = "If a Card deals Damage alone, double its Damage."
 icon = ExtResource("2_0yot0")

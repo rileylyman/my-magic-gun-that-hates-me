@@ -6,6 +6,6 @@
 [node name="TripleTierCake" type="Node2D" unique_id=838347528]
 script = ExtResource("1_5qkev")
 title = "Triple Tier Cake"
-description = "When 3 consecutive numbers are on the Field, add Damage equal to double their sum."
+description = "When 3 consecutive displayed numbers are on the Field, this Relic deals Damage equal to double their sum."
 rarity = 1
 icon = ExtResource("2_n6hju")

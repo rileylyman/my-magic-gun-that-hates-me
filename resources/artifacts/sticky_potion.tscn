@@ -6,6 +6,6 @@
 [node name="StickyPotion" type="Node2D" unique_id=1067744872]
 script = ExtResource("1_jdht3")
 title = "Sticky Potion"
-description = "If a Task fires alone, the next Task that fires alone deals double Damage. This effect stacks, and resets when two Tasks fire together."
+description = "Multiply all damage when a card hits 0 alone by 1. Double this multiplier every time a card hits 0 alone and reset it when more than 1 card hit 0 at once. Resets between Rounds."
 rarity = 3
 icon = ExtResource("2_sxuf5")

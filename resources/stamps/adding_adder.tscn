@@ -6,5 +6,5 @@
 [node name="AddingAdder" type="Node2D" unique_id=251644683]
 script = ExtResource("1_yu258")
 title = "Adding Adder"
-description = "When fires, adds 5 to Damage before any multiplication occurs."
+description = "When this Card deals Damage, add 5 Damage before multiplying Damage."
 stamp_texture = ExtResource("2_ixa46")

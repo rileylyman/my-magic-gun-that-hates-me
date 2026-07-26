@@ -1,7 +1,7 @@
 extends Artifact
 var round = 0
 func post_tick_callback(state: TickState) -> void:
-	if(state.score>0):
+	if(state.score>0&&round!=1):
 		state.score *= round
 		await shake("x"+str(round))
 

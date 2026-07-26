@@ -23,6 +23,6 @@ func post_tick_callback(state: TickState) -> void:
 		await shake("+0.2 Mult")
 		update_description()
 		
-	if(state.score>0):
+	if(state.score>0&&multiplier!=1.0):
 		state.score *= multiplier
 		await shake("x"+str(multiplier))

@@ -6,5 +6,5 @@
 [node name="Positive Possum" type="Node2D" unique_id=251644683]
 script = ExtResource("1_ep8t1")
 title = "Positive Possum"
-description = "At the start of a Sprint, Tasks played next to this one on Field have their values increased by 1."
+description = "At the start of a Round, adjacent Cards gain +1 Max Value."
 stamp_texture = ExtResource("2_hblk5")

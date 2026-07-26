@@ -6,6 +6,6 @@
 [node name="ExtraSlot" type="Node2D" unique_id=1113472306]
 script = ExtResource("1_1dvim")
 title = "Sticky Notes"
-description = "Gain 1 slot on the Field."
-rarity = 2
+description = "Gain 1 playable Card Slot."
+rarity = 3
 icon = ExtResource("2_u5lst")

@@ -6,6 +6,6 @@
 [node name="RulesOfPlay" type="Node2D" unique_id=258059512]
 script = ExtResource("1_ua818")
 title = "Rules of Play"
-description = "Multiply all damage by the Sprint number."
+description = "Multiply all Damage by the Round number."
 rarity = 1
 icon = ExtResource("2_uhwi8")

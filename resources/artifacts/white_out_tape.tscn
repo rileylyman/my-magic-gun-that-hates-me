@@ -6,6 +6,6 @@
 [node name="WhiteOutTape" type="Node2D" unique_id=1430223395]
 script = ExtResource("1_517wq")
 title = "White-Out Tape"
-description = "When the Task played on the leftmost Field slot fires, reset all other Tasks to their starting values."
+description = "When the leftmost Card deals Damage, reset all other Cards to their Max Values."
 rarity = 2
 icon = ExtResource("2_01ky1")

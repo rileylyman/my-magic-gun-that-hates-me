@@ -7,5 +7,5 @@
 script = ExtResource("1_n6xvb")
 value_change = -1
 title = "Negative Newt"
-description = "At the start of a Sprint, Tasks played next to this one on Field have their values decreased by 1."
+description = "At the start of a Round, adjacent Cards gain -1 Max Value (excluding 1s)."
 stamp_texture = ExtResource("2_gs4es")
