@@ -127,7 +127,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = -2.0
-offset_bottom = 81.0
+offset_bottom = 116.0
 grow_horizontal = 2
 color = Color(0.23025994, 0.19139999, 0.58, 1)
 
@@ -135,8 +135,10 @@ color = Color(0.23025994, 0.19139999, 0.58, 1)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 76.0
-offset_bottom = 86.0
+offset_left = -1.0
+offset_top = 108.0
+offset_right = -1.0
+offset_bottom = 118.0
 grow_horizontal = 2
 color = Color(0.10741996, 0.073800005, 0.41, 1)
 
@@ -150,22 +152,33 @@ text = "All Cards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StampPrompt" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/Control" unique_id=1621194066]
+[node name="StampPrompt" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/Control" unique_id=1621194066]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -109.0
-offset_right = 109.0
-offset_bottom = 75.0
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 90.0
 grow_horizontal = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/Control/StampPrompt" unique_id=1964923038]
+layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Choose a card to stamp"
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="StampPromptDesc" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/Control/StampPrompt" unique_id=1621194067]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="DestroyPrompt" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/Control" unique_id=1370564506]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 5

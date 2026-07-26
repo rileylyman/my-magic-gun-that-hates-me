@@ -33,6 +33,20 @@ var stamp_chance: float = 20.0
 
 @export var possible_card_stamps: Array[StampOption] = []
 
+@export_range(0.0, 100.0, 0.1)
+var cut_card_chance: float = 20.0
+
+const cut_card_button_scene: PackedScene = preload(
+	"res://src/cut_card_button.tscn"
+)
+
+@export_range(0.0, 100.0, 0.1)
+var stamp_card_chance: float = 20.0
+
+const stamp_card_button_scene: PackedScene = preload(
+	"res://src/stamp_card_button.tscn"
+)
+
 @onready var left_shaker: TextureRect = %LeftEnemyShaker
 @onready var right_shaker: TextureRect = %RightEnemyShaker
 
@@ -40,6 +54,7 @@ var _last_artifacts_snapshot: Array[Artifact] = GlobalManager.artifacts.duplicat
 
 var _has_bought_artifact := false
 var _has_bought_card := false
+var _card_reward_claimed := false
 
 var _card_stamp_scenes: Dictionary = {}
 var _all_icons: Array[ArtifactIcon] = []
@@ -47,11 +62,31 @@ var _all_icons: Array[ArtifactIcon] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	apply_defeated_enemy_texture()
 	load_artifacts()
 	setup_artifact_selectors()
 	setup_card_selectors()
 	shake_shakers()
 	reload_our_artifacts()
+
+	%ViewFullDeckButton.mouse_entered.connect(_on_view_full_deck_mouse_entered)
+	%ViewFullDeckButton.mouse_exited.connect(_on_view_full_deck_mouse_exited)
+	%ViewFullDeckButton.pressed.connect(_on_view_full_deck_pressed)
+	%Deck.card_destroyed.connect(_on_deck_card_destroyed)
+	%Deck.card_stamped.connect(_on_deck_card_stamped)
+	%Deck.closed.connect(_on_deck_closed)
+
+
+func _on_view_full_deck_mouse_entered() -> void:
+	%ViewFullDeckButton.get_node("Tooltip").visible = true
+
+
+func _on_view_full_deck_mouse_exited() -> void:
+	%ViewFullDeckButton.get_node("Tooltip").visible = false
+
+
+func _on_view_full_deck_pressed() -> void:
+	%Deck.open()
 
 func reload_our_artifacts() -> void:
 	for a in %OurArtifactsContainer.get_children():
@@ -79,9 +114,24 @@ func _process(_delta: float) -> void:
 		and _has_bought_card
 	)
 
+	%AndLabel.visible = not (
+		_has_bought_artifact
+		or _has_bought_card
+	)
+
 
 func _on_continue_button_pressed() -> void:
 	GlobalManager.enter_current_battle()
+
+func apply_defeated_enemy_texture() -> void:
+	var defeated_enemy: EnemyResource = GlobalManager.last_defeated_enemy
+
+	if defeated_enemy == null or defeated_enemy.enemy_texture == null:
+		return
+
+	left_shaker.texture = defeated_enemy.enemy_texture
+	right_shaker.texture = defeated_enemy.enemy_texture
+
 
 func shake_shakers() -> void:
 	var dir = 1
@@ -263,8 +313,50 @@ func get_artifact_weight(artifact: Artifact) -> float:
 func setup_card_selectors() -> void:
 	var used_values: Array[int] = []
 
-	for card in %CardControl.get_children():
-		if card is not Card:
+	var card_nodes: Array[Card] = []
+
+	for child in %CardControl.get_children():
+		if child is Card:
+			card_nodes.append(child)
+
+	var available_indices: Array[int] = []
+
+	for i in range(card_nodes.size()):
+		available_indices.append(i)
+
+	available_indices.shuffle()
+
+	var cut_card_index := -1
+
+	if (
+		not available_indices.is_empty()
+		and randf_range(0.0, 100.0) <= cut_card_chance
+	):
+		cut_card_index = available_indices.pop_back()
+
+	var stamp_card_index := -1
+	var stamp_card_scene: PackedScene = null
+
+	if (
+		not available_indices.is_empty()
+		and randf_range(0.0, 100.0) <= stamp_card_chance
+	):
+		stamp_card_scene = pick_weighted_stamp_scene()
+
+		if stamp_card_scene != null:
+			stamp_card_index = available_indices.pop_back()
+
+	for i in range(card_nodes.size()):
+		var card := card_nodes[i]
+
+		if i == cut_card_index:
+			card.visible = false
+			setup_cut_card_button(card.position)
+			continue
+
+		if i == stamp_card_index:
+			card.visible = false
+			setup_stamp_card_button(card.position, stamp_card_scene)
 			continue
 
 		var value := generate_card_value(used_values)
@@ -290,6 +382,52 @@ func setup_card_selectors() -> void:
 
 		if not card.pressed.is_connected(on_card_selected):
 			card.pressed.connect(on_card_selected)
+
+
+func setup_cut_card_button(at_position: Vector2) -> void:
+	var button := cut_card_button_scene.instantiate() as TextureButton
+
+	button.position = at_position
+	%CardControl.add_child(button)
+	button.pressed.connect(_on_cut_card_button_pressed)
+
+
+func setup_stamp_card_button(at_position: Vector2, stamp_scene: PackedScene) -> void:
+	var button := stamp_card_button_scene.instantiate() as TextureButton
+
+	button.position = at_position
+	%CardControl.add_child(button)
+	button.set_stamp_scene(stamp_scene)
+	button.pressed.connect(func(): _on_stamp_card_button_pressed(stamp_scene))
+
+
+func _on_cut_card_button_pressed() -> void:
+	%Deck.open_for_destroy()
+
+
+func _on_stamp_card_button_pressed(stamp_scene: PackedScene) -> void:
+	%Deck.open_for_stamp(stamp_scene)
+
+
+func _on_deck_card_destroyed() -> void:
+	_card_reward_claimed = true
+
+
+func _on_deck_card_stamped() -> void:
+	_card_reward_claimed = true
+
+
+func _on_deck_closed() -> void:
+	if not _card_reward_claimed:
+		return
+
+	_card_reward_claimed = false
+
+	if _has_bought_card:
+		return
+
+	_has_bought_card = true
+	go_away_cards()
 
 
 func generate_card_value(excluded_values: Array[int]) -> int:
@@ -330,6 +468,10 @@ func generate_card_stamp_scene() -> PackedScene:
 	if randf_range(0.0, 100.0) > stamp_chance:
 		return null
 
+	return pick_weighted_stamp_scene()
+
+
+func pick_weighted_stamp_scene() -> PackedScene:
 	var total_weight := 0.0
 
 	for option in possible_card_stamps:

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bio2r1ucwlhu3"]
+
+[ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_jgpij"]
+[ext_resource type="Texture2D" uid="uid://bxxpwjkvfd7gu" path="res://art/Stamp_adder.png" id="2_stamp"]
+[ext_resource type="Script" uid="uid://drkikdl0xt8qj" path="res://src/stamp_card_button.gd" id="3_stampbtn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
+bg_color = Color(0.02, 0.02, 0.02, 0.8)
+
+[node name="StampCardButton" type="TextureButton" unique_id=2059630404]
+offset_right = 123.0
+offset_bottom = 147.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_jgpij")
+texture_normal = ExtResource("2_stamp")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_stampbtn")
+
+[node name="Tooltip" type="PanelContainer" parent="." unique_id=243023515]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = -74.0
+offset_right = 110.0
+offset_bottom = -3.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tooltip")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tooltip/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Tooltip/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Stamp a card"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=243023516]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(204, 0)
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2
+horizontal_alignment = 1
+text = ""

@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://sftnr5swi5h0" path="res://resources/stamps/random_raccoon.tscn" id="9_gl7qb"]
 [ext_resource type="PackedScene" uid="uid://b8l7rr3s88vws" path="res://resources/stamps/sequential_squirrel.tscn" id="10_sdmt1"]
 [ext_resource type="Texture2D" uid="uid://3ys1rl51rd4y" path="res://art/big-group.png" id="16_1mu3d"]
+[ext_resource type="Texture2D" uid="uid://cmlw0uhah3h5d" path="res://art/ui/Folder_Blue.png" id="22_l2mp2"]
+[ext_resource type="Texture2D" uid="uid://cdbpv1l0ma3jw" path="res://art/ui/Folder_Red.png" id="23_luggl"]
+[ext_resource type="PackedScene" uid="uid://bg63q87i1t10o" path="res://src/deck.tscn" id="24_gl7qb"]
 
 [sub_resource type="Resource" id="Resource_vctk2"]
 script = ExtResource("3_ebjq7")
@@ -137,6 +140,9 @@ corner_radius_bottom_left = 16
 shadow_size = 3
 shadow_offset = Vector2(4, 4)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdmt1"]
+bg_color = Color(0.02, 0.02, 0.02, 0.5372549)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xhpu0"]
 atlas = ExtResource("16_1mu3d")
 region = Rect2(2912, 1344, 608, 512)
@@ -208,8 +214,9 @@ offset_bottom = 340.0
 
 [node name="Label" type="Label" parent="ArtifactControl" unique_id=619564964]
 layout_mode = 1
+offset_top = 40.0
 offset_right = 284.0
-offset_bottom = 63.0
+offset_bottom = 103.0
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -222,9 +229,9 @@ horizontal_alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="ArtifactControl" unique_id=1708323228]
 layout_mode = 0
 offset_left = -44.0
-offset_top = 77.0
+offset_top = 116.0
 offset_right = 294.0
-offset_bottom = 165.0
+offset_bottom = 204.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlt6q")
 
 [node name="MarginContainer" type="MarginContainer" parent="ArtifactControl/PanelContainer" unique_id=998446129]
@@ -259,9 +266,9 @@ buy_on_click = true
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 32.0
-offset_top = 216.0
+offset_top = 284.0
 offset_right = 251.515
-offset_bottom = 253.255
+offset_bottom = 321.255
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -290,11 +297,35 @@ offset_top = 300.0
 offset_right = 798.0
 offset_bottom = 340.0
 
+[node name="ViewFullDeckButton" type="TextureButton" parent="CardControl" unique_id=1963492749]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 282.0
+offset_top = 48.0
+offset_right = 335.68384
+offset_bottom = 97.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("22_l2mp2")
+texture_hover = ExtResource("23_luggl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Tooltip" type="Label" parent="CardControl/ViewFullDeckButton" unique_id=1165208139]
+visible = false
+layout_mode = 0
+offset_left = -28.0
+offset_top = -31.0
+offset_right = 81.0
+offset_bottom = -9.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sdmt1")
+text = " View full deck "
+
 [node name="Label" type="Label" parent="CardControl" unique_id=132146924]
 layout_mode = 0
 offset_left = 55.0
+offset_top = 43.0
 offset_right = 251.0
-offset_bottom = 63.0
+offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -316,31 +347,31 @@ expand_mode = 2
 [node name="Card" parent="CardControl" unique_id=1368151009 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = -38.0
-offset_top = 76.0
+offset_top = 128.0
 offset_right = 82.0
-offset_bottom = 233.0
+offset_bottom = 285.0
 
 [node name="Card2" parent="CardControl" unique_id=786837243 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 93.0
-offset_top = 76.0
+offset_top = 128.0
 offset_right = 213.0
-offset_bottom = 233.0
+offset_bottom = 285.0
 
 [node name="Card3" parent="CardControl" unique_id=225665184 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 225.0
-offset_top = 76.0
+offset_top = 128.0
 offset_right = 345.0
-offset_bottom = 233.0
+offset_bottom = 285.0
 
 [node name="TextureButton" type="TextureButton" parent="CardControl" unique_id=1241487462]
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 45.0
-offset_top = 245.0
+offset_top = 297.0
 offset_right = 264.515
-offset_bottom = 282.255
+offset_bottom = 334.255
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -381,15 +412,16 @@ theme_override_font_sizes/font_size = 64
 text = "Rewards!"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="." unique_id=265001122]
+[node name="AndLabel" type="Label" parent="." unique_id=265001122]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -178.0
-offset_top = 395.0
+offset_top = 443.0
 offset_right = 86.0
-offset_bottom = 458.0
+offset_bottom = 506.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -539,18 +571,12 @@ texture = ExtResource("5_nyred")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="Deck" parent="." unique_id=1314020823 instance=ExtResource("24_gl7qb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+use_duplicate_cards = true
+
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" method="_on_gui_input"]
-[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon" method="_on_mouse_exited"]
-[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" method="_on_gui_input"]
-[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon2" method="_on_mouse_exited"]
-[connection signal="gui_input" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" method="_on_gui_input"]
-[connection signal="mouse_exited" from="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" to="ArtifactControl/PanelContainer/MarginContainer/ArtifactContainer/ArtifactIcon3" method="_on_mouse_exited"]
 [connection signal="pressed" from="ArtifactControl/SkipArtifactsButton" to="." method="_on_skip_artifacts_button_pressed"]
 [connection signal="pressed" from="CardControl/TextureButton" to="." method="_on_skip_cards_button_pressed"]
-[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" method="_on_gui_input"]
-[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon" method="_on_mouse_exited"]
-[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" method="_on_gui_input"]
-[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon2" method="_on_mouse_exited"]
-[connection signal="gui_input" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" method="_on_gui_input"]
-[connection signal="mouse_exited" from="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" to="PanelContainer2/MarginContainer/OurArtifactsContainer/ArtifactIcon3" method="_on_mouse_exited"]
