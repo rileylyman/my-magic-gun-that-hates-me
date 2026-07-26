@@ -15,6 +15,7 @@ func hand_submit_callback(state: TickState) -> void:
 		for j in range(i + 1, state.cards.size()):
 			if state.cards[i].max_value == state.cards[j].max_value:
 				multiplier += 0.2
+				multiplier = snappedf(multiplier, 0.1)
 				update_description()
 				await shake("+0.2 Mult")
 				return

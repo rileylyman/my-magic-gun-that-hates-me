@@ -20,6 +20,7 @@ func post_tick_callback(state: TickState) -> void:
 
 	if fired == 1:
 		multiplier += 0.2
+		multiplier = snappedf(multiplier, 0.1)
 		update_description()
 		await shake("+0.2 Mult")
 		

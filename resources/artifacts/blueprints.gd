@@ -11,5 +11,5 @@ func post_tick_callback(state: TickState) -> void:
 			return
 			
 	if(state.score > 0):
-		state.score *= 2
-		await shake("x2")
+		state.score *= 4
+		await shake("x4")
