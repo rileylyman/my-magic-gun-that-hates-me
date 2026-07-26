@@ -6,6 +6,7 @@ extends Control
 
 var artifact: Artifact = Artifact.new()
 var gm: GameManager
+var sibling_icons: Array[ArtifactIcon] = []
 
 var _stylebox: StyleBoxFlat
 
@@ -57,8 +58,12 @@ func _process(_delta: float) -> void:
 			$Tooltip.visible = false
 			$TextureRect.scale = Vector2(1, 1)
 
-	if $Tooltip.visible and gm != null:
-		for a in gm.icons:
+	if $Tooltip.visible:
+		var others: Array[ArtifactIcon] = (
+			gm.icons if gm != null else sibling_icons
+		)
+
+		for a in others:
 			if a != self and a != null and a.get_node("Tooltip").visible:
 				$Tooltip.visible = false
 				$TextureRect.scale = Vector2(1, 1)

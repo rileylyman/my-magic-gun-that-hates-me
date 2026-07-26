@@ -17,7 +17,7 @@ func post_tick_callback(state: TickState) -> void:
 	for c in state.cards:
 		if c.curr <= 0:
 			hits += 1
-	if hits >= target and !hashit:
+	if hits >= target + 1 and !hashit:
 		if (state.score > 0):
 			state.score *= target
 			await shake("x" + str(target))

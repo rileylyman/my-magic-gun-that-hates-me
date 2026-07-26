@@ -3,15 +3,124 @@
 [ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_204uq"]
 [ext_resource type="Script" uid="uid://dgr4veheylcf" path="res://scenes/reward_screen.gd" id="2_gwrng"]
 [ext_resource type="Texture2D" uid="uid://bhai0cokx4e4a" path="res://art/ui/Frame_Top.png" id="2_unrml"]
+[ext_resource type="Script" uid="uid://bh0y1kvhaf82s" path="res://src/task_value_option.gd" id="3_ebjq7"]
 [ext_resource type="Texture2D" uid="uid://bu8quyctmdpfb" path="res://art/ui/Frame_Bottom.png" id="3_p7sb0"]
+[ext_resource type="Script" uid="uid://bkp7n2grbej2n" path="res://src/stamp_option.gd" id="4_1mu3d"]
 [ext_resource type="Texture2D" uid="uid://bun7xomljms8o" path="res://art/ui/Frame_Left.png" id="4_ghuxa"]
 [ext_resource type="Texture2D" uid="uid://cg6lgpulfhoba" path="res://art/ui/TaskFolder.png" id="5_gwrng"]
 [ext_resource type="Texture2D" uid="uid://65vsppqp5o6e" path="res://art/ui/Frame_Right.png" id="5_nyred"]
+[ext_resource type="PackedScene" uid="uid://b4tdt5afkxhbk" path="res://resources/stamps/lone_lupine.tscn" id="5_xhpu0"]
 [ext_resource type="PackedScene" uid="uid://dedwdl7bsg75m" path="res://src/card.tscn" id="6_3l8rl"]
 [ext_resource type="PackedScene" uid="uid://b2ku66qsq02b4" path="res://src/artifact_icon.tscn" id="6_gwrng"]
+[ext_resource type="PackedScene" uid="uid://05lirotl88tj" path="res://resources/stamps/adding_adder.tscn" id="6_m50nf"]
 [ext_resource type="Texture2D" uid="uid://dmyg2bao35ow3" path="res://art/clipboard-test.png" id="7_3l8rl"]
+[ext_resource type="PackedScene" uid="uid://c88xpt4old21n" path="res://resources/stamps/negative_newt.tscn" id="7_l2mp2"]
 [ext_resource type="Texture2D" uid="uid://dglm42m7lnlvc" path="res://art/ui/Submit_Normal.png" id="7_p7sb0"]
 [ext_resource type="Texture2D" uid="uid://co8k45566mjrn" path="res://art/ui/Submit_Highlight.png" id="8_ghuxa"]
+[ext_resource type="PackedScene" uid="uid://cyioj8qlnf3d4" path="res://resources/stamps/positive_possum.tscn" id="8_luggl"]
+[ext_resource type="PackedScene" uid="uid://sftnr5swi5h0" path="res://resources/stamps/random_raccoon.tscn" id="9_gl7qb"]
+[ext_resource type="PackedScene" uid="uid://b8l7rr3s88vws" path="res://resources/stamps/sequential_squirrel.tscn" id="10_sdmt1"]
+
+[sub_resource type="Resource" id="Resource_vctk2"]
+script = ExtResource("3_ebjq7")
+value = 1
+weight = 2.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_8v8u7"]
+script = ExtResource("3_ebjq7")
+value = 2
+weight = 5.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_kc07b"]
+script = ExtResource("3_ebjq7")
+value = 3
+weight = 7.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_qa3yo"]
+script = ExtResource("3_ebjq7")
+value = 4
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_2ilvo"]
+script = ExtResource("3_ebjq7")
+value = 5
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_ia4kg"]
+script = ExtResource("3_ebjq7")
+value = 6
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_tlg2c"]
+script = ExtResource("3_ebjq7")
+value = 7
+weight = 10.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_h3134"]
+script = ExtResource("3_ebjq7")
+value = 8
+weight = 15.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_qtfs4"]
+script = ExtResource("3_ebjq7")
+value = 9
+weight = 15.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_h75i6"]
+script = ExtResource("3_ebjq7")
+value = 10
+weight = 20.0
+metadata/_custom_type_script = "uid://bh0y1kvhaf82s"
+
+[sub_resource type="Resource" id="Resource_uhfec"]
+script = ExtResource("4_1mu3d")
+stamp_scene = ExtResource("5_xhpu0")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_8ay58"]
+script = ExtResource("4_1mu3d")
+stamp_scene = ExtResource("6_m50nf")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_rrs27"]
+script = ExtResource("4_1mu3d")
+stamp_scene = ExtResource("7_l2mp2")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_teun7"]
+script = ExtResource("4_1mu3d")
+stamp_scene = ExtResource("8_luggl")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_ctv0l"]
+script = ExtResource("4_1mu3d")
+stamp_scene = ExtResource("9_gl7qb")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_l0nas"]
+script = ExtResource("4_1mu3d")
+stamp_scene = ExtResource("10_sdmt1")
+weight = 10.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
+
+[sub_resource type="Resource" id="Resource_0cqvu"]
+script = ExtResource("4_1mu3d")
+weight = 120.0
+metadata/_custom_type_script = "uid://bkp7n2grbej2n"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlt6q"]
 bg_color = Color(0.8784314, 0.69803923, 0.29803923, 1)
@@ -40,6 +149,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_204uq")
 script = ExtResource("2_gwrng")
+cursed_weight = 10.0
+legendary_weight = 2.0
+possible_card_values = Array[ExtResource("3_ebjq7")]([SubResource("Resource_vctk2"), SubResource("Resource_8v8u7"), SubResource("Resource_kc07b"), SubResource("Resource_qa3yo"), SubResource("Resource_2ilvo"), SubResource("Resource_ia4kg"), SubResource("Resource_tlg2c"), SubResource("Resource_h3134"), SubResource("Resource_qtfs4"), SubResource("Resource_h75i6")])
+possible_card_stamps = Array[ExtResource("4_1mu3d")]([SubResource("Resource_uhfec"), SubResource("Resource_8ay58"), SubResource("Resource_rrs27"), SubResource("Resource_teun7"), SubResource("Resource_ctv0l"), SubResource("Resource_l0nas"), SubResource("Resource_0cqvu")])
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1335340930]
 layout_mode = 1
@@ -79,6 +192,36 @@ layout_mode = 2
 
 [node name="ArtifactIcon3" parent="PanelContainer2/MarginContainer/OurArtifactsContainer" unique_id=1212189465 instance=ExtResource("6_gwrng")]
 layout_mode = 2
+
+[node name="ContinueButton" type="TextureButton" parent="." unique_id=357522124]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(219.515, 37.255)
+layout_mode = 0
+offset_left = 349.0
+offset_top = 497.0
+offset_right = 727.0
+offset_bottom = 596.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_p7sb0")
+texture_pressed = ExtResource("7_p7sb0")
+texture_hover = ExtResource("8_ghuxa")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ContinueButton" unique_id=247356629]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ArtifactControl" type="Control" parent="." unique_id=1531833497]
 unique_name_in_owner = true
@@ -164,14 +307,15 @@ text = "or skip..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="." unique_id=1715473982]
+[node name="CardControl" type="Control" parent="." unique_id=1715473982]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 758.0
 offset_top = 300.0
 offset_right = 798.0
 offset_bottom = 340.0
 
-[node name="Label" type="Label" parent="Control2" unique_id=132146924]
+[node name="Label" type="Label" parent="CardControl" unique_id=132146924]
 layout_mode = 0
 offset_left = 55.0
 offset_right = 251.0
@@ -185,7 +329,7 @@ theme_override_font_sizes/font_size = 48
 text = "Choose 1:"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Control2" unique_id=285975597]
+[node name="TextureRect" type="TextureRect" parent="CardControl" unique_id=285975597]
 layout_mode = 0
 offset_left = -68.0
 offset_top = 149.0
@@ -194,28 +338,28 @@ offset_bottom = 371.0
 texture = ExtResource("5_gwrng")
 expand_mode = 2
 
-[node name="Card" parent="Control2" unique_id=1368151009 instance=ExtResource("6_3l8rl")]
+[node name="Card" parent="CardControl" unique_id=1368151009 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = -38.0
 offset_top = 76.0
 offset_right = 82.0
 offset_bottom = 233.0
 
-[node name="Card2" parent="Control2" unique_id=786837243 instance=ExtResource("6_3l8rl")]
+[node name="Card2" parent="CardControl" unique_id=786837243 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 76.0
 offset_right = 213.0
 offset_bottom = 233.0
 
-[node name="Card3" parent="Control2" unique_id=225665184 instance=ExtResource("6_3l8rl")]
+[node name="Card3" parent="CardControl" unique_id=225665184 instance=ExtResource("6_3l8rl")]
 layout_mode = 0
 offset_left = 225.0
 offset_top = 76.0
 offset_right = 345.0
 offset_bottom = 233.0
 
-[node name="TextureButton" type="TextureButton" parent="Control2" unique_id=1241487462]
+[node name="TextureButton" type="TextureButton" parent="CardControl" unique_id=1241487462]
 custom_minimum_size = Vector2(219.515, 37.255)
 layout_mode = 0
 offset_left = 45.0
@@ -231,7 +375,7 @@ texture_hover = ExtResource("8_ghuxa")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Control2/TextureButton" unique_id=180767242]
+[node name="Label" type="Label" parent="CardControl/TextureButton" unique_id=180767242]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -388,4 +532,6 @@ texture = SubResource("AtlasTexture_01wwf")
 expand_mode = 1
 stretch_mode = 5
 
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ArtifactControl/SkipArtifactsButton" to="." method="_on_skip_artifacts_button_pressed"]
+[connection signal="pressed" from="CardControl/TextureButton" to="." method="_on_skip_cards_button_pressed"]

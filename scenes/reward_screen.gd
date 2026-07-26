@@ -23,6 +23,16 @@ var rare_weight: float = 10.0
 @export_range(0.0, 100.0, 0.01)
 var legendary_weight: float = 5.0
 
+@export_category("Card Rewards")
+
+@export var default_card_value: int = 3
+@export var possible_card_values: Array[TaskValueOption] = []
+
+@export_range(0.0, 100.0, 0.1)
+var stamp_chance: float = 20.0
+
+@export var possible_card_stamps: Array[StampOption] = []
+
 @onready var left_shaker: TextureRect = %LeftEnemyShaker
 @onready var right_shaker: TextureRect = %RightEnemyShaker
 
@@ -31,16 +41,21 @@ var legendary_weight: float = 5.0
 var _has_bought_artifact := false
 var _has_bought_card := false
 
+var _card_stamp_scenes: Dictionary = {}
+var _all_icons: Array[ArtifactIcon] = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_artifacts()
 	setup_artifact_selectors()
+	setup_card_selectors()
 	shake_shakers()
 	reload_our_artifacts()
 
 func reload_our_artifacts() -> void:
 	for a in %OurArtifactsContainer.get_children():
+		_all_icons.erase(a)
 		a.queue_free()
 
 	for a in GlobalManager.artifacts:
@@ -50,12 +65,23 @@ func reload_our_artifacts() -> void:
 		)
 		icon.show_buttons = false
 		icon.artifact = a
+		icon.sibling_icons = _all_icons
+		_all_icons.append(icon)
 		%OurArtifactsContainer.add_child(icon)
 
 func _process(_delta: float) -> void:
 	if GlobalManager.artifacts.size() != artifacts_length:
 		artifacts_length = GlobalManager.artifacts.size()
 		reload_our_artifacts()
+
+	%ContinueButton.visible = (
+		_has_bought_artifact
+		and _has_bought_card
+	)
+
+
+func _on_continue_button_pressed() -> void:
+	GlobalManager.enter_current_battle()
 
 func shake_shakers() -> void:
 	var dir = 1
@@ -138,6 +164,8 @@ func setup_artifact_selectors() -> void:
 
 		a.visible = true
 		a.artifact = artifact
+		a.sibling_icons = _all_icons
+		_all_icons.append(a)
 		a._ready()
 		a.force_tooltip_above()
 		a.on_buy.connect(func():
@@ -225,21 +253,128 @@ func get_artifact_weight(artifact: Artifact) -> float:
 	return 0.0
 
 
-func generate_task_rewards() -> void:
-	var used_add_task_values: Array[int] = []
+func setup_card_selectors() -> void:
+	var used_values: Array[int] = []
 
-	for selector in %TaskContainer.get_children():
-		if selector is not TaskSelector:
+	for card in %CardControl.get_children():
+		if card is not Card:
 			continue
 
-		selector.generate_reward(
-			used_add_task_values
-		)
+		var value := generate_card_value(used_values)
+		used_values.append(value)
 
+		var stamp_scene := generate_card_stamp_scene()
+		_card_stamp_scenes[card] = stamp_scene
+
+		var original_position: Vector2 = card.position
+
+		card.max_value = value
+
+		if stamp_scene != null:
+			var stamp := stamp_scene.instantiate() as Stamp
+
+			if stamp != null:
+				card.set_stamp(stamp)
+
+		card.prepare_for_task_grid()
+		card.do_setup()
+		card.position = original_position
+
+		if not card.pressed.is_connected(on_card_selected):
+			card.pressed.connect(on_card_selected)
+
+
+func generate_card_value(excluded_values: Array[int]) -> int:
+	var total_weight := 0.0
+
+	for option in possible_card_values:
 		if (
-			selector.reward_type
-			== TaskSelector.TaskRewardType.ADD_TASK
+			option == null
+			or option.weight <= 0.0
+			or option.value in excluded_values
 		):
-			used_add_task_values.append(
-				selector.generated_value
-			)
+			continue
+
+		total_weight += option.weight
+
+	if total_weight <= 0.0:
+		return default_card_value
+
+	var roll := randf_range(0.0, total_weight)
+
+	for option in possible_card_values:
+		if (
+			option == null
+			or option.weight <= 0.0
+			or option.value in excluded_values
+		):
+			continue
+
+		roll -= option.weight
+
+		if roll <= 0.0:
+			return option.value
+
+	return default_card_value
+
+
+func generate_card_stamp_scene() -> PackedScene:
+	if randf_range(0.0, 100.0) > stamp_chance:
+		return null
+
+	var total_weight := 0.0
+
+	for option in possible_card_stamps:
+		if (
+			option == null
+			or option.weight <= 0.0
+			or option.stamp_scene == null
+		):
+			continue
+
+		total_weight += option.weight
+
+	if total_weight <= 0.0:
+		return null
+
+	var roll := randf_range(0.0, total_weight)
+
+	for option in possible_card_stamps:
+		if (
+			option == null
+			or option.weight <= 0.0
+			or option.stamp_scene == null
+		):
+			continue
+
+		roll -= option.weight
+
+		if roll <= 0.0:
+			return option.stamp_scene
+
+	return null
+
+
+func on_card_selected(card: Card) -> void:
+	if _has_bought_card:
+		return
+
+	_has_bought_card = true
+
+	var stamp_scene: PackedScene = _card_stamp_scenes.get(card)
+
+	GlobalManager.add_task(card.max_value, stamp_scene)
+
+	await card.shake()
+	await get_tree().create_timer(0.5).timeout
+	go_away_cards()
+
+
+func _on_skip_cards_button_pressed() -> void:
+	_has_bought_card = true
+	go_away_cards()
+
+
+func go_away_cards() -> void:
+	var t = create_tween().set_ease(Tween.EASE_IN)
+	t.tween_property(%CardControl, "position:x", 3000, 1.0)
