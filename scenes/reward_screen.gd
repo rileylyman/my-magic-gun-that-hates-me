@@ -33,6 +33,13 @@ var stamp_chance: float = 20.0
 
 @export var possible_card_stamps: Array[StampOption] = []
 
+@export_range(0.0, 100.0, 0.1)
+var cut_card_chance: float = 20.0
+
+const cut_card_button_scene: PackedScene = preload(
+	"res://src/cut_card_button.tscn"
+)
+
 @onready var left_shaker: TextureRect = %LeftEnemyShaker
 @onready var right_shaker: TextureRect = %RightEnemyShaker
 
@@ -56,6 +63,7 @@ func _ready() -> void:
 	%ViewFullDeckButton.mouse_entered.connect(_on_view_full_deck_mouse_entered)
 	%ViewFullDeckButton.mouse_exited.connect(_on_view_full_deck_mouse_exited)
 	%ViewFullDeckButton.pressed.connect(_on_view_full_deck_pressed)
+	%Deck.card_destroyed.connect(_on_deck_card_destroyed)
 
 
 func _on_view_full_deck_mouse_entered() -> void:
@@ -93,6 +101,11 @@ func _process(_delta: float) -> void:
 	%ContinueButton.visible = (
 		_has_bought_artifact
 		and _has_bought_card
+	)
+
+	%AndLabel.visible = not (
+		_has_bought_artifact
+		or _has_bought_card
 	)
 
 
@@ -279,8 +292,23 @@ func get_artifact_weight(artifact: Artifact) -> float:
 func setup_card_selectors() -> void:
 	var used_values: Array[int] = []
 
-	for card in %CardControl.get_children():
-		if card is not Card:
+	var card_nodes: Array[Card] = []
+
+	for child in %CardControl.get_children():
+		if child is Card:
+			card_nodes.append(child)
+
+	var cut_card_index := -1
+
+	if not card_nodes.is_empty() and randf_range(0.0, 100.0) <= cut_card_chance:
+		cut_card_index = randi() % card_nodes.size()
+
+	for i in range(card_nodes.size()):
+		var card := card_nodes[i]
+
+		if i == cut_card_index:
+			card.visible = false
+			setup_cut_card_button(card.position)
 			continue
 
 		var value := generate_card_value(used_values)
@@ -306,6 +334,26 @@ func setup_card_selectors() -> void:
 
 		if not card.pressed.is_connected(on_card_selected):
 			card.pressed.connect(on_card_selected)
+
+
+func setup_cut_card_button(at_position: Vector2) -> void:
+	var button := cut_card_button_scene.instantiate() as TextureButton
+
+	button.position = at_position
+	%CardControl.add_child(button)
+	button.pressed.connect(_on_cut_card_button_pressed)
+
+
+func _on_cut_card_button_pressed() -> void:
+	%Deck.open(true)
+
+
+func _on_deck_card_destroyed() -> void:
+	if _has_bought_card:
+		return
+
+	_has_bought_card = true
+	go_away_cards()
 
 
 func generate_card_value(excluded_values: Array[int]) -> int:

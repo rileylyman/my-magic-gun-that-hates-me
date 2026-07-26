@@ -1,13 +1,37 @@
 [gd_scene format=3 uid="uid://b4rv2aqtevh5c"]
 
 [ext_resource type="Texture2D" uid="uid://rsenb2x64vc1" path="res://art/lighter.png" id="1_8mori"]
+[ext_resource type="Theme" uid="uid://d4ccwscoujb6a" path="res://resources/new_theme.tres" id="1_btsl2"]
+[ext_resource type="Script" uid="uid://2mq8xuu88jd8" path="res://src/cut_card_button.gd" id="2_cutbtn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
+bg_color = Color(0.02, 0.02, 0.02, 0.8)
 
 [node name="CutCardButton" type="TextureButton" unique_id=2059630404]
-offset_left = -207.0
-offset_top = 161.0
-offset_right = -84.0
-offset_bottom = 308.0
+offset_right = 123.0
+offset_bottom = 147.0
 mouse_default_cursor_shape = 2
+theme = ExtResource("1_btsl2")
 texture_normal = ExtResource("1_8mori")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("2_cutbtn")
+
+[node name="Tooltip" type="Label" parent="." unique_id=243023515]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = -45.0
+offset_right = 113.5
+offset_bottom = -3.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tooltip")
+text = "Destroy a card"
+horizontal_alignment = 1
+vertical_alignment = 1

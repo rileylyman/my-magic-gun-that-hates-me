@@ -166,6 +166,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DestroyPrompt" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/Control" unique_id=1370564506]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 5
