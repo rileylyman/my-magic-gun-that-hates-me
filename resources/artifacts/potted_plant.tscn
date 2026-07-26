@@ -6,5 +6,5 @@
 [node name="Potted Plant" type="Node2D" unique_id=1283920870]
 script = ExtResource("1_q54t5")
 title = "Potted Plant"
-description = "Multiply Task fire Damage by the number of consectutive Days without a Task firing."
+description = "Multiply Damage by number of consecutive Ticks without a Card reaching 0."
 icon = ExtResource("2_4u7ej")

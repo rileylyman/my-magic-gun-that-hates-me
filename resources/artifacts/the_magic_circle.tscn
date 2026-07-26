@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://d3tbjs3n8cuhw"]
 
 [ext_resource type="Script" uid="uid://dnvt7iwqg7ep3" path="res://resources/artifacts/the_magic_circle.gd" id="1_qaai1"]
+[ext_resource type="Texture2D" uid="uid://bmdkkfwri2o8g" path="res://art/artifact_icons/40Bagel.png" id="2_md6ck"]
 
 [node name="TheMagicCircle" type="Node2D" unique_id=838347528]
 script = ExtResource("1_qaai1")
 title = "Magic Bagel"
-description = "If a Task deals or multiplies Damage while not firing, double all Damage that Day."
+description = "When no 0s are displayed, square Damage this tick."
+rarity = 1
+icon = ExtResource("2_md6ck")

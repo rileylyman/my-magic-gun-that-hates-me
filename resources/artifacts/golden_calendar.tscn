@@ -6,6 +6,6 @@
 [node name="GoldenCalendar" type="Node2D" unique_id=1390886910]
 script = ExtResource("1_38hex")
 title = "Golden Calendar"
-description = "Gain 1 Day every other Day exactly one Task fires."
+description = "Gain 1 Tick every other time exactly one Card deals Damage."
 rarity = 4
 icon = ExtResource("2_y7eto")

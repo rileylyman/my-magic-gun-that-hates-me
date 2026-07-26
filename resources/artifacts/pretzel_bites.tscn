@@ -6,5 +6,5 @@
 [node name="PretzelBites" type="Node2D" unique_id=238915859]
 script = ExtResource("1_wcvnk")
 title = "Pretzel Bites"
-description = "The rightmost played Task adds its current number as Damage. This effect disables after it fires."
+description = "This Relic adds Damage equal to the displayed number of the Rightmost Card. This effect disables after that card deals Damage."
 icon = ExtResource("2_ddckr")

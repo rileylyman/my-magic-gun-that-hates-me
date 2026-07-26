@@ -6,5 +6,5 @@
 [node name="paperclip" type="Node2D" unique_id=753313122]
 script = ExtResource("1_8yxyk")
 title = "Paperclip"
-description = "Multiply all damage by 1.0. Each Day where two Tasks fire together, improve this multiplier by 0.2 permenantly."
+description = "Multiply all Damage by 1.0. Every time two Cards reach 0 together, increase this multiplier by 0.2 permanently."
 icon = ExtResource("2_5xmkq")

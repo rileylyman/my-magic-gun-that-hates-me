@@ -6,6 +6,6 @@
 [node name="PuzzlePiece" type="Node2D" unique_id=905881152]
 script = ExtResource("1_6uon1")
 title = "Puzzle Piece"
-description = "At the start of a Sprint, if two played Tasks sum to a third played Task, permenantly change the value of all three into the max valued Task. The starting value of the Tasks does not change for this Sprint."
+description = "If two played Cards sum to a third Card, permenantly change all three Cards to the highest Value."
 rarity = 2
 icon = ExtResource("2_17c6s")

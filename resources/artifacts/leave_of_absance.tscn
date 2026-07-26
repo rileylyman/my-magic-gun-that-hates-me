@@ -6,6 +6,6 @@
 [node name="LeaveOfAbsance" type="Node2D" unique_id=430656356]
 script = ExtResource("1_atrsq")
 title = "Leave of Absense"
-description = "Add 5 Days to each Sprint."
+description = "Add 5 Ticks to each Round."
 rarity = 1
 icon = ExtResource("2_kvhjv")

@@ -6,5 +6,5 @@
 [node name="PunchingBag" type="Node2D" unique_id=1283920870]
 script = ExtResource("1_p8wg5")
 title = "Punching Bag"
-description = "All Damage dealt in the final Sprint is tripled."
+description = "All Damage dealt in the final Round is tripled."
 icon = ExtResource("2_lvdpf")

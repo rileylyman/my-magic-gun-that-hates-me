@@ -3,7 +3,7 @@ extends Artifact
 var multiplier := 1.0
 
 func update_description() -> void:
-	description = "Multiply all Damage by " + str(multiplier) + ". Each Day where two Tasks fire together, improve this multiplier by 0.2 permanently."
+	description = "Multiply all Damage by " + str(multiplier) + ". Every time two Cards reach 0 together, increase this multiplier by 0.2 permanently."
 
 func _ready() -> void:
 	update_description()

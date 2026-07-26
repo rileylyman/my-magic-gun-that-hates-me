@@ -6,6 +6,6 @@
 [node name="PrimordialForce" type="Node2D" unique_id=238915859]
 script = ExtResource("1_1ymu3")
 title = "Primordial Force"
-description = "When two different Prime-Value Tasks hit together, multiply it by the the sum of the numbers"
+description = "When two different Prime Cards deal Damage together, multiply their Damage by the sum of their Max Values."
 rarity = 1
 icon = ExtResource("2_3ydf8")

@@ -6,6 +6,6 @@
 [node name="FrozenLunch" type="Node2D" unique_id=13072798]
 script = ExtResource("1_0ffup")
 title = "Frozen Lunch"
-description = "The Task played in the rightmost slot on the Field never progresses."
+description = "The Rightmost played Card never progresses."
 rarity = 2
 icon = ExtResource("2_ueoeo")

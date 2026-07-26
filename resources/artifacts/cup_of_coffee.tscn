@@ -6,5 +6,5 @@
 [node name="CupOfCoffee" type="Node2D" unique_id=272006685]
 script = ExtResource("1_hbph5")
 title = "Cup of Coffee"
-description = "If the sum of the Displayed Numbers on Field is 10 or more, multiply that Tick's Damage by that sum."
+description = "If the sum of the Displayed Numbers is 10 or more, multiply that Tick's Damage by that sum."
 icon = ExtResource("2_vpqc8")

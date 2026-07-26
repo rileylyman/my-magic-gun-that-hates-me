@@ -13,4 +13,4 @@ func post_tick_callback(state: TickState) -> void:
 			days = 1
 	else:
 		days += 1
-		shake()
+		shake_no_sound()

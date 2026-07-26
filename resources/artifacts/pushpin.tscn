@@ -6,5 +6,5 @@
 [node name="pushpin" type="Node2D" unique_id=838347528]
 script = ExtResource("1_7viyk")
 title = "Pushpin"
-description = "Multiply all damage by 1.0. Each Day where a Task fires alone, improve this multiplier by 0.2 permenantly."
+description = "Multiply all Damage by 1.0. Each Tick when one Card deals Damage alone, increase this multiplier by 0.2 permanently."
 icon = ExtResource("2_qrr3y")

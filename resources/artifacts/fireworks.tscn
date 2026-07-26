@@ -6,5 +6,5 @@
 [node name="Fireworks" type="Node2D" unique_id=1436353350]
 script = ExtResource("1_2kxjm")
 title = "Fireworks"
-description = "Multiply Damage on the last Day each Sprint by 10."
+description = "Multiply Damage dealt on the final Tick by 10."
 icon = ExtResource("2_b600x")

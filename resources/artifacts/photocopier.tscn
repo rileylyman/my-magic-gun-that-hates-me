@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://ds84x2w64vyh"]
 
 [ext_resource type="Script" uid="uid://xnqgvj77xtej" path="res://resources/artifacts/photocopier.gd" id="1_x1ant"]
+[ext_resource type="Texture2D" uid="uid://b4l6fxnj8jc7h" path="res://art/artifact_icons/25Photocopier.png" id="2_86aof"]
 
 [node name="Photocopier" type="Node2D" unique_id=1750028467]
 script = ExtResource("1_x1ant")
 title = "Photocopier"
-description = "At the start of a Sprint, if you only play one Task, add a permenant copy of it to your Task Folder."
+description = "At the start of a Round, if play exactly one Card, add a permanent copy of it to your Card Folder."
+rarity = 3
+icon = ExtResource("2_86aof")

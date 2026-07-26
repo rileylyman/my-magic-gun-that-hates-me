@@ -6,6 +6,6 @@
 [node name="PaperCrane" type="Node2D" unique_id=753313122]
 script = ExtResource("1_u66e4")
 title = "Paper Crane"
-description = "When a Task fires alone, permenantly increase its value by 1."
+description = "When a Card deals Damage alone, permanently increase its Max Value by 1."
 rarity = 2
 icon = ExtResource("2_icy0j")
