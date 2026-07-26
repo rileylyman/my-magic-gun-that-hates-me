@@ -164,7 +164,6 @@ cursed_weight = 10.0
 legendary_weight = 2.0
 possible_card_values = Array[ExtResource("3_ebjq7")]([SubResource("Resource_vctk2"), SubResource("Resource_8v8u7"), SubResource("Resource_kc07b"), SubResource("Resource_qa3yo"), SubResource("Resource_2ilvo"), SubResource("Resource_ia4kg"), SubResource("Resource_tlg2c"), SubResource("Resource_h3134"), SubResource("Resource_qtfs4"), SubResource("Resource_h75i6")])
 possible_card_stamps = Array[ExtResource("4_1mu3d")]([SubResource("Resource_uhfec"), SubResource("Resource_8ay58"), SubResource("Resource_rrs27"), SubResource("Resource_teun7"), SubResource("Resource_ctv0l"), SubResource("Resource_l0nas"), SubResource("Resource_0cqvu")])
-cut_card_chance = 25.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1335340930]
 layout_mode = 1
@@ -417,9 +416,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -178.0
+offset_left = -149.0
 offset_top = 395.0
-offset_right = 86.0
+offset_right = 115.0
 offset_bottom = 458.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.87058824, 1)

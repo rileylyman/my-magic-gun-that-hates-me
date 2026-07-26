@@ -127,15 +127,15 @@ func update_number_feature() -> void:
 	var features := PackedStringArray()
 
 	if max_value % 2 == 0:
-		features.append("EVEN")
+		features.append("Even")
 	else:
-		features.append("ODD")
+		features.append("Odd")
 
 	if is_prime(max_value):
-		features.append("PRIME")
+		features.append("Prime")
 
 	if is_perfect_square(max_value):
-		features.append("SQUARED")
+		features.append("Squared")
 
 	%NumberFeature.text = " • ".join(features)
 	update_stamp_display()
@@ -146,11 +146,13 @@ func update_stamp_display() -> void:
 
 	if not has_stamp:
 		%Stamp.text = ""
+		%Stamp.visible = false
 		%StampTexture.texture = null
 		%StampTexture.visible = false
 		return
 
 	%Stamp.text = stamp.description
+	%Stamp.visible = not stamp.description.is_empty()
 	%StampTexture.texture = stamp.stamp_texture
 	%StampTexture.visible = stamp.stamp_texture != null
 

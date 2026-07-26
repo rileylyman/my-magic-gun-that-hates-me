@@ -1,7 +1,10 @@
 extends Control
 
+enum Mode { NONE, DESTROY, STAMP }
+
 signal closed
 signal card_destroyed
+signal card_stamped
 
 @export var use_duplicate_cards: bool = false
 
@@ -11,7 +14,8 @@ const card_scene: PackedScene = preload("res://src/card.tscn")
 
 var _original_parents: Dictionary = {}
 var _duplicate_originals: Dictionary = {}
-var _destroy_mode: bool = false
+var _mode: Mode = Mode.NONE
+var _stamp_scene: PackedScene = null
 
 
 func _ready() -> void:
@@ -19,17 +23,43 @@ func _ready() -> void:
 	setup_cards()
 
 
-func open(destroy_mode: bool = false) -> void:
-	_destroy_mode = destroy_mode
-	%DestroyPrompt.visible = destroy_mode
+func open() -> void:
+	_mode = Mode.NONE
+	%DestroyPrompt.visible = false
+	%StampPrompt.visible = false
+	setup_cards()
+	visible = true
+
+
+func open_for_destroy() -> void:
+	_mode = Mode.DESTROY
+	%DestroyPrompt.visible = true
+	%StampPrompt.visible = false
+	setup_cards()
+	visible = true
+
+
+func open_for_stamp(stamp_scene: PackedScene) -> void:
+	_mode = Mode.STAMP
+	_stamp_scene = stamp_scene
+	%StampPrompt.visible = true
+	%DestroyPrompt.visible = false
+
+	var preview := stamp_scene.instantiate() as Stamp
+
+	if preview != null:
+		%StampPromptDesc.text = "%s: %s" % [preview.title, preview.description]
+		preview.free()
+
 	setup_cards()
 	visible = true
 
 
 func close() -> void:
 	restore_cards()
-	_destroy_mode = false
+	_mode = Mode.NONE
 	%DestroyPrompt.visible = false
+	%StampPrompt.visible = false
 	visible = false
 	closed.emit()
 
@@ -85,14 +115,15 @@ func make_duplicate_card(card: Card) -> Card:
 
 
 func on_card_pressed(card: Card) -> void:
-	if not _destroy_mode:
-		return
-
-	destroy_card(card)
+	match _mode:
+		Mode.DESTROY:
+			destroy_card(card)
+		Mode.STAMP:
+			stamp_card(card)
 
 
 func destroy_card(display_card: Card) -> void:
-	_destroy_mode = false
+	_mode = Mode.NONE
 	%DestroyPrompt.visible = false
 
 	var original_card: Card = _duplicate_originals.get(
@@ -119,10 +150,47 @@ func destroy_card(display_card: Card) -> void:
 	if original_card != display_card and is_instance_valid(original_card):
 		original_card.queue_free()
 
-	await get_tree().create_timer(0.3).timeout
-
-	close()
 	card_destroyed.emit()
+
+
+func stamp_card(display_card: Card) -> void:
+	_mode = Mode.NONE
+
+	var original_card: Card = _duplicate_originals.get(
+		display_card,
+		display_card
+	)
+
+	var real_stamp := _stamp_scene.instantiate() as Stamp
+
+	if real_stamp != null:
+		original_card.set_stamp(real_stamp)
+
+	if display_card != original_card:
+		var preview_stamp := _stamp_scene.instantiate() as Stamp
+
+		if preview_stamp != null:
+			display_card.set_stamp(preview_stamp)
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(
+		display_card,
+		"scale",
+		Vector2(1.15, 1.15),
+		0.15
+	).set_ease(Tween.EASE_OUT)
+
+	tween.chain().tween_property(
+		display_card,
+		"scale",
+		Vector2.ONE,
+		0.15
+	).set_ease(Tween.EASE_IN)
+
+	await tween.finished
+
+	card_stamped.emit()
 
 
 func restore_cards() -> void:
