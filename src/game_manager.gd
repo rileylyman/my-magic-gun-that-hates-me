@@ -948,7 +948,6 @@ func discard_chosen() -> void:
 
 func add_to_hand(card) -> void:
 	hand.append(card)
-	%DeckContainer.remove_child(card)
 	%HandPos.add_child(card)
 
 func deal_hand() -> void:

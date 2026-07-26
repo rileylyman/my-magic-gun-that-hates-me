@@ -472,7 +472,6 @@ artifact_trigger_sfx = ExtResource("26_id4ro")
 sfx_pitch_variation = 0.2
 task_fire_pitch_step = 0.1
 base_battle_speed = 0.7999999999999999
-sprint_speed_increase_per_day = 0.05
 max_sprint_speed_multiplier = 3.0
 
 [node name="DeckContainer" type="Node2D" parent="." unique_id=404291630]
