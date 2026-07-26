@@ -38,8 +38,8 @@ metadata/_custom_type_script = "uid://ci46gty6mtmrb"
 [resource]
 script = ExtResource("2_2yj45")
 name = "Riley, Software Imp"
-health = 350
-counter_values = Array[int]([25, 20, 25, 30])
+health = 200
 enemy_texture = ExtResource("2_82ol5")
+counter_values = Array[int]([25, 20, 25, 30])
 debuffs = Array[ExtResource("1_wro1h")]([SubResource("Resource_rrs27"), SubResource("Resource_br1p1")])
 metadata/_custom_type_script = "uid://bifeeamvk3kte"
