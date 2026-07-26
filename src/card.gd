@@ -152,7 +152,7 @@ func update_stamp_display() -> void:
 		%StampTexture.visible = false
 		return
 
-	%Stamp.text = stamp.description
+	%Stamp.text = stamp.title + ":\n" + stamp.description
 	%Stamp.visible = not stamp.description.is_empty()
 	%StampTexture.texture = stamp.stamp_texture
 	%StampTexture.visible = stamp.stamp_texture != null
